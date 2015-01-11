@@ -1,0 +1,2844 @@
+; FBX 6.1.0 project file
+; Created by Blender FBX Exporter
+; for support mail: ideasman42@gmail.com
+; ----------------------------------------------------
+
+FBXHeaderExtension:  {
+	FBXHeaderVersion: 1003
+	FBXVersion: 6100
+	CreationTimeStamp:  {
+		Version: 1000
+		Year: 2014
+		Month: 10
+		Day: 09
+		Hour: 00
+		Minute: 09
+		Second: 21
+		Millisecond: 0
+	}
+	Creator: "FBX SDK/FBX Plugins build 20070228"
+	OtherFlags:  {
+		FlagPLE: 0
+	}
+}
+CreationTime: "2014-10-09 00:09:21:000"
+Creator: "Blender version 2.69 (sub 0)"
+
+; Object definitions
+;------------------------------------------------------------------
+
+Definitions:  {
+	Version: 100
+	Count: 13
+	ObjectType: "Model" {
+		Count: 11
+	}
+	ObjectType: "Geometry" {
+		Count: 1
+	}
+	ObjectType: "Material" {
+		Count: 1
+	}
+	ObjectType: "Pose" {
+		Count: 1
+	}
+	ObjectType: "GlobalSettings" {
+		Count: 1
+	}
+}
+
+; Object properties
+;------------------------------------------------------------------
+
+Objects:  {
+	Model: "Model::Camera Switcher", "CameraSwitcher" {
+		Version: 232
+		Properties60:  {
+			Property: "QuaternionInterpolate", "bool", "",0
+			Property: "Visibility", "Visibility", "A+",1
+			Property: "Lcl Translation", "Lcl Translation", "A+",0.000000000000000,0.000000000000000,0.000000000000000
+			Property: "Lcl Rotation", "Lcl Rotation", "A+",0.000000000000000,0.000000000000000,0.000000000000000
+			Property: "Lcl Scaling", "Lcl Scaling", "A+",1.000000000000000,1.000000000000000,1.000000000000000
+			Property: "RotationOffset", "Vector3D", "",0,0,0
+			Property: "RotationPivot", "Vector3D", "",0,0,0
+			Property: "ScalingOffset", "Vector3D", "",0,0,0
+			Property: "ScalingPivot", "Vector3D", "",0,0,0
+			Property: "TranslationActive", "bool", "",0
+			Property: "TranslationMin", "Vector3D", "",0,0,0
+			Property: "TranslationMax", "Vector3D", "",0,0,0
+			Property: "TranslationMinX", "bool", "",0
+			Property: "TranslationMinY", "bool", "",0
+			Property: "TranslationMinZ", "bool", "",0
+			Property: "TranslationMaxX", "bool", "",0
+			Property: "TranslationMaxY", "bool", "",0
+			Property: "TranslationMaxZ", "bool", "",0
+			Property: "RotationOrder", "enum", "",0
+			Property: "RotationSpaceForLimitOnly", "bool", "",0
+			Property: "AxisLen", "double", "",10
+			Property: "PreRotation", "Vector3D", "",0,0,0
+			Property: "PostRotation", "Vector3D", "",0,0,0
+			Property: "RotationActive", "bool", "",0
+			Property: "RotationMin", "Vector3D", "",0,0,0
+			Property: "RotationMax", "Vector3D", "",0,0,0
+			Property: "RotationMinX", "bool", "",0
+			Property: "RotationMinY", "bool", "",0
+			Property: "RotationMinZ", "bool", "",0
+			Property: "RotationMaxX", "bool", "",0
+			Property: "RotationMaxY", "bool", "",0
+			Property: "RotationMaxZ", "bool", "",0
+			Property: "RotationStiffnessX", "double", "",0
+			Property: "RotationStiffnessY", "double", "",0
+			Property: "RotationStiffnessZ", "double", "",0
+			Property: "MinDampRangeX", "double", "",0
+			Property: "MinDampRangeY", "double", "",0
+			Property: "MinDampRangeZ", "double", "",0
+			Property: "MaxDampRangeX", "double", "",0
+			Property: "MaxDampRangeY", "double", "",0
+			Property: "MaxDampRangeZ", "double", "",0
+			Property: "MinDampStrengthX", "double", "",0
+			Property: "MinDampStrengthY", "double", "",0
+			Property: "MinDampStrengthZ", "double", "",0
+			Property: "MaxDampStrengthX", "double", "",0
+			Property: "MaxDampStrengthY", "double", "",0
+			Property: "MaxDampStrengthZ", "double", "",0
+			Property: "PreferedAngleX", "double", "",0
+			Property: "PreferedAngleY", "double", "",0
+			Property: "PreferedAngleZ", "double", "",0
+			Property: "InheritType", "enum", "",0
+			Property: "ScalingActive", "bool", "",0
+			Property: "ScalingMin", "Vector3D", "",1,1,1
+			Property: "ScalingMax", "Vector3D", "",1,1,1
+			Property: "ScalingMinX", "bool", "",0
+			Property: "ScalingMinY", "bool", "",0
+			Property: "ScalingMinZ", "bool", "",0
+			Property: "ScalingMaxX", "bool", "",0
+			Property: "ScalingMaxY", "bool", "",0
+			Property: "ScalingMaxZ", "bool", "",0
+			Property: "GeometricTranslation", "Vector3D", "",0,0,0
+			Property: "GeometricRotation", "Vector3D", "",0,0,0
+			Property: "GeometricScaling", "Vector3D", "",1,1,1
+			Property: "LookAtProperty", "object", ""
+			Property: "UpVectorProperty", "object", ""
+			Property: "Show", "bool", "",1
+			Property: "NegativePercentShapeSupport", "bool", "",1
+			Property: "DefaultAttributeIndex", "int", "",0
+			Property: "Color", "Color", "A",0.8,0.8,0.8
+			Property: "Camera Index", "Integer", "A+",100
+		}
+		MultiLayer: 0
+		MultiTake: 1
+		Hidden: "True"
+		Shading: W
+		Culling: "CullingOff"
+		Version: 101
+		Name: "Model::Camera Switcher"
+		CameraId: 0
+		CameraName: 100
+		CameraIndexName:
+	}
+	Model: "Model::Camera", "Camera" {
+		Version: 232
+		Properties60:  {
+			Property: "QuaternionInterpolate", "bool", "",0
+			Property: "Visibility", "Visibility", "A+",1
+			Property: "Lcl Translation", "Lcl Translation", "A+",748.113159179687500,534.366516113281250,650.763977050781250
+			Property: "Lcl Rotation", "Lcl Rotation", "A+",23.240198471724188,142.362356870423241,34.212065797802460
+			Property: "Lcl Scaling", "Lcl Scaling", "A+",100.000015258789062,100.000015258789062,100.000007629394531
+			Property: "RotationOffset", "Vector3D", "",0,0,0
+			Property: "RotationPivot", "Vector3D", "",0,0,0
+			Property: "ScalingOffset", "Vector3D", "",0,0,0
+			Property: "ScalingPivot", "Vector3D", "",0,0,0
+			Property: "TranslationActive", "bool", "",0
+			Property: "TranslationMin", "Vector3D", "",0,0,0
+			Property: "TranslationMax", "Vector3D", "",0,0,0
+			Property: "TranslationMinX", "bool", "",0
+			Property: "TranslationMinY", "bool", "",0
+			Property: "TranslationMinZ", "bool", "",0
+			Property: "TranslationMaxX", "bool", "",0
+			Property: "TranslationMaxY", "bool", "",0
+			Property: "TranslationMaxZ", "bool", "",0
+			Property: "RotationOrder", "enum", "",0
+			Property: "RotationSpaceForLimitOnly", "bool", "",0
+			Property: "AxisLen", "double", "",10
+			Property: "PreRotation", "Vector3D", "",0,0,0
+			Property: "PostRotation", "Vector3D", "",0,0,0
+			Property: "RotationActive", "bool", "",0
+			Property: "RotationMin", "Vector3D", "",0,0,0
+			Property: "RotationMax", "Vector3D", "",0,0,0
+			Property: "RotationMinX", "bool", "",0
+			Property: "RotationMinY", "bool", "",0
+			Property: "RotationMinZ", "bool", "",0
+			Property: "RotationMaxX", "bool", "",0
+			Property: "RotationMaxY", "bool", "",0
+			Property: "RotationMaxZ", "bool", "",0
+			Property: "RotationStiffnessX", "double", "",0
+			Property: "RotationStiffnessY", "double", "",0
+			Property: "RotationStiffnessZ", "double", "",0
+			Property: "MinDampRangeX", "double", "",0
+			Property: "MinDampRangeY", "double", "",0
+			Property: "MinDampRangeZ", "double", "",0
+			Property: "MaxDampRangeX", "double", "",0
+			Property: "MaxDampRangeY", "double", "",0
+			Property: "MaxDampRangeZ", "double", "",0
+			Property: "MinDampStrengthX", "double", "",0
+			Property: "MinDampStrengthY", "double", "",0
+			Property: "MinDampStrengthZ", "double", "",0
+			Property: "MaxDampStrengthX", "double", "",0
+			Property: "MaxDampStrengthY", "double", "",0
+			Property: "MaxDampStrengthZ", "double", "",0
+			Property: "PreferedAngleX", "double", "",0
+			Property: "PreferedAngleY", "double", "",0
+			Property: "PreferedAngleZ", "double", "",0
+			Property: "InheritType", "enum", "",0
+			Property: "ScalingActive", "bool", "",0
+			Property: "ScalingMin", "Vector3D", "",1,1,1
+			Property: "ScalingMax", "Vector3D", "",1,1,1
+			Property: "ScalingMinX", "bool", "",0
+			Property: "ScalingMinY", "bool", "",0
+			Property: "ScalingMinZ", "bool", "",0
+			Property: "ScalingMaxX", "bool", "",0
+			Property: "ScalingMaxY", "bool", "",0
+			Property: "ScalingMaxZ", "bool", "",0
+			Property: "GeometricTranslation", "Vector3D", "",0,0,0
+			Property: "GeometricRotation", "Vector3D", "",0,0,0
+			Property: "GeometricScaling", "Vector3D", "",1,1,1
+			Property: "LookAtProperty", "object", ""
+			Property: "UpVectorProperty", "object", ""
+			Property: "Show", "bool", "",1
+			Property: "NegativePercentShapeSupport", "bool", "",1
+			Property: "DefaultAttributeIndex", "int", "",0
+			Property: "Color", "Color", "A",0.8,0.8,0.8
+			Property: "Size", "double", "",100
+			Property: "Look", "enum", "",1
+			Property: "Roll", "Roll", "A+",0
+			Property: "FieldOfView", "FieldOfView", "A+",49.134342
+			Property: "FieldOfViewX", "FieldOfView", "A+",49.134342
+			Property: "FieldOfViewY", "FieldOfView", "A+",28.841546
+			Property: "FocalLength", "Number", "A+",35.000000
+			Property: "FilmOffsetX", "Number", "A+",0.000000
+			Property: "FilmOffsetY", "Number", "A+",0.000000
+			Property: "BackgroundColor", "Color", "A+",0,0,0
+			Property: "TurnTable", "Real", "A+",0
+			Property: "DisplayTurnTableIcon", "bool", "",1
+			Property: "Motion Blur Intensity", "Real", "A+",1
+			Property: "UseMotionBlur", "bool", "",0
+			Property: "UseRealTimeMotionBlur", "bool", "",1
+			Property: "ResolutionMode", "enum", "",0
+			Property: "ApertureMode", "enum", "",3
+			Property: "GateFit", "enum", "",2
+			Property: "CameraFormat", "enum", "",0
+			Property: "AspectW", "double", "",1920
+			Property: "AspectH", "double", "",1080
+			Property: "PixelAspectRatio", "double", "",1
+			Property: "UseFrameColor", "bool", "",0
+			Property: "FrameColor", "ColorRGB", "",0.3,0.3,0.3
+			Property: "ShowName", "bool", "",1
+			Property: "ShowGrid", "bool", "",1
+			Property: "ShowOpticalCenter", "bool", "",0
+			Property: "ShowAzimut", "bool", "",1
+			Property: "ShowTimeCode", "bool", "",0
+			Property: "NearPlane", "double", "",10.000000
+			Property: "FarPlane", "double", "",10000.000000
+			Property: "FilmWidth", "double", "",1.259843
+			Property: "FilmHeight", "double", "",0.708661
+			Property: "FilmAspectRatio", "double", "",1.777778
+			Property: "FilmSqueezeRatio", "double", "",1
+			Property: "FilmFormatIndex", "enum", "",0
+			Property: "ViewFrustum", "bool", "",1
+			Property: "ViewFrustumNearFarPlane", "bool", "",0
+			Property: "ViewFrustumBackPlaneMode", "enum", "",2
+			Property: "BackPlaneDistance", "double", "",100
+			Property: "BackPlaneDistanceMode", "enum", "",0
+			Property: "ViewCameraToLookAt", "bool", "",1
+			Property: "LockMode", "bool", "",0
+			Property: "LockInterestNavigation", "bool", "",0
+			Property: "FitImage", "bool", "",0
+			Property: "Crop", "bool", "",0
+			Property: "Center", "bool", "",1
+			Property: "KeepRatio", "bool", "",1
+			Property: "BackgroundMode", "enum", "",0
+			Property: "BackgroundAlphaTreshold", "double", "",0.5
+			Property: "ForegroundTransparent", "bool", "",1
+			Property: "DisplaySafeArea", "bool", "",0
+			Property: "SafeAreaDisplayStyle", "enum", "",1
+			Property: "SafeAreaAspectRatio", "double", "",1.777778
+			Property: "Use2DMagnifierZoom", "bool", "",0
+			Property: "2D Magnifier Zoom", "Real", "A+",100
+			Property: "2D Magnifier X", "Real", "A+",50
+			Property: "2D Magnifier Y", "Real", "A+",50
+			Property: "CameraProjectionType", "enum", "",0
+			Property: "UseRealTimeDOFAndAA", "bool", "",0
+			Property: "UseDepthOfField", "bool", "",0
+			Property: "FocusSource", "enum", "",0
+			Property: "FocusAngle", "double", "",3.5
+			Property: "FocusDistance", "double", "",200
+			Property: "UseAntialiasing", "bool", "",0
+			Property: "AntialiasingIntensity", "double", "",0.77777
+			Property: "UseAccumulationBuffer", "bool", "",0
+			Property: "FrameSamplingCount", "int", "",7
+		}
+		MultiLayer: 0
+		MultiTake: 0
+		Shading: Y
+		Culling: "CullingOff"
+		TypeFlags: "Camera"
+		GeometryVersion: 124
+		Position: 748.113159,534.366516,650.763977
+		Up: -0.317370,0.895343,-0.312469
+		LookAt: -0.685881,0.010817,0.727634
+		ShowInfoOnMoving: 1
+		ShowAudio: 0
+		AudioColor: 0,1,0
+		CameraOrthoZoom: 1
+	}
+	Model: "Model::Lamp", "Light" {
+		Version: 232
+		Properties60:  {
+			Property: "QuaternionInterpolate", "bool", "",0
+			Property: "Visibility", "Visibility", "A+",1
+			Property: "Lcl Translation", "Lcl Translation", "A+",407.624542236328125,590.386230468750000,-100.545394897460938
+			Property: "Lcl Rotation", "Lcl Rotation", "A+",47.533577962516979,107.220767213380498,10.743660460624717
+			Property: "Lcl Scaling", "Lcl Scaling", "A+",100.000015258789062,100.000007629394531,100.000000000000000
+			Property: "RotationOffset", "Vector3D", "",0,0,0
+			Property: "RotationPivot", "Vector3D", "",0,0,0
+			Property: "ScalingOffset", "Vector3D", "",0,0,0
+			Property: "ScalingPivot", "Vector3D", "",0,0,0
+			Property: "TranslationActive", "bool", "",0
+			Property: "TranslationMin", "Vector3D", "",0,0,0
+			Property: "TranslationMax", "Vector3D", "",0,0,0
+			Property: "TranslationMinX", "bool", "",0
+			Property: "TranslationMinY", "bool", "",0
+			Property: "TranslationMinZ", "bool", "",0
+			Property: "TranslationMaxX", "bool", "",0
+			Property: "TranslationMaxY", "bool", "",0
+			Property: "TranslationMaxZ", "bool", "",0
+			Property: "RotationOrder", "enum", "",0
+			Property: "RotationSpaceForLimitOnly", "bool", "",0
+			Property: "AxisLen", "double", "",10
+			Property: "PreRotation", "Vector3D", "",0,0,0
+			Property: "PostRotation", "Vector3D", "",0,0,0
+			Property: "RotationActive", "bool", "",0
+			Property: "RotationMin", "Vector3D", "",0,0,0
+			Property: "RotationMax", "Vector3D", "",0,0,0
+			Property: "RotationMinX", "bool", "",0
+			Property: "RotationMinY", "bool", "",0
+			Property: "RotationMinZ", "bool", "",0
+			Property: "RotationMaxX", "bool", "",0
+			Property: "RotationMaxY", "bool", "",0
+			Property: "RotationMaxZ", "bool", "",0
+			Property: "RotationStiffnessX", "double", "",0
+			Property: "RotationStiffnessY", "double", "",0
+			Property: "RotationStiffnessZ", "double", "",0
+			Property: "MinDampRangeX", "double", "",0
+			Property: "MinDampRangeY", "double", "",0
+			Property: "MinDampRangeZ", "double", "",0
+			Property: "MaxDampRangeX", "double", "",0
+			Property: "MaxDampRangeY", "double", "",0
+			Property: "MaxDampRangeZ", "double", "",0
+			Property: "MinDampStrengthX", "double", "",0
+			Property: "MinDampStrengthY", "double", "",0
+			Property: "MinDampStrengthZ", "double", "",0
+			Property: "MaxDampStrengthX", "double", "",0
+			Property: "MaxDampStrengthY", "double", "",0
+			Property: "MaxDampStrengthZ", "double", "",0
+			Property: "PreferedAngleX", "double", "",0
+			Property: "PreferedAngleY", "double", "",0
+			Property: "PreferedAngleZ", "double", "",0
+			Property: "InheritType", "enum", "",0
+			Property: "ScalingActive", "bool", "",0
+			Property: "ScalingMin", "Vector3D", "",1,1,1
+			Property: "ScalingMax", "Vector3D", "",1,1,1
+			Property: "ScalingMinX", "bool", "",0
+			Property: "ScalingMinY", "bool", "",0
+			Property: "ScalingMinZ", "bool", "",0
+			Property: "ScalingMaxX", "bool", "",0
+			Property: "ScalingMaxY", "bool", "",0
+			Property: "ScalingMaxZ", "bool", "",0
+			Property: "GeometricTranslation", "Vector3D", "",0,0,0
+			Property: "GeometricRotation", "Vector3D", "",0,0,0
+			Property: "GeometricScaling", "Vector3D", "",1,1,1
+			Property: "LookAtProperty", "object", ""
+			Property: "UpVectorProperty", "object", ""
+			Property: "Show", "bool", "",1
+			Property: "NegativePercentShapeSupport", "bool", "",1
+			Property: "DefaultAttributeIndex", "int", "",0
+			Property: "Color", "Color", "A",0.8,0.8,0.8
+			Property: "Size", "double", "",100
+			Property: "Look", "enum", "",1
+			Property: "LightType", "enum", "",0
+			Property: "CastLightOnObject", "bool", "",1
+			Property: "DrawVolumetricLight", "bool", "",1
+			Property: "DrawGroundProjection", "bool", "",1
+			Property: "DrawFrontFacingVolumetricLight", "bool", "",0
+			Property: "GoboProperty", "object", ""
+			Property: "Color", "Color", "A+",1,1,1
+			Property: "Fog", "Fog", "A+",50
+			Property: "Color", "Color", "A",1.00,1.00,1.00
+			Property: "Intensity", "Intensity", "A+",100.00
+			Property: "Fog", "Fog", "A+",50
+			Property: "LightType", "enum", "",0
+			Property: "CastLightOnObject", "bool", "",1
+			Property: "DrawGroundProjection", "bool", "",1
+			Property: "DrawFrontFacingVolumetricLight", "bool", "",0
+			Property: "DrawVolumetricLight", "bool", "",1
+			Property: "GoboProperty", "object", ""
+			Property: "DecayType", "enum", "",2
+			Property: "EnableFarAttenuation", "bool", "",1
+			Property: "FarAttenuationEnd", "double", "",60.00
+			Property: "CastShadows", "bool", "",1
+			Property: "ShadowColor", "ColorRGBA", "",0,0,0,1
+		}
+		MultiLayer: 0
+		MultiTake: 0
+		Shading: Y
+		Culling: "CullingOff"
+		TypeFlags: "Light"
+		GeometryVersion: 124
+	}
+	Model: "Model::Cube", "Mesh" {
+		Version: 232
+		Properties60:  {
+			Property: "QuaternionInterpolate", "bool", "",0
+			Property: "Visibility", "Visibility", "A+",1
+			Property: "Lcl Translation", "Lcl Translation", "A+",0.000000000000000,103.059005737304688,0.000000000000000
+			Property: "Lcl Rotation", "Lcl Rotation", "A+",-90.000009334538021,0.000000000000000,0.000000000000000
+			Property: "Lcl Scaling", "Lcl Scaling", "A+",100.000000000000000,100.000000000000000,100.000000000000000
+			Property: "RotationOffset", "Vector3D", "",0,0,0
+			Property: "RotationPivot", "Vector3D", "",0,0,0
+			Property: "ScalingOffset", "Vector3D", "",0,0,0
+			Property: "ScalingPivot", "Vector3D", "",0,0,0
+			Property: "TranslationActive", "bool", "",0
+			Property: "TranslationMin", "Vector3D", "",0,0,0
+			Property: "TranslationMax", "Vector3D", "",0,0,0
+			Property: "TranslationMinX", "bool", "",0
+			Property: "TranslationMinY", "bool", "",0
+			Property: "TranslationMinZ", "bool", "",0
+			Property: "TranslationMaxX", "bool", "",0
+			Property: "TranslationMaxY", "bool", "",0
+			Property: "TranslationMaxZ", "bool", "",0
+			Property: "RotationOrder", "enum", "",0
+			Property: "RotationSpaceForLimitOnly", "bool", "",0
+			Property: "AxisLen", "double", "",10
+			Property: "PreRotation", "Vector3D", "",0,0,0
+			Property: "PostRotation", "Vector3D", "",0,0,0
+			Property: "RotationActive", "bool", "",0
+			Property: "RotationMin", "Vector3D", "",0,0,0
+			Property: "RotationMax", "Vector3D", "",0,0,0
+			Property: "RotationMinX", "bool", "",0
+			Property: "RotationMinY", "bool", "",0
+			Property: "RotationMinZ", "bool", "",0
+			Property: "RotationMaxX", "bool", "",0
+			Property: "RotationMaxY", "bool", "",0
+			Property: "RotationMaxZ", "bool", "",0
+			Property: "RotationStiffnessX", "double", "",0
+			Property: "RotationStiffnessY", "double", "",0
+			Property: "RotationStiffnessZ", "double", "",0
+			Property: "MinDampRangeX", "double", "",0
+			Property: "MinDampRangeY", "double", "",0
+			Property: "MinDampRangeZ", "double", "",0
+			Property: "MaxDampRangeX", "double", "",0
+			Property: "MaxDampRangeY", "double", "",0
+			Property: "MaxDampRangeZ", "double", "",0
+			Property: "MinDampStrengthX", "double", "",0
+			Property: "MinDampStrengthY", "double", "",0
+			Property: "MinDampStrengthZ", "double", "",0
+			Property: "MaxDampStrengthX", "double", "",0
+			Property: "MaxDampStrengthY", "double", "",0
+			Property: "MaxDampStrengthZ", "double", "",0
+			Property: "PreferedAngleX", "double", "",0
+			Property: "PreferedAngleY", "double", "",0
+			Property: "PreferedAngleZ", "double", "",0
+			Property: "InheritType", "enum", "",0
+			Property: "ScalingActive", "bool", "",0
+			Property: "ScalingMin", "Vector3D", "",1,1,1
+			Property: "ScalingMax", "Vector3D", "",1,1,1
+			Property: "ScalingMinX", "bool", "",0
+			Property: "ScalingMinY", "bool", "",0
+			Property: "ScalingMinZ", "bool", "",0
+			Property: "ScalingMaxX", "bool", "",0
+			Property: "ScalingMaxY", "bool", "",0
+			Property: "ScalingMaxZ", "bool", "",0
+			Property: "GeometricTranslation", "Vector3D", "",0,0,0
+			Property: "GeometricRotation", "Vector3D", "",0,0,0
+			Property: "GeometricScaling", "Vector3D", "",1,1,1
+			Property: "LookAtProperty", "object", ""
+			Property: "UpVectorProperty", "object", ""
+			Property: "Show", "bool", "",1
+			Property: "NegativePercentShapeSupport", "bool", "",1
+			Property: "DefaultAttributeIndex", "int", "",0
+			Property: "Color", "Color", "A",0.8,0.8,0.8
+			Property: "Size", "double", "",100
+			Property: "Look", "enum", "",1
+		}
+		MultiLayer: 0
+		MultiTake: 1
+		Shading: Y
+		Culling: "CullingOff"
+		Vertices: 0.598087,0.366312,0.758623,0.727466,-0.987835,0.284342,-0.727466,-0.987835,0.284342,-0.598087,0.366312,0.758623,
+		          0.549622,0.067763,1.012223,0.731144,-0.931388,0.769513,-0.731144,-0.931388,0.769513,-0.549622,0.067763,1.012223,
+		          0.000000,0.366312,0.549185,0.000000,-1.854491,-0.180892,0.000000,0.067763,1.147449,0.000000,-1.729665,0.914744,
+		          0.471337,0.366312,0.901880,0.684187,-1.003476,0.565215,-0.684187,-1.003476,0.565215,-0.471337,0.366312,0.901880,
+		          0.000000,-1.766436,0.239958,0.000000,0.366312,0.725442,0.302365,0.366312,0.549185,0.306914,-1.490977,-0.034151,
+		          0.302365,0.067763,1.147449,0.231145,-1.436309,0.890638,0.274971,-1.520663,0.312417,0.302365,0.366312,0.725442,
+		          -0.302365,0.366312,0.549185,-0.306914,-1.490977,-0.034151,-0.302365,0.067763,1.147449,-0.231145,-1.436309,0.890638,
+		          -0.274971,-1.520663,0.312417,-0.302365,0.366312,0.725442,0.000000,-1.854491,-0.027318,0.598087,0.366312,0.832128,
+		          0.595697,-1.019054,0.420853,-0.595697,-1.019054,0.420853,-0.598087,0.366312,0.832128,0.000000,0.366312,0.576625,
+		          0.302365,0.366312,0.576625,0.419238,-1.520663,0.101969,-0.302365,0.366312,0.576625,-0.419238,-1.520663,0.101969,
+		          0.552173,0.366312,1.021164,0.773611,-1.000000,0.724559,-0.773611,-1.000000,0.724559,-0.552173,0.366312,1.021164,
+		          0.000000,0.366312,1.021164,0.000000,-1.843692,0.535512,0.306565,-1.520663,0.636361,0.302365,0.366312,1.021164,
+		          -0.306565,-1.520663,0.636361,-0.302365,0.366312,1.021164,0.717648,-0.000000,0.439889,-0.717648,-0.000000,0.439889,
+		          0.748600,-0.336269,0.897222,-0.748600,-0.336269,0.897222,0.000000,-0.520663,-0.049928,0.000000,-0.469278,1.575833,
+		          0.763249,-0.000000,0.637037,-0.763249,-0.000000,0.637037,0.475150,-0.260331,0.046366,0.406039,-0.596600,1.179783,
+		          -0.475150,-0.260331,0.046366,-0.406039,-0.596600,1.179783,0.667758,-0.000746,0.539649,-0.667758,-0.000746,0.539649,
+		          0.809198,-0.211225,0.793707,-0.809198,-0.211225,0.793707,-0.717648,0.188709,0.484005,-0.798300,0.086075,0.897222,
+		          0.000000,0.239669,-0.049928,-0.763249,0.188709,0.688919,0.487575,0.369835,-0.001781,-0.487575,0.369835,-0.001781,
+		          -0.690586,0.171827,0.547035,-0.816384,0.198180,0.799127,0.717648,0.188709,0.484005,0.798300,0.086075,0.897222,
+		          0.000000,0.071754,1.661584,0.763249,0.188709,0.688919,0.455739,-0.044091,1.179783,-0.455739,-0.044091,1.179783,
+		          0.690586,0.171827,0.547035,0.816384,0.198180,0.799127,0.717648,-0.512165,0.494896,0.698899,-0.758613,0.897222,
+		          0.000000,-1.025221,1.455608,0.740726,-0.550051,0.675451,0.356339,-1.149109,1.179783,-0.356339,-1.149109,1.179783,
+		          0.644930,-0.533679,0.545205,0.802012,-0.650161,0.769559,-0.717648,-0.512165,0.494896,-0.698899,-0.758613,0.897222,
+		          0.000000,-1.280994,-0.119124,-0.740726,-0.550051,0.675451,0.462725,-0.890497,0.025317,-0.462725,-0.890497,0.025317,
+		          -0.644930,-0.533679,0.545205,-0.802012,-0.650161,0.769559,0.450226,0.366312,0.653904,0.451073,-1.354433,0.016355,
+		          0.450226,0.067763,1.106626,0.481144,-1.177138,0.871461,0.502505,-1.260331,0.362444,0.409809,0.366312,0.901880,
+		          0.450226,0.366312,0.681344,0.628856,-1.260331,0.311099,0.556566,-1.260331,0.681291,0.450226,0.366312,1.021164,
+		          0.737575,-0.130166,0.183041,0.580544,-0.466434,1.056836,0.743787,0.434917,0.155085,0.630244,0.020992,1.056836,
+		          0.731363,-0.695248,0.141801,0.530844,-0.953861,1.056836,0.376296,0.366312,0.628985,0.524047,-1.390497,0.276931,
+		          0.431565,-1.390497,0.648842,0.376296,0.366312,1.021164,0.606362,-0.195248,0.114703,0.615681,0.402376,0.076652,
+		          0.597044,-0.792873,0.083559,0.376296,0.366312,0.601545,0.378994,-1.422705,-0.008898,0.376296,0.067763,1.147449,
+		          0.356145,-1.303758,0.888558,0.377505,-1.390497,0.333686,0.356087,0.366312,0.901880,0.455544,-0.531517,1.125858,
+		          0.505244,-0.011549,1.125858,0.405845,-1.051485,1.125858,0.524157,0.366312,0.706263,0.523153,-1.286161,0.041608,
+		          0.524157,0.067763,1.060700,0.606144,-1.014185,0.796227,0.702378,-1.121476,0.514948,0.463530,0.366312,0.901880,
+		          0.705544,-0.401352,0.979186,0.755244,0.053534,0.979186,0.655844,-0.856237,0.979186,0.524157,0.366312,0.733703,
+		          0.733666,-1.130166,0.345268,0.713321,-1.130165,0.724861,0.524157,0.366312,1.021164,0.768712,-0.065083,0.316240,
+		          0.771818,0.156167,0.350261,0.765605,-0.597624,0.264905,0.080828,-1.605805,0.268746,0.154504,0.366312,0.725442,
+		          0.154504,0.366312,0.549185,0.188823,-1.600300,-0.073769,0.154504,0.067763,1.147449,0.150600,-1.594018,0.896683,
+		          0.154504,0.366312,0.576625,0.209619,-1.729096,0.029541,0.121047,-1.780994,0.594758,0.154504,0.366312,1.021164,
+		          0.237575,-0.390497,-0.001781,0.265009,-0.532939,1.250448,0.243787,0.304752,-0.025854,0.289859,0.013832,1.242993,
+		          0.231363,-1.085745,-0.046903,0.240159,-1.087165,1.228083,0.341838,-0.564770,1.232090,0.379113,-0.015129,1.228363,
+		          0.304563,-1.118137,1.220908,0.161674,-1.563234,0.288686,0.228435,0.366312,0.725442,0.228435,0.366312,0.549185,
+		          0.247869,-1.559249,-0.059404,0.228435,0.067763,1.147449,0.155845,-1.549942,0.894604,0.228435,0.366312,0.576625,
+		          0.314428,-1.650828,0.055375,0.181565,-1.650828,0.613896,0.228435,0.366312,1.021164,0.356362,-0.325414,0.022293,
+		          0.365681,0.337293,-0.013817,0.347044,-0.988121,-0.010793,0.058479,-1.723865,0.292148,0.080574,0.366312,0.725442,
+		          0.080574,0.366312,0.549185,0.129777,-1.635907,-0.085412,0.080574,0.067763,1.147449,0.075300,-1.682262,0.902672,
+		          0.080574,0.366312,0.576625,0.104809,-1.796983,0.008897,0.057196,-1.827315,0.575950,0.080574,0.366312,1.021164,
+		          0.118787,-0.455580,-0.025854,0.121894,0.272210,-0.037891,0.115681,-1.183370,-0.083013,0.164859,-0.501109,1.356680,
+		          0.177284,0.042793,1.345497,0.152434,-1.056193,1.323133,-0.154504,0.366312,0.549185,-0.188823,-1.600300,-0.073769,
+		          -0.154504,0.067763,1.147449,-0.150600,-1.594018,0.896683,-0.080828,-1.605805,0.268746,-0.154504,0.366312,0.725442,
+		          -0.154504,0.366312,0.576625,-0.209619,-1.729096,0.029541,-0.121047,-1.780994,0.594758,-0.154504,0.366312,1.021164,
+		          -0.237575,-0.390497,-0.001781,-0.265009,-0.532939,1.250448,-0.243787,0.304752,-0.025854,-0.289859,0.013832,1.242993,
+		          -0.231363,-1.085745,-0.046903,-0.240159,-1.087165,1.228083,-0.080574,0.366312,0.549185,-0.129777,-1.635907,-0.085412,
+		          -0.080574,0.067763,1.147449,-0.075300,-1.682262,0.902672,-0.058479,-1.723865,0.292148,-0.080574,0.366312,0.725442,
+		          -0.164859,-0.501109,1.356680,-0.177284,0.042793,1.345497,-0.152434,-1.056193,1.323133,-0.080574,0.366312,0.576625,
+		          -0.104809,-1.796983,0.008897,-0.057196,-1.827315,0.575950,-0.080574,0.366312,1.021164,-0.118787,-0.455580,-0.025854,
+		          -0.121894,0.272210,-0.037891,-0.115681,-1.183370,-0.083013,-0.228435,0.366312,0.576625,-0.314428,-1.650828,0.055375,
+		          -0.181565,-1.650828,0.613896,-0.228435,0.366312,1.021164,-0.356362,-0.325414,0.022293,-0.365681,0.337293,-0.013817,
+		          -0.347044,-0.988121,-0.010793,-0.228435,0.366312,0.549185,-0.247869,-1.559249,-0.059404,-0.228435,0.067763,1.147449,
+		          -0.155845,-1.549942,0.894604,-0.161674,-1.563234,0.288686,-0.228435,0.366312,0.725442,-0.341838,-0.564770,1.232090,
+		          -0.379113,-0.015129,1.228363,-0.304563,-1.118137,1.220908,-0.450226,0.366312,0.653904,-0.451073,-1.354433,0.016355,
+		          -0.450226,0.067763,1.106626,-0.481144,-1.177138,0.871461,-0.502505,-1.260331,0.362444,-0.409809,0.366312,0.901880,
+		          -0.450226,0.366312,0.681344,-0.628856,-1.260331,0.311099,-0.556566,-1.260331,0.681291,-0.450226,0.366312,1.021164,
+		          -0.737575,-0.130166,0.183041,-0.580544,-0.466434,1.056836,-0.743787,0.434917,0.155085,-0.630244,0.020992,1.056836,
+		          -0.731363,-0.695248,0.141801,-0.530844,-0.953861,1.056836,-0.455544,-0.531517,1.125858,-0.505244,-0.011549,1.125858,
+		          -0.405845,-1.051485,1.125858,-0.376296,0.366312,0.601545,-0.378994,-1.422705,-0.008898,-0.376296,0.067763,1.147449,
+		          -0.356145,-1.303758,0.888558,-0.377505,-1.390497,0.333686,-0.356087,0.366312,0.901880,-0.376296,0.366312,0.628985,
+		          -0.524047,-1.390497,0.276931,-0.431565,-1.390497,0.648842,-0.376296,0.366312,1.021164,-0.606362,-0.195248,0.114703,
+		          -0.615681,0.402376,0.076652,-0.597044,-0.792873,0.083559,-0.524157,0.366312,0.706263,-0.523153,-1.286161,0.041608,
+		          -0.524157,0.067763,1.060700,-0.606144,-1.014185,0.796227,-0.702378,-1.121476,0.514948,-0.463530,0.366312,0.901880,
+		          -0.524157,0.366312,0.733703,-0.733666,-1.130166,0.345268,-0.713321,-1.130165,0.724861,-0.524157,0.366312,1.021164,
+		          -0.768712,-0.065083,0.316240,-0.771818,0.156167,0.350261,-0.765605,-0.597624,0.264905,-0.705544,-0.401352,0.979186,
+		          -0.755244,0.053534,0.979186,-0.655844,-0.856237,0.979186,0.560013,-0.382111,0.503403,0.636170,-0.679552,0.887695,
+		          0.000000,-0.903020,1.352147,0.605614,-0.424654,0.679150,0.293609,-1.004965,1.170256,-0.293609,-1.004965,1.170256,
+		          0.498709,-0.384269,0.576536,0.714432,-0.561304,0.813049,-0.560013,-0.382111,0.503403,-0.636170,-0.679552,0.887695,
+		          0.000000,-0.900828,-0.068210,-0.605614,-0.424654,0.679150,0.468938,-0.575414,0.052157,-0.468938,-0.575414,0.052157,
+		          -0.498709,-0.384269,0.576536,-0.714432,-0.561304,0.813049,0.734469,-0.412707,0.178736,0.468115,-0.842259,1.047309,
+		          0.601703,-0.494061,0.115447,0.343115,-0.923612,1.116331,0.609523,-0.463464,0.324903,0.593115,-0.760905,0.969659,
+		          0.234469,-0.738121,-0.008027,0.094949,-0.942163,1.114956,0.351703,-0.656768,0.022065,0.235621,-0.973564,1.216972,
+		          0.117234,-0.819475,-0.038118,0.001012,-0.862721,1.278649,-0.234469,-0.738121,-0.008027,-0.094949,-0.942163,1.114956,
+		          -0.117234,-0.819475,-0.038118,-0.001012,-0.862721,1.278649,-0.351703,-0.656768,0.022065,-0.235621,-0.973564,1.216972,
+		          -0.734469,-0.412707,0.178736,-0.468115,-0.842259,1.047309,-0.601703,-0.494061,0.115447,-0.343115,-0.923612,1.116331,
+		          -0.609523,-0.463464,0.324903,-0.593115,-0.760905,0.969659,-0.560013,0.117889,0.454022,-0.685870,-0.257208,0.887695,
+		          0.000000,-0.140497,-0.049928,-0.605614,0.117889,0.655052,0.481362,0.054752,0.022293,-0.481362,0.054752,0.022293,
+		          -0.521537,0.103544,0.547307,-0.718025,-0.147895,0.809521,0.560013,0.117889,0.454022,0.685870,-0.257208,0.887695,
+		          0.000000,-0.382108,1.449742,0.605614,0.117889,0.655052,0.343309,-0.452456,1.170256,-0.343309,-0.452456,1.170256,
+		          0.521537,0.103544,0.547307,0.718025,-0.147895,0.809521,0.740681,0.152376,0.169063,0.517815,-0.354832,1.047309,
+		          0.611022,0.103564,0.095678,0.392815,-0.403644,1.116331,0.612629,0.069077,0.325325,0.642815,-0.306020,0.969659,
+		          0.240681,-0.042873,-0.013817,0.119799,-0.391664,1.122410,0.361022,0.005940,0.004238,0.272896,-0.422060,1.220700,
+		          0.120341,-0.091685,-0.031873,0.013437,-0.229158,1.208763,-0.240681,-0.042873,-0.013817,-0.119799,-0.391664,1.122410,
+		          -0.120341,-0.091685,-0.031873,-0.013437,-0.229158,1.208763,-0.361022,0.005940,0.004238,-0.272896,-0.422060,1.220700,
+		          -0.740681,0.152376,0.169063,-0.517815,-0.354832,1.047309,-0.611022,0.103564,0.095678,-0.392815,-0.403644,1.116331,
+		          -0.612629,0.069077,0.325325,-0.642815,-0.306020,0.969659,0.685312,-0.748262,0.436024,0.755994,-0.877177,0.838889,
+		          0.000000,-1.484429,1.169887,0.703188,-0.781282,0.660713,0.331489,-1.298518,1.077381,-0.331489,-1.298518,1.077381,
+		          0.633516,-0.776067,0.522424,0.762493,-0.800399,0.754758,-0.685312,-0.748262,0.436024,-0.755994,-0.877177,0.838889,
+		          0.000000,-1.661160,-0.132420,-0.703188,-0.781282,0.660713,0.456513,-1.205580,0.036094,-0.456513,-1.205580,0.036094,
+		          -0.633516,-0.776067,0.522424,-0.762493,-0.800399,0.754758,0.728256,-0.977790,0.142483,0.505994,-1.072808,0.935719,
+		          0.592384,-1.091685,0.089288,0.380995,-1.186703,1.004741,0.764052,-0.863895,0.260539,0.630994,-0.944357,0.870546,
+		          0.228256,-1.433370,-0.048163,0.163025,-1.385235,1.074838,0.342384,-1.319475,-0.006034,0.174482,-1.348115,1.070981,
+		          0.114128,-1.547265,-0.090291,0.081513,-1.434832,1.122362,-0.228256,-1.433370,-0.048163,-0.163025,-1.385235,1.074838,
+		          -0.114128,-1.547265,-0.090291,-0.081513,-1.434832,1.122362,-0.342384,-1.319475,-0.006034,-0.174482,-1.348115,1.070981,
+		          -0.728256,-0.977790,0.142483,-0.505994,-1.072808,0.935719,-0.592384,-1.091685,0.089288,-0.380995,-1.186703,1.004741,
+		          -0.764052,-0.863895,0.260539,-0.630994,-0.944357,0.870546,0.413261,0.366312,0.655164,0.576452,-1.325414,0.294015,
+		          0.494065,-1.325414,0.666315,0.413261,0.366312,1.021164,0.671969,-0.162707,0.148872,0.679734,0.418647,0.115868,
+		          0.664203,-0.744061,0.112680,0.413261,0.366312,0.627724,0.415034,-1.388569,0.003728,0.413261,0.067763,1.127037,
+		          0.418644,-1.242987,0.873465,0.440005,-1.325414,0.348065,0.382948,0.366312,0.901880,0.518044,-0.498976,1.091347,
+		          0.567744,0.004722,1.091347,0.468344,-1.002673,1.091347,0.668086,-0.453384,0.147091,0.405615,-0.882935,1.081820,
+		          0.675851,0.127970,0.132370,0.455315,-0.379238,1.081820,0.660320,-1.034737,0.115886,0.443494,-1.129756,0.970230,
+		          0.339330,0.366312,0.602805,0.471642,-1.455580,0.189450,0.369065,-1.455580,0.643849,0.339330,0.366312,1.021164,
+		          0.540756,-0.227790,0.080535,0.551628,0.386105,0.037436,0.529884,-0.841685,0.054438,0.339330,0.366312,0.575365,
+		          0.342954,-1.456841,-0.021525,0.339330,0.067763,1.147449,0.293645,-1.366914,0.899262,0.326238,-1.455580,0.323052,
+		          0.329226,0.366312,0.901880,0.430792,-0.564059,1.152821,0.480491,-0.027820,1.152821,0.381092,-1.100297,1.152821,
+		          0.535320,-0.534737,0.083802,0.318362,-0.964289,1.143294,0.546192,0.079158,0.058985,0.368062,-0.428050,1.143294,
+		          0.524449,-1.148632,0.062691,0.356242,-1.243650,1.031704,0.373939,-0.580685,1.205936,0.417426,-0.029610,1.204073,
+		          0.330451,-1.133623,1.200345,0.218323,-1.541948,0.300551,0.265400,0.366312,0.725442,0.265400,0.366312,0.549185,
+		          0.277391,-1.525113,-0.046778,0.265400,0.067763,1.147449,0.193495,-1.492644,0.885621,0.265400,0.366312,0.576625,
+		          0.366833,-1.585745,0.078672,0.244065,-1.585745,0.631369,0.265400,0.366312,1.021164,0.415756,-0.292873,0.034329,
+		          0.426628,0.353564,-0.007799,0.404884,-0.939309,0.007262,0.410320,-0.616091,0.037111,0.264615,-0.989265,1.193614,
+		          0.421192,0.030346,0.013265,0.308103,-0.437258,1.195478,0.399449,-1.262527,0.015030,0.252986,-1.323317,1.074181,
+		          0.487191,0.366312,0.680084,0.487113,-1.320297,0.028981,0.487192,0.067763,1.083663,0.543644,-1.107744,0.853488,
+		          0.565005,-1.195249,0.382215,0.436669,0.366312,0.901880,0.643044,-0.433893,1.018011,0.692744,0.037263,1.018011,
+		          0.593344,-0.905049,1.018011,0.487192,0.366312,0.707524,0.681261,-1.195249,0.328184,0.619066,-1.195248,0.708749,
+		          0.487191,0.366312,1.021164,0.803181,-0.097624,0.217210,0.807841,0.139897,0.246183,0.798522,-0.646436,0.170922,
+		          0.643216,-0.504141,0.228396,0.530615,-0.801582,1.008484,0.647876,0.044671,0.223770,0.580315,-0.330426,1.008484,
+		          0.796192,-0.920842,0.169080,0.568494,-1.001305,0.909371,-0.265400,0.366312,0.576625,-0.366833,-1.585745,0.078672,
+		          -0.244065,-1.585745,0.631369,-0.265400,0.366312,1.021164,-0.415756,-0.292873,0.034329,-0.426628,0.353564,-0.007799,
+		          -0.404884,-0.939309,0.007262,-0.265400,0.366312,0.549185,-0.277391,-1.525113,-0.046778,-0.265400,0.067763,1.147449,
+		          -0.193495,-1.492644,0.885621,-0.218323,-1.541948,0.300551,-0.265400,0.366312,0.725442,-0.373939,-0.580685,1.205936,
+		          -0.417426,-0.029610,1.204073,-0.330451,-1.133623,1.200345,-0.410320,-0.616091,0.037111,-0.264615,-0.989265,1.193614,
+		          -0.421192,0.030346,0.013265,-0.308103,-0.437258,1.195478,-0.399449,-1.262527,0.015030,-0.252986,-1.323317,1.074181,
+		          -0.430792,-0.564059,1.152821,-0.480491,-0.027820,1.152821,-0.381092,-1.100297,1.152821,-0.339330,0.366312,0.575365,
+		          -0.342954,-1.456841,-0.021525,-0.339330,0.067763,1.147449,-0.293645,-1.366914,0.899262,-0.326238,-1.455580,0.323052,
+		          -0.329226,0.366312,0.901880,-0.339330,0.366312,0.602805,-0.471642,-1.455580,0.189450,-0.369065,-1.455580,0.643849,
+		          -0.339330,0.366312,1.021164,-0.540756,-0.227790,0.080535,-0.551628,0.386105,0.037436,-0.529884,-0.841685,0.054438,
+		          -0.535320,-0.534737,0.083802,-0.318362,-0.964289,1.143294,-0.546192,0.079158,0.058985,-0.368062,-0.428050,1.143294,
+		          -0.524449,-1.148632,0.062691,-0.356242,-1.243650,1.031704,-0.518044,-0.498976,1.091347,-0.567744,0.004722,1.091347,
+		          -0.468344,-1.002673,1.091347,-0.413261,0.366312,0.627724,-0.415034,-1.388569,0.003728,-0.413261,0.067763,1.127037,
+		          -0.418644,-1.242987,0.873465,-0.440005,-1.325414,0.348065,-0.382948,0.366312,0.901880,-0.413261,0.366312,0.655164,
+		          -0.576452,-1.325414,0.294015,-0.494065,-1.325414,0.666315,-0.413261,0.366312,1.021164,-0.671969,-0.162707,0.148872,
+		          -0.679734,0.418647,0.115868,-0.664203,-0.744061,0.112680,-0.668086,-0.453384,0.147091,-0.405615,-0.882935,1.081820,
+		          -0.675851,0.127970,0.132370,-0.455315,-0.379238,1.081820,-0.660320,-1.034737,0.115886,-0.443494,-1.129756,0.970230,
+		          -0.487191,0.366312,0.680084,-0.487113,-1.320297,0.028981,-0.487192,0.067763,1.083663,-0.543644,-1.107744,0.853488,
+		          -0.565005,-1.195249,0.382215,-0.436669,0.366312,0.901880,-0.487192,0.366312,0.707524,-0.681261,-1.195249,0.328184,
+		          -0.619066,-1.195248,0.708749,-0.487191,0.366312,1.021164,-0.803181,-0.097624,0.217210,-0.807841,0.139897,0.246183,
+		          -0.798522,-0.646436,0.170922,-0.643044,-0.433893,1.018011,-0.692744,0.037263,1.018011,-0.593344,-0.905049,1.018011,
+		          -0.643216,-0.504141,0.228396,-0.530615,-0.801582,1.008484,-0.647876,0.044671,0.223770,-0.580315,-0.330426,1.008484,
+		          -0.796192,-0.920842,0.169080,-0.568494,-1.001305,0.909371,0.469002,-1.464768,0.628584,0.414942,-1.481407,0.319668,
+		          0.199111,-1.654143,0.274667,0.212763,-1.731339,0.593638,-0.212763,-1.731339,0.593638,-0.199111,-1.654143,0.274667,
+		          -0.414942,-1.481407,0.319668,-0.469002,-1.464768,0.628584,0.531502,-1.399685,0.646057,0.477442,-1.416324,0.334047,
+		          0.255759,-1.632858,0.286533,0.275263,-1.666256,0.611111,-0.275263,-1.666256,0.611111,-0.255759,-1.632858,0.286533,
+		          -0.477442,-1.416324,0.334047,-0.531502,-1.399685,0.646057,0.312408,-1.580460,0.310611,-0.312408,-1.580460,0.310611,
+		          0.339842,-1.580460,0.628316,-0.339842,-1.580460,0.628316,0.402342,-1.515377,0.635804,0.363675,-1.515377,0.321246,
+		          -0.363675,-1.515377,0.321246,-0.402342,-1.515377,0.635804,0.554500,-1.356075,0.352932,0.600242,-1.339437,0.663460,
+		          -0.554500,-1.356075,0.352932,-0.600242,-1.339437,0.663460,0.617000,-1.290993,0.372703,0.662742,-1.274354,0.690917,
+		          -0.617000,-1.290993,0.372703,-0.662742,-1.274354,0.690917,0.075300,-1.682262,0.911296,0.000000,-1.729665,0.923368,
+		          0.155845,-1.549942,0.903228,0.150600,-1.594018,0.905307
+		PolygonVertexIndex: 408,275,2,-379,409,379,6,-278,377,371,5,-42,282,277,6,-43,73,67,7,-44,280,274,3,-35,396,181,9,-381,397,372,11,-184,
+		                    186,618,619,-46,184,180,8,-36,376,373,13,-33,281,278,14,-34,72,69,15,-35,283,279,15,-44,185,178,16,-31,187,179,17,-45,
+		                    452,440,19,-383,453,374,21,-443,434,442,21,-47,432,439,18,-37,433,443,22,-38,435,444,23,-48,518,506,25,-384,519,375,27,-509,
+		                    500,508,27,-49,498,505,24,-39,499,509,28,-40,501,510,29,-50,279,280,34,-16,179,184,35,-18,370,376,32,-2,275,281,33,-3,
+		                    66,72,34,-4,181,185,30,-10,444,432,36,-24,440,433,37,-20,510,498,38,-30,506,499,39,-26,373,377,41,-14,278,282,42,-15,
+		                    69,73,43,-16,178,186,45,-17,276,283,43,-8,182,187,44,-11,443,434,606,-608,441,435,47,-21,509,500,48,-29,507,501,49,-27,
+		                    368,284,51,-331,369,331,53,-288,345,339,52,-65,305,299,53,-66,356,188,54,-333,357,340,55,-192,344,341,56,-63,304,301,57,-64,
+		                    450,436,58,-335,451,342,59,-446,516,502,60,-336,517,343,61,-512,338,344,62,-51,298,304,63,-52,341,345,64,-57,301,305,65,-58,
+		                    337,331,67,-74,336,333,69,-73,330,336,72,-67,333,337,73,-70,274,285,66,-4,276,7,67,-289,40,4,75,-82,180,189,68,-9,
+		                    182,10,76,-193,31,12,77,-81,439,437,70,-19,441,20,78,-447,505,503,71,-25,507,26,79,-513,0,31,80,-75,12,40,81,-78,
+		                    328,286,90,-299,329,299,91,-290,297,291,83,-90,316,190,92,-301,317,292,84,-194,296,293,85,-89,448,438,94,-303,449,294,86,-448,
+		                    514,504,95,-304,515,295,87,-514,290,296,88,-83,293,297,89,-86,385,379,91,-98,384,381,93,-97,378,384,96,-91,381,385,97,-94,
+		                    496,477,99,-387,497,387,101,-480,487,479,101,-107,485,476,98,-105,486,480,102,-106,488,481,103,-108,481,485,104,-104,477,486,105,-100,
+		                    480,487,615,-615,478,488,107,-101,494,489,108,-347,495,347,109,-483,476,490,110,-99,478,100,111,-484,492,491,112,-307,493,307,113,-485,
+		                    430,418,122,-389,431,389,124,-421,412,420,124,-117,410,417,121,-115,411,421,125,-116,413,422,126,-118,422,410,114,-127,418,411,115,-123,
+		                    269,553,601,-594,419,413,117,-124,428,414,118,-349,429,349,127,-424,417,415,119,-122,419,123,128,-425,426,416,120,-309,427,309,129,-426,
+		                    370,1,131,-391,371,391,133,-6,41,5,133,-142,31,0,130,-140,32,13,134,-141,40,12,135,-143,12,31,139,-136,1,32,140,-132,
+		                    13,41,141,-135,4,40,142,-133,338,50,143,-351,339,351,136,-53,0,74,144,-131,4,132,137,-76,290,82,145,-311,291,311,138,-84,
+		                    394,168,149,-393,395,393,151,-171,173,620,621,-155,171,167,148,-153,172,165,146,-154,174,166,147,-156,166,171,152,-148,168,172,153,-150,
+		                    165,173,154,-147,169,174,155,-151,354,175,156,-353,355,353,157,-163,167,176,158,-149,169,150,159,-164,314,177,160,-313,315,313,161,-165,
+		                    474,460,168,-395,475,395,170,-463,465,462,620,-174,463,459,167,-172,464,457,165,-173,466,458,166,-175,458,463,171,-167,460,464,172,-169,
+		                    509,237,591,-600,461,466,174,-170,472,467,175,-355,473,355,162,-455,459,468,176,-168,461,169,163,-456,470,469,177,-315,471,315,164,-457,
+		                    392,149,181,-397,393,397,183,-152,154,621,618,-187,152,148,180,-185,153,146,178,-186,155,147,179,-188,147,152,184,-180,149,153,185,-182,
+		                    146,154,186,-179,150,155,187,-183,352,156,188,-357,353,357,191,-158,148,158,189,-181,150,182,192,-160,312,160,190,-317,313,317,193,-162,
+		                    400,211,195,-399,401,399,197,-214,221,213,197,-203,219,210,194,-201,220,214,198,-202,222,215,199,-204,215,219,200,-200,211,220,201,-196,
+		                    214,221,202,-199,212,222,203,-197,360,223,204,-359,361,359,205,-217,210,224,206,-195,212,196,207,-218,320,225,208,-319,321,319,209,-219,
+		                    380,9,211,-401,372,401,213,-12,45,619,213,-222,35,8,210,-220,30,16,214,-221,44,17,215,-223,17,35,219,-216,9,30,220,-212,
+		                    16,45,221,-215,10,44,222,-213,332,54,223,-361,340,361,216,-56,8,68,224,-211,10,212,217,-77,300,92,225,-321,292,321,218,-85,
+		                    398,195,234,-403,399,403,236,-198,202,197,236,-229,200,194,233,-227,201,198,237,-228,203,199,238,-230,199,200,226,-239,195,201,227,-235,
+		                    198,202,228,-238,196,203,229,-236,358,204,230,-363,359,363,239,-206,194,206,231,-234,196,235,240,-208,318,208,232,-323,319,323,241,-210,
+		                    562,546,243,-405,563,405,245,-549,553,548,245,-251,551,545,242,-249,552,549,246,-250,554,550,247,-252,550,551,248,-248,546,552,249,-244,
+		                    549,553,250,-247,547,554,251,-245,560,555,252,-365,561,365,253,-543,545,556,254,-243,547,244,255,-544,558,557,256,-325,559,325,257,-545,
+		                    540,524,262,-407,541,407,264,-527,531,526,264,-270,529,523,261,-268,530,527,265,-269,532,528,266,-271,528,529,267,-267,524,530,268,-263,
+		                    527,531,269,-266,525,532,270,-264,538,533,271,-367,539,367,258,-521,523,534,272,-262,525,263,259,-522,536,535,273,-327,537,327,260,-523,
+		                    584,565,275,-409,585,409,277,-568,572,567,277,-283,570,564,274,-281,571,568,278,-282,573,569,279,-284,569,570,280,-280,565,571,281,-276,
+		                    568,572,282,-279,566,573,283,-277,582,574,284,-369,583,369,287,-578,564,575,285,-275,566,276,288,-579,580,576,286,-329,581,329,289,-580,
+		                    97,91,299,-306,96,93,301,-305,90,96,304,-299,93,97,305,-302,284,328,298,-52,287,53,299,-330,64,52,291,-298,188,316,300,-55,
+		                    191,55,292,-318,62,56,293,-297,436,448,302,-59,445,59,294,-450,502,514,303,-61,511,61,295,-516,50,62,296,-291,56,64,297,-294,
+		                    489,492,306,-109,482,109,307,-494,414,426,308,-119,423,127,309,-428,50,290,310,-144,52,136,311,-292,175,314,312,-157,162,157,313,-316,
+		                    467,470,314,-176,454,162,315,-472,156,312,316,-189,157,191,317,-314,223,320,318,-205,216,205,319,-322,54,300,320,-224,55,216,321,-293,
+		                    204,318,322,-231,205,239,323,-320,555,558,324,-253,542,253,325,-560,533,536,326,-272,520,258,327,-538,574,580,328,-285,577,287,329,-582,
+		                    285,368,330,-67,288,67,331,-370,81,75,339,-346,189,356,332,-69,192,76,340,-358,80,77,341,-345,437,450,334,-71,446,78,342,-452,
+		                    503,516,335,-72,512,79,343,-518,74,80,344,-339,77,81,345,-342,65,53,331,-338,63,57,333,-337,51,63,336,-331,57,65,337,-334,
+		                    490,494,346,-111,483,111,347,-496,415,428,348,-120,424,128,349,-430,74,338,350,-145,75,137,351,-340,176,354,352,-159,163,159,353,-356,
+		                    468,472,354,-177,455,163,355,-474,158,352,356,-190,159,192,357,-354,224,360,358,-207,217,207,359,-362,68,332,360,-225,76,217,361,-341,
+		                    206,358,362,-232,207,240,363,-360,556,560,364,-255,543,255,365,-562,534,538,366,-273,521,259,367,-540,575,582,368,-286,578,288,369,-584,
+		                    286,408,378,-91,289,91,379,-410,89,83,371,-378,190,396,380,-93,193,84,372,-398,88,85,373,-377,438,452,382,-95,447,86,374,-454,
+		                    504,518,383,-96,513,87,375,-520,82,88,376,-371,85,89,377,-374,42,6,379,-386,33,14,381,-385,2,33,384,-379,14,42,385,-382,
+		                    491,496,386,-113,484,113,387,-498,416,430,388,-121,425,129,389,-432,82,370,390,-146,83,138,391,-372,177,394,392,-161,164,161,393,-396,
+		                    469,474,394,-178,456,164,395,-476,160,392,396,-191,161,193,397,-394,225,400,398,-209,218,209,399,-402,92,380,400,-226,84,218,401,-373,
+		                    208,398,402,-233,209,241,403,-400,557,562,404,-257,544,257,405,-564,535,540,406,-274,522,260,407,-542,576,584,408,-287,579,289,409,-586,
+		                    386,99,418,-431,387,431,420,-102,106,101,420,-413,104,98,417,-411,105,102,421,-412,107,103,422,-414,103,104,410,-423,99,105,411,-419,
+		                    102,106,412,-422,100,107,413,-420,346,108,414,-429,347,429,423,-110,98,110,415,-418,100,419,424,-112,306,112,416,-427,307,427,425,-114,
+		                    108,306,426,-415,109,423,427,-308,110,346,428,-416,111,424,429,-348,112,386,430,-417,113,425,431,-388,388,122,440,-453,389,453,442,-125,
+		                    116,124,442,-435,114,121,439,-433,115,125,443,-434,117,126,444,-436,126,114,432,-445,122,115,433,-441,125,116,434,-444,123,117,435,-442,
+		                    348,118,436,-451,349,451,445,-128,121,119,437,-440,123,441,446,-129,308,120,438,-449,309,449,447,-130,118,308,448,-437,127,445,449,-310,
+		                    119,348,450,-438,128,446,451,-350,120,388,452,-439,129,447,453,-390,382,19,460,-475,374,475,462,-22,46,21,462,-466,36,18,459,-464,
+		                    37,22,457,-465,47,23,458,-467,23,36,463,-459,19,37,464,-461,22,46,465,-458,20,47,466,-462,334,58,467,-473,342,473,454,-60,
+		                    18,70,468,-460,20,461,455,-79,302,94,469,-471,294,471,456,-87,58,302,470,-468,59,454,471,-295,70,334,472,-469,78,455,473,-343,
+		                    94,382,474,-470,86,456,475,-375,390,131,477,-497,391,497,479,-134,141,133,479,-488,139,130,476,-486,140,134,480,-487,142,135,481,-489,
+		                    135,139,485,-482,131,140,486,-478,134,141,487,-481,132,142,488,-479,350,143,489,-495,351,495,482,-137,130,144,490,-477,132,478,483,-138,
+		                    310,145,491,-493,311,493,484,-139,143,310,492,-490,136,482,493,-312,144,350,494,-491,137,483,495,-352,145,390,496,-492,138,484,497,-392,
+		                    402,234,506,-519,403,519,508,-237,228,236,508,-501,226,233,505,-499,227,237,509,-500,229,238,510,-502,238,226,498,-511,234,227,499,-507,
+		                    465,173,589,-598,235,229,501,-508,362,230,502,-517,363,517,511,-240,233,231,503,-506,235,507,512,-241,322,232,504,-515,323,515,513,-242,
+		                    230,322,514,-503,239,511,515,-324,231,362,516,-504,240,512,517,-364,232,402,518,-505,241,513,519,-404,383,25,524,-541,375,541,526,-28,
+		                    48,27,526,-532,38,24,523,-530,39,28,527,-531,49,29,528,-533,29,38,529,-529,25,39,530,-525,531,527,608,-610,26,49,532,-526,
+		                    335,60,533,-539,343,539,520,-62,24,71,534,-524,26,525,521,-80,303,95,535,-537,295,537,522,-88,60,303,536,-534,61,520,537,-296,
+		                    71,335,538,-535,79,521,539,-344,95,383,540,-536,87,522,541,-376,406,262,546,-563,407,563,548,-265,269,264,548,-554,267,261,545,-552,
+		                    268,265,549,-553,270,266,550,-555,266,267,551,-551,262,268,552,-547,125,421,595,-588,263,270,554,-548,366,271,555,-561,367,561,542,-259,
+		                    261,272,556,-546,263,547,543,-260,326,273,557,-559,327,559,544,-261,271,326,558,-556,258,542,559,-328,272,366,560,-557,259,543,561,-368,
+		                    273,406,562,-558,260,544,563,-408,404,243,565,-585,405,585,567,-246,250,245,567,-573,248,242,564,-571,249,246,568,-572,251,247,569,-574,
+		                    247,248,570,-570,243,249,571,-566,572,568,616,-618,244,251,573,-567,364,252,574,-583,365,583,577,-254,242,254,575,-565,244,566,578,-256,
+		                    324,256,576,-581,325,581,579,-258,252,324,580,-575,253,577,581,-326,254,364,582,-576,255,578,583,-366,256,404,584,-577,257,579,585,-406,
+		                    595,594,586,-588,596,597,589,-589,591,590,598,-600,592,593,601,-601,549,265,592,-601,165,457,596,-589,173,165,588,-590,237,228,590,-592,
+		                    421,412,594,-596,457,465,597,-597,500,509,599,-599,265,269,593,-593,553,549,600,-602,116,125,587,-587,412,116,586,-595,228,500,598,-591,
+		                    607,606,604,-603,603,605,609,-609,48,531,609,-606,527,28,603,-609,22,443,607,-603,434,46,604,-607,28,48,605,-604,46,22,602,-605,
+		                    614,615,611,-611,612,613,617,-617,250,572,617,-614,568,246,612,-617,246,250,613,-613,487,106,611,-616,102,480,614,-611,106,102,610,-612
+		GeometryVersion: 124
+		LayerElementNormal: 0 {
+			Version: 101
+			Name: ""
+			MappingInformationType: "ByPolygonVertex"
+			ReferenceInformationType: "Direct"
+			Normals: -0.958725,-0.284259,-0.006500,-0.958725,-0.284259,-0.006500,-0.958725,-0.284259,-0.006500,-0.958725,-0.284259,-0.006500,
+			         -0.535453,-0.722058,0.438088,-0.535453,-0.722058,0.438088,-0.535453,-0.722058,0.438088,-0.535453,-0.722058,0.438088,
+			         0.923023,-0.182761,0.338566,0.923023,-0.182761,0.338566,0.923023,-0.182761,0.338566,0.923023,-0.182761,0.338566,
+			         -0.399178,-0.234881,0.886278,-0.399178,-0.234881,0.886278,-0.399178,-0.234881,0.886278,-0.399178,-0.234881,0.886278,
+			         -0.572761,0.146323,0.806557,-0.572761,0.146323,0.806557,-0.572761,0.146323,0.806557,-0.572761,0.146323,0.806557,
+			         0.000001,1.000000,0.000002,0.000001,1.000000,0.000002,0.000001,1.000000,0.000002,0.000001,1.000000,0.000002,
+			         0.308043,0.162027,-0.937473,0.308043,0.162027,-0.937473,0.308043,0.162027,-0.937473,0.308043,0.162027,-0.937473,
+			         0.575683,-0.571182,0.585099,0.575683,-0.571182,0.585099,0.575683,-0.571182,0.585099,0.575683,-0.571182,0.585099,
+			         0.358679,-0.881588,0.306842,0.358679,-0.881588,0.306842,0.358679,-0.881588,0.306842,0.358679,-0.881588,0.306842,
+			         -0.000001,1.000000,0.000003,-0.000001,1.000000,0.000003,-0.000001,1.000000,0.000003,-0.000001,1.000000,0.000003,
+			         0.866607,0.101151,-0.488632,0.866607,0.101151,-0.488632,0.866607,0.101151,-0.488632,0.866607,0.101151,-0.488632,
+			         -0.761065,0.621248,-0.186632,-0.761065,0.621248,-0.186632,-0.761065,0.621248,-0.186632,-0.761065,0.621248,-0.186632,
+			         -0.781801,0.604828,0.151557,-0.781801,0.604828,0.151557,-0.781801,0.604828,0.151557,-0.781801,0.604828,0.151557,
+			         -0.000008,1.000000,-0.000005,-0.000008,1.000000,-0.000005,-0.000008,1.000000,-0.000005,-0.000008,1.000000,-0.000005,
+			         0.381557,-0.877958,0.289143,0.381557,-0.877958,0.289143,0.381557,-0.877958,0.289143,0.381557,-0.877958,0.289143,
+			         -0.000000,1.000000,0.000000,-0.000000,1.000000,0.000000,-0.000000,1.000000,0.000000,-0.000000,1.000000,0.000000,
+			         0.279023,0.093069,-0.955764,0.279023,0.093069,-0.955764,0.279023,0.093069,-0.955764,0.279023,0.093069,-0.955764,
+			         0.823548,-0.565672,0.042236,0.823548,-0.565672,0.042236,0.823548,-0.565672,0.042236,0.823548,-0.565672,0.042236,
+			         0.643075,-0.646866,0.409902,0.643075,-0.646866,0.409902,0.643075,-0.646866,0.409902,0.643075,-0.646866,0.409902,
+			         0.000000,1.000000,-0.000001,0.000000,1.000000,-0.000001,0.000000,1.000000,-0.000001,0.000000,1.000000,-0.000001,
+			         0.515924,-0.738335,0.434378,0.515924,-0.738335,0.434378,0.515924,-0.738335,0.434378,0.515924,-0.738335,0.434378,
+			         0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,
+			         -0.271378,0.096243,-0.957649,-0.271378,0.096243,-0.957649,-0.271378,0.096243,-0.957649,-0.271378,0.096243,-0.957649,
+			         -0.502957,-0.761460,0.408917,-0.502957,-0.761460,0.408917,-0.502957,-0.761460,0.408917,-0.502957,-0.761460,0.408917,
+			         -0.696478,-0.606140,0.384074,-0.696478,-0.606140,0.384074,-0.696478,-0.606140,0.384074,-0.696478,-0.606140,0.384074,
+			         0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,
+			         -0.483383,-0.775607,0.405926,-0.483383,-0.775607,0.405926,-0.483383,-0.775607,0.405926,-0.483383,-0.775607,0.405926,
+			         0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,
+			         0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,
+			         -0.000000,1.000000,0.000000,-0.000000,1.000000,0.000000,-0.000000,1.000000,0.000000,-0.000000,1.000000,0.000000,
+			         0.775255,-0.288054,0.562142,0.775255,-0.288054,0.562142,0.775255,-0.288054,0.562142,0.775255,-0.288054,0.562142,
+			         -0.985351,-0.029013,-0.168050,-0.985351,-0.029013,-0.168050,-0.985351,-0.029013,-0.168050,-0.985351,-0.029013,-0.168050,
+			         -0.951808,0.218105,0.215622,-0.951808,0.218105,0.215622,-0.951808,0.218105,0.215622,-0.951808,0.218105,0.215622,
+			         0.793456,-0.543756,-0.273418,0.793456,-0.543756,-0.273418,0.793456,-0.543756,-0.273418,0.793456,-0.543756,-0.273418,
+			         -0.000002,1.000000,0.000001,-0.000002,1.000000,0.000001,-0.000002,1.000000,0.000001,-0.000002,1.000000,0.000001,
+			         0.807537,-0.142335,-0.572385,0.807537,-0.142335,-0.572385,0.807537,-0.142335,-0.572385,0.807537,-0.142335,-0.572385,
+			         0.000000,1.000000,0.000001,0.000000,1.000000,0.000001,0.000000,1.000000,0.000001,0.000000,1.000000,0.000001,
+			         -0.687161,-0.333769,-0.645297,-0.687161,-0.333769,-0.645297,-0.687161,-0.333769,-0.645297,-0.687161,-0.333769,-0.645297,
+			         0.858432,0.131687,-0.495735,0.858432,0.131687,-0.495735,0.858432,0.131687,-0.495735,0.858432,0.131687,-0.495735,
+			         -0.958753,-0.109866,-0.262148,-0.958753,-0.109866,-0.262148,-0.958753,-0.109866,-0.262148,-0.958753,-0.109866,-0.262148,
+			         -0.363270,0.897762,-0.249117,-0.363270,0.897762,-0.249117,-0.363270,0.897762,-0.249117,-0.363270,0.897762,-0.249117,
+			         0.586425,-0.773631,-0.240003,0.586425,-0.773631,-0.240003,0.586425,-0.773631,-0.240003,0.586425,-0.773631,-0.240003,
+			         -0.671186,0.035072,0.740459,-0.671186,0.035072,0.740459,-0.671186,0.035072,0.740459,-0.671186,0.035072,0.740459,
+			         0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,
+			         0.851667,0.512571,-0.109240,0.851667,0.512571,-0.109240,0.851667,0.512571,-0.109240,0.851667,0.512571,-0.109240,
+			         0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,
+			         -0.593365,-0.798011,-0.105340,-0.593365,-0.798011,-0.105340,-0.593365,-0.798011,-0.105340,-0.593365,-0.798011,-0.105340,
+			         0.000000,0.389575,0.920995,0.000000,0.389575,0.920995,0.000000,0.389575,0.920995,0.000000,0.389575,0.920995,
+			         -0.618948,0.779362,-0.097457,-0.618948,0.779362,-0.097457,-0.618948,0.779362,-0.097457,-0.618948,0.779362,-0.097457,
+			         -0.583485,0.490483,0.647280,-0.583485,0.490483,0.647280,-0.583485,0.490483,0.647280,-0.583485,0.490483,0.647280,
+			         0.436441,0.436996,0.786482,0.436441,0.436996,0.786482,0.436441,0.436996,0.786482,0.436441,0.436996,0.786482,
+			         -0.901850,-0.264662,0.341497,-0.901850,-0.264662,0.341497,-0.901850,-0.264662,0.341497,-0.901850,-0.264662,0.341497,
+			         0.177344,-0.008330,-0.984114,0.177344,-0.008330,-0.984114,0.177344,-0.008330,-0.984114,0.177344,-0.008330,-0.984114,
+			         0.675014,0.605871,0.421043,0.675014,0.605871,0.421043,0.675014,0.605871,0.421043,0.675014,0.605871,0.421043,
+			         0.490090,0.726001,-0.482426,0.490090,0.726001,-0.482426,0.490090,0.726001,-0.482426,0.490090,0.726001,-0.482426,
+			         -0.632012,-0.324276,-0.703851,-0.632012,-0.324276,-0.703851,-0.632012,-0.324276,-0.703851,-0.632012,-0.324276,-0.703851,
+			         0.500411,-0.072648,-0.862734,0.500411,-0.072648,-0.862734,0.500411,-0.072648,-0.862734,0.500411,-0.072648,-0.862734,
+			         0.530886,0.291854,0.795601,0.530886,0.291854,0.795601,0.530886,0.291854,0.795601,0.530886,0.291854,0.795601,
+			         -0.206557,-0.072768,-0.975725,-0.206557,-0.072768,-0.975725,-0.206557,-0.072768,-0.975725,-0.206557,-0.072768,-0.975725,
+			         -0.664986,0.343392,0.663232,-0.664986,0.343392,0.663232,-0.664986,0.343392,0.663232,-0.664986,0.343392,0.663232,
+			         0.573814,0.753223,0.321548,0.573814,0.753223,0.321548,0.573814,0.753223,0.321548,0.573814,0.753223,0.321548,
+			         -0.810051,-0.277932,0.516304,-0.810051,-0.277932,0.516304,-0.810051,-0.277932,0.516304,-0.810051,-0.277932,0.516304,
+			         0.510159,0.582262,0.633016,0.510159,0.582262,0.633016,0.510159,0.582262,0.633016,0.510159,0.582262,0.633016,
+			         -0.673474,-0.273875,-0.686604,-0.673474,-0.273875,-0.686604,-0.673474,-0.273875,-0.686604,-0.673474,-0.273875,-0.686604,
+			         -0.951983,-0.291211,-0.094473,-0.951983,-0.291211,-0.094473,-0.951983,-0.291211,-0.094473,-0.951983,-0.291211,-0.094473,
+			         -0.399991,-0.906100,-0.137805,-0.399991,-0.906100,-0.137805,-0.399991,-0.906100,-0.137805,-0.399991,-0.906100,-0.137805,
+			         -0.393145,-0.919284,-0.018813,-0.393145,-0.919284,-0.018813,-0.393145,-0.919284,-0.018813,-0.393145,-0.919284,-0.018813,
+			         -0.615457,-0.337827,-0.712099,-0.615457,-0.337827,-0.712099,-0.615457,-0.337827,-0.712099,-0.615457,-0.337827,-0.712099,
+			         -0.527588,0.825532,-0.200370,-0.527588,0.825532,-0.200370,-0.527588,0.825532,-0.200370,-0.527588,0.825532,-0.200370,
+			         -0.113201,0.948436,0.296066,-0.113201,0.948436,0.296066,-0.113201,0.948436,0.296066,-0.113201,0.948436,0.296066,
+			         0.572761,0.146323,0.806557,0.572761,0.146323,0.806557,0.572761,0.146323,0.806557,0.572761,0.146323,0.806557,
+			         -0.145139,0.971790,-0.185902,-0.145139,0.971790,-0.185902,-0.145139,0.971790,-0.185902,-0.145139,0.971790,-0.185902,
+			         0.126216,0.991929,0.012080,0.126216,0.991929,0.012080,0.126216,0.991929,0.012080,0.126216,0.991929,0.012080,
+			         0.781801,0.604829,0.151557,0.781801,0.604829,0.151557,0.781801,0.604829,0.151557,0.781801,0.604829,0.151557,
+			         -0.140032,0.989695,-0.029929,-0.140032,0.989695,-0.029929,-0.140032,0.989695,-0.029929,-0.140032,0.989695,-0.029929,
+			         0.237436,0.489631,0.838979,0.237436,0.489631,0.838979,0.237436,0.489631,0.838979,0.237436,0.489631,0.838979,
+			         0.160163,0.985368,-0.058286,0.160163,0.985368,-0.058286,0.160163,0.985368,-0.058286,0.160163,0.985368,-0.058286,
+			         -0.332016,0.735656,0.590403,-0.332016,0.735656,0.590403,-0.332016,0.735656,0.590403,-0.332016,0.735656,0.590403,
+			         0.951807,0.218105,0.215622,0.951807,0.218105,0.215622,0.951807,0.218105,0.215622,0.951807,0.218105,0.215622,
+			         0.363270,0.897762,-0.249117,0.363270,0.897762,-0.249117,0.363270,0.897762,-0.249117,0.363270,0.897762,-0.249117,
+			         -0.613097,0.771749,-0.168867,-0.613097,0.771749,-0.168867,-0.613097,0.771749,-0.168867,-0.613097,0.771749,-0.168867,
+			         -0.500445,0.441397,0.744798,-0.500445,0.441397,0.744798,-0.500445,0.441397,0.744798,-0.500445,0.441397,0.744798,
+			         0.517310,0.301030,0.801107,0.517310,0.301030,0.801107,0.517310,0.301030,0.801107,0.517310,0.301030,0.801107,
+			         0.181031,0.125228,-0.975472,0.181031,0.125228,-0.975472,0.181031,0.125228,-0.975472,0.181031,0.125228,-0.975472,
+			         0.655027,0.554679,0.513100,0.655027,0.554679,0.513100,0.655027,0.554679,0.513100,0.655027,0.554679,0.513100,
+			         0.623317,0.685972,-0.375391,0.623317,0.685972,-0.375391,0.623317,0.685972,-0.375391,0.623317,0.685972,-0.375391,
+			         0.369894,0.076733,-0.925900,0.369894,0.076733,-0.925900,0.369894,0.076733,-0.925900,0.369894,0.076733,-0.925900,
+			         0.454667,0.261517,0.851403,0.454667,0.261517,0.851403,0.454667,0.261517,0.851403,0.454667,0.261517,0.851403,
+			         -0.213252,0.082567,-0.973502,-0.213252,0.082567,-0.973502,-0.213252,0.082567,-0.973502,-0.213252,0.082567,-0.973502,
+			         -0.698221,0.346452,0.626465,-0.698221,0.346452,0.626465,-0.698221,0.346452,0.626465,-0.698221,0.346452,0.626465,
+			         0.541454,0.491479,0.682111,0.541454,0.491479,0.682111,0.541454,0.491479,0.682111,0.541454,0.491479,0.682111,
+			         0.701297,0.687027,0.190200,0.701297,0.687027,0.190200,0.701297,0.687027,0.190200,0.701297,0.687027,0.190200,
+			         -0.905639,-0.055177,0.420445,-0.905639,-0.055177,0.420445,-0.905639,-0.055177,0.420445,-0.905639,-0.055177,0.420445,
+			         -0.848795,-0.046003,-0.526718,-0.848795,-0.046003,-0.526718,-0.848795,-0.046003,-0.526718,-0.848795,-0.046003,-0.526718,
+			         -0.758564,-0.176402,0.627266,-0.758564,-0.176402,0.627266,-0.758564,-0.176402,0.627266,-0.758564,-0.176402,0.627266,
+			         -0.801074,-0.116352,-0.587148,-0.801074,-0.116352,-0.587148,-0.801074,-0.116352,-0.587148,-0.801074,-0.116352,-0.587148,
+			         0.218202,0.165111,-0.961835,0.218202,0.165111,-0.961835,0.218202,0.165111,-0.961835,0.218202,0.165111,-0.961835,
+			         0.712120,-0.466819,0.524372,0.712120,-0.466819,0.524372,0.712120,-0.466819,0.524372,0.712120,-0.466819,0.524372,
+			         0.585885,-0.584206,0.561643,0.585885,-0.584206,0.561643,0.585885,-0.584206,0.561643,0.585885,-0.584206,0.561643,
+			         0.000000,1.000000,0.000001,0.000000,1.000000,0.000001,0.000000,1.000000,0.000001,0.000000,1.000000,0.000001,
+			         0.339898,-0.521619,0.782549,0.339898,-0.521619,0.782549,0.339898,-0.521619,0.782549,0.339898,-0.521619,0.782549,
+			         0.000000,1.000000,-0.000001,0.000000,1.000000,-0.000001,0.000000,1.000000,-0.000001,0.000000,1.000000,-0.000001,
+			         0.000001,1.000000,0.000001,0.000001,1.000000,0.000001,0.000001,1.000000,0.000001,0.000001,1.000000,0.000001,
+			         0.758556,-0.600264,-0.253528,0.758556,-0.600264,-0.253528,0.758556,-0.600264,-0.253528,0.758556,-0.600264,-0.253528,
+			         0.858163,0.492316,-0.145542,0.858163,0.492316,-0.145542,0.858163,0.492316,-0.145542,0.858163,0.492316,-0.145542,
+			         0.288650,0.230285,0.929328,0.288650,0.230285,0.929328,0.288650,0.230285,0.929328,0.288650,0.230285,0.929328,
+			         0.811563,0.299505,0.501660,0.811563,0.299505,0.501660,0.811563,0.299505,0.501660,0.811563,0.299505,0.501660,
+			         0.396787,0.308067,0.864670,0.396787,0.308067,0.864670,0.396787,0.308067,0.864670,0.396787,0.308067,0.864670,
+			         0.781548,0.442443,0.439803,0.781548,0.442443,0.439803,0.781548,0.442443,0.439803,0.781548,0.442443,0.439803,
+			         0.336262,0.623778,0.705570,0.336262,0.623778,0.705570,0.336262,0.623778,0.705570,0.336262,0.623778,0.705570,
+			         0.888727,0.230302,0.396390,0.888727,0.230302,0.396390,0.888727,0.230302,0.396390,0.888727,0.230302,0.396390,
+			         0.351080,0.283850,0.892285,0.351080,0.283850,0.892285,0.351080,0.283850,0.892285,0.351080,0.283850,0.892285,
+			         0.251192,0.126506,-0.959635,0.251192,0.126506,-0.959635,0.251192,0.126506,-0.959635,0.251192,0.126506,-0.959635,
+			         0.701819,-0.559357,0.441101,0.701819,-0.559357,0.441101,0.701819,-0.559357,0.441101,0.701819,-0.559357,0.441101,
+			         0.628673,-0.632951,0.451822,0.628673,-0.632951,0.451822,0.628673,-0.632951,0.451822,0.628673,-0.632951,0.451822,
+			         -0.000003,1.000000,0.000004,-0.000003,1.000000,0.000004,-0.000003,1.000000,0.000004,-0.000003,1.000000,0.000004,
+			         0.319883,-0.479851,0.816957,0.319883,-0.479851,0.816957,0.319883,-0.479851,0.816957,0.319883,-0.479851,0.816957,
+			         0.000001,1.000000,-0.000000,0.000001,1.000000,-0.000000,0.000001,1.000000,-0.000000,0.000001,1.000000,-0.000000,
+			         0.000001,1.000000,0.000000,0.000001,1.000000,0.000000,0.000001,1.000000,0.000000,0.000001,1.000000,0.000000,
+			         0.754435,-0.581138,-0.305136,0.754435,-0.581138,-0.305136,0.754435,-0.581138,-0.305136,0.754435,-0.581138,-0.305136,
+			         -0.002823,-0.261817,0.965113,-0.002823,-0.261817,0.965113,-0.002823,-0.261817,0.965113,-0.002823,-0.261817,0.965113,
+			         0.249205,0.350948,0.902625,0.249205,0.350948,0.902625,0.249205,0.350948,0.902625,0.249205,0.350948,0.902625,
+			         0.496421,-0.059389,-0.866048,0.496421,-0.059389,-0.866048,0.496421,-0.059389,-0.866048,0.496421,-0.059389,-0.866048,
+			         0.374214,0.258146,0.890688,0.374214,0.258146,0.890688,0.374214,0.258146,0.890688,0.374214,0.258146,0.890688,
+			         -0.162173,0.986750,0.005006,-0.162173,0.986750,0.005006,-0.162173,0.986750,0.005006,-0.162173,0.986750,0.005006,
+			         0.381420,0.430197,0.818199,0.381420,0.430197,0.818199,0.381420,0.430197,0.818199,0.381420,0.430197,0.818199,
+			         0.356209,0.099334,-0.929111,0.356209,0.099334,-0.929111,0.356209,0.099334,-0.929111,0.356209,0.099334,-0.929111,
+			         0.332771,0.238808,0.912269,0.332771,0.238808,0.912269,0.332771,0.238808,0.912269,0.332771,0.238808,0.912269,
+			         0.958725,-0.284259,-0.006499,0.958725,-0.284259,-0.006499,0.958725,-0.284259,-0.006499,0.958725,-0.284259,-0.006499,
+			         0.535454,-0.722058,0.438088,0.535454,-0.722058,0.438088,0.535454,-0.722058,0.438088,0.535454,-0.722058,0.438088,
+			         0.399178,-0.234881,0.886277,0.399178,-0.234881,0.886277,0.399178,-0.234881,0.886277,0.399178,-0.234881,0.886277,
+			         -0.000001,1.000000,0.000002,-0.000001,1.000000,0.000002,-0.000001,1.000000,0.000002,-0.000001,1.000000,0.000002,
+			         0.761065,0.621247,-0.186632,0.761065,0.621247,-0.186632,0.761065,0.621247,-0.186632,0.761065,0.621247,-0.186632,
+			         0.000008,1.000000,-0.000005,0.000008,1.000000,-0.000005,0.000008,1.000000,-0.000005,0.000008,1.000000,-0.000005,
+			         -0.000000,1.000000,0.000000,-0.000000,1.000000,0.000000,-0.000000,1.000000,0.000000,-0.000000,1.000000,0.000000,
+			         0.985351,-0.029013,-0.168050,0.985351,-0.029013,-0.168050,0.985351,-0.029013,-0.168050,0.985351,-0.029013,-0.168050,
+			         0.958753,-0.109866,-0.262147,0.958753,-0.109866,-0.262147,0.958753,-0.109866,-0.262147,0.958753,-0.109866,-0.262147,
+			         0.671186,0.035072,0.740459,0.671186,0.035072,0.740459,0.671186,0.035072,0.740459,0.671186,0.035072,0.740459,
+			         0.618948,0.779362,-0.097457,0.618948,0.779362,-0.097457,0.618948,0.779362,-0.097457,0.618948,0.779362,-0.097457,
+			         0.583485,0.490483,0.647280,0.583485,0.490483,0.647280,0.583485,0.490483,0.647280,0.583485,0.490483,0.647280,
+			         0.527588,0.825532,-0.200370,0.527588,0.825532,-0.200370,0.527588,0.825532,-0.200370,0.527588,0.825532,-0.200370,
+			         0.113201,0.948436,0.296066,0.113201,0.948436,0.296066,0.113201,0.948436,0.296066,0.113201,0.948436,0.296066,
+			         0.613097,0.771749,-0.168867,0.613097,0.771749,-0.168867,0.613097,0.771749,-0.168867,0.613097,0.771749,-0.168867,
+			         0.500444,0.441397,0.744798,0.500444,0.441397,0.744798,0.500444,0.441397,0.744798,0.500444,0.441397,0.744798,
+			         0.209789,0.119350,-0.970435,0.209789,0.119350,-0.970435,0.209789,0.119350,-0.970435,0.209789,0.119350,-0.970435,
+			         0.972426,-0.190147,0.135025,0.972426,-0.190147,0.135025,0.972426,-0.190147,0.135025,0.972426,-0.190147,0.135025,
+			         0.916724,-0.362449,0.168069,0.916724,-0.362449,0.168069,0.916724,-0.362449,0.168069,0.916724,-0.362449,0.168069,
+			         -0.000001,1.000000,0.000002,-0.000001,1.000000,0.000002,-0.000001,1.000000,0.000002,-0.000001,1.000000,0.000002,
+			         0.356332,-0.755648,0.549567,0.356332,-0.755648,0.549567,0.356332,-0.755648,0.549567,0.356332,-0.755648,0.549567,
+			         -0.000000,1.000000,0.000000,-0.000000,1.000000,0.000000,-0.000000,1.000000,0.000000,-0.000000,1.000000,0.000000,
+			         -0.000001,1.000000,0.000001,-0.000001,1.000000,0.000001,-0.000001,1.000000,0.000001,-0.000001,1.000000,0.000001,
+			         0.524640,-0.484669,-0.699891,0.524640,-0.484669,-0.699891,0.524640,-0.484669,-0.699891,0.524640,-0.484669,-0.699891,
+			         0.770605,-0.563152,-0.298375,0.770605,-0.563152,-0.298375,0.770605,-0.563152,-0.298375,0.770605,-0.563152,-0.298375,
+			         0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,
+			         0.194371,-0.045650,-0.979865,0.194371,-0.045650,-0.979865,0.194371,-0.045650,-0.979865,0.194371,-0.045650,-0.979865,
+			         -0.251027,0.267450,0.930299,-0.251027,0.267450,0.930299,-0.251027,0.267450,0.930299,-0.251027,0.267450,0.930299,
+			         -0.156408,0.981630,-0.109264,-0.156408,0.981630,-0.109264,-0.156408,0.981630,-0.109264,-0.156408,0.981630,-0.109264,
+			         0.194618,0.902466,0.384291,0.194618,0.902466,0.384291,0.194618,0.902466,0.384291,0.194618,0.902466,0.384291,
+			         0.199659,0.100693,-0.974678,0.199659,0.100693,-0.974678,0.199659,0.100693,-0.974678,0.199659,0.100693,-0.974678,
+			         -0.400154,0.073363,0.913507,-0.400154,0.073363,0.913507,-0.400154,0.073363,0.913507,-0.400154,0.073363,0.913507,
+			         0.259733,0.108041,-0.959618,0.259733,0.108041,-0.959618,0.259733,0.108041,-0.959618,0.259733,0.108041,-0.959618,
+			         0.494662,-0.660040,0.565383,0.494662,-0.660040,0.565383,0.494662,-0.660040,0.565383,0.494662,-0.660040,0.565383,
+			         0.734078,-0.600383,0.317284,0.734078,-0.600383,0.317284,0.734078,-0.600383,0.317284,0.734078,-0.600383,0.317284,
+			         0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,
+			         0.431666,-0.749427,0.502019,0.431666,-0.749427,0.502019,0.431666,-0.749427,0.502019,0.431666,-0.749427,0.502019,
+			         0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,
+			         0.000000,1.000000,0.000001,0.000000,1.000000,0.000001,0.000000,1.000000,0.000001,0.000000,1.000000,0.000001,
+			         0.683511,-0.328360,-0.651914,0.683511,-0.328360,-0.651914,0.683511,-0.328360,-0.651914,0.683511,-0.328360,-0.651914,
+			         -0.127414,0.202202,-0.971020,-0.127414,0.202202,-0.971020,-0.127414,0.202202,-0.971020,-0.127414,0.202202,-0.971020,
+			         0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,
+			         0.201526,-0.061530,-0.977549,0.201526,-0.061530,-0.977549,0.201526,-0.061530,-0.977549,0.201526,-0.061530,-0.977549,
+			         0.665569,0.363286,0.651952,0.665569,0.363286,0.651952,0.665569,0.363286,0.651952,0.665569,0.363286,0.651952,
+			         -0.158690,0.984163,-0.078993,-0.158690,0.984163,-0.078993,-0.158690,0.984163,-0.078993,-0.158690,0.984163,-0.078993,
+			         0.304215,0.845568,0.438712,0.304215,0.845568,0.438712,0.304215,0.845568,0.438712,0.304215,0.845568,0.438712,
+			         0.207612,0.090112,-0.974052,0.207612,0.090112,-0.974052,0.207612,0.090112,-0.974052,0.207612,0.090112,-0.974052,
+			         0.698376,0.348844,0.624963,0.698376,0.348844,0.624963,0.698376,0.348844,0.624963,0.698376,0.348844,0.624963,
+			         0.252611,0.054835,-0.966013,0.252611,0.054835,-0.966013,0.252611,0.054835,-0.966013,0.252611,0.054835,-0.966013,
+			         0.645899,-0.516577,0.562105,0.645899,-0.516577,0.562105,0.645899,-0.516577,0.562105,0.645899,-0.516577,0.562105,
+			         0.645768,-0.697391,0.310853,0.645768,-0.697391,0.310853,0.645768,-0.697391,0.310853,0.645768,-0.697391,0.310853,
+			         0.000000,1.000000,0.000005,0.000000,1.000000,0.000005,0.000000,1.000000,0.000005,0.000000,1.000000,0.000005,
+			         0.744804,-0.502820,0.438678,0.744804,-0.502820,0.438678,0.744804,-0.502820,0.438678,0.744804,-0.502820,0.438678,
+			         -0.000000,1.000000,0.000000,-0.000000,1.000000,0.000000,-0.000000,1.000000,0.000000,-0.000000,1.000000,0.000000,
+			         0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,
+			         0.462147,-0.504064,-0.729616,0.462147,-0.504064,-0.729616,0.462147,-0.504064,-0.729616,0.462147,-0.504064,-0.729616,
+			         0.851706,-0.453938,-0.261797,0.851706,-0.453938,-0.261797,0.851706,-0.453938,-0.261797,0.851706,-0.453938,-0.261797,
+			         0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,
+			         0.185507,-0.026141,-0.982295,0.185507,-0.026141,-0.982295,0.185507,-0.026141,-0.982295,0.185507,-0.026141,-0.982295,
+			         0.750148,0.642623,0.155930,0.750148,0.642623,0.155930,0.750148,0.642623,0.155930,0.750148,0.642623,0.155930,
+			         -0.153256,0.977026,-0.148094,-0.153256,0.977026,-0.148094,-0.153256,0.977026,-0.148094,-0.153256,0.977026,-0.148094,
+			         0.205648,0.973596,0.099098,0.205648,0.973596,0.099098,0.205648,0.973596,0.099098,0.205648,0.973596,0.099098,
+			         0.189912,0.113574,-0.975210,0.189912,0.113574,-0.975210,0.189912,0.113574,-0.975210,0.189912,0.113574,-0.975210,
+			         0.692938,0.695601,0.189674,0.692938,0.695601,0.189674,0.692938,0.695601,0.189674,0.692938,0.695601,0.189674,
+			         -0.252611,0.054835,-0.966013,-0.252611,0.054835,-0.966013,-0.252611,0.054835,-0.966013,-0.252611,0.054835,-0.966013,
+			         -0.645899,-0.516577,0.562105,-0.645899,-0.516577,0.562105,-0.645899,-0.516577,0.562105,-0.645899,-0.516577,0.562105,
+			         -0.643565,-0.695864,0.318742,-0.643565,-0.695864,0.318742,-0.643565,-0.695864,0.318742,-0.643565,-0.695864,0.318742,
+			         0.000000,1.000000,0.000005,0.000000,1.000000,0.000005,0.000000,1.000000,0.000005,0.000000,1.000000,0.000005,
+			         -0.744805,-0.502820,0.438677,-0.744805,-0.502820,0.438677,-0.744805,-0.502820,0.438677,-0.744805,-0.502820,0.438677,
+			         0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,
+			         0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,
+			         -0.462147,-0.504064,-0.729616,-0.462147,-0.504064,-0.729616,-0.462147,-0.504064,-0.729616,-0.462147,-0.504064,-0.729616,
+			         -0.851706,-0.453938,-0.261797,-0.851706,-0.453938,-0.261797,-0.851706,-0.453938,-0.261797,-0.851706,-0.453938,-0.261797,
+			         0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,
+			         -0.185507,-0.026141,-0.982295,-0.185507,-0.026141,-0.982295,-0.185507,-0.026141,-0.982295,-0.185507,-0.026141,-0.982295,
+			         -0.750148,0.642623,0.155930,-0.750148,0.642623,0.155930,-0.750148,0.642623,0.155930,-0.750148,0.642623,0.155930,
+			         0.153256,0.977026,-0.148094,0.153256,0.977026,-0.148094,0.153256,0.977026,-0.148094,0.153256,0.977026,-0.148094,
+			         -0.205648,0.973596,0.099098,-0.205648,0.973596,0.099098,-0.205648,0.973596,0.099098,-0.205648,0.973596,0.099098,
+			         -0.189912,0.113574,-0.975210,-0.189912,0.113574,-0.975210,-0.189912,0.113574,-0.975210,-0.189912,0.113574,-0.975210,
+			         -0.692938,0.695601,0.189674,-0.692938,0.695601,0.189674,-0.692938,0.695601,0.189674,-0.692938,0.695601,0.189674,
+			         -0.308043,0.162027,-0.937473,-0.308043,0.162027,-0.937473,-0.308043,0.162027,-0.937473,-0.308043,0.162027,-0.937473,
+			         -0.575683,-0.571182,0.585099,-0.575683,-0.571182,0.585099,-0.575683,-0.571182,0.585099,-0.575683,-0.571182,0.585099,
+			         -0.375120,-0.874471,0.307548,-0.375120,-0.874471,0.307548,-0.375120,-0.874471,0.307548,-0.375120,-0.874471,0.307548,
+			         0.000001,1.000000,0.000003,0.000001,1.000000,0.000003,0.000001,1.000000,0.000003,0.000001,1.000000,0.000003,
+			         -0.381557,-0.877958,0.289143,-0.381557,-0.877958,0.289143,-0.381557,-0.877958,0.289143,-0.381557,-0.877958,0.289143,
+			         0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,
+			         0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,
+			         -0.793456,-0.543756,-0.273417,-0.793456,-0.543756,-0.273417,-0.793456,-0.543756,-0.273417,-0.793456,-0.543756,-0.273417,
+			         -0.586424,-0.773631,-0.240003,-0.586424,-0.773631,-0.240003,-0.586424,-0.773631,-0.240003,-0.586424,-0.773631,-0.240003,
+			         0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,
+			         -0.177344,-0.008330,-0.984114,-0.177344,-0.008330,-0.984114,-0.177344,-0.008330,-0.984114,-0.177344,-0.008330,-0.984114,
+			         -0.675014,0.605871,0.421043,-0.675014,0.605871,0.421043,-0.675014,0.605871,0.421043,-0.675014,0.605871,0.421043,
+			         0.145139,0.971790,-0.185902,0.145139,0.971790,-0.185902,0.145139,0.971790,-0.185902,0.145139,0.971790,-0.185902,
+			         -0.126216,0.991929,0.012080,-0.126216,0.991929,0.012080,-0.126216,0.991929,0.012080,-0.126216,0.991929,0.012080,
+			         -0.181031,0.125228,-0.975472,-0.181031,0.125228,-0.975472,-0.181031,0.125228,-0.975472,-0.181031,0.125228,-0.975472,
+			         -0.655027,0.554679,0.513100,-0.655027,0.554679,0.513100,-0.655027,0.554679,0.513100,-0.655027,0.554679,0.513100,
+			         -0.209790,0.119350,-0.970435,-0.209790,0.119350,-0.970435,-0.209790,0.119350,-0.970435,-0.209790,0.119350,-0.970435,
+			         -0.972426,-0.190147,0.135025,-0.972426,-0.190147,0.135025,-0.972426,-0.190147,0.135025,-0.972426,-0.190147,0.135025,
+			         -0.915738,-0.362570,0.173111,-0.915738,-0.362570,0.173111,-0.915738,-0.362570,0.173111,-0.915738,-0.362570,0.173111,
+			         0.000001,1.000000,0.000002,0.000001,1.000000,0.000002,0.000001,1.000000,0.000002,0.000001,1.000000,0.000002,
+			         -0.356332,-0.755648,0.549568,-0.356332,-0.755648,0.549568,-0.356332,-0.755648,0.549568,-0.356332,-0.755648,0.549568,
+			         0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,
+			         0.000001,1.000000,0.000000,0.000001,1.000000,0.000000,0.000001,1.000000,0.000000,0.000001,1.000000,0.000000,
+			         -0.524640,-0.484670,-0.699891,-0.524640,-0.484670,-0.699891,-0.524640,-0.484670,-0.699891,-0.524640,-0.484670,-0.699891,
+			         -0.770605,-0.563152,-0.298375,-0.770605,-0.563152,-0.298375,-0.770605,-0.563152,-0.298375,-0.770605,-0.563152,-0.298375,
+			         0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,
+			         -0.194371,-0.045650,-0.979865,-0.194371,-0.045650,-0.979865,-0.194371,-0.045650,-0.979865,-0.194371,-0.045650,-0.979865,
+			         0.251027,0.267450,0.930299,0.251027,0.267450,0.930299,0.251027,0.267450,0.930299,0.251027,0.267450,0.930299,
+			         0.156408,0.981630,-0.109264,0.156408,0.981630,-0.109264,0.156408,0.981630,-0.109264,0.156408,0.981630,-0.109264,
+			         -0.194618,0.902466,0.384291,-0.194618,0.902466,0.384291,-0.194618,0.902466,0.384291,-0.194618,0.902466,0.384291,
+			         -0.199659,0.100693,-0.974678,-0.199659,0.100693,-0.974678,-0.199659,0.100693,-0.974678,-0.199659,0.100693,-0.974678,
+			         0.400155,0.073363,0.913507,0.400155,0.073363,0.913507,0.400155,0.073363,0.913507,0.400155,0.073363,0.913507,
+			         -0.235414,0.145107,-0.961002,-0.235414,0.145107,-0.961002,-0.235414,0.145107,-0.961002,-0.235414,0.145107,-0.961002,
+			         -0.673312,-0.533034,0.512373,-0.673312,-0.533034,0.512373,-0.673312,-0.533034,0.512373,-0.673312,-0.533034,0.512373,
+			         -0.605310,-0.626535,0.490972,-0.605310,-0.626535,0.490972,-0.605310,-0.626535,0.490972,-0.605310,-0.626535,0.490972,
+			         -0.000000,1.000000,0.000002,-0.000000,1.000000,0.000002,-0.000000,1.000000,0.000002,-0.000000,1.000000,0.000002,
+			         -0.325749,-0.483890,0.812242,-0.325749,-0.483890,0.812242,-0.325749,-0.483890,0.812242,-0.325749,-0.483890,0.812242,
+			         -0.000001,1.000000,-0.000001,-0.000001,1.000000,-0.000001,-0.000001,1.000000,-0.000001,-0.000001,1.000000,-0.000001,
+			         -0.000001,1.000000,0.000000,-0.000001,1.000000,0.000000,-0.000001,1.000000,0.000000,-0.000001,1.000000,0.000000,
+			         -0.756741,-0.590727,-0.279972,-0.756741,-0.590727,-0.279972,-0.756741,-0.590727,-0.279972,-0.756741,-0.590727,-0.279972,
+			         -0.729526,-0.672654,-0.123806,-0.729526,-0.672654,-0.123806,-0.729526,-0.672654,-0.123806,-0.729526,-0.672654,-0.123806,
+			         -0.254280,0.295125,0.921001,-0.254280,0.295125,0.921001,-0.254280,0.295125,0.921001,-0.254280,0.295125,0.921001,
+			         -0.494209,-0.052168,-0.867777,-0.494209,-0.052168,-0.867777,-0.494209,-0.052168,-0.867777,-0.494209,-0.052168,-0.867777,
+			         -0.367067,0.272322,0.889439,-0.367067,0.272322,0.889439,-0.367067,0.272322,0.889439,-0.367067,0.272322,0.889439,
+			         0.172869,0.984698,0.022040,0.172869,0.984698,0.022040,0.172869,0.984698,0.022040,0.172869,0.984698,0.022040,
+			         -0.362025,0.481402,0.798242,-0.362025,0.481402,0.798242,-0.362025,0.481402,0.798242,-0.362025,0.481402,0.798242,
+			         -0.348675,0.111575,-0.930579,-0.348675,0.111575,-0.930579,-0.348675,0.111575,-0.930579,-0.348675,0.111575,-0.930579,
+			         -0.324072,0.250877,0.912161,-0.324072,0.250877,0.912161,-0.324072,0.250877,0.912161,-0.324072,0.250877,0.912161,
+			         -0.265685,0.109195,-0.957856,-0.265685,0.109195,-0.957856,-0.265685,0.109195,-0.957856,-0.265685,0.109195,-0.957856,
+			         -0.820701,-0.526998,0.220731,-0.820701,-0.526998,0.220731,-0.820701,-0.526998,0.220731,-0.820701,-0.526998,0.220731,
+			         -0.658693,-0.623283,0.421477,-0.658693,-0.623283,0.421477,-0.658693,-0.623283,0.421477,-0.658693,-0.623283,0.421477,
+			         -0.000000,1.000000,0.000002,-0.000000,1.000000,0.000002,-0.000000,1.000000,0.000002,-0.000000,1.000000,0.000002,
+			         -0.373602,-0.729460,0.572983,-0.373602,-0.729460,0.572983,-0.373602,-0.729460,0.572983,-0.373602,-0.729460,0.572983,
+			         0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,
+			         -0.000002,1.000000,0.000000,-0.000002,1.000000,0.000000,-0.000002,1.000000,0.000000,-0.000002,1.000000,0.000000,
+			         -0.843042,-0.303438,-0.444077,-0.843042,-0.303438,-0.444077,-0.843042,-0.303438,-0.444077,-0.843042,-0.303438,-0.444077,
+			         -0.754749,-0.645858,-0.114986,-0.754749,-0.645858,-0.114986,-0.754749,-0.645858,-0.114986,-0.754749,-0.645858,-0.114986,
+			         0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,
+			         -0.498485,-0.066205,-0.864367,-0.498485,-0.066205,-0.864367,-0.498485,-0.066205,-0.864367,-0.498485,-0.066205,-0.864367,
+			         -0.519353,0.304572,0.798441,-0.519353,0.304572,0.798441,-0.519353,0.304572,0.798441,-0.519353,0.304572,0.798441,
+			         0.151225,0.988423,-0.012322,0.151225,0.988423,-0.012322,0.151225,0.988423,-0.012322,0.151225,0.988423,-0.012322,
+			         -0.289933,0.365763,0.884396,-0.289933,0.365763,0.884396,-0.289933,0.365763,0.884396,-0.289933,0.365763,0.884396,
+			         -0.363269,0.087735,-0.927544,-0.363269,0.087735,-0.927544,-0.363269,0.087735,-0.927544,-0.363269,0.087735,-0.927544,
+			         -0.441068,0.271469,0.855432,-0.441068,0.271469,0.855432,-0.441068,0.271469,0.855432,-0.441068,0.271469,0.855432,
+			         -0.586683,-0.620191,0.520736,-0.586683,-0.620191,0.520736,-0.586683,-0.620191,0.520736,-0.586683,-0.620191,0.520736,
+			         -0.819039,-0.471938,0.326267,-0.819039,-0.471938,0.326267,-0.819039,-0.471938,0.326267,-0.819039,-0.471938,0.326267,
+			         -0.540908,-0.334281,0.771800,-0.540908,-0.334281,0.771800,-0.540908,-0.334281,0.771800,-0.540908,-0.334281,0.771800,
+			         0.000002,1.000000,0.000003,0.000002,1.000000,0.000003,0.000002,1.000000,0.000003,0.000002,1.000000,0.000003,
+			         -0.399718,-0.867084,0.297305,-0.399718,-0.867084,0.297305,-0.399718,-0.867084,0.297305,-0.399718,-0.867084,0.297305,
+			         -0.000001,1.000000,-0.000001,-0.000001,1.000000,-0.000001,-0.000001,1.000000,-0.000001,-0.000001,1.000000,-0.000001,
+			         -0.000002,1.000000,0.000001,-0.000002,1.000000,0.000001,-0.000002,1.000000,0.000001,-0.000002,1.000000,0.000001,
+			         -0.759805,-0.609688,-0.225781,-0.759805,-0.609688,-0.225781,-0.759805,-0.609688,-0.225781,-0.759805,-0.609688,-0.225781,
+			         -0.549873,-0.831399,-0.080096,-0.549873,-0.831399,-0.080096,-0.549873,-0.831399,-0.080096,-0.549873,-0.831399,-0.080096,
+			         -0.292748,0.161062,0.942527,-0.292748,0.161062,0.942527,-0.292748,0.161062,0.942527,-0.292748,0.161062,0.942527,
+			         -0.664326,0.747208,0.018758,-0.664326,0.747208,0.018758,-0.664326,0.747208,0.018758,-0.664326,0.747208,0.018758,
+			         -0.386811,0.326762,0.862325,-0.386811,0.326762,0.862325,-0.386811,0.326762,0.862325,-0.386811,0.326762,0.862325,
+			         -0.504163,0.856493,-0.110633,-0.504163,0.856493,-0.110633,-0.504163,0.856493,-0.110633,-0.504163,0.856493,-0.110633,
+			         -0.291843,0.698240,0.653673,-0.291843,0.698240,0.653673,-0.291843,0.698240,0.653673,-0.291843,0.698240,0.653673,
+			         -0.627125,0.766120,-0.140620,-0.627125,0.766120,-0.140620,-0.627125,0.766120,-0.140620,-0.627125,0.766120,-0.140620,
+			         -0.339379,0.299639,0.891649,-0.339379,0.299639,0.891649,-0.339379,0.299639,0.891649,-0.339379,0.299639,0.891649,
+			         -0.517310,0.301030,0.801107,-0.517310,0.301030,0.801107,-0.517310,0.301030,0.801107,-0.517310,0.301030,0.801107,
+			         -0.623317,0.685972,-0.375391,-0.623317,0.685972,-0.375391,-0.623317,0.685972,-0.375391,-0.623317,0.685972,-0.375391,
+			         -0.541454,0.491479,0.682111,-0.541454,0.491479,0.682111,-0.541454,0.491479,0.682111,-0.541454,0.491479,0.682111,
+			         -0.701297,0.687027,0.190200,-0.701297,0.687027,0.190200,-0.701297,0.687027,0.190200,-0.701297,0.687027,0.190200,
+			         -0.849460,-0.305002,0.430572,-0.849460,-0.305002,0.430572,-0.849460,-0.305002,0.430572,-0.849460,-0.305002,0.430572,
+			         -0.928023,-0.302787,0.217008,-0.928023,-0.302787,0.217008,-0.928023,-0.302787,0.217008,-0.928023,-0.302787,0.217008,
+			         0.901850,-0.264663,0.341497,0.901850,-0.264663,0.341497,0.901850,-0.264663,0.341497,0.901850,-0.264663,0.341497,
+			         0.199993,0.039774,-0.978990,0.199993,0.039774,-0.978990,0.199993,0.039774,-0.978990,0.199993,0.039774,-0.978990,
+			         0.821674,-0.342181,0.455812,0.821674,-0.342181,0.455812,0.821674,-0.342181,0.455812,0.821674,-0.342181,0.455812,
+			         0.632012,-0.324276,-0.703851,0.632012,-0.324276,-0.703851,0.632012,-0.324276,-0.703851,0.632012,-0.324276,-0.703851,
+			         0.455651,-0.021491,-0.889899,0.455651,-0.021491,-0.889899,0.455651,-0.021491,-0.889899,0.455651,-0.021491,-0.889899,
+			         0.857925,-0.249165,0.449312,0.857925,-0.249165,0.449312,0.857925,-0.249165,0.449312,0.857925,-0.249165,0.449312,
+			         -0.233842,-0.017323,-0.972120,-0.233842,-0.017323,-0.972120,-0.233842,-0.017323,-0.972120,-0.233842,-0.017323,-0.972120,
+			         -0.563819,-0.174633,0.807224,-0.563819,-0.174633,0.807224,-0.563819,-0.174633,0.807224,-0.563819,-0.174633,0.807224,
+			         0.810052,-0.277932,0.516304,0.810052,-0.277932,0.516304,0.810052,-0.277932,0.516304,0.810052,-0.277932,0.516304,
+			         0.673474,-0.273875,-0.686604,0.673474,-0.273875,-0.686604,0.673474,-0.273875,-0.686604,0.673474,-0.273875,-0.686604,
+			         0.964427,-0.226885,0.135658,0.964427,-0.226885,0.135658,0.964427,-0.226885,0.135658,0.964427,-0.226885,0.135658,
+			         0.599180,-0.201068,0.774955,0.599180,-0.201068,0.774955,0.599180,-0.201068,0.774955,0.599180,-0.201068,0.774955,
+			         0.448412,-0.004925,-0.893813,0.448412,-0.004925,-0.893813,0.448412,-0.004925,-0.893813,0.448412,-0.004925,-0.893813,
+			         0.554382,-0.180578,0.812436,0.554382,-0.180578,0.812436,0.554382,-0.180578,0.812436,0.554382,-0.180578,0.812436,
+			         0.849460,-0.305002,0.430572,0.849460,-0.305002,0.430572,0.849460,-0.305002,0.430572,0.849460,-0.305002,0.430572,
+			         0.928023,-0.302787,0.217008,0.928023,-0.302787,0.217008,0.928023,-0.302787,0.217008,0.928023,-0.302787,0.217008,
+			         0.219669,0.006788,-0.975551,0.219669,0.006788,-0.975551,0.219669,0.006788,-0.975551,0.219669,0.006788,-0.975551,
+			         -0.370192,-0.045800,0.927826,-0.370192,-0.045800,0.927826,-0.370192,-0.045800,0.927826,-0.370192,-0.045800,0.927826,
+			         0.227980,-0.007315,-0.973638,0.227980,-0.007315,-0.973638,0.227980,-0.007315,-0.973638,0.227980,-0.007315,-0.973638,
+			         0.563364,-0.175661,0.807319,0.563364,-0.175661,0.807319,0.563364,-0.175661,0.807319,0.563364,-0.175661,0.807319,
+			         0.209409,0.024059,-0.977532,0.209409,0.024059,-0.977532,0.209409,0.024059,-0.977532,0.209409,0.024059,-0.977532,
+			         0.627898,-0.448236,0.636262,0.627898,-0.448236,0.636262,0.627898,-0.448236,0.636262,0.627898,-0.448236,0.636262,
+			         -0.209409,0.024059,-0.977532,-0.209409,0.024059,-0.977532,-0.209409,0.024059,-0.977532,-0.209409,0.024059,-0.977532,
+			         -0.627898,-0.448236,0.636262,-0.627898,-0.448236,0.636262,-0.627898,-0.448236,0.636262,-0.627898,-0.448236,0.636262,
+			         -0.199993,0.039774,-0.978990,-0.199993,0.039774,-0.978990,-0.199993,0.039774,-0.978990,-0.199993,0.039774,-0.978990,
+			         -0.821674,-0.342181,0.455812,-0.821674,-0.342181,0.455812,-0.821674,-0.342181,0.455812,-0.821674,-0.342181,0.455812,
+			         -0.219669,0.006788,-0.975551,-0.219669,0.006788,-0.975551,-0.219669,0.006788,-0.975551,-0.219669,0.006788,-0.975551,
+			         0.370192,-0.045800,0.927826,0.370192,-0.045800,0.927826,0.370192,-0.045800,0.927826,0.370192,-0.045800,0.927826,
+			         -0.444409,0.004091,-0.895814,-0.444409,0.004091,-0.895814,-0.444409,0.004091,-0.895814,-0.444409,0.004091,-0.895814,
+			         -0.555802,-0.184817,0.810510,-0.555802,-0.184817,0.810510,-0.555802,-0.184817,0.810510,-0.555802,-0.184817,0.810510,
+			         -0.452152,-0.013439,-0.891840,-0.452152,-0.013439,-0.891840,-0.452152,-0.013439,-0.891840,-0.452152,-0.013439,-0.891840,
+			         -0.859434,-0.254566,0.443361,-0.859434,-0.254566,0.443361,-0.859434,-0.254566,0.443361,-0.859434,-0.254566,0.443361,
+			         -0.848094,-0.325980,0.417701,-0.848094,-0.325980,0.417701,-0.848094,-0.325980,0.417701,-0.848094,-0.325980,0.417701,
+			         -0.600565,-0.205935,0.772601,-0.600565,-0.205935,0.772601,-0.600565,-0.205935,0.772601,-0.600565,-0.205935,0.772601,
+			         -0.350813,-0.844555,0.404545,-0.350813,-0.844555,0.404545,-0.350813,-0.844555,0.404545,-0.350813,-0.844555,0.404545,
+			         -0.898199,-0.296169,0.324842,-0.898199,-0.296169,0.324842,-0.898199,-0.296169,0.324842,-0.898199,-0.296169,0.324842,
+			         0.951983,-0.291211,-0.094473,0.951983,-0.291211,-0.094473,0.951983,-0.291211,-0.094473,0.951983,-0.291211,-0.094473,
+			         0.126014,-0.008287,-0.991994,0.126014,-0.008287,-0.991994,0.126014,-0.008287,-0.991994,0.126014,-0.008287,-0.991994,
+			         0.915201,-0.322598,0.241532,0.915201,-0.322598,0.241532,0.915201,-0.322598,0.241532,0.915201,-0.322598,0.241532,
+			         0.399991,-0.906100,-0.137805,0.399991,-0.906100,-0.137805,0.399991,-0.906100,-0.137805,0.399991,-0.906100,-0.137805,
+			         0.522968,-0.072085,-0.849299,0.522968,-0.072085,-0.849299,0.522968,-0.072085,-0.849299,0.522968,-0.072085,-0.849299,
+			         0.797826,-0.234947,0.555224,0.797826,-0.234947,0.555224,0.797826,-0.234947,0.555224,0.797826,-0.234947,0.555224,
+			         -0.146878,-0.072441,-0.986498,-0.146878,-0.072441,-0.986498,-0.146878,-0.072441,-0.986498,-0.146878,-0.072441,-0.986498,
+			         -0.507393,-0.156702,0.847347,-0.507393,-0.156702,0.847347,-0.507393,-0.156702,0.847347,-0.507393,-0.156702,0.847347,
+			         0.393145,-0.919284,-0.018813,0.393145,-0.919284,-0.018813,0.393145,-0.919284,-0.018813,0.393145,-0.919284,-0.018813,
+			         0.615458,-0.337827,-0.712099,0.615458,-0.337827,-0.712099,0.615458,-0.337827,-0.712099,0.615458,-0.337827,-0.712099,
+			         -0.436442,0.436996,0.786481,-0.436442,0.436996,0.786481,-0.436442,0.436996,0.786481,-0.436442,0.436996,0.786481,
+			         -0.490090,0.726001,-0.482426,-0.490090,0.726001,-0.482426,-0.490090,0.726001,-0.482426,-0.490090,0.726001,-0.482426,
+			         -0.573814,0.753223,0.321548,-0.573814,0.753223,0.321548,-0.573814,0.753223,0.321548,-0.573814,0.753223,0.321548,
+			         -0.510160,0.582262,0.633016,-0.510160,0.582262,0.633016,-0.510160,0.582262,0.633016,-0.510160,0.582262,0.633016,
+			         0.698899,-0.287069,-0.655082,0.698899,-0.287069,-0.655082,0.698899,-0.287069,-0.655082,0.698899,-0.287069,-0.655082,
+			         0.562010,-0.190594,0.804872,0.562010,-0.190594,0.804872,0.562010,-0.190594,0.804872,0.562010,-0.190594,0.804872,
+			         0.520346,-0.058884,-0.851923,0.520346,-0.058884,-0.851923,0.520346,-0.058884,-0.851923,0.520346,-0.058884,-0.851923,
+			         0.518284,-0.170746,0.837990,0.518284,-0.170746,0.837990,0.518284,-0.170746,0.837990,0.518284,-0.170746,0.837990,
+			         0.350813,-0.844555,0.404545,0.350813,-0.844555,0.404545,0.350813,-0.844555,0.404545,0.350813,-0.844555,0.404545,
+			         0.898199,-0.296169,0.324842,0.898199,-0.296169,0.324842,0.898199,-0.296169,0.324842,0.898199,-0.296169,0.324842,
+			         0.138162,-0.045428,-0.989367,0.138162,-0.045428,-0.989367,0.138162,-0.045428,-0.989367,0.138162,-0.045428,-0.989367,
+			         -0.333792,-0.035188,0.941990,-0.333792,-0.035188,0.941990,-0.333792,-0.035188,0.941990,-0.333792,-0.035188,0.941990,
+			         0.143277,-0.061243,-0.987786,0.143277,-0.061243,-0.987786,0.143277,-0.061243,-0.987786,0.143277,-0.061243,-0.987786,
+			         0.509281,-0.151665,0.847131,0.509281,-0.151665,0.847131,0.509281,-0.151665,0.847131,0.509281,-0.151665,0.847131,
+			         0.131834,-0.026008,-0.990931,0.131834,-0.026008,-0.990931,0.131834,-0.026008,-0.990931,0.131834,-0.026008,-0.990931,
+			         0.307411,-0.466539,0.829361,0.307411,-0.466539,0.829361,0.307411,-0.466539,0.829361,0.307411,-0.466539,0.829361,
+			         -0.131834,-0.026008,-0.990931,-0.131834,-0.026008,-0.990931,-0.131834,-0.026008,-0.990931,-0.131834,-0.026008,-0.990931,
+			         -0.307411,-0.466539,0.829361,-0.307411,-0.466539,0.829361,-0.307411,-0.466539,0.829361,-0.307411,-0.466539,0.829361,
+			         -0.126014,-0.008287,-0.991994,-0.126014,-0.008287,-0.991994,-0.126014,-0.008287,-0.991994,-0.126014,-0.008287,-0.991994,
+			         -0.915201,-0.322598,0.241532,-0.915201,-0.322598,0.241532,-0.915201,-0.322598,0.241532,-0.915201,-0.322598,0.241532,
+			         -0.138162,-0.045428,-0.989367,-0.138162,-0.045428,-0.989367,-0.138162,-0.045428,-0.989367,-0.138162,-0.045428,-0.989367,
+			         0.333791,-0.035188,0.941990,0.333791,-0.035188,0.941990,0.333791,-0.035188,0.941990,0.333791,-0.035188,0.941990,
+			         -0.518880,-0.051699,-0.853283,-0.518880,-0.051699,-0.853283,-0.518880,-0.051699,-0.853283,-0.518880,-0.051699,-0.853283,
+			         -0.518884,-0.174551,0.836834,-0.518884,-0.174551,0.836834,-0.518884,-0.174551,0.836834,-0.518884,-0.174551,0.836834,
+			         -0.521706,-0.065669,-0.850594,-0.521706,-0.065669,-0.850594,-0.521706,-0.065669,-0.850594,-0.521706,-0.065669,-0.850594,
+			         -0.798509,-0.239891,0.552119,-0.798509,-0.239891,0.552119,-0.798509,-0.239891,0.552119,-0.798509,-0.239891,0.552119,
+			         -0.434455,-0.842945,0.317321,-0.434455,-0.842945,0.317321,-0.434455,-0.842945,0.317321,-0.434455,-0.842945,0.317321,
+			         -0.562550,-0.194988,0.803441,-0.562550,-0.194988,0.803441,-0.562550,-0.194988,0.803441,-0.562550,-0.194988,0.803441,
+			         -0.932870,-0.106256,0.344186,-0.932870,-0.106256,0.344186,-0.932870,-0.106256,0.344186,-0.932870,-0.106256,0.344186,
+			         -0.736125,-0.352131,0.578034,-0.736125,-0.352131,0.578034,-0.736125,-0.352131,0.578034,-0.736125,-0.352131,0.578034,
+			         0.905639,-0.055177,0.420444,0.905639,-0.055177,0.420444,0.905639,-0.055177,0.420444,0.905639,-0.055177,0.420444,
+			         0.300872,0.025732,-0.953317,0.300872,0.025732,-0.953317,0.300872,0.025732,-0.953317,0.300872,0.025732,-0.953317,
+			         0.567061,-0.448968,0.690557,0.567061,-0.448968,0.690557,0.567061,-0.448968,0.690557,0.567061,-0.448968,0.690557,
+			         0.848795,-0.046003,-0.526718,0.848795,-0.046003,-0.526718,0.848795,-0.046003,-0.526718,0.848795,-0.046003,-0.526718,
+			         0.404688,-0.035534,-0.913764,0.404688,-0.035534,-0.913764,0.404688,-0.035534,-0.913764,0.404688,-0.035534,-0.913764,
+			         0.931199,-0.307511,0.195719,0.931199,-0.307511,0.195719,0.931199,-0.307511,0.195719,0.931199,-0.307511,0.195719,
+			         -0.349664,-0.033583,-0.936273,-0.349664,-0.033583,-0.936273,-0.349664,-0.033583,-0.936273,-0.349664,-0.033583,-0.936273,
+			         -0.183517,-0.586903,0.788585,-0.183517,-0.586903,0.788585,-0.183517,-0.586903,0.788585,-0.183517,-0.586903,0.788585,
+			         0.758564,-0.176402,0.627266,0.758564,-0.176402,0.627266,0.758564,-0.176402,0.627266,0.758564,-0.176402,0.627266,
+			         0.801074,-0.116352,-0.587148,0.801074,-0.116352,-0.587148,0.801074,-0.116352,-0.587148,0.801074,-0.116352,-0.587148,
+			         -0.923023,-0.182761,0.338566,-0.923023,-0.182761,0.338566,-0.923023,-0.182761,0.338566,-0.923023,-0.182761,0.338566,
+			         -0.866607,0.101150,-0.488631,-0.866607,0.101150,-0.488631,-0.866607,0.101150,-0.488631,-0.866607,0.101150,-0.488631,
+			         -0.775255,-0.288054,0.562143,-0.775255,-0.288054,0.562143,-0.775255,-0.288054,0.562143,-0.775255,-0.288054,0.562143,
+			         -0.858432,0.131687,-0.495735,-0.858432,0.131687,-0.495735,-0.858432,0.131687,-0.495735,-0.858432,0.131687,-0.495735,
+			         0.382490,-0.001808,-0.923958,0.382490,-0.001808,-0.923958,0.382490,-0.001808,-0.923958,0.382490,-0.001808,-0.923958,
+			         0.737147,-0.565369,0.370098,0.737147,-0.565369,0.370098,0.737147,-0.565369,0.370098,0.737147,-0.565369,0.370098,
+			         0.394308,-0.019640,-0.918768,0.394308,-0.019640,-0.918768,0.394308,-0.019640,-0.918768,0.394308,-0.019640,-0.918768,
+			         0.708721,-0.546410,0.446263,0.708721,-0.546410,0.446263,0.708721,-0.546410,0.446263,0.708721,-0.546410,0.446263,
+			         0.932870,-0.106256,0.344186,0.932870,-0.106256,0.344186,0.932870,-0.106256,0.344186,0.932870,-0.106256,0.344186,
+			         0.736125,-0.352131,0.578034,0.736125,-0.352131,0.578034,0.736125,-0.352131,0.578034,0.736125,-0.352131,0.578034,
+			         0.329384,-0.008633,-0.944157,0.329384,-0.008633,-0.944157,0.329384,-0.008633,-0.944157,0.329384,-0.008633,-0.944157,
+			         0.163838,-0.538749,0.826382,0.163838,-0.538749,0.826382,0.163838,-0.538749,0.826382,0.163838,-0.538749,0.826382,
+			         0.341305,-0.023246,-0.939665,0.341305,-0.023246,-0.939665,0.341305,-0.023246,-0.939665,0.341305,-0.023246,-0.939665,
+			         0.182982,-0.601883,0.777338,0.182982,-0.601883,0.777338,0.182982,-0.601883,0.777338,0.182982,-0.601883,0.777338,
+			         0.314565,0.009329,-0.949190,0.314565,0.009329,-0.949190,0.314565,0.009329,-0.949190,0.314565,0.009329,-0.949190,
+			         0.598293,-0.470288,0.648749,0.598293,-0.470288,0.648749,0.598293,-0.470288,0.648749,0.598293,-0.470288,0.648749,
+			         -0.314565,0.009329,-0.949190,-0.314565,0.009329,-0.949190,-0.314565,0.009329,-0.949190,-0.314565,0.009329,-0.949190,
+			         -0.598293,-0.470288,0.648749,-0.598293,-0.470288,0.648749,-0.598293,-0.470288,0.648749,-0.598293,-0.470288,0.648749,
+			         -0.300872,0.025732,-0.953317,-0.300872,0.025732,-0.953317,-0.300872,0.025732,-0.953317,-0.300872,0.025732,-0.953317,
+			         -0.567061,-0.448968,0.690557,-0.567061,-0.448968,0.690557,-0.567061,-0.448968,0.690557,-0.567061,-0.448968,0.690557,
+			         -0.329384,-0.008633,-0.944157,-0.329384,-0.008633,-0.944157,-0.329384,-0.008633,-0.944157,-0.329384,-0.008633,-0.944157,
+			         -0.163838,-0.538749,0.826382,-0.163838,-0.538749,0.826382,-0.163838,-0.538749,0.826382,-0.163838,-0.538749,0.826382,
+			         -0.388597,-0.010986,-0.921342,-0.388597,-0.010986,-0.921342,-0.388597,-0.010986,-0.921342,-0.388597,-0.010986,-0.921342,
+			         -0.709881,-0.561731,0.424884,-0.709881,-0.561731,0.424884,-0.709881,-0.561731,0.424884,-0.709881,-0.561731,0.424884,
+			         -0.399662,-0.027810,-0.916240,-0.399662,-0.027810,-0.916240,-0.399662,-0.027810,-0.916240,-0.399662,-0.027810,-0.916240,
+			         -0.922752,-0.333132,0.193781,-0.922752,-0.333132,0.193781,-0.922752,-0.333132,0.193781,-0.922752,-0.333132,0.193781,
+			         -0.941656,-0.010625,0.336410,-0.941656,-0.010625,0.336410,-0.941656,-0.010625,0.336410,-0.941656,-0.010625,0.336410,
+			         -0.721827,-0.600342,0.344319,-0.721827,-0.600342,0.344319,-0.721827,-0.600342,0.344319,-0.721827,-0.600342,0.344319,
+			         0.235414,0.145107,-0.961002,0.235414,0.145107,-0.961002,0.235414,0.145107,-0.961002,0.235414,0.145107,-0.961002,
+			         0.673312,-0.533034,0.512373,0.673312,-0.533034,0.512373,0.673312,-0.533034,0.512373,0.673312,-0.533034,0.512373,
+			         0.605310,-0.626535,0.490972,0.605310,-0.626535,0.490972,0.605310,-0.626535,0.490972,0.605310,-0.626535,0.490972,
+			         0.000000,1.000000,0.000002,0.000000,1.000000,0.000002,0.000000,1.000000,0.000002,0.000000,1.000000,0.000002,
+			         0.325749,-0.483890,0.812242,0.325749,-0.483890,0.812242,0.325749,-0.483890,0.812242,0.325749,-0.483890,0.812242,
+			         0.000001,1.000000,-0.000001,0.000001,1.000000,-0.000001,0.000001,1.000000,-0.000001,0.000001,1.000000,-0.000001,
+			         0.000001,1.000000,0.000001,0.000001,1.000000,0.000001,0.000001,1.000000,0.000001,0.000001,1.000000,0.000001,
+			         0.756741,-0.590727,-0.279971,0.756741,-0.590727,-0.279971,0.756741,-0.590727,-0.279971,0.756741,-0.590727,-0.279971,
+			         0.729526,-0.672654,-0.123806,0.729526,-0.672654,-0.123806,0.729526,-0.672654,-0.123806,0.729526,-0.672654,-0.123806,
+			         0.254280,0.295125,0.921001,0.254280,0.295125,0.921001,0.254280,0.295125,0.921001,0.254280,0.295125,0.921001,
+			         0.494209,-0.052168,-0.867777,0.494209,-0.052168,-0.867777,0.494209,-0.052168,-0.867777,0.494209,-0.052168,-0.867777,
+			         0.367066,0.272322,0.889440,0.367066,0.272322,0.889440,0.367066,0.272322,0.889440,0.367066,0.272322,0.889440,
+			         -0.172869,0.984698,0.022040,-0.172869,0.984698,0.022040,-0.172869,0.984698,0.022040,-0.172869,0.984698,0.022040,
+			         0.362025,0.481402,0.798242,0.362025,0.481402,0.798242,0.362025,0.481402,0.798242,0.362025,0.481402,0.798242,
+			         0.348675,0.111575,-0.930579,0.348675,0.111575,-0.930579,0.348675,0.111575,-0.930579,0.348675,0.111575,-0.930579,
+			         0.324072,0.250877,0.912161,0.324072,0.250877,0.912161,0.324072,0.250877,0.912161,0.324072,0.250877,0.912161,
+			         0.444409,0.004091,-0.895814,0.444409,0.004091,-0.895814,0.444409,0.004091,-0.895814,0.444409,0.004091,-0.895814,
+			         0.555802,-0.184817,0.810510,0.555802,-0.184817,0.810510,0.555802,-0.184817,0.810510,0.555802,-0.184817,0.810510,
+			         0.518880,-0.051699,-0.853283,0.518880,-0.051699,-0.853283,0.518880,-0.051699,-0.853283,0.518880,-0.051699,-0.853283,
+			         0.518885,-0.174551,0.836833,0.518885,-0.174551,0.836833,0.518885,-0.174551,0.836833,0.518885,-0.174551,0.836833,
+			         0.388597,-0.010986,-0.921342,0.388597,-0.010986,-0.921342,0.388597,-0.010986,-0.921342,0.388597,-0.010986,-0.921342,
+			         0.709881,-0.561731,0.424884,0.709881,-0.561731,0.424884,0.709881,-0.561731,0.424884,0.709881,-0.561731,0.424884,
+			         0.265685,0.109196,-0.957856,0.265685,0.109196,-0.957856,0.265685,0.109196,-0.957856,0.265685,0.109196,-0.957856,
+			         0.820701,-0.526998,0.220731,0.820701,-0.526998,0.220731,0.820701,-0.526998,0.220731,0.820701,-0.526998,0.220731,
+			         0.658693,-0.623283,0.421476,0.658693,-0.623283,0.421476,0.658693,-0.623283,0.421476,0.658693,-0.623283,0.421476,
+			         0.000000,1.000000,0.000003,0.000000,1.000000,0.000003,0.000000,1.000000,0.000003,0.000000,1.000000,0.000003,
+			         0.373602,-0.729459,0.572984,0.373602,-0.729459,0.572984,0.373602,-0.729459,0.572984,0.373602,-0.729459,0.572984,
+			         0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,
+			         0.000002,1.000000,0.000000,0.000002,1.000000,0.000000,0.000002,1.000000,0.000000,0.000002,1.000000,0.000000,
+			         0.843042,-0.303438,-0.444078,0.843042,-0.303438,-0.444078,0.843042,-0.303438,-0.444078,0.843042,-0.303438,-0.444078,
+			         0.754748,-0.645858,-0.114985,0.754748,-0.645858,-0.114985,0.754748,-0.645858,-0.114985,0.754748,-0.645858,-0.114985,
+			         0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,
+			         0.498485,-0.066205,-0.864367,0.498485,-0.066205,-0.864367,0.498485,-0.066205,-0.864367,0.498485,-0.066205,-0.864367,
+			         0.519352,0.304573,0.798441,0.519352,0.304573,0.798441,0.519352,0.304573,0.798441,0.519352,0.304573,0.798441,
+			         -0.151225,0.988423,-0.012322,-0.151225,0.988423,-0.012322,-0.151225,0.988423,-0.012322,-0.151225,0.988423,-0.012322,
+			         0.289933,0.365763,0.884396,0.289933,0.365763,0.884396,0.289933,0.365763,0.884396,0.289933,0.365763,0.884396,
+			         0.363269,0.087735,-0.927544,0.363269,0.087735,-0.927544,0.363269,0.087735,-0.927544,0.363269,0.087735,-0.927544,
+			         0.441068,0.271469,0.855432,0.441068,0.271469,0.855432,0.441068,0.271469,0.855432,0.441068,0.271469,0.855432,
+			         0.452152,-0.013439,-0.891839,0.452152,-0.013439,-0.891839,0.452152,-0.013439,-0.891839,0.452152,-0.013439,-0.891839,
+			         0.859434,-0.254566,0.443361,0.859434,-0.254566,0.443361,0.859434,-0.254566,0.443361,0.859434,-0.254566,0.443361,
+			         0.521706,-0.065670,-0.850594,0.521706,-0.065670,-0.850594,0.521706,-0.065670,-0.850594,0.521706,-0.065670,-0.850594,
+			         0.798509,-0.239891,0.552119,0.798509,-0.239891,0.552119,0.798509,-0.239891,0.552119,0.798509,-0.239891,0.552119,
+			         0.399662,-0.027810,-0.916240,0.399662,-0.027810,-0.916240,0.399662,-0.027810,-0.916240,0.399662,-0.027810,-0.916240,
+			         0.922752,-0.333132,0.193781,0.922752,-0.333132,0.193781,0.922752,-0.333132,0.193781,0.922752,-0.333132,0.193781,
+			         0.271378,0.096243,-0.957649,0.271378,0.096243,-0.957649,0.271378,0.096243,-0.957649,0.271378,0.096243,-0.957649,
+			         0.502957,-0.761460,0.408916,0.502957,-0.761460,0.408916,0.502957,-0.761460,0.408916,0.502957,-0.761460,0.408916,
+			         0.696477,-0.606140,0.384075,0.696477,-0.606140,0.384075,0.696477,-0.606140,0.384075,0.696477,-0.606140,0.384075,
+			         0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,
+			         0.483382,-0.775606,0.405926,0.483382,-0.775606,0.405926,0.483382,-0.775606,0.405926,0.483382,-0.775606,0.405926,
+			         0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,0.000000,
+			         0.000000,1.000000,0.000001,0.000000,1.000000,0.000001,0.000000,1.000000,0.000001,0.000000,1.000000,0.000001,
+			         0.687161,-0.333769,-0.645297,0.687161,-0.333769,-0.645297,0.687161,-0.333769,-0.645297,0.687161,-0.333769,-0.645297,
+			         0.593365,-0.798011,-0.105341,0.593365,-0.798011,-0.105341,0.593365,-0.798011,-0.105341,0.593365,-0.798011,-0.105341,
+			         0.000000,0.389575,0.920995,0.000000,0.389575,0.920995,0.000000,0.389575,0.920995,0.000000,0.389575,0.920995,
+			         0.206557,-0.072768,-0.975725,0.206557,-0.072768,-0.975725,0.206557,-0.072768,-0.975725,0.206557,-0.072768,-0.975725,
+			         0.664986,0.343392,0.663232,0.664986,0.343392,0.663232,0.664986,0.343392,0.663232,0.664986,0.343392,0.663232,
+			         -0.160163,0.985368,-0.058286,-0.160163,0.985368,-0.058286,-0.160163,0.985368,-0.058286,-0.160163,0.985368,-0.058286,
+			         0.332016,0.735656,0.590403,0.332016,0.735656,0.590403,0.332016,0.735656,0.590403,0.332016,0.735656,0.590403,
+			         0.213252,0.082567,-0.973502,0.213252,0.082567,-0.973502,0.213252,0.082567,-0.973502,0.213252,0.082567,-0.973502,
+			         0.698220,0.346452,0.626466,0.698220,0.346452,0.626466,0.698220,0.346452,0.626466,0.698220,0.346452,0.626466,
+			         0.233842,-0.017323,-0.972120,0.233842,-0.017323,-0.972120,0.233842,-0.017323,-0.972120,0.233842,-0.017323,-0.972120,
+			         0.563819,-0.174633,0.807224,0.563819,-0.174633,0.807224,0.563819,-0.174633,0.807224,0.563819,-0.174633,0.807224,
+			         0.146878,-0.072441,-0.986498,0.146878,-0.072441,-0.986498,0.146878,-0.072441,-0.986498,0.146878,-0.072441,-0.986498,
+			         0.507393,-0.156702,0.847347,0.507393,-0.156702,0.847347,0.507393,-0.156702,0.847347,0.507393,-0.156702,0.847347,
+			         0.349664,-0.033583,-0.936273,0.349664,-0.033583,-0.936273,0.349664,-0.033583,-0.936273,0.349664,-0.033583,-0.936273,
+			         0.183517,-0.586904,0.788585,0.183517,-0.586904,0.788585,0.183517,-0.586904,0.788585,0.183517,-0.586904,0.788585,
+			         0.586682,-0.620191,0.520737,0.586682,-0.620191,0.520737,0.586682,-0.620191,0.520737,0.586682,-0.620191,0.520737,
+			         0.819039,-0.471938,0.326267,0.819039,-0.471938,0.326267,0.819039,-0.471938,0.326267,0.819039,-0.471938,0.326267,
+			         0.540907,-0.334281,0.771800,0.540907,-0.334281,0.771800,0.540907,-0.334281,0.771800,0.540907,-0.334281,0.771800,
+			         -0.000002,1.000000,0.000002,-0.000002,1.000000,0.000002,-0.000002,1.000000,0.000002,-0.000002,1.000000,0.000002,
+			         0.399718,-0.867084,0.297306,0.399718,-0.867084,0.297306,0.399718,-0.867084,0.297306,0.399718,-0.867084,0.297306,
+			         0.000001,1.000000,-0.000001,0.000001,1.000000,-0.000001,0.000001,1.000000,-0.000001,0.000001,1.000000,-0.000001,
+			         0.000002,1.000000,0.000001,0.000002,1.000000,0.000001,0.000002,1.000000,0.000001,0.000002,1.000000,0.000001,
+			         0.759805,-0.609687,-0.225782,0.759805,-0.609687,-0.225782,0.759805,-0.609687,-0.225782,0.759805,-0.609687,-0.225782,
+			         0.549873,-0.831399,-0.080096,0.549873,-0.831399,-0.080096,0.549873,-0.831399,-0.080096,0.549873,-0.831399,-0.080096,
+			         0.292748,0.161062,0.942527,0.292748,0.161062,0.942527,0.292748,0.161062,0.942527,0.292748,0.161062,0.942527,
+			         0.664326,0.747208,0.018758,0.664326,0.747208,0.018758,0.664326,0.747208,0.018758,0.664326,0.747208,0.018758,
+			         0.386811,0.326762,0.862325,0.386811,0.326762,0.862325,0.386811,0.326762,0.862325,0.386811,0.326762,0.862325,
+			         0.504163,0.856493,-0.110633,0.504163,0.856493,-0.110633,0.504163,0.856493,-0.110633,0.504163,0.856493,-0.110633,
+			         0.291843,0.698240,0.653673,0.291843,0.698240,0.653673,0.291843,0.698240,0.653673,0.291843,0.698240,0.653673,
+			         0.627125,0.766120,-0.140620,0.627125,0.766120,-0.140620,0.627125,0.766120,-0.140620,0.627125,0.766120,-0.140620,
+			         0.339379,0.299639,0.891649,0.339379,0.299639,0.891649,0.339379,0.299639,0.891649,0.339379,0.299639,0.891649,
+			         0.848094,-0.325980,0.417701,0.848094,-0.325980,0.417701,0.848094,-0.325980,0.417701,0.848094,-0.325980,0.417701,
+			         0.600565,-0.205935,0.772601,0.600565,-0.205935,0.772601,0.600565,-0.205935,0.772601,0.600565,-0.205935,0.772601,
+			         0.434455,-0.842945,0.317321,0.434455,-0.842945,0.317321,0.434455,-0.842945,0.317321,0.434455,-0.842945,0.317321,
+			         0.562550,-0.194988,0.803441,0.562550,-0.194988,0.803441,0.562550,-0.194988,0.803441,0.562550,-0.194988,0.803441,
+			         0.941656,-0.010625,0.336410,0.941656,-0.010625,0.336410,0.941656,-0.010625,0.336410,0.941656,-0.010625,0.336410,
+			         0.721827,-0.600342,0.344318,0.721827,-0.600342,0.344318,0.721827,-0.600342,0.344318,0.721827,-0.600342,0.344318,
+			         -0.259733,0.108041,-0.959618,-0.259733,0.108041,-0.959618,-0.259733,0.108041,-0.959618,-0.259733,0.108041,-0.959618,
+			         -0.494662,-0.660039,0.565383,-0.494662,-0.660039,0.565383,-0.494662,-0.660039,0.565383,-0.494662,-0.660039,0.565383,
+			         -0.720755,-0.612364,0.324843,-0.720755,-0.612364,0.324843,-0.720755,-0.612364,0.324843,-0.720755,-0.612364,0.324843,
+			         0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,
+			         -0.431666,-0.749428,0.502019,-0.431666,-0.749428,0.502019,-0.431666,-0.749428,0.502019,-0.431666,-0.749428,0.502019,
+			         0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,
+			         0.000000,1.000000,0.000001,0.000000,1.000000,0.000001,0.000000,1.000000,0.000001,0.000000,1.000000,0.000001,
+			         -0.683512,-0.328360,-0.651914,-0.683512,-0.328360,-0.651914,-0.683512,-0.328360,-0.651914,-0.683512,-0.328360,-0.651914,
+			         -0.012113,-0.248405,0.968581,-0.012113,-0.248405,0.968581,-0.012113,-0.248405,0.968581,-0.012113,-0.248405,0.968581,
+			         0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,
+			         -0.201526,-0.061529,-0.977549,-0.201526,-0.061529,-0.977549,-0.201526,-0.061529,-0.977549,-0.201526,-0.061529,-0.977549,
+			         -0.665569,0.363286,0.651952,-0.665569,0.363286,0.651952,-0.665569,0.363286,0.651952,-0.665569,0.363286,0.651952,
+			         0.158690,0.984163,-0.078993,0.158690,0.984163,-0.078993,0.158690,0.984163,-0.078993,0.158690,0.984163,-0.078993,
+			         -0.304215,0.845568,0.438712,-0.304215,0.845568,0.438712,-0.304215,0.845568,0.438712,-0.304215,0.845568,0.438712,
+			         -0.207612,0.090111,-0.974052,-0.207612,0.090111,-0.974052,-0.207612,0.090111,-0.974052,-0.207612,0.090111,-0.974052,
+			         -0.698376,0.348844,0.624963,-0.698376,0.348844,0.624963,-0.698376,0.348844,0.624963,-0.698376,0.348844,0.624963,
+			         -0.227980,-0.007315,-0.973638,-0.227980,-0.007315,-0.973638,-0.227980,-0.007315,-0.973638,-0.227980,-0.007315,-0.973638,
+			         -0.563364,-0.175661,0.807319,-0.563364,-0.175661,0.807319,-0.563364,-0.175661,0.807319,-0.563364,-0.175661,0.807319,
+			         -0.143277,-0.061243,-0.987786,-0.143277,-0.061243,-0.987786,-0.143277,-0.061243,-0.987786,-0.143277,-0.061243,-0.987786,
+			         -0.509281,-0.151665,0.847131,-0.509281,-0.151665,0.847131,-0.509281,-0.151665,0.847131,-0.509281,-0.151665,0.847131,
+			         -0.341305,-0.023246,-0.939665,-0.341305,-0.023246,-0.939665,-0.341305,-0.023246,-0.939665,-0.341305,-0.023246,-0.939665,
+			         -0.182982,-0.601884,0.777337,-0.182982,-0.601884,0.777337,-0.182982,-0.601884,0.777337,-0.182982,-0.601884,0.777337,
+			         -0.279023,0.093070,-0.955764,-0.279023,0.093070,-0.955764,-0.279023,0.093070,-0.955764,-0.279023,0.093070,-0.955764,
+			         -0.823548,-0.565671,0.042236,-0.823548,-0.565671,0.042236,-0.823548,-0.565671,0.042236,-0.823548,-0.565671,0.042236,
+			         -0.643075,-0.646866,0.409902,-0.643075,-0.646866,0.409902,-0.643075,-0.646866,0.409902,-0.643075,-0.646866,0.409902,
+			         0.000000,1.000000,-0.000001,0.000000,1.000000,-0.000001,0.000000,1.000000,-0.000001,0.000000,1.000000,-0.000001,
+			         -0.515924,-0.738335,0.434377,-0.515924,-0.738335,0.434377,-0.515924,-0.738335,0.434377,-0.515924,-0.738335,0.434377,
+			         0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,
+			         0.000002,1.000000,0.000001,0.000002,1.000000,0.000001,0.000002,1.000000,0.000001,0.000002,1.000000,0.000001,
+			         -0.807538,-0.142336,-0.572384,-0.807538,-0.142336,-0.572384,-0.807538,-0.142336,-0.572384,-0.807538,-0.142336,-0.572384,
+			         -0.851667,0.512571,-0.109240,-0.851667,0.512571,-0.109240,-0.851667,0.512571,-0.109240,-0.851667,0.512571,-0.109240,
+			         0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,0.000000,0.389574,0.920995,
+			         -0.500411,-0.072648,-0.862734,-0.500411,-0.072648,-0.862734,-0.500411,-0.072648,-0.862734,-0.500411,-0.072648,-0.862734,
+			         -0.530886,0.291855,0.795601,-0.530886,0.291855,0.795601,-0.530886,0.291855,0.795601,-0.530886,0.291855,0.795601,
+			         0.140032,0.989695,-0.029929,0.140032,0.989695,-0.029929,0.140032,0.989695,-0.029929,0.140032,0.989695,-0.029929,
+			         -0.237436,0.489631,0.838979,-0.237436,0.489631,0.838979,-0.237436,0.489631,0.838979,-0.237436,0.489631,0.838979,
+			         -0.369894,0.076733,-0.925900,-0.369894,0.076733,-0.925900,-0.369894,0.076733,-0.925900,-0.369894,0.076733,-0.925900,
+			         -0.454667,0.261517,0.851403,-0.454667,0.261517,0.851403,-0.454667,0.261517,0.851403,-0.454667,0.261517,0.851403,
+			         -0.455651,-0.021491,-0.889899,-0.455651,-0.021491,-0.889899,-0.455651,-0.021491,-0.889899,-0.455651,-0.021491,-0.889899,
+			         -0.857925,-0.249165,0.449312,-0.857925,-0.249165,0.449312,-0.857925,-0.249165,0.449312,-0.857925,-0.249165,0.449312,
+			         -0.522968,-0.072085,-0.849299,-0.522968,-0.072085,-0.849299,-0.522968,-0.072085,-0.849299,-0.522968,-0.072085,-0.849299,
+			         -0.797826,-0.234947,0.555224,-0.797826,-0.234947,0.555224,-0.797826,-0.234947,0.555224,-0.797826,-0.234947,0.555224,
+			         -0.404688,-0.035534,-0.913764,-0.404688,-0.035534,-0.913764,-0.404688,-0.035534,-0.913764,-0.404688,-0.035534,-0.913764,
+			         -0.931199,-0.307511,0.195719,-0.931199,-0.307511,0.195719,-0.931199,-0.307511,0.195719,-0.931199,-0.307511,0.195719,
+			         -0.251192,0.126506,-0.959635,-0.251192,0.126506,-0.959635,-0.251192,0.126506,-0.959635,-0.251192,0.126506,-0.959635,
+			         -0.701819,-0.559357,0.441100,-0.701819,-0.559357,0.441100,-0.701819,-0.559357,0.441100,-0.701819,-0.559357,0.441100,
+			         -0.628673,-0.632951,0.451822,-0.628673,-0.632951,0.451822,-0.628673,-0.632951,0.451822,-0.628673,-0.632951,0.451822,
+			         0.000003,1.000000,0.000004,0.000003,1.000000,0.000004,0.000003,1.000000,0.000004,0.000003,1.000000,0.000004,
+			         -0.319883,-0.479851,0.816957,-0.319883,-0.479851,0.816957,-0.319883,-0.479851,0.816957,-0.319883,-0.479851,0.816957,
+			         -0.000001,1.000000,-0.000000,-0.000001,1.000000,-0.000000,-0.000001,1.000000,-0.000000,-0.000001,1.000000,-0.000000,
+			         -0.000001,1.000000,0.000000,-0.000001,1.000000,0.000000,-0.000001,1.000000,0.000000,-0.000001,1.000000,0.000000,
+			         -0.754434,-0.581137,-0.305136,-0.754434,-0.581137,-0.305136,-0.754434,-0.581137,-0.305136,-0.754434,-0.581137,-0.305136,
+			         0.047857,0.171447,-0.984030,0.047857,0.171447,-0.984030,0.047857,0.171447,-0.984030,0.047857,0.171447,-0.984030,
+			         -0.249205,0.350948,0.902625,-0.249205,0.350948,0.902625,-0.249205,0.350948,0.902625,-0.249205,0.350948,0.902625,
+			         -0.496421,-0.059389,-0.866048,-0.496421,-0.059389,-0.866048,-0.496421,-0.059389,-0.866048,-0.496421,-0.059389,-0.866048,
+			         -0.374215,0.258145,0.890688,-0.374215,0.258145,0.890688,-0.374215,0.258145,0.890688,-0.374215,0.258145,0.890688,
+			         0.162173,0.986750,0.005006,0.162173,0.986750,0.005006,0.162173,0.986750,0.005006,0.162173,0.986750,0.005006,
+			         -0.381421,0.430197,0.818199,-0.381421,0.430197,0.818199,-0.381421,0.430197,0.818199,-0.381421,0.430197,0.818199,
+			         -0.356209,0.099334,-0.929111,-0.356209,0.099334,-0.929111,-0.356209,0.099334,-0.929111,-0.356209,0.099334,-0.929111,
+			         -0.332771,0.238808,0.912269,-0.332771,0.238808,0.912269,-0.332771,0.238808,0.912269,-0.332771,0.238808,0.912269,
+			         -0.448413,-0.004925,-0.893813,-0.448413,-0.004925,-0.893813,-0.448413,-0.004925,-0.893813,-0.448413,-0.004925,-0.893813,
+			         -0.554382,-0.180578,0.812436,-0.554382,-0.180578,0.812436,-0.554382,-0.180578,0.812436,-0.554382,-0.180578,0.812436,
+			         -0.520346,-0.058884,-0.851923,-0.520346,-0.058884,-0.851923,-0.520346,-0.058884,-0.851923,-0.520346,-0.058884,-0.851923,
+			         -0.518284,-0.170746,0.837990,-0.518284,-0.170746,0.837990,-0.518284,-0.170746,0.837990,-0.518284,-0.170746,0.837990,
+			         -0.394309,-0.019640,-0.918768,-0.394309,-0.019640,-0.918768,-0.394309,-0.019640,-0.918768,-0.394309,-0.019640,-0.918768,
+			         -0.708721,-0.546410,0.446262,-0.708721,-0.546410,0.446262,-0.708721,-0.546410,0.446262,-0.708721,-0.546410,0.446262,
+			         -0.218202,0.165111,-0.961835,-0.218202,0.165111,-0.961835,-0.218202,0.165111,-0.961835,-0.218202,0.165111,-0.961835,
+			         -0.712119,-0.466819,0.524372,-0.712119,-0.466819,0.524372,-0.712119,-0.466819,0.524372,-0.712119,-0.466819,0.524372,
+			         -0.585885,-0.584206,0.561642,-0.585885,-0.584206,0.561642,-0.585885,-0.584206,0.561642,-0.585885,-0.584206,0.561642,
+			         -0.000000,1.000000,0.000001,-0.000000,1.000000,0.000001,-0.000000,1.000000,0.000001,-0.000000,1.000000,0.000001,
+			         -0.339898,-0.521620,0.782548,-0.339898,-0.521620,0.782548,-0.339898,-0.521620,0.782548,-0.339898,-0.521620,0.782548,
+			         0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,0.000000,1.000000,-0.000000,
+			         -0.000001,1.000000,0.000001,-0.000001,1.000000,0.000001,-0.000001,1.000000,0.000001,-0.000001,1.000000,0.000001,
+			         -0.758556,-0.600264,-0.253529,-0.758556,-0.600264,-0.253529,-0.758556,-0.600264,-0.253529,-0.758556,-0.600264,-0.253529,
+			         -0.858163,0.492316,-0.145542,-0.858163,0.492316,-0.145542,-0.858163,0.492316,-0.145542,-0.858163,0.492316,-0.145542,
+			         -0.288650,0.230285,0.929328,-0.288650,0.230285,0.929328,-0.288650,0.230285,0.929328,-0.288650,0.230285,0.929328,
+			         -0.811563,0.299505,0.501660,-0.811563,0.299505,0.501660,-0.811563,0.299505,0.501660,-0.811563,0.299505,0.501660,
+			         -0.396787,0.308067,0.864670,-0.396787,0.308067,0.864670,-0.396787,0.308067,0.864670,-0.396787,0.308067,0.864670,
+			         -0.781548,0.442443,0.439803,-0.781548,0.442443,0.439803,-0.781548,0.442443,0.439803,-0.781548,0.442443,0.439803,
+			         -0.336262,0.623778,0.705570,-0.336262,0.623778,0.705570,-0.336262,0.623778,0.705570,-0.336262,0.623778,0.705570,
+			         -0.888727,0.230302,0.396390,-0.888727,0.230302,0.396390,-0.888727,0.230302,0.396390,-0.888727,0.230302,0.396390,
+			         -0.351079,0.283850,0.892285,-0.351079,0.283850,0.892285,-0.351079,0.283850,0.892285,-0.351079,0.283850,0.892285,
+			         -0.964427,-0.226885,0.135658,-0.964427,-0.226885,0.135658,-0.964427,-0.226885,0.135658,-0.964427,-0.226885,0.135658,
+			         -0.599180,-0.201068,0.774955,-0.599180,-0.201068,0.774955,-0.599180,-0.201068,0.774955,-0.599180,-0.201068,0.774955,
+			         -0.698898,-0.287069,-0.655082,-0.698898,-0.287069,-0.655082,-0.698898,-0.287069,-0.655082,-0.698898,-0.287069,-0.655082,
+			         -0.562010,-0.190594,0.804872,-0.562010,-0.190594,0.804872,-0.562010,-0.190594,0.804872,-0.562010,-0.190594,0.804872,
+			         -0.382490,-0.001808,-0.923958,-0.382490,-0.001808,-0.923958,-0.382490,-0.001808,-0.923958,-0.382490,-0.001808,-0.923958,
+			         -0.737147,-0.565369,0.370098,-0.737147,-0.565369,0.370098,-0.737147,-0.565369,0.370098,-0.737147,-0.565369,0.370098,
+			         0.729294,-0.678170,-0.090645,0.729294,-0.678170,-0.090645,0.729294,-0.678170,-0.090645,0.729294,-0.678170,-0.090645,
+			         0.605172,-0.778804,-0.165016,0.605172,-0.778804,-0.165016,0.605172,-0.778804,-0.165016,0.605172,-0.778804,-0.165016,
+			         -0.605172,-0.778804,-0.165016,-0.605172,-0.778804,-0.165016,-0.605172,-0.778804,-0.165016,-0.605172,-0.778804,-0.165016,
+			         -0.729294,-0.678170,-0.090645,-0.729294,-0.678170,-0.090645,-0.729294,-0.678170,-0.090645,-0.729294,-0.678170,-0.090645,
+			         -0.047857,0.171447,-0.984030,-0.047857,0.171447,-0.984030,-0.047857,0.171447,-0.984030,-0.047857,0.171447,-0.984030,
+			         0.127414,0.202202,-0.971020,0.127414,0.202202,-0.971020,0.127414,0.202202,-0.971020,0.127414,0.202202,-0.971020,
+			         -0.930475,-0.363635,-0.044572,-0.930475,-0.363635,-0.044572,-0.930475,-0.363635,-0.044572,-0.930475,-0.363635,-0.044572,
+			         0.930475,-0.363635,-0.044572,0.930475,-0.363635,-0.044572,0.930475,-0.363635,-0.044572,0.930475,-0.363635,-0.044572,
+			         0.885375,0.435225,-0.163375,0.885375,0.435225,-0.163375,0.885375,0.435225,-0.163375,0.885375,0.435225,-0.163375,
+			         0.926799,0.375036,-0.019809,0.926799,0.375036,-0.019809,0.926799,0.375036,-0.019809,0.926799,0.375036,-0.019809,
+			         -0.926799,0.375036,-0.019809,-0.926799,0.375036,-0.019809,-0.926799,0.375036,-0.019809,-0.926799,0.375036,-0.019809,
+			         0.885008,-0.435382,0.164936,0.885008,-0.435382,0.164936,0.885008,-0.435382,0.164936,0.885008,-0.435382,0.164936,
+			         -0.885374,0.435225,-0.163375,-0.885374,0.435225,-0.163375,-0.885374,0.435225,-0.163375,-0.885374,0.435225,-0.163375,
+			         -0.885008,-0.435382,0.164936,-0.885008,-0.435382,0.164936,-0.885008,-0.435382,0.164936,-0.885008,-0.435382,0.164936,
+			         0.002823,-0.261817,0.965113,0.002823,-0.261817,0.965113,0.002823,-0.261817,0.965113,0.002823,-0.261817,0.965113,
+			         0.012113,-0.248405,0.968581,0.012113,-0.248405,0.968581,0.012113,-0.248405,0.968581,0.012113,-0.248405,0.968581,
+			         0.756015,-0.649765,-0.079040,0.756015,-0.649765,-0.079040,0.756015,-0.649765,-0.079040,0.756015,-0.649765,-0.079040,
+			         -0.756015,-0.649765,-0.079040,-0.756015,-0.649765,-0.079040,-0.756015,-0.649765,-0.079040,-0.756015,-0.649765,-0.079040,
+			         -0.012738,-0.126361,0.991902,-0.012738,-0.126361,0.991902,-0.012738,-0.126361,0.991902,-0.012738,-0.126361,0.991902,
+			         -0.093437,0.088442,-0.991689,-0.093437,0.088442,-0.991689,-0.093437,0.088442,-0.991689,-0.093437,0.088442,-0.991689,
+			         0.093437,0.088442,-0.991689,0.093437,0.088442,-0.991689,0.093437,0.088442,-0.991689,0.093437,0.088442,-0.991689,
+			         0.012739,-0.126361,0.991902,0.012739,-0.126361,0.991902,0.012739,-0.126361,0.991902,0.012739,-0.126361,0.991902,
+			         0.855266,-0.512181,0.078680,0.855266,-0.512181,0.078680,0.855266,-0.512181,0.078680,0.855266,-0.512181,0.078680,
+			         -0.855266,-0.512181,0.078680,-0.855266,-0.512181,0.078680,-0.855266,-0.512181,0.078680,-0.855266,-0.512181,0.078680,
+			         0.732157,-0.677459,-0.070673,0.732157,-0.677459,-0.070673,0.732157,-0.677459,-0.070673,0.732157,-0.677459,-0.070673,
+			         -0.732157,-0.677459,-0.070673,-0.732157,-0.677459,-0.070673,-0.732157,-0.677459,-0.070673,-0.732157,-0.677459,-0.070673,
+			         0.123569,-0.282647,0.951232,0.123569,-0.282647,0.951232,0.123569,-0.282647,0.951232,0.123569,-0.282647,0.951232,
+			         -0.132801,0.169145,-0.976603,-0.132801,0.169145,-0.976603,-0.132801,0.169145,-0.976603,-0.132801,0.169145,-0.976603,
+			         0.857476,-0.492479,0.148992,0.857476,-0.492479,0.148992,0.857476,-0.492479,0.148992,0.857476,-0.492479,0.148992,
+			         -0.123570,-0.282647,0.951232,-0.123570,-0.282647,0.951232,-0.123570,-0.282647,0.951232,-0.123570,-0.282647,0.951232,
+			         0.132801,0.169145,-0.976603,0.132801,0.169145,-0.976603,0.132801,0.169145,-0.976603,0.132801,0.169145,-0.976603,
+			         -0.857476,-0.492479,0.148992,-0.857476,-0.492479,0.148992,-0.857476,-0.492479,0.148992,-0.857476,-0.492479,0.148992
+		}
+		LayerElementSmoothing: 0 {
+			Version: 102
+			Name: ""
+			MappingInformationType: "ByPolygon"
+			ReferenceInformationType: "Direct"
+			Smoothing: 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+			           0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+			           0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+			           0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+			           0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+			           0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+			           0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+			           0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+			           0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+			           0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+		}
+		LayerElementMaterial: 0 {
+			Version: 101
+			Name: ""
+			MappingInformationType: "AllSame"
+			ReferenceInformationType: "IndexToDirect"
+			Materials: 0
+		}
+		Layer: 0 {
+			Version: 100
+			LayerElement:  {
+				Type: "LayerElementNormal"
+				TypedIndex: 0
+			}
+			LayerElement:  {
+				Type: "LayerElementSmoothing"
+				TypedIndex: 0
+			}
+			LayerElement:  {
+				Type: "LayerElementMaterial"
+				TypedIndex: 0
+			}
+		}
+	}
+	Model: "Model::Producer Perspective", "Camera" {
+		Version: 232
+		Properties60:  {
+			Property: "QuaternionInterpolate", "bool", "",0
+			Property: "Visibility", "Visibility", "A+",1
+			Property: "Lcl Translation", "Lcl Translation", "A+",0.000000000000000,71.299999999999997,287.500000000000000
+			Property: "Lcl Rotation", "Lcl Rotation", "A+",0.000000000000000,0.000000000000000,0.000000000000000
+			Property: "Lcl Scaling", "Lcl Scaling", "A+",1.000000000000000,1.000000000000000,1.000000000000000
+			Property: "RotationOffset", "Vector3D", "",0,0,0
+			Property: "RotationPivot", "Vector3D", "",0,0,0
+			Property: "ScalingOffset", "Vector3D", "",0,0,0
+			Property: "ScalingPivot", "Vector3D", "",0,0,0
+			Property: "TranslationActive", "bool", "",0
+			Property: "TranslationMin", "Vector3D", "",0,0,0
+			Property: "TranslationMax", "Vector3D", "",0,0,0
+			Property: "TranslationMinX", "bool", "",0
+			Property: "TranslationMinY", "bool", "",0
+			Property: "TranslationMinZ", "bool", "",0
+			Property: "TranslationMaxX", "bool", "",0
+			Property: "TranslationMaxY", "bool", "",0
+			Property: "TranslationMaxZ", "bool", "",0
+			Property: "RotationOrder", "enum", "",0
+			Property: "RotationSpaceForLimitOnly", "bool", "",0
+			Property: "AxisLen", "double", "",10
+			Property: "PreRotation", "Vector3D", "",0,0,0
+			Property: "PostRotation", "Vector3D", "",0,0,0
+			Property: "RotationActive", "bool", "",0
+			Property: "RotationMin", "Vector3D", "",0,0,0
+			Property: "RotationMax", "Vector3D", "",0,0,0
+			Property: "RotationMinX", "bool", "",0
+			Property: "RotationMinY", "bool", "",0
+			Property: "RotationMinZ", "bool", "",0
+			Property: "RotationMaxX", "bool", "",0
+			Property: "RotationMaxY", "bool", "",0
+			Property: "RotationMaxZ", "bool", "",0
+			Property: "RotationStiffnessX", "double", "",0
+			Property: "RotationStiffnessY", "double", "",0
+			Property: "RotationStiffnessZ", "double", "",0
+			Property: "MinDampRangeX", "double", "",0
+			Property: "MinDampRangeY", "double", "",0
+			Property: "MinDampRangeZ", "double", "",0
+			Property: "MaxDampRangeX", "double", "",0
+			Property: "MaxDampRangeY", "double", "",0
+			Property: "MaxDampRangeZ", "double", "",0
+			Property: "MinDampStrengthX", "double", "",0
+			Property: "MinDampStrengthY", "double", "",0
+			Property: "MinDampStrengthZ", "double", "",0
+			Property: "MaxDampStrengthX", "double", "",0
+			Property: "MaxDampStrengthY", "double", "",0
+			Property: "MaxDampStrengthZ", "double", "",0
+			Property: "PreferedAngleX", "double", "",0
+			Property: "PreferedAngleY", "double", "",0
+			Property: "PreferedAngleZ", "double", "",0
+			Property: "InheritType", "enum", "",0
+			Property: "ScalingActive", "bool", "",0
+			Property: "ScalingMin", "Vector3D", "",1,1,1
+			Property: "ScalingMax", "Vector3D", "",1,1,1
+			Property: "ScalingMinX", "bool", "",0
+			Property: "ScalingMinY", "bool", "",0
+			Property: "ScalingMinZ", "bool", "",0
+			Property: "ScalingMaxX", "bool", "",0
+			Property: "ScalingMaxY", "bool", "",0
+			Property: "ScalingMaxZ", "bool", "",0
+			Property: "GeometricTranslation", "Vector3D", "",0,0,0
+			Property: "GeometricRotation", "Vector3D", "",0,0,0
+			Property: "GeometricScaling", "Vector3D", "",1,1,1
+			Property: "LookAtProperty", "object", ""
+			Property: "UpVectorProperty", "object", ""
+			Property: "Show", "bool", "",1
+			Property: "NegativePercentShapeSupport", "bool", "",1
+			Property: "DefaultAttributeIndex", "int", "",0
+			Property: "Color", "Color", "A",0.8,0.8,0.8
+			Property: "Roll", "Roll", "A+",0
+			Property: "FieldOfView", "FieldOfView", "A+",40
+			Property: "FieldOfViewX", "FieldOfView", "A+",1
+			Property: "FieldOfViewY", "FieldOfView", "A+",1
+			Property: "OpticalCenterX", "Real", "A+",0
+			Property: "OpticalCenterY", "Real", "A+",0
+			Property: "BackgroundColor", "Color", "A+",0.63,0.63,0.63
+			Property: "TurnTable", "Real", "A+",0
+			Property: "DisplayTurnTableIcon", "bool", "",1
+			Property: "Motion Blur Intensity", "Real", "A+",1
+			Property: "UseMotionBlur", "bool", "",0
+			Property: "UseRealTimeMotionBlur", "bool", "",1
+			Property: "ResolutionMode", "enum", "",0
+			Property: "ApertureMode", "enum", "",2
+			Property: "GateFit", "enum", "",0
+			Property: "FocalLength", "Real", "A+",21.3544940948486
+			Property: "CameraFormat", "enum", "",0
+			Property: "AspectW", "double", "",320
+			Property: "AspectH", "double", "",200
+			Property: "PixelAspectRatio", "double", "",1
+			Property: "UseFrameColor", "bool", "",0
+			Property: "FrameColor", "ColorRGB", "",0.3,0.3,0.3
+			Property: "ShowName", "bool", "",1
+			Property: "ShowGrid", "bool", "",1
+			Property: "ShowOpticalCenter", "bool", "",0
+			Property: "ShowAzimut", "bool", "",1
+			Property: "ShowTimeCode", "bool", "",0
+			Property: "NearPlane", "double", "",10.000000
+			Property: "FarPlane", "double", "",4000.000000
+			Property: "FilmWidth", "double", "",0.816
+			Property: "FilmHeight", "double", "",0.612
+			Property: "FilmAspectRatio", "double", "",1.33333333333333
+			Property: "FilmSqueezeRatio", "double", "",1
+			Property: "FilmFormatIndex", "enum", "",4
+			Property: "ViewFrustum", "bool", "",1
+			Property: "ViewFrustumNearFarPlane", "bool", "",0
+			Property: "ViewFrustumBackPlaneMode", "enum", "",2
+			Property: "BackPlaneDistance", "double", "",100
+			Property: "BackPlaneDistanceMode", "enum", "",0
+			Property: "ViewCameraToLookAt", "bool", "",1
+			Property: "LockMode", "bool", "",0
+			Property: "LockInterestNavigation", "bool", "",0
+			Property: "FitImage", "bool", "",0
+			Property: "Crop", "bool", "",0
+			Property: "Center", "bool", "",1
+			Property: "KeepRatio", "bool", "",1
+			Property: "BackgroundMode", "enum", "",0
+			Property: "BackgroundAlphaTreshold", "double", "",0.5
+			Property: "ForegroundTransparent", "bool", "",1
+			Property: "DisplaySafeArea", "bool", "",0
+			Property: "SafeAreaDisplayStyle", "enum", "",1
+			Property: "SafeAreaAspectRatio", "double", "",1.33333333333333
+			Property: "Use2DMagnifierZoom", "bool", "",0
+			Property: "2D Magnifier Zoom", "Real", "A+",100
+			Property: "2D Magnifier X", "Real", "A+",50
+			Property: "2D Magnifier Y", "Real", "A+",50
+			Property: "CameraProjectionType", "enum", "",0
+			Property: "UseRealTimeDOFAndAA", "bool", "",0
+			Property: "UseDepthOfField", "bool", "",0
+			Property: "FocusSource", "enum", "",0
+			Property: "FocusAngle", "double", "",3.5
+			Property: "FocusDistance", "double", "",200
+			Property: "UseAntialiasing", "bool", "",0
+			Property: "AntialiasingIntensity", "double", "",0.77777
+			Property: "UseAccumulationBuffer", "bool", "",0
+			Property: "FrameSamplingCount", "int", "",7
+		}
+		MultiLayer: 0
+		MultiTake: 0
+		Hidden: "True"
+		Shading: Y
+		Culling: "CullingOff"
+		TypeFlags: "Camera"
+		GeometryVersion: 124
+		Position: 0.000000,71.300000,287.500000
+		Up: 0,1,0
+		LookAt: 0,0,0
+		ShowInfoOnMoving: 1
+		ShowAudio: 0
+		AudioColor: 0,1,0
+		CameraOrthoZoom: 1
+	}
+	Model: "Model::Producer Top", "Camera" {
+		Version: 232
+		Properties60:  {
+			Property: "QuaternionInterpolate", "bool", "",0
+			Property: "Visibility", "Visibility", "A+",1
+			Property: "Lcl Translation", "Lcl Translation", "A+",0.000000000000000,4000.000000000000000,0.000000000000000
+			Property: "Lcl Rotation", "Lcl Rotation", "A+",0.000000000000000,0.000000000000000,0.000000000000000
+			Property: "Lcl Scaling", "Lcl Scaling", "A+",1.000000000000000,1.000000000000000,1.000000000000000
+			Property: "RotationOffset", "Vector3D", "",0,0,0
+			Property: "RotationPivot", "Vector3D", "",0,0,0
+			Property: "ScalingOffset", "Vector3D", "",0,0,0
+			Property: "ScalingPivot", "Vector3D", "",0,0,0
+			Property: "TranslationActive", "bool", "",0
+			Property: "TranslationMin", "Vector3D", "",0,0,0
+			Property: "TranslationMax", "Vector3D", "",0,0,0
+			Property: "TranslationMinX", "bool", "",0
+			Property: "TranslationMinY", "bool", "",0
+			Property: "TranslationMinZ", "bool", "",0
+			Property: "TranslationMaxX", "bool", "",0
+			Property: "TranslationMaxY", "bool", "",0
+			Property: "TranslationMaxZ", "bool", "",0
+			Property: "RotationOrder", "enum", "",0
+			Property: "RotationSpaceForLimitOnly", "bool", "",0
+			Property: "AxisLen", "double", "",10
+			Property: "PreRotation", "Vector3D", "",0,0,0
+			Property: "PostRotation", "Vector3D", "",0,0,0
+			Property: "RotationActive", "bool", "",0
+			Property: "RotationMin", "Vector3D", "",0,0,0
+			Property: "RotationMax", "Vector3D", "",0,0,0
+			Property: "RotationMinX", "bool", "",0
+			Property: "RotationMinY", "bool", "",0
+			Property: "RotationMinZ", "bool", "",0
+			Property: "RotationMaxX", "bool", "",0
+			Property: "RotationMaxY", "bool", "",0
+			Property: "RotationMaxZ", "bool", "",0
+			Property: "RotationStiffnessX", "double", "",0
+			Property: "RotationStiffnessY", "double", "",0
+			Property: "RotationStiffnessZ", "double", "",0
+			Property: "MinDampRangeX", "double", "",0
+			Property: "MinDampRangeY", "double", "",0
+			Property: "MinDampRangeZ", "double", "",0
+			Property: "MaxDampRangeX", "double", "",0
+			Property: "MaxDampRangeY", "double", "",0
+			Property: "MaxDampRangeZ", "double", "",0
+			Property: "MinDampStrengthX", "double", "",0
+			Property: "MinDampStrengthY", "double", "",0
+			Property: "MinDampStrengthZ", "double", "",0
+			Property: "MaxDampStrengthX", "double", "",0
+			Property: "MaxDampStrengthY", "double", "",0
+			Property: "MaxDampStrengthZ", "double", "",0
+			Property: "PreferedAngleX", "double", "",0
+			Property: "PreferedAngleY", "double", "",0
+			Property: "PreferedAngleZ", "double", "",0
+			Property: "InheritType", "enum", "",0
+			Property: "ScalingActive", "bool", "",0
+			Property: "ScalingMin", "Vector3D", "",1,1,1
+			Property: "ScalingMax", "Vector3D", "",1,1,1
+			Property: "ScalingMinX", "bool", "",0
+			Property: "ScalingMinY", "bool", "",0
+			Property: "ScalingMinZ", "bool", "",0
+			Property: "ScalingMaxX", "bool", "",0
+			Property: "ScalingMaxY", "bool", "",0
+			Property: "ScalingMaxZ", "bool", "",0
+			Property: "GeometricTranslation", "Vector3D", "",0,0,0
+			Property: "GeometricRotation", "Vector3D", "",0,0,0
+			Property: "GeometricScaling", "Vector3D", "",1,1,1
+			Property: "LookAtProperty", "object", ""
+			Property: "UpVectorProperty", "object", ""
+			Property: "Show", "bool", "",1
+			Property: "NegativePercentShapeSupport", "bool", "",1
+			Property: "DefaultAttributeIndex", "int", "",0
+			Property: "Color", "Color", "A",0.8,0.8,0.8
+			Property: "Roll", "Roll", "A+",0
+			Property: "FieldOfView", "FieldOfView", "A+",40
+			Property: "FieldOfViewX", "FieldOfView", "A+",1
+			Property: "FieldOfViewY", "FieldOfView", "A+",1
+			Property: "OpticalCenterX", "Real", "A+",0
+			Property: "OpticalCenterY", "Real", "A+",0
+			Property: "BackgroundColor", "Color", "A+",0.63,0.63,0.63
+			Property: "TurnTable", "Real", "A+",0
+			Property: "DisplayTurnTableIcon", "bool", "",1
+			Property: "Motion Blur Intensity", "Real", "A+",1
+			Property: "UseMotionBlur", "bool", "",0
+			Property: "UseRealTimeMotionBlur", "bool", "",1
+			Property: "ResolutionMode", "enum", "",0
+			Property: "ApertureMode", "enum", "",2
+			Property: "GateFit", "enum", "",0
+			Property: "FocalLength", "Real", "A+",21.3544940948486
+			Property: "CameraFormat", "enum", "",0
+			Property: "AspectW", "double", "",320
+			Property: "AspectH", "double", "",200
+			Property: "PixelAspectRatio", "double", "",1
+			Property: "UseFrameColor", "bool", "",0
+			Property: "FrameColor", "ColorRGB", "",0.3,0.3,0.3
+			Property: "ShowName", "bool", "",1
+			Property: "ShowGrid", "bool", "",1
+			Property: "ShowOpticalCenter", "bool", "",0
+			Property: "ShowAzimut", "bool", "",1
+			Property: "ShowTimeCode", "bool", "",0
+			Property: "NearPlane", "double", "",1.000000
+			Property: "FarPlane", "double", "",30000.000000
+			Property: "FilmWidth", "double", "",0.816
+			Property: "FilmHeight", "double", "",0.612
+			Property: "FilmAspectRatio", "double", "",1.33333333333333
+			Property: "FilmSqueezeRatio", "double", "",1
+			Property: "FilmFormatIndex", "enum", "",4
+			Property: "ViewFrustum", "bool", "",1
+			Property: "ViewFrustumNearFarPlane", "bool", "",0
+			Property: "ViewFrustumBackPlaneMode", "enum", "",2
+			Property: "BackPlaneDistance", "double", "",100
+			Property: "BackPlaneDistanceMode", "enum", "",0
+			Property: "ViewCameraToLookAt", "bool", "",1
+			Property: "LockMode", "bool", "",0
+			Property: "LockInterestNavigation", "bool", "",0
+			Property: "FitImage", "bool", "",0
+			Property: "Crop", "bool", "",0
+			Property: "Center", "bool", "",1
+			Property: "KeepRatio", "bool", "",1
+			Property: "BackgroundMode", "enum", "",0
+			Property: "BackgroundAlphaTreshold", "double", "",0.5
+			Property: "ForegroundTransparent", "bool", "",1
+			Property: "DisplaySafeArea", "bool", "",0
+			Property: "SafeAreaDisplayStyle", "enum", "",1
+			Property: "SafeAreaAspectRatio", "double", "",1.33333333333333
+			Property: "Use2DMagnifierZoom", "bool", "",0
+			Property: "2D Magnifier Zoom", "Real", "A+",100
+			Property: "2D Magnifier X", "Real", "A+",50
+			Property: "2D Magnifier Y", "Real", "A+",50
+			Property: "CameraProjectionType", "enum", "",1
+			Property: "UseRealTimeDOFAndAA", "bool", "",0
+			Property: "UseDepthOfField", "bool", "",0
+			Property: "FocusSource", "enum", "",0
+			Property: "FocusAngle", "double", "",3.5
+			Property: "FocusDistance", "double", "",200
+			Property: "UseAntialiasing", "bool", "",0
+			Property: "AntialiasingIntensity", "double", "",0.77777
+			Property: "UseAccumulationBuffer", "bool", "",0
+			Property: "FrameSamplingCount", "int", "",7
+		}
+		MultiLayer: 0
+		MultiTake: 0
+		Hidden: "True"
+		Shading: Y
+		Culling: "CullingOff"
+		TypeFlags: "Camera"
+		GeometryVersion: 124
+		Position: 0.000000,4000.000000,0.000000
+		Up: 0,0,-1
+		LookAt: 0,0,0
+		ShowInfoOnMoving: 1
+		ShowAudio: 0
+		AudioColor: 0,1,0
+		CameraOrthoZoom: 1
+	}
+	Model: "Model::Producer Bottom", "Camera" {
+		Version: 232
+		Properties60:  {
+			Property: "QuaternionInterpolate", "bool", "",0
+			Property: "Visibility", "Visibility", "A+",1
+			Property: "Lcl Translation", "Lcl Translation", "A+",0.000000000000000,-4000.000000000000000,0.000000000000000
+			Property: "Lcl Rotation", "Lcl Rotation", "A+",0.000000000000000,0.000000000000000,0.000000000000000
+			Property: "Lcl Scaling", "Lcl Scaling", "A+",1.000000000000000,1.000000000000000,1.000000000000000
+			Property: "RotationOffset", "Vector3D", "",0,0,0
+			Property: "RotationPivot", "Vector3D", "",0,0,0
+			Property: "ScalingOffset", "Vector3D", "",0,0,0
+			Property: "ScalingPivot", "Vector3D", "",0,0,0
+			Property: "TranslationActive", "bool", "",0
+			Property: "TranslationMin", "Vector3D", "",0,0,0
+			Property: "TranslationMax", "Vector3D", "",0,0,0
+			Property: "TranslationMinX", "bool", "",0
+			Property: "TranslationMinY", "bool", "",0
+			Property: "TranslationMinZ", "bool", "",0
+			Property: "TranslationMaxX", "bool", "",0
+			Property: "TranslationMaxY", "bool", "",0
+			Property: "TranslationMaxZ", "bool", "",0
+			Property: "RotationOrder", "enum", "",0
+			Property: "RotationSpaceForLimitOnly", "bool", "",0
+			Property: "AxisLen", "double", "",10
+			Property: "PreRotation", "Vector3D", "",0,0,0
+			Property: "PostRotation", "Vector3D", "",0,0,0
+			Property: "RotationActive", "bool", "",0
+			Property: "RotationMin", "Vector3D", "",0,0,0
+			Property: "RotationMax", "Vector3D", "",0,0,0
+			Property: "RotationMinX", "bool", "",0
+			Property: "RotationMinY", "bool", "",0
+			Property: "RotationMinZ", "bool", "",0
+			Property: "RotationMaxX", "bool", "",0
+			Property: "RotationMaxY", "bool", "",0
+			Property: "RotationMaxZ", "bool", "",0
+			Property: "RotationStiffnessX", "double", "",0
+			Property: "RotationStiffnessY", "double", "",0
+			Property: "RotationStiffnessZ", "double", "",0
+			Property: "MinDampRangeX", "double", "",0
+			Property: "MinDampRangeY", "double", "",0
+			Property: "MinDampRangeZ", "double", "",0
+			Property: "MaxDampRangeX", "double", "",0
+			Property: "MaxDampRangeY", "double", "",0
+			Property: "MaxDampRangeZ", "double", "",0
+			Property: "MinDampStrengthX", "double", "",0
+			Property: "MinDampStrengthY", "double", "",0
+			Property: "MinDampStrengthZ", "double", "",0
+			Property: "MaxDampStrengthX", "double", "",0
+			Property: "MaxDampStrengthY", "double", "",0
+			Property: "MaxDampStrengthZ", "double", "",0
+			Property: "PreferedAngleX", "double", "",0
+			Property: "PreferedAngleY", "double", "",0
+			Property: "PreferedAngleZ", "double", "",0
+			Property: "InheritType", "enum", "",0
+			Property: "ScalingActive", "bool", "",0
+			Property: "ScalingMin", "Vector3D", "",1,1,1
+			Property: "ScalingMax", "Vector3D", "",1,1,1
+			Property: "ScalingMinX", "bool", "",0
+			Property: "ScalingMinY", "bool", "",0
+			Property: "ScalingMinZ", "bool", "",0
+			Property: "ScalingMaxX", "bool", "",0
+			Property: "ScalingMaxY", "bool", "",0
+			Property: "ScalingMaxZ", "bool", "",0
+			Property: "GeometricTranslation", "Vector3D", "",0,0,0
+			Property: "GeometricRotation", "Vector3D", "",0,0,0
+			Property: "GeometricScaling", "Vector3D", "",1,1,1
+			Property: "LookAtProperty", "object", ""
+			Property: "UpVectorProperty", "object", ""
+			Property: "Show", "bool", "",1
+			Property: "NegativePercentShapeSupport", "bool", "",1
+			Property: "DefaultAttributeIndex", "int", "",0
+			Property: "Color", "Color", "A",0.8,0.8,0.8
+			Property: "Roll", "Roll", "A+",0
+			Property: "FieldOfView", "FieldOfView", "A+",40
+			Property: "FieldOfViewX", "FieldOfView", "A+",1
+			Property: "FieldOfViewY", "FieldOfView", "A+",1
+			Property: "OpticalCenterX", "Real", "A+",0
+			Property: "OpticalCenterY", "Real", "A+",0
+			Property: "BackgroundColor", "Color", "A+",0.63,0.63,0.63
+			Property: "TurnTable", "Real", "A+",0
+			Property: "DisplayTurnTableIcon", "bool", "",1
+			Property: "Motion Blur Intensity", "Real", "A+",1
+			Property: "UseMotionBlur", "bool", "",0
+			Property: "UseRealTimeMotionBlur", "bool", "",1
+			Property: "ResolutionMode", "enum", "",0
+			Property: "ApertureMode", "enum", "",2
+			Property: "GateFit", "enum", "",0
+			Property: "FocalLength", "Real", "A+",21.3544940948486
+			Property: "CameraFormat", "enum", "",0
+			Property: "AspectW", "double", "",320
+			Property: "AspectH", "double", "",200
+			Property: "PixelAspectRatio", "double", "",1
+			Property: "UseFrameColor", "bool", "",0
+			Property: "FrameColor", "ColorRGB", "",0.3,0.3,0.3
+			Property: "ShowName", "bool", "",1
+			Property: "ShowGrid", "bool", "",1
+			Property: "ShowOpticalCenter", "bool", "",0
+			Property: "ShowAzimut", "bool", "",1
+			Property: "ShowTimeCode", "bool", "",0
+			Property: "NearPlane", "double", "",1.000000
+			Property: "FarPlane", "double", "",30000.000000
+			Property: "FilmWidth", "double", "",0.816
+			Property: "FilmHeight", "double", "",0.612
+			Property: "FilmAspectRatio", "double", "",1.33333333333333
+			Property: "FilmSqueezeRatio", "double", "",1
+			Property: "FilmFormatIndex", "enum", "",4
+			Property: "ViewFrustum", "bool", "",1
+			Property: "ViewFrustumNearFarPlane", "bool", "",0
+			Property: "ViewFrustumBackPlaneMode", "enum", "",2
+			Property: "BackPlaneDistance", "double", "",100
+			Property: "BackPlaneDistanceMode", "enum", "",0
+			Property: "ViewCameraToLookAt", "bool", "",1
+			Property: "LockMode", "bool", "",0
+			Property: "LockInterestNavigation", "bool", "",0
+			Property: "FitImage", "bool", "",0
+			Property: "Crop", "bool", "",0
+			Property: "Center", "bool", "",1
+			Property: "KeepRatio", "bool", "",1
+			Property: "BackgroundMode", "enum", "",0
+			Property: "BackgroundAlphaTreshold", "double", "",0.5
+			Property: "ForegroundTransparent", "bool", "",1
+			Property: "DisplaySafeArea", "bool", "",0
+			Property: "SafeAreaDisplayStyle", "enum", "",1
+			Property: "SafeAreaAspectRatio", "double", "",1.33333333333333
+			Property: "Use2DMagnifierZoom", "bool", "",0
+			Property: "2D Magnifier Zoom", "Real", "A+",100
+			Property: "2D Magnifier X", "Real", "A+",50
+			Property: "2D Magnifier Y", "Real", "A+",50
+			Property: "CameraProjectionType", "enum", "",1
+			Property: "UseRealTimeDOFAndAA", "bool", "",0
+			Property: "UseDepthOfField", "bool", "",0
+			Property: "FocusSource", "enum", "",0
+			Property: "FocusAngle", "double", "",3.5
+			Property: "FocusDistance", "double", "",200
+			Property: "UseAntialiasing", "bool", "",0
+			Property: "AntialiasingIntensity", "double", "",0.77777
+			Property: "UseAccumulationBuffer", "bool", "",0
+			Property: "FrameSamplingCount", "int", "",7
+		}
+		MultiLayer: 0
+		MultiTake: 0
+		Hidden: "True"
+		Shading: Y
+		Culling: "CullingOff"
+		TypeFlags: "Camera"
+		GeometryVersion: 124
+		Position: 0.000000,-4000.000000,0.000000
+		Up: 0,0,-1
+		LookAt: 0,0,0
+		ShowInfoOnMoving: 1
+		ShowAudio: 0
+		AudioColor: 0,1,0
+		CameraOrthoZoom: 1
+	}
+	Model: "Model::Producer Front", "Camera" {
+		Version: 232
+		Properties60:  {
+			Property: "QuaternionInterpolate", "bool", "",0
+			Property: "Visibility", "Visibility", "A+",1
+			Property: "Lcl Translation", "Lcl Translation", "A+",0.000000000000000,0.000000000000000,4000.000000000000000
+			Property: "Lcl Rotation", "Lcl Rotation", "A+",0.000000000000000,0.000000000000000,0.000000000000000
+			Property: "Lcl Scaling", "Lcl Scaling", "A+",1.000000000000000,1.000000000000000,1.000000000000000
+			Property: "RotationOffset", "Vector3D", "",0,0,0
+			Property: "RotationPivot", "Vector3D", "",0,0,0
+			Property: "ScalingOffset", "Vector3D", "",0,0,0
+			Property: "ScalingPivot", "Vector3D", "",0,0,0
+			Property: "TranslationActive", "bool", "",0
+			Property: "TranslationMin", "Vector3D", "",0,0,0
+			Property: "TranslationMax", "Vector3D", "",0,0,0
+			Property: "TranslationMinX", "bool", "",0
+			Property: "TranslationMinY", "bool", "",0
+			Property: "TranslationMinZ", "bool", "",0
+			Property: "TranslationMaxX", "bool", "",0
+			Property: "TranslationMaxY", "bool", "",0
+			Property: "TranslationMaxZ", "bool", "",0
+			Property: "RotationOrder", "enum", "",0
+			Property: "RotationSpaceForLimitOnly", "bool", "",0
+			Property: "AxisLen", "double", "",10
+			Property: "PreRotation", "Vector3D", "",0,0,0
+			Property: "PostRotation", "Vector3D", "",0,0,0
+			Property: "RotationActive", "bool", "",0
+			Property: "RotationMin", "Vector3D", "",0,0,0
+			Property: "RotationMax", "Vector3D", "",0,0,0
+			Property: "RotationMinX", "bool", "",0
+			Property: "RotationMinY", "bool", "",0
+			Property: "RotationMinZ", "bool", "",0
+			Property: "RotationMaxX", "bool", "",0
+			Property: "RotationMaxY", "bool", "",0
+			Property: "RotationMaxZ", "bool", "",0
+			Property: "RotationStiffnessX", "double", "",0
+			Property: "RotationStiffnessY", "double", "",0
+			Property: "RotationStiffnessZ", "double", "",0
+			Property: "MinDampRangeX", "double", "",0
+			Property: "MinDampRangeY", "double", "",0
+			Property: "MinDampRangeZ", "double", "",0
+			Property: "MaxDampRangeX", "double", "",0
+			Property: "MaxDampRangeY", "double", "",0
+			Property: "MaxDampRangeZ", "double", "",0
+			Property: "MinDampStrengthX", "double", "",0
+			Property: "MinDampStrengthY", "double", "",0
+			Property: "MinDampStrengthZ", "double", "",0
+			Property: "MaxDampStrengthX", "double", "",0
+			Property: "MaxDampStrengthY", "double", "",0
+			Property: "MaxDampStrengthZ", "double", "",0
+			Property: "PreferedAngleX", "double", "",0
+			Property: "PreferedAngleY", "double", "",0
+			Property: "PreferedAngleZ", "double", "",0
+			Property: "InheritType", "enum", "",0
+			Property: "ScalingActive", "bool", "",0
+			Property: "ScalingMin", "Vector3D", "",1,1,1
+			Property: "ScalingMax", "Vector3D", "",1,1,1
+			Property: "ScalingMinX", "bool", "",0
+			Property: "ScalingMinY", "bool", "",0
+			Property: "ScalingMinZ", "bool", "",0
+			Property: "ScalingMaxX", "bool", "",0
+			Property: "ScalingMaxY", "bool", "",0
+			Property: "ScalingMaxZ", "bool", "",0
+			Property: "GeometricTranslation", "Vector3D", "",0,0,0
+			Property: "GeometricRotation", "Vector3D", "",0,0,0
+			Property: "GeometricScaling", "Vector3D", "",1,1,1
+			Property: "LookAtProperty", "object", ""
+			Property: "UpVectorProperty", "object", ""
+			Property: "Show", "bool", "",1
+			Property: "NegativePercentShapeSupport", "bool", "",1
+			Property: "DefaultAttributeIndex", "int", "",0
+			Property: "Color", "Color", "A",0.8,0.8,0.8
+			Property: "Roll", "Roll", "A+",0
+			Property: "FieldOfView", "FieldOfView", "A+",40
+			Property: "FieldOfViewX", "FieldOfView", "A+",1
+			Property: "FieldOfViewY", "FieldOfView", "A+",1
+			Property: "OpticalCenterX", "Real", "A+",0
+			Property: "OpticalCenterY", "Real", "A+",0
+			Property: "BackgroundColor", "Color", "A+",0.63,0.63,0.63
+			Property: "TurnTable", "Real", "A+",0
+			Property: "DisplayTurnTableIcon", "bool", "",1
+			Property: "Motion Blur Intensity", "Real", "A+",1
+			Property: "UseMotionBlur", "bool", "",0
+			Property: "UseRealTimeMotionBlur", "bool", "",1
+			Property: "ResolutionMode", "enum", "",0
+			Property: "ApertureMode", "enum", "",2
+			Property: "GateFit", "enum", "",0
+			Property: "FocalLength", "Real", "A+",21.3544940948486
+			Property: "CameraFormat", "enum", "",0
+			Property: "AspectW", "double", "",320
+			Property: "AspectH", "double", "",200
+			Property: "PixelAspectRatio", "double", "",1
+			Property: "UseFrameColor", "bool", "",0
+			Property: "FrameColor", "ColorRGB", "",0.3,0.3,0.3
+			Property: "ShowName", "bool", "",1
+			Property: "ShowGrid", "bool", "",1
+			Property: "ShowOpticalCenter", "bool", "",0
+			Property: "ShowAzimut", "bool", "",1
+			Property: "ShowTimeCode", "bool", "",0
+			Property: "NearPlane", "double", "",1.000000
+			Property: "FarPlane", "double", "",30000.000000
+			Property: "FilmWidth", "double", "",0.816
+			Property: "FilmHeight", "double", "",0.612
+			Property: "FilmAspectRatio", "double", "",1.33333333333333
+			Property: "FilmSqueezeRatio", "double", "",1
+			Property: "FilmFormatIndex", "enum", "",4
+			Property: "ViewFrustum", "bool", "",1
+			Property: "ViewFrustumNearFarPlane", "bool", "",0
+			Property: "ViewFrustumBackPlaneMode", "enum", "",2
+			Property: "BackPlaneDistance", "double", "",100
+			Property: "BackPlaneDistanceMode", "enum", "",0
+			Property: "ViewCameraToLookAt", "bool", "",1
+			Property: "LockMode", "bool", "",0
+			Property: "LockInterestNavigation", "bool", "",0
+			Property: "FitImage", "bool", "",0
+			Property: "Crop", "bool", "",0
+			Property: "Center", "bool", "",1
+			Property: "KeepRatio", "bool", "",1
+			Property: "BackgroundMode", "enum", "",0
+			Property: "BackgroundAlphaTreshold", "double", "",0.5
+			Property: "ForegroundTransparent", "bool", "",1
+			Property: "DisplaySafeArea", "bool", "",0
+			Property: "SafeAreaDisplayStyle", "enum", "",1
+			Property: "SafeAreaAspectRatio", "double", "",1.33333333333333
+			Property: "Use2DMagnifierZoom", "bool", "",0
+			Property: "2D Magnifier Zoom", "Real", "A+",100
+			Property: "2D Magnifier X", "Real", "A+",50
+			Property: "2D Magnifier Y", "Real", "A+",50
+			Property: "CameraProjectionType", "enum", "",1
+			Property: "UseRealTimeDOFAndAA", "bool", "",0
+			Property: "UseDepthOfField", "bool", "",0
+			Property: "FocusSource", "enum", "",0
+			Property: "FocusAngle", "double", "",3.5
+			Property: "FocusDistance", "double", "",200
+			Property: "UseAntialiasing", "bool", "",0
+			Property: "AntialiasingIntensity", "double", "",0.77777
+			Property: "UseAccumulationBuffer", "bool", "",0
+			Property: "FrameSamplingCount", "int", "",7
+		}
+		MultiLayer: 0
+		MultiTake: 0
+		Hidden: "True"
+		Shading: Y
+		Culling: "CullingOff"
+		TypeFlags: "Camera"
+		GeometryVersion: 124
+		Position: 0.000000,0.000000,4000.000000
+		Up: 0,1,0
+		LookAt: 0,0,0
+		ShowInfoOnMoving: 1
+		ShowAudio: 0
+		AudioColor: 0,1,0
+		CameraOrthoZoom: 1
+	}
+	Model: "Model::Producer Back", "Camera" {
+		Version: 232
+		Properties60:  {
+			Property: "QuaternionInterpolate", "bool", "",0
+			Property: "Visibility", "Visibility", "A+",1
+			Property: "Lcl Translation", "Lcl Translation", "A+",0.000000000000000,0.000000000000000,-4000.000000000000000
+			Property: "Lcl Rotation", "Lcl Rotation", "A+",0.000000000000000,0.000000000000000,0.000000000000000
+			Property: "Lcl Scaling", "Lcl Scaling", "A+",1.000000000000000,1.000000000000000,1.000000000000000
+			Property: "RotationOffset", "Vector3D", "",0,0,0
+			Property: "RotationPivot", "Vector3D", "",0,0,0
+			Property: "ScalingOffset", "Vector3D", "",0,0,0
+			Property: "ScalingPivot", "Vector3D", "",0,0,0
+			Property: "TranslationActive", "bool", "",0
+			Property: "TranslationMin", "Vector3D", "",0,0,0
+			Property: "TranslationMax", "Vector3D", "",0,0,0
+			Property: "TranslationMinX", "bool", "",0
+			Property: "TranslationMinY", "bool", "",0
+			Property: "TranslationMinZ", "bool", "",0
+			Property: "TranslationMaxX", "bool", "",0
+			Property: "TranslationMaxY", "bool", "",0
+			Property: "TranslationMaxZ", "bool", "",0
+			Property: "RotationOrder", "enum", "",0
+			Property: "RotationSpaceForLimitOnly", "bool", "",0
+			Property: "AxisLen", "double", "",10
+			Property: "PreRotation", "Vector3D", "",0,0,0
+			Property: "PostRotation", "Vector3D", "",0,0,0
+			Property: "RotationActive", "bool", "",0
+			Property: "RotationMin", "Vector3D", "",0,0,0
+			Property: "RotationMax", "Vector3D", "",0,0,0
+			Property: "RotationMinX", "bool", "",0
+			Property: "RotationMinY", "bool", "",0
+			Property: "RotationMinZ", "bool", "",0
+			Property: "RotationMaxX", "bool", "",0
+			Property: "RotationMaxY", "bool", "",0
+			Property: "RotationMaxZ", "bool", "",0
+			Property: "RotationStiffnessX", "double", "",0
+			Property: "RotationStiffnessY", "double", "",0
+			Property: "RotationStiffnessZ", "double", "",0
+			Property: "MinDampRangeX", "double", "",0
+			Property: "MinDampRangeY", "double", "",0
+			Property: "MinDampRangeZ", "double", "",0
+			Property: "MaxDampRangeX", "double", "",0
+			Property: "MaxDampRangeY", "double", "",0
+			Property: "MaxDampRangeZ", "double", "",0
+			Property: "MinDampStrengthX", "double", "",0
+			Property: "MinDampStrengthY", "double", "",0
+			Property: "MinDampStrengthZ", "double", "",0
+			Property: "MaxDampStrengthX", "double", "",0
+			Property: "MaxDampStrengthY", "double", "",0
+			Property: "MaxDampStrengthZ", "double", "",0
+			Property: "PreferedAngleX", "double", "",0
+			Property: "PreferedAngleY", "double", "",0
+			Property: "PreferedAngleZ", "double", "",0
+			Property: "InheritType", "enum", "",0
+			Property: "ScalingActive", "bool", "",0
+			Property: "ScalingMin", "Vector3D", "",1,1,1
+			Property: "ScalingMax", "Vector3D", "",1,1,1
+			Property: "ScalingMinX", "bool", "",0
+			Property: "ScalingMinY", "bool", "",0
+			Property: "ScalingMinZ", "bool", "",0
+			Property: "ScalingMaxX", "bool", "",0
+			Property: "ScalingMaxY", "bool", "",0
+			Property: "ScalingMaxZ", "bool", "",0
+			Property: "GeometricTranslation", "Vector3D", "",0,0,0
+			Property: "GeometricRotation", "Vector3D", "",0,0,0
+			Property: "GeometricScaling", "Vector3D", "",1,1,1
+			Property: "LookAtProperty", "object", ""
+			Property: "UpVectorProperty", "object", ""
+			Property: "Show", "bool", "",1
+			Property: "NegativePercentShapeSupport", "bool", "",1
+			Property: "DefaultAttributeIndex", "int", "",0
+			Property: "Color", "Color", "A",0.8,0.8,0.8
+			Property: "Roll", "Roll", "A+",0
+			Property: "FieldOfView", "FieldOfView", "A+",40
+			Property: "FieldOfViewX", "FieldOfView", "A+",1
+			Property: "FieldOfViewY", "FieldOfView", "A+",1
+			Property: "OpticalCenterX", "Real", "A+",0
+			Property: "OpticalCenterY", "Real", "A+",0
+			Property: "BackgroundColor", "Color", "A+",0.63,0.63,0.63
+			Property: "TurnTable", "Real", "A+",0
+			Property: "DisplayTurnTableIcon", "bool", "",1
+			Property: "Motion Blur Intensity", "Real", "A+",1
+			Property: "UseMotionBlur", "bool", "",0
+			Property: "UseRealTimeMotionBlur", "bool", "",1
+			Property: "ResolutionMode", "enum", "",0
+			Property: "ApertureMode", "enum", "",2
+			Property: "GateFit", "enum", "",0
+			Property: "FocalLength", "Real", "A+",21.3544940948486
+			Property: "CameraFormat", "enum", "",0
+			Property: "AspectW", "double", "",320
+			Property: "AspectH", "double", "",200
+			Property: "PixelAspectRatio", "double", "",1
+			Property: "UseFrameColor", "bool", "",0
+			Property: "FrameColor", "ColorRGB", "",0.3,0.3,0.3
+			Property: "ShowName", "bool", "",1
+			Property: "ShowGrid", "bool", "",1
+			Property: "ShowOpticalCenter", "bool", "",0
+			Property: "ShowAzimut", "bool", "",1
+			Property: "ShowTimeCode", "bool", "",0
+			Property: "NearPlane", "double", "",1.000000
+			Property: "FarPlane", "double", "",30000.000000
+			Property: "FilmWidth", "double", "",0.816
+			Property: "FilmHeight", "double", "",0.612
+			Property: "FilmAspectRatio", "double", "",1.33333333333333
+			Property: "FilmSqueezeRatio", "double", "",1
+			Property: "FilmFormatIndex", "enum", "",4
+			Property: "ViewFrustum", "bool", "",1
+			Property: "ViewFrustumNearFarPlane", "bool", "",0
+			Property: "ViewFrustumBackPlaneMode", "enum", "",2
+			Property: "BackPlaneDistance", "double", "",100
+			Property: "BackPlaneDistanceMode", "enum", "",0
+			Property: "ViewCameraToLookAt", "bool", "",1
+			Property: "LockMode", "bool", "",0
+			Property: "LockInterestNavigation", "bool", "",0
+			Property: "FitImage", "bool", "",0
+			Property: "Crop", "bool", "",0
+			Property: "Center", "bool", "",1
+			Property: "KeepRatio", "bool", "",1
+			Property: "BackgroundMode", "enum", "",0
+			Property: "BackgroundAlphaTreshold", "double", "",0.5
+			Property: "ForegroundTransparent", "bool", "",1
+			Property: "DisplaySafeArea", "bool", "",0
+			Property: "SafeAreaDisplayStyle", "enum", "",1
+			Property: "SafeAreaAspectRatio", "double", "",1.33333333333333
+			Property: "Use2DMagnifierZoom", "bool", "",0
+			Property: "2D Magnifier Zoom", "Real", "A+",100
+			Property: "2D Magnifier X", "Real", "A+",50
+			Property: "2D Magnifier Y", "Real", "A+",50
+			Property: "CameraProjectionType", "enum", "",1
+			Property: "UseRealTimeDOFAndAA", "bool", "",0
+			Property: "UseDepthOfField", "bool", "",0
+			Property: "FocusSource", "enum", "",0
+			Property: "FocusAngle", "double", "",3.5
+			Property: "FocusDistance", "double", "",200
+			Property: "UseAntialiasing", "bool", "",0
+			Property: "AntialiasingIntensity", "double", "",0.77777
+			Property: "UseAccumulationBuffer", "bool", "",0
+			Property: "FrameSamplingCount", "int", "",7
+		}
+		MultiLayer: 0
+		MultiTake: 0
+		Hidden: "True"
+		Shading: Y
+		Culling: "CullingOff"
+		TypeFlags: "Camera"
+		GeometryVersion: 124
+		Position: 0.000000,0.000000,-4000.000000
+		Up: 0,1,0
+		LookAt: 0,0,0
+		ShowInfoOnMoving: 1
+		ShowAudio: 0
+		AudioColor: 0,1,0
+		CameraOrthoZoom: 1
+	}
+	Model: "Model::Producer Right", "Camera" {
+		Version: 232
+		Properties60:  {
+			Property: "QuaternionInterpolate", "bool", "",0
+			Property: "Visibility", "Visibility", "A+",1
+			Property: "Lcl Translation", "Lcl Translation", "A+",4000.000000000000000,0.000000000000000,0.000000000000000
+			Property: "Lcl Rotation", "Lcl Rotation", "A+",0.000000000000000,0.000000000000000,0.000000000000000
+			Property: "Lcl Scaling", "Lcl Scaling", "A+",1.000000000000000,1.000000000000000,1.000000000000000
+			Property: "RotationOffset", "Vector3D", "",0,0,0
+			Property: "RotationPivot", "Vector3D", "",0,0,0
+			Property: "ScalingOffset", "Vector3D", "",0,0,0
+			Property: "ScalingPivot", "Vector3D", "",0,0,0
+			Property: "TranslationActive", "bool", "",0
+			Property: "TranslationMin", "Vector3D", "",0,0,0
+			Property: "TranslationMax", "Vector3D", "",0,0,0
+			Property: "TranslationMinX", "bool", "",0
+			Property: "TranslationMinY", "bool", "",0
+			Property: "TranslationMinZ", "bool", "",0
+			Property: "TranslationMaxX", "bool", "",0
+			Property: "TranslationMaxY", "bool", "",0
+			Property: "TranslationMaxZ", "bool", "",0
+			Property: "RotationOrder", "enum", "",0
+			Property: "RotationSpaceForLimitOnly", "bool", "",0
+			Property: "AxisLen", "double", "",10
+			Property: "PreRotation", "Vector3D", "",0,0,0
+			Property: "PostRotation", "Vector3D", "",0,0,0
+			Property: "RotationActive", "bool", "",0
+			Property: "RotationMin", "Vector3D", "",0,0,0
+			Property: "RotationMax", "Vector3D", "",0,0,0
+			Property: "RotationMinX", "bool", "",0
+			Property: "RotationMinY", "bool", "",0
+			Property: "RotationMinZ", "bool", "",0
+			Property: "RotationMaxX", "bool", "",0
+			Property: "RotationMaxY", "bool", "",0
+			Property: "RotationMaxZ", "bool", "",0
+			Property: "RotationStiffnessX", "double", "",0
+			Property: "RotationStiffnessY", "double", "",0
+			Property: "RotationStiffnessZ", "double", "",0
+			Property: "MinDampRangeX", "double", "",0
+			Property: "MinDampRangeY", "double", "",0
+			Property: "MinDampRangeZ", "double", "",0
+			Property: "MaxDampRangeX", "double", "",0
+			Property: "MaxDampRangeY", "double", "",0
+			Property: "MaxDampRangeZ", "double", "",0
+			Property: "MinDampStrengthX", "double", "",0
+			Property: "MinDampStrengthY", "double", "",0
+			Property: "MinDampStrengthZ", "double", "",0
+			Property: "MaxDampStrengthX", "double", "",0
+			Property: "MaxDampStrengthY", "double", "",0
+			Property: "MaxDampStrengthZ", "double", "",0
+			Property: "PreferedAngleX", "double", "",0
+			Property: "PreferedAngleY", "double", "",0
+			Property: "PreferedAngleZ", "double", "",0
+			Property: "InheritType", "enum", "",0
+			Property: "ScalingActive", "bool", "",0
+			Property: "ScalingMin", "Vector3D", "",1,1,1
+			Property: "ScalingMax", "Vector3D", "",1,1,1
+			Property: "ScalingMinX", "bool", "",0
+			Property: "ScalingMinY", "bool", "",0
+			Property: "ScalingMinZ", "bool", "",0
+			Property: "ScalingMaxX", "bool", "",0
+			Property: "ScalingMaxY", "bool", "",0
+			Property: "ScalingMaxZ", "bool", "",0
+			Property: "GeometricTranslation", "Vector3D", "",0,0,0
+			Property: "GeometricRotation", "Vector3D", "",0,0,0
+			Property: "GeometricScaling", "Vector3D", "",1,1,1
+			Property: "LookAtProperty", "object", ""
+			Property: "UpVectorProperty", "object", ""
+			Property: "Show", "bool", "",1
+			Property: "NegativePercentShapeSupport", "bool", "",1
+			Property: "DefaultAttributeIndex", "int", "",0
+			Property: "Color", "Color", "A",0.8,0.8,0.8
+			Property: "Roll", "Roll", "A+",0
+			Property: "FieldOfView", "FieldOfView", "A+",40
+			Property: "FieldOfViewX", "FieldOfView", "A+",1
+			Property: "FieldOfViewY", "FieldOfView", "A+",1
+			Property: "OpticalCenterX", "Real", "A+",0
+			Property: "OpticalCenterY", "Real", "A+",0
+			Property: "BackgroundColor", "Color", "A+",0.63,0.63,0.63
+			Property: "TurnTable", "Real", "A+",0
+			Property: "DisplayTurnTableIcon", "bool", "",1
+			Property: "Motion Blur Intensity", "Real", "A+",1
+			Property: "UseMotionBlur", "bool", "",0
+			Property: "UseRealTimeMotionBlur", "bool", "",1
+			Property: "ResolutionMode", "enum", "",0
+			Property: "ApertureMode", "enum", "",2
+			Property: "GateFit", "enum", "",0
+			Property: "FocalLength", "Real", "A+",21.3544940948486
+			Property: "CameraFormat", "enum", "",0
+			Property: "AspectW", "double", "",320
+			Property: "AspectH", "double", "",200
+			Property: "PixelAspectRatio", "double", "",1
+			Property: "UseFrameColor", "bool", "",0
+			Property: "FrameColor", "ColorRGB", "",0.3,0.3,0.3
+			Property: "ShowName", "bool", "",1
+			Property: "ShowGrid", "bool", "",1
+			Property: "ShowOpticalCenter", "bool", "",0
+			Property: "ShowAzimut", "bool", "",1
+			Property: "ShowTimeCode", "bool", "",0
+			Property: "NearPlane", "double", "",1.000000
+			Property: "FarPlane", "double", "",30000.000000
+			Property: "FilmWidth", "double", "",0.816
+			Property: "FilmHeight", "double", "",0.612
+			Property: "FilmAspectRatio", "double", "",1.33333333333333
+			Property: "FilmSqueezeRatio", "double", "",1
+			Property: "FilmFormatIndex", "enum", "",4
+			Property: "ViewFrustum", "bool", "",1
+			Property: "ViewFrustumNearFarPlane", "bool", "",0
+			Property: "ViewFrustumBackPlaneMode", "enum", "",2
+			Property: "BackPlaneDistance", "double", "",100
+			Property: "BackPlaneDistanceMode", "enum", "",0
+			Property: "ViewCameraToLookAt", "bool", "",1
+			Property: "LockMode", "bool", "",0
+			Property: "LockInterestNavigation", "bool", "",0
+			Property: "FitImage", "bool", "",0
+			Property: "Crop", "bool", "",0
+			Property: "Center", "bool", "",1
+			Property: "KeepRatio", "bool", "",1
+			Property: "BackgroundMode", "enum", "",0
+			Property: "BackgroundAlphaTreshold", "double", "",0.5
+			Property: "ForegroundTransparent", "bool", "",1
+			Property: "DisplaySafeArea", "bool", "",0
+			Property: "SafeAreaDisplayStyle", "enum", "",1
+			Property: "SafeAreaAspectRatio", "double", "",1.33333333333333
+			Property: "Use2DMagnifierZoom", "bool", "",0
+			Property: "2D Magnifier Zoom", "Real", "A+",100
+			Property: "2D Magnifier X", "Real", "A+",50
+			Property: "2D Magnifier Y", "Real", "A+",50
+			Property: "CameraProjectionType", "enum", "",1
+			Property: "UseRealTimeDOFAndAA", "bool", "",0
+			Property: "UseDepthOfField", "bool", "",0
+			Property: "FocusSource", "enum", "",0
+			Property: "FocusAngle", "double", "",3.5
+			Property: "FocusDistance", "double", "",200
+			Property: "UseAntialiasing", "bool", "",0
+			Property: "AntialiasingIntensity", "double", "",0.77777
+			Property: "UseAccumulationBuffer", "bool", "",0
+			Property: "FrameSamplingCount", "int", "",7
+		}
+		MultiLayer: 0
+		MultiTake: 0
+		Hidden: "True"
+		Shading: Y
+		Culling: "CullingOff"
+		TypeFlags: "Camera"
+		GeometryVersion: 124
+		Position: 4000.000000,0.000000,0.000000
+		Up: 0,1,0
+		LookAt: 0,0,0
+		ShowInfoOnMoving: 1
+		ShowAudio: 0
+		AudioColor: 0,1,0
+		CameraOrthoZoom: 1
+	}
+	Model: "Model::Producer Left", "Camera" {
+		Version: 232
+		Properties60:  {
+			Property: "QuaternionInterpolate", "bool", "",0
+			Property: "Visibility", "Visibility", "A+",1
+			Property: "Lcl Translation", "Lcl Translation", "A+",-4000.000000000000000,0.000000000000000,0.000000000000000
+			Property: "Lcl Rotation", "Lcl Rotation", "A+",0.000000000000000,0.000000000000000,0.000000000000000
+			Property: "Lcl Scaling", "Lcl Scaling", "A+",1.000000000000000,1.000000000000000,1.000000000000000
+			Property: "RotationOffset", "Vector3D", "",0,0,0
+			Property: "RotationPivot", "Vector3D", "",0,0,0
+			Property: "ScalingOffset", "Vector3D", "",0,0,0
+			Property: "ScalingPivot", "Vector3D", "",0,0,0
+			Property: "TranslationActive", "bool", "",0
+			Property: "TranslationMin", "Vector3D", "",0,0,0
+			Property: "TranslationMax", "Vector3D", "",0,0,0
+			Property: "TranslationMinX", "bool", "",0
+			Property: "TranslationMinY", "bool", "",0
+			Property: "TranslationMinZ", "bool", "",0
+			Property: "TranslationMaxX", "bool", "",0
+			Property: "TranslationMaxY", "bool", "",0
+			Property: "TranslationMaxZ", "bool", "",0
+			Property: "RotationOrder", "enum", "",0
+			Property: "RotationSpaceForLimitOnly", "bool", "",0
+			Property: "AxisLen", "double", "",10
+			Property: "PreRotation", "Vector3D", "",0,0,0
+			Property: "PostRotation", "Vector3D", "",0,0,0
+			Property: "RotationActive", "bool", "",0
+			Property: "RotationMin", "Vector3D", "",0,0,0
+			Property: "RotationMax", "Vector3D", "",0,0,0
+			Property: "RotationMinX", "bool", "",0
+			Property: "RotationMinY", "bool", "",0
+			Property: "RotationMinZ", "bool", "",0
+			Property: "RotationMaxX", "bool", "",0
+			Property: "RotationMaxY", "bool", "",0
+			Property: "RotationMaxZ", "bool", "",0
+			Property: "RotationStiffnessX", "double", "",0
+			Property: "RotationStiffnessY", "double", "",0
+			Property: "RotationStiffnessZ", "double", "",0
+			Property: "MinDampRangeX", "double", "",0
+			Property: "MinDampRangeY", "double", "",0
+			Property: "MinDampRangeZ", "double", "",0
+			Property: "MaxDampRangeX", "double", "",0
+			Property: "MaxDampRangeY", "double", "",0
+			Property: "MaxDampRangeZ", "double", "",0
+			Property: "MinDampStrengthX", "double", "",0
+			Property: "MinDampStrengthY", "double", "",0
+			Property: "MinDampStrengthZ", "double", "",0
+			Property: "MaxDampStrengthX", "double", "",0
+			Property: "MaxDampStrengthY", "double", "",0
+			Property: "MaxDampStrengthZ", "double", "",0
+			Property: "PreferedAngleX", "double", "",0
+			Property: "PreferedAngleY", "double", "",0
+			Property: "PreferedAngleZ", "double", "",0
+			Property: "InheritType", "enum", "",0
+			Property: "ScalingActive", "bool", "",0
+			Property: "ScalingMin", "Vector3D", "",1,1,1
+			Property: "ScalingMax", "Vector3D", "",1,1,1
+			Property: "ScalingMinX", "bool", "",0
+			Property: "ScalingMinY", "bool", "",0
+			Property: "ScalingMinZ", "bool", "",0
+			Property: "ScalingMaxX", "bool", "",0
+			Property: "ScalingMaxY", "bool", "",0
+			Property: "ScalingMaxZ", "bool", "",0
+			Property: "GeometricTranslation", "Vector3D", "",0,0,0
+			Property: "GeometricRotation", "Vector3D", "",0,0,0
+			Property: "GeometricScaling", "Vector3D", "",1,1,1
+			Property: "LookAtProperty", "object", ""
+			Property: "UpVectorProperty", "object", ""
+			Property: "Show", "bool", "",1
+			Property: "NegativePercentShapeSupport", "bool", "",1
+			Property: "DefaultAttributeIndex", "int", "",0
+			Property: "Color", "Color", "A",0.8,0.8,0.8
+			Property: "Roll", "Roll", "A+",0
+			Property: "FieldOfView", "FieldOfView", "A+",40
+			Property: "FieldOfViewX", "FieldOfView", "A+",1
+			Property: "FieldOfViewY", "FieldOfView", "A+",1
+			Property: "OpticalCenterX", "Real", "A+",0
+			Property: "OpticalCenterY", "Real", "A+",0
+			Property: "BackgroundColor", "Color", "A+",0.63,0.63,0.63
+			Property: "TurnTable", "Real", "A+",0
+			Property: "DisplayTurnTableIcon", "bool", "",1
+			Property: "Motion Blur Intensity", "Real", "A+",1
+			Property: "UseMotionBlur", "bool", "",0
+			Property: "UseRealTimeMotionBlur", "bool", "",1
+			Property: "ResolutionMode", "enum", "",0
+			Property: "ApertureMode", "enum", "",2
+			Property: "GateFit", "enum", "",0
+			Property: "FocalLength", "Real", "A+",21.3544940948486
+			Property: "CameraFormat", "enum", "",0
+			Property: "AspectW", "double", "",320
+			Property: "AspectH", "double", "",200
+			Property: "PixelAspectRatio", "double", "",1
+			Property: "UseFrameColor", "bool", "",0
+			Property: "FrameColor", "ColorRGB", "",0.3,0.3,0.3
+			Property: "ShowName", "bool", "",1
+			Property: "ShowGrid", "bool", "",1
+			Property: "ShowOpticalCenter", "bool", "",0
+			Property: "ShowAzimut", "bool", "",1
+			Property: "ShowTimeCode", "bool", "",0
+			Property: "NearPlane", "double", "",1.000000
+			Property: "FarPlane", "double", "",30000.000000
+			Property: "FilmWidth", "double", "",0.816
+			Property: "FilmHeight", "double", "",0.612
+			Property: "FilmAspectRatio", "double", "",1.33333333333333
+			Property: "FilmSqueezeRatio", "double", "",1
+			Property: "FilmFormatIndex", "enum", "",4
+			Property: "ViewFrustum", "bool", "",1
+			Property: "ViewFrustumNearFarPlane", "bool", "",0
+			Property: "ViewFrustumBackPlaneMode", "enum", "",2
+			Property: "BackPlaneDistance", "double", "",100
+			Property: "BackPlaneDistanceMode", "enum", "",0
+			Property: "ViewCameraToLookAt", "bool", "",1
+			Property: "LockMode", "bool", "",0
+			Property: "LockInterestNavigation", "bool", "",0
+			Property: "FitImage", "bool", "",0
+			Property: "Crop", "bool", "",0
+			Property: "Center", "bool", "",1
+			Property: "KeepRatio", "bool", "",1
+			Property: "BackgroundMode", "enum", "",0
+			Property: "BackgroundAlphaTreshold", "double", "",0.5
+			Property: "ForegroundTransparent", "bool", "",1
+			Property: "DisplaySafeArea", "bool", "",0
+			Property: "SafeAreaDisplayStyle", "enum", "",1
+			Property: "SafeAreaAspectRatio", "double", "",1.33333333333333
+			Property: "Use2DMagnifierZoom", "bool", "",0
+			Property: "2D Magnifier Zoom", "Real", "A+",100
+			Property: "2D Magnifier X", "Real", "A+",50
+			Property: "2D Magnifier Y", "Real", "A+",50
+			Property: "CameraProjectionType", "enum", "",1
+			Property: "UseRealTimeDOFAndAA", "bool", "",0
+			Property: "UseDepthOfField", "bool", "",0
+			Property: "FocusSource", "enum", "",0
+			Property: "FocusAngle", "double", "",3.5
+			Property: "FocusDistance", "double", "",200
+			Property: "UseAntialiasing", "bool", "",0
+			Property: "AntialiasingIntensity", "double", "",0.77777
+			Property: "UseAccumulationBuffer", "bool", "",0
+			Property: "FrameSamplingCount", "int", "",7
+		}
+		MultiLayer: 0
+		MultiTake: 0
+		Hidden: "True"
+		Shading: Y
+		Culling: "CullingOff"
+		TypeFlags: "Camera"
+		GeometryVersion: 124
+		Position: -4000.000000,0.000000,0.000000
+		Up: 0,1,0
+		LookAt: 0,0,0
+		ShowInfoOnMoving: 1
+		ShowAudio: 0
+		AudioColor: 0,1,0
+		CameraOrthoZoom: 1
+	}
+	Material: "Material::Material", "" {
+		Version: 102
+		ShadingModel: "lambert"
+		MultiLayer: 0
+		Properties60:  {
+			Property: "ShadingModel", "KString", "", "Lambert"
+			Property: "MultiLayer", "bool", "",0
+			Property: "EmissiveColor", "ColorRGB", "",0.8000,0.8000,0.8000
+			Property: "EmissiveFactor", "double", "",0.0000
+			Property: "AmbientColor", "ColorRGB", "",1.0000,1.0000,1.0000
+			Property: "AmbientFactor", "double", "",1.0000
+			Property: "DiffuseColor", "ColorRGB", "",0.8000,0.8000,0.8000
+			Property: "DiffuseFactor", "double", "",0.8000
+			Property: "Bump", "Vector3D", "",0,0,0
+			Property: "TransparentColor", "ColorRGB", "",1,1,1
+			Property: "TransparencyFactor", "double", "",0.0000
+			Property: "SpecularColor", "ColorRGB", "",1.0000,1.0000,1.0000
+			Property: "SpecularFactor", "double", "",0.5000
+			Property: "ShininessExponent", "double", "",12.3
+			Property: "ReflectionColor", "ColorRGB", "",0,0,0
+			Property: "ReflectionFactor", "double", "",1
+			Property: "Emissive", "ColorRGB", "",0,0,0
+			Property: "Ambient", "ColorRGB", "",1.0,1.0,1.0
+			Property: "Diffuse", "ColorRGB", "",0.8,0.8,0.8
+			Property: "Specular", "ColorRGB", "",1.0,1.0,1.0
+			Property: "Shininess", "double", "",12.3
+			Property: "Opacity", "double", "",1.0
+			Property: "Reflectivity", "double", "",0
+		}
+	}
+	Pose: "Pose::BIND_POSES", "BindPose" {
+		Type: "BindPose"
+		Version: 100
+		Properties60:  {
+		}
+		NbPoseNodes: 1
+		PoseNode:  {
+			Node: "Model::Cube"
+			Matrix: 0.000007549790098,0.000000000000000,-100.000000000000000,0.000000000000000,-100.000000000000000,0.000000000000000,-0.000007549790098,0.000000000000000,0.000000000000000,100.000000000000000,0.000000000000000,0.000000000000000,0.000000000000000,103.059005737304688,0.000000000000000,1.000000000000000
+		}
+	}
+	GlobalSettings:  {
+		Version: 1000
+		Properties60:  {
+			Property: "UpAxis", "int", "",1
+			Property: "UpAxisSign", "int", "",1
+			Property: "FrontAxis", "int", "",2
+			Property: "FrontAxisSign", "int", "",1
+			Property: "CoordAxis", "int", "",0
+			Property: "CoordAxisSign", "int", "",1
+			Property: "UnitScaleFactor", "double", "",1
+		}
+	}
+}
+
+; Object relations
+;------------------------------------------------------------------
+
+Relations:  {
+	Model: "Model::Cube", "Mesh" {
+	}
+	Model: "Model::Camera", "Camera" {
+	}
+	Model: "Model::Lamp", "Light" {
+	}
+	Model: "Model::Producer Perspective", "Camera" {
+	}
+	Model: "Model::Producer Top", "Camera" {
+	}
+	Model: "Model::Producer Bottom", "Camera" {
+	}
+	Model: "Model::Producer Front", "Camera" {
+	}
+	Model: "Model::Producer Back", "Camera" {
+	}
+	Model: "Model::Producer Right", "Camera" {
+	}
+	Model: "Model::Producer Left", "Camera" {
+	}
+	Model: "Model::Camera Switcher", "CameraSwitcher" {
+	}
+	Material: "Material::Material", "" {
+	}
+}
+
+; Object connections
+;------------------------------------------------------------------
+
+Connections:  {
+	Connect: "OO", "Model::Cube", "Model::Scene"
+	Connect: "OO", "Model::Lamp", "Model::Scene"
+	Connect: "OO", "Model::Camera", "Model::Scene"
+	Connect: "OO", "Material::Material", "Model::Cube"
+}
+;Takes and animation section
+;----------------------------------------------------
+
+Takes:  {
+	Current: "Default Take"
+	Take: "Default Take" {
+		FileName: "Default_Take.tak"
+		LocalTime: 0,479181389250
+		ReferenceTime: 0,479181389250
+
+		;Models animation
+		;----------------------------------------------------
+		Model: "Model::Cube" {
+			Version: 1.1
+			Channel: "Transform" {
+				Channel: "T" {
+					Channel: "X" {
+						Default: 0.000000000000000
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,0.000000000000000,L
+						Color: 1,0,0
+					}
+					Channel: "Y" {
+						Default: 103.059005737304688
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,103.059005737304688,L
+						Color: 0,1,0
+					}
+					Channel: "Z" {
+						Default: 0.000000000000000
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,0.000000000000000,L
+						Color: 0,0,1
+					}
+					LayerType: 1
+				}
+				Channel: "R" {
+					Channel: "X" {
+						Default: -90.000002504348856
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,-90.000002504348856,L
+						Color: 1,0,0
+					}
+					Channel: "Y" {
+						Default: -0.000000000000000
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,-0.000000000000000,L
+						Color: 0,1,0
+					}
+					Channel: "Z" {
+						Default: 0.000000000000000
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,0.000000000000000,L
+						Color: 0,0,1
+					}
+					LayerType: 2
+				}
+				Channel: "S" {
+					Channel: "X" {
+						Default: 100.000000000000000
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,100.000000000000000,L
+						Color: 1,0,0
+					}
+					Channel: "Y" {
+						Default: 100.000000000000000
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,100.000000000000000,L
+						Color: 0,1,0
+					}
+					Channel: "Z" {
+						Default: 100.000000000000000
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,100.000000000000000,L
+						Color: 0,0,1
+					}
+					LayerType: 3
+				}
+			}
+		}
+		Model: "Model::Camera" {
+			Version: 1.1
+			Channel: "Transform" {
+				Channel: "T" {
+					Channel: "X" {
+						Default: 748.113159179687500
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,748.113159179687500,L
+						Color: 1,0,0
+					}
+					Channel: "Y" {
+						Default: 534.366516113281250
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,534.366516113281250,L
+						Color: 0,1,0
+					}
+					Channel: "Z" {
+						Default: 650.763977050781250
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,650.763977050781250,L
+						Color: 0,0,1
+					}
+					LayerType: 1
+				}
+				Channel: "R" {
+					Channel: "X" {
+						Default: 23.240193349082308
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,23.240193349082308,L
+						Color: 1,0,0
+					}
+					Channel: "Y" {
+						Default: 142.362343210044912
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,142.362343210044912,L
+						Color: 0,1,0
+					}
+					Channel: "Z" {
+						Default: 34.212072627991624
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,34.212072627991624,L
+						Color: 0,0,1
+					}
+					LayerType: 2
+				}
+				Channel: "S" {
+					Channel: "X" {
+						Default: 100.000015258789062
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,100.000015258789062,L
+						Color: 1,0,0
+					}
+					Channel: "Y" {
+						Default: 100.000015258789062
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,100.000015258789062,L
+						Color: 0,1,0
+					}
+					Channel: "Z" {
+						Default: 100.000007629394531
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,100.000007629394531,L
+						Color: 0,0,1
+					}
+					LayerType: 3
+				}
+			}
+		}
+		Model: "Model::Lamp" {
+			Version: 1.1
+			Channel: "Transform" {
+				Channel: "T" {
+					Channel: "X" {
+						Default: 407.624542236328125
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,407.624542236328125,L
+						Color: 1,0,0
+					}
+					Channel: "Y" {
+						Default: 590.386230468750000
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,590.386230468750000,L
+						Color: 0,1,0
+					}
+					Channel: "Z" {
+						Default: -100.545394897460938
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,-100.545394897460938,L
+						Color: 0,0,1
+					}
+					LayerType: 1
+				}
+				Channel: "R" {
+					Channel: "X" {
+						Default: 47.533567717233218
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,47.533567717233218,L
+						Color: 1,0,0
+					}
+					Channel: "Y" {
+						Default: 107.220760383191333
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,107.220760383191333,L
+						Color: 0,1,0
+					}
+					Channel: "Z" {
+						Default: 10.743663875719303
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,10.743663875719303,L
+						Color: 0,0,1
+					}
+					LayerType: 2
+				}
+				Channel: "S" {
+					Channel: "X" {
+						Default: 100.000015258789062
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,100.000015258789062,L
+						Color: 1,0,0
+					}
+					Channel: "Y" {
+						Default: 100.000007629394531
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,100.000007629394531,L
+						Color: 0,1,0
+					}
+					Channel: "Z" {
+						Default: 100.000000000000000
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							1924423250,100.000000000000000,L
+						Color: 0,0,1
+					}
+					LayerType: 3
+				}
+			}
+		}
+	}
+}
+;Version 5 settings
+;------------------------------------------------------------------
+
+Version5:  {
+	AmbientRenderSettings:  {
+		Version: 101
+		AmbientLightColor: 0.0,0.0,0.0,0
+	}
+	FogOptions:  {
+		FogEnable: 0
+		FogMode: 0
+		FogDensity: 0.000
+		FogStart: 5.000
+		FogEnd: 25.000
+		FogColor: 0.1,0.1,0.1,1
+	}
+	Settings:  {
+		FrameRate: "24"
+		TimeFormat: 1
+		SnapOnFrames: 0
+		ReferenceTimeIndex: -1
+		TimeLineStartTime: 0
+		TimeLineStopTime: 479181389250
+	}
+	RendererSetting:  {
+		DefaultCamera: "Producer Perspective"
+		DefaultViewingMode: 0
+	}
+}

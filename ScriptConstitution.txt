@@ -1,0 +1,8 @@
+UnitController:
+Listen player's input
+«
+Determine character state and basic horizontal vector of motion
+Control boost gauge
+
+UnitMotor:
+Actually move unit according to state and vector
