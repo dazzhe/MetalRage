@@ -19,8 +19,8 @@ public class LegDirection : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (motor._characterState == UnitMotor.CharacterState.Walking){
-			h = Input.GetAxisRaw("Horizontal");
-			v = Input.GetAxisRaw("Vertical");
+			h = motor.inputMoveDirection.x;
+			v = motor.inputMoveDirection.y;
 			if (h > 0 && v > 0)
 				transform.rotation = Quaternion.Slerp(transform.rotation,
 				                                      Quaternion.LookRotation(van.transform.TransformDirection(rf)), 

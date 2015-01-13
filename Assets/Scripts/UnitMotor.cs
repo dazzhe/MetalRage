@@ -6,19 +6,13 @@ public class UnitMotor : MonoBehaviour {
 	private AudioSource boost;
 
 	[System.NonSerialized]
+	public byte inputState = 0;
+
+	[System.NonSerialized]
 	public Vector2 inputMoveDirection;
-
-	[System.NonSerialized]
-	public float inputRotationX;
-
-	[System.NonSerialized]
-	public bool inputJump;
-
-	[System.NonSerialized]
-	public bool inputBoost;
-
-	[System.NonSerialized]
-	public bool inputSquat;
+	private bool inputJump;
+	private bool inputBoost;
+	private bool inputSquat;
 
 	[System.NonSerialized]
 	public float sensimag = 1f;
@@ -58,7 +52,7 @@ public class UnitMotor : MonoBehaviour {
 	private float vspeed;
 	
 	public static float boostspeed = 40F;
-	public static float jumpSpeed = 15F;
+	public static float jumpSpeed = 18F;
 	private float hJumpSpeed = 20f;
 	public float rotationX = 0F;
 	public bool isGrounded;
@@ -83,6 +77,7 @@ public class UnitMotor : MonoBehaviour {
 	
 	// Update is called once per frame
 	void LateUpdate () {
+		ApplyInputState();
 		Walk ();
 		Turn ();
 		Jump ();
@@ -111,9 +106,25 @@ public class UnitMotor : MonoBehaviour {
 		ApplyMove();
 	}
 
-	
+	void ApplyInputState(){
+		if ((64 & inputState) != 0){
+			inputMoveDirection.x = 1;
+			if ((128 & inputState) != 0)
+				inputMoveDirection.x = -inputMoveDirection.x;
+		} else
+			inputMoveDirection.x = 0;
+		if ((16 & inputState) != 0){
+			inputMoveDirection.y = 1;
+			if ((32 & inputState) != 0)
+				inputMoveDirection.y = -inputMoveDirection.y;
+		} else 
+			inputMoveDirection.y = 0;
+		inputJump = (8 & inputState) != 0;
+		inputBoost = (4 & inputState) != 0;
+		inputSquat = (2 & inputState) != 0;
+	}
+
 	void Turn(){
-		rotationX = transform.localEulerAngles.y + inputRotationX * sensimag;
 		transform.localEulerAngles = new Vector3(0, rotationX, 0);
 	}
 	
@@ -188,7 +199,7 @@ public class UnitMotor : MonoBehaviour {
 				StartCoroutine("JumpCoolDown");
 				boost.PlayOneShot(boost.clip);
 				moveDirection = transform.TransformDirection(new Vector3(inputMoveDirection.x * hJumpSpeed,
-				                                                         jumpSpeed * (1f + 0.005f * velosity.magnitude),
+				                                                         jumpSpeed * (1f + 0.002f * velosity.magnitude),
 				                                                         inputMoveDirection.y * hJumpSpeed));
 			} else if (_characterState == CharacterState.Jumping)
 				_characterState = 0;
@@ -232,11 +243,11 @@ public class UnitMotor : MonoBehaviour {
 					boostDirection = transform.TransformDirection(new Vector3(-1F, 0F, 1F).normalized);
 					boosttype = 2;
 				}
-				else if (h == 1 && Input.GetAxis("Vertical") < 0){
+				else if (h == 1 && rawDirection.y < 0){
 					boostDirection = transform.TransformDirection(new Vector3(1F, 0F, -1F).normalized);
 					boosttype = 0;
 				}
-				else if (h == -1 && Input.GetAxis("Vertical") < 0){
+				else if (h == -1 && rawDirection.y < 0){
 					boostDirection = transform.TransformDirection(new Vector3(-1F, 0F, -1F).normalized);
 					boosttype = 2;
 				}

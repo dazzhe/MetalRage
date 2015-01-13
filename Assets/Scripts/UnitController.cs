@@ -13,7 +13,7 @@ public class UnitController : MonoBehaviour {
 	UnitMotor motor;
 	NormalDisplay normaldisplay;
 	Status stat;
-
+	
 	GUIText noltext;
 	
 	private int killcount;
@@ -29,18 +29,40 @@ public class UnitController : MonoBehaviour {
 	}
 
 	void Update () {
-		motor.inputMoveDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-		motor.inputRotationX = Input.GetAxis("Mouse X") * Configuration.sensitivity;
-		motor.inputJump = Input.GetButtonDown ("Jump");
-		motor.inputBoost = Input.GetButtonDown("Boost");
-		motor.inputSquat = Input.GetButton("Squat");
+		byte b = 0;
 
+		motor.rotationX
+			= transform.localEulerAngles.y
+			+ Input.GetAxis("Mouse X") * Configuration.sensitivity * motor.sensimag;
+		if (Input.GetAxisRaw("Horizontal") == 1)
+			b += 64;
+		else if (Input.GetAxisRaw("Horizontal") == -1)
+			b += 192;
+		if (Input.GetAxisRaw("Vertical") == 1)
+			b += 16;
+		else if (Input.GetAxisRaw("Vertical") == -1)
+			b += 48;
+		if (Input.GetButtonDown ("Jump"))
+			b += 8;
+		if (Input.GetButtonDown("Boost"))
+			b += 4;
+		if (Input.GetButton("Squat"))
+			b += 2;
+
+		if (motor.inputState != b){
+			GetComponent<PhotonView>().RPC("InputState",PhotonTargets.All, b);
+		}
 		normaldisplay.HPtext.text = stat.HP.ToString();
 		normaldisplay.HPBar.value = 1f * stat.HP / stat.maxHP;
 		noltext.text = weaponctrl.load.ToString();
 		normaldisplay.SetBoostGauge(motor.boostgauge);
 	}
 
+	[RPC]
+	public void InputState(byte inputState){
+		GetComponent<UnitMotor>().inputState = inputState;
+	}
+	
 	void LateUpdate(){
 		if (stat.HP == 0){
 			normaldisplay.DeathCount();

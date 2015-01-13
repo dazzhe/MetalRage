@@ -2,15 +2,43 @@ using UnityEngine;
 using System.Collections;
 
 public class Synchronizer : Photon.MonoBehaviour {
+	UnitMotor motor;
+	WeaponControl wcontrol;
 	private Vector3 correctPlayerPos = Vector3.zero; // We lerp towards this
-	private Quaternion correctPlayerRot = Quaternion.identity; // We lerp towards this
-	// Update is called once per frame
-	void Update()
-	{
-		if (!photonView.isMine)
-		{
-			transform.position = Vector3.Lerp(transform.position, this.correctPlayerPos, Time.deltaTime * 5);
-			transform.rotation = Quaternion.Lerp(transform.rotation, this.correctPlayerRot, Time.deltaTime * 5);
+	private int correctRotationX = 0;
+	private int correctRotationY = 0;
+	//private Quaternion correctPlayerRot = Quaternion.identity; // We lerp towards this
+
+	void Start(){
+		motor = GetComponent<UnitMotor>();
+		wcontrol = GetComponent<WeaponControl>();
+	}
+
+	void Update(){
+		if (!photonView.isMine){
+			transform.position
+				= Vector3.Lerp(transform.position,
+				               correctPlayerPos,
+				               Time.deltaTime * 10);
+			if (correctRotationX < 90 && motor.rotationX > 270f)
+				correctRotationX += 360;
+			if (correctRotationX > 270 && motor.rotationX < 90f)
+				correctRotationX -= 360;
+
+			motor.rotationX
+				= Mathf.Lerp(motor.rotationX,
+				             correctRotationX,
+				             Time.deltaTime * 20);
+			wcontrol.rotationY
+				= Mathf.Lerp (wcontrol.rotationY,
+				              correctRotationY,
+				              Time.deltaTime * 20);
+			if (motor.rotationX > 360f)
+				motor.rotationX -= 360f;
+			if (motor.rotationX < 0f)
+				motor.rotationX += 360f;
+
+			//transform.rotation = Quaternion.Lerp(transform.rotation, this.correctPlayerRot, Time.deltaTime * 5);
 		}
 	}
 
@@ -18,22 +46,14 @@ public class Synchronizer : Photon.MonoBehaviour {
 		if (stream.isWriting){
 			// We own this player: send the others our data
 			stream.SendNext(transform.position);
-			stream.SendNext(transform.rotation);
-			UnitMotor motor = GetComponent<UnitMotor>();
-			WeaponControl weaponctrl = GetComponent<WeaponControl>();
-			stream.SendNext((int)motor._characterState);
-			stream.SendNext(weaponctrl.rotationY);
-			stream.SendNext(weaponctrl.target);
+			stream.SendNext(Mathf.FloorToInt(motor.rotationX));
+			stream.SendNext(Mathf.FloorToInt(wcontrol.rotationY));
 		}
 		else{
 			// Network player, receive data
-			this.correctPlayerPos = (Vector3)stream.ReceiveNext();
-			this.correctPlayerRot = (Quaternion)stream.ReceiveNext();
-			UnitMotor motor = GetComponent<UnitMotor>();
-			WeaponControl weaponctrl = GetComponent<WeaponControl>();
-			motor._characterState = (UnitMotor.CharacterState)stream.ReceiveNext();
-			weaponctrl.rotationY = (float)stream.ReceiveNext();
-			weaponctrl.target = (Vector3)stream.ReceiveNext();
+			correctPlayerPos = (Vector3)stream.ReceiveNext();
+			correctRotationX = (int)stream.ReceiveNext();
+			correctRotationY = (int)stream.ReceiveNext();
 		}
 	}
 }

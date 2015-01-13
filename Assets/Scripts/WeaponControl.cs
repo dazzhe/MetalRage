@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class WeaponControl : MonoBehaviour {
@@ -47,6 +47,8 @@ public class WeaponControl : MonoBehaviour {
 			return 1f;
 		case UnitMotor.CharacterState.Boosting:
 			return 1.3f;
+		case UnitMotor.CharacterState.Braking:
+			return 1.2f;
 		case UnitMotor.CharacterState.Squatting:
 			return 0.5f;
 		case UnitMotor.CharacterState.Jumping:
