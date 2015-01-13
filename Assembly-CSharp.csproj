@@ -150,9 +150,7 @@
      <Compile Include="Assets\Scripts\GameLogic.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Hit.cs" />
-     <Compile Include="Assets\Scripts\HitWall.cs" />
      <Compile Include="Assets\Scripts\InRoomChat.cs" />
-     <Compile Include="Assets\Scripts\Kagamimoti.cs" />
      <Compile Include="Assets\Scripts\LegDirection.cs" />
      <Compile Include="Assets\Scripts\LowerBody.cs" />
      <Compile Include="Assets\Scripts\MAF.cs" />
@@ -171,7 +169,6 @@
      <Compile Include="Assets\Scripts\VanguardInitialization.cs" />
      <Compile Include="Assets\Scripts\Weapon.cs" />
      <Compile Include="Assets\Scripts\WeaponControl.cs" />
-     <Compile Include="Assets\Scripts\mawaru.cs" />
      <None Include="Assets\FPSHangar\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\FPSHangar\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseEffectShaderRGB.shader" />
      <None Include="Assets\FPSHangar\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
