@@ -5,6 +5,10 @@ using System.Collections.Generic;
 public class GameManager : Photon.MonoBehaviour {
 	PhotonView myPV;
 	GameObject explosion;
+	private Vector3[] spawnPositions = new Vector3[]{
+		new Vector3(10f, -5f, 5f), new Vector3(-92f, -20f, 6f),
+		new Vector3(0f, -20f, 100f), new Vector3(-34f,11f,-12f),
+		new Vector3(-34f, -24f,-108f), new Vector3(-100f, -24f, -150f)};
 	/*
 	struct PlayerData{
 		public string playerName;
@@ -27,7 +31,10 @@ public class GameManager : Photon.MonoBehaviour {
 	}
 
 	public void Spawn(string unit){
-		GameObject player = PhotonNetwork.Instantiate(unit, Vector3.up * 3F + Random.Range (0F,20.0F) * Vector3.right, Quaternion.identity, 0) as GameObject;
+		GameObject player 
+			= PhotonNetwork.Instantiate(unit,
+			                            spawnPositions[Random.Range(0, 6)],
+			                            Quaternion.identity, 0) as GameObject;
 		GetComponent<UnitOption>().enabled = false;
 		Screen.lockCursor = true;
 		Screen.showCursor = false;
