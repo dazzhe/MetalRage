@@ -10,6 +10,8 @@ public class WeaponControl : MonoBehaviour {
 	GameObject hinderingObject;
 	GameObject targetObject;
 
+	public int damage = 13;
+
 	[System.NonSerialized]
 	public bool isReloading;
 
@@ -28,7 +30,7 @@ public class WeaponControl : MonoBehaviour {
 	[System.NonSerialized]
 	public float normalrotationY = 0F;
 
-	private float interval = 0.06F;
+	public float interval = 0.06F;
 	private bool cooldown = false;
 
 	[System.NonSerialized]
@@ -64,6 +66,7 @@ public class WeaponControl : MonoBehaviour {
 	RaycastHit hinderinghit;
 	public Vector3 target;
 	public float maxrange = 0;
+	public float reloadTime = 1.5f;
 
 	public int maxload = 80;
 	public int load;
@@ -158,7 +161,7 @@ public class WeaponControl : MonoBehaviour {
 
 			Hit dam = targetObject.GetComponentInParent<Hit>();
 			if (dam != null){
-				dam.TakeDamage(13, this.gameObject);
+				dam.TakeDamage(damage, this.gameObject);
 				StopCoroutine("HitMark");
 				StartCoroutine("HitMark");
 			}
@@ -204,7 +207,7 @@ public class WeaponControl : MonoBehaviour {
 	IEnumerator Reload(){
 		reload.PlayOneShot(reload.clip);
 		isReloading = true;
-		yield return new WaitForSeconds(1.5f);
+		yield return new WaitForSeconds(reloadTime);
 		load = maxload;
 		isReloading = false;
 	}

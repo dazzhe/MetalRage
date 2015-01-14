@@ -20,9 +20,10 @@ public class UnitOption : MonoBehaviour {
 			gm.Spawn(unit);
 		}
 	
-		//if(GUI.Button(new Rect(20,70,80,20), "Blitz")) {
-		//	unit = "Blitz";
-		//}
+		if(GUI.Button(new Rect(20,70,80,20), "Blitz")) {
+			unit = "Blitz";
+			gm.Spawn (unit);
+		}
 
 		if(GUI.Button(new Rect(20,100,80,20), "Dual")) {
 			unit = "Dual";

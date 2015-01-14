@@ -143,6 +143,7 @@
      <Compile Include="Assets\Photon Unity Networking\UtilityScripts\TimeKeeper.cs" />
      <Compile Include="Assets\SandstoneDesertRocksFree\Standard Assets\Scripts\General Scripts\ActivateTrigger.cs" />
      <Compile Include="Assets\Scripts\BasicPlaneNormalTracer.cs" />
+     <Compile Include="Assets\Scripts\BlitzInitialization.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />
      <Compile Include="Assets\Scripts\CharacterControllerPlaneNormalTracer.cs" />
      <Compile Include="Assets\Scripts\Configuration.cs" />

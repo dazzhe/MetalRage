@@ -22,7 +22,7 @@ public class UnitMotor : MonoBehaviour {
 
 	public float horizontalSpeed;
 	private Vector3 groundNormal;
-
+	public bool canBoost = true;
 	private bool canJump = true;
 
 	public enum CharacterState{
@@ -81,7 +81,8 @@ public class UnitMotor : MonoBehaviour {
 		Walk ();
 		Turn ();
 		Jump ();
-		BoostControl();
+		if (canBoost)
+			BoostControl();
 		Squat ();
 		//if (isGrounded)
 		//moveDirection = AdjustGroundVelocityToNormal(this.moveDirection, this.groundNormal);
