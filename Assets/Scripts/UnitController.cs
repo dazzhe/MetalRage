@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-//このスクリプトは自分の機体についているときのみenabledになる
+//このスクリプトは自分の機体についているときのみenabledになる.
 public class UnitController : MonoBehaviour {
 	GameObject normdisp;
 	private static string[] pkSE
@@ -29,7 +29,7 @@ public class UnitController : MonoBehaviour {
 	}
 
 	void Update () {
-		//トラフィックを減らすために１バイトの変数に入力情報をまとめている
+		//トラフィックを減らすために１バイトの変数に入力情報をまとめている.
 		byte b = 0;
 
 		motor.rotationX

@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-//input情報を元に機体を動かす
+//input情報を元に機体を動かす.
 public class UnitMotor : MonoBehaviour {
 	CharacterController controller;
 	private AudioSource boost;
@@ -87,8 +87,8 @@ public class UnitMotor : MonoBehaviour {
 		MoveAndPushDown ();
 		ApplyMove();
 	}
-	//緩やかな坂を下るときに機体が浮いてしまう場合機体位置を地面方向に修正する
-	//坂が急すぎるときはgroundedをfalseにする
+	//緩やかな坂を下るときに機体が浮いてしまう場合機体位置を地面方向に修正する.
+	//坂が急すぎるときはgroundedをfalseにする.
 	void MoveAndPushDown(){
 		velosity = (transform.position - lastPosition) / Time.deltaTime;
 		lastPosition = transform.position;
@@ -109,7 +109,7 @@ public class UnitMotor : MonoBehaviour {
 		}
 	}
 
-	//ビット演算を使って入力情報をbool変数に変えている
+	//ビット演算を使って入力情報をbool変数に変えている.
 	void ApplyInputState(){
 		if ((64 & inputState) != 0){
 			inputMoveDirection.x = 1;
@@ -132,11 +132,11 @@ public class UnitMotor : MonoBehaviour {
 		transform.localEulerAngles = new Vector3(0, rotationX, 0);
 	}
 
-	//入力情報から速度ベクトルを計算する
+	//入力情報から速度ベクトルを計算する.
 	void Walk(){
 		if (grounded && (_characterState == CharacterState.Walking || _characterState == CharacterState.Idle)){
-			//まず-1<=x<=1,-1<=y<=1の範囲で動かすことでx,y方向それぞれの
-			//最大速度に対する相対値を計算している
+			//まず-1<=x<=1,-1<=y<=1の範囲で動かすことでx,y方向それぞれの.
+			//最大速度に対する相対値を計算している.
 			switch (Mathf.RoundToInt(inputMoveDirection.x)){
 			case 1:
 				rawDirection.x += accspeed;
@@ -161,8 +161,8 @@ public class UnitMotor : MonoBehaviour {
 			}
 			rawDirection.x =Mathf.Clamp (rawDirection.x,-1,1);
 			rawDirection.z =Mathf.Clamp (rawDirection.z,-1,1);
-			//計算したベクトルの長さが0に近いときは0に丸め
-			//他は斜め方向でも最大値が1を超えないよう半径１の円の内部に変換している
+			//計算したベクトルの長さが0に近いときは0に丸め.
+			//他は斜め方向でも最大値が1を超えないよう半径１の円の内部に変換している.
 			if(rawDirection.magnitude <= 0.01f){
 				rawDirection = Vector2.zero;
 				moveDirection = rawDirection;
