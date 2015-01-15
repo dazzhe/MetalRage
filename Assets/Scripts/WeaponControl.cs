@@ -11,37 +11,53 @@ public class WeaponControl : MonoBehaviour {
 	GameObject targetObject;
 
 	public int damage = 13;
+	public float recoil = 0.4f;
+	public float mindispersion = 10f;
+	public float dispersiongrow = 4f;
+	public float maxrange = 0;
+	public float reloadTime = 1.5f;
+	public int maxload = 80;
+	public float interval = 0.06F;
 
 	[System.NonSerialized]
 	public bool isReloading;
-
 	[System.NonSerialized]
 	public bool canShot;
 
 	[System.NonSerialized]
-	public float minimumY = -60F;
-
-	[System.NonSerialized]
-	public float maximumY = 60F;
-
-	[System.NonSerialized]
 	public float rotationY = 0F;
-
 	[System.NonSerialized]
 	public float normalrotationY = 0F;
-
-	public float interval = 0.06F;
-	private bool cooldown = false;
+	[System.NonSerialized]
+	public float recoilrotationx = 0F;
+	[System.NonSerialized]
+	public float recoilrotationy = 0F;
 
 	[System.NonSerialized]
-	public float recoil = 0.4f;
-	public float recoilrotationx = 0F;
-	public float recoilrotationy = 0F;
-	public float mindispersion = 10f;
 	public float dispersion;
+	[System.NonSerialized]
 	public float desiredDispersion;
-	public float dispersiongrow = 4f;
-	float DispersionCorrection(){
+
+	[System.NonSerialized]
+	public Vector3 target;
+	[System.NonSerialized]
+	public Vector3 shootDirection;
+
+	[System.NonSerialized]
+	public int load;
+
+	private float minimumY = -60F;
+	private float maximumY = 60F;
+	private bool cooldown = false;
+	private LayerMask mask;
+	private Vector3 originPos;
+	private float fixSpeed = 25f;
+	private Vector3 center = Vector3.zero;
+	Ray ray;
+	RaycastHit hit;
+	RaycastHit hinderinghit;
+	
+	private float DispersionCorrection(){
 		switch(motor._characterState){
 		case UnitMotor.CharacterState.Idle:
 			return 1f;
@@ -58,22 +74,7 @@ public class WeaponControl : MonoBehaviour {
 		}
 		return 1f;
 	}
-
-	private float fixSpeed = 25f;
-	private Vector3 center = Vector3.zero;
-	Ray ray;
-	RaycastHit hit;
-	RaycastHit hinderinghit;
-	public Vector3 target;
-	public float maxrange = 0;
-	public float reloadTime = 1.5f;
-
-	public int maxload = 80;
-	public int load;
-	private LayerMask mask;
-	private Vector3 originPos;
-	public Vector3 shootDirection;
-
+	
 	void Start () {
 		motor = GetComponent<UnitMotor>();
 		AudioSource[] audioSources = GetComponents<AudioSource>();

@@ -4,8 +4,11 @@ using System.Collections;
 [RequireComponent(typeof(PhotonView))]
 public class Status :MonoBehaviour{
 	public int maxHP;
-	public int HP;
 	public float armor = 1f;
+
+	[System.NonSerialized]
+	public int HP;
+
 	private bool acceptDamage = true;
 	PhotonView myPV;
 	private GameObject lastAttackedPlayer;

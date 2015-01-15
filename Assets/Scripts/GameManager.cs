@@ -39,6 +39,10 @@ public class GameManager : Photon.MonoBehaviour {
 		Screen.lockCursor = true;
 		Screen.showCursor = false;
 		player.layer = 8;
+		player.GetComponent<UnitController>().enabled = true;
+		player.GetComponent<UnitMotor>().enabled = true;
+		player.GetComponent<WeaponControl>().enabled = true;
+		player.GetComponent<MainCamera>().enabled = true;
 	}
 
 	public void Die(Vector3 pos, GameObject go){
