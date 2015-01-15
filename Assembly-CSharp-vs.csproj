@@ -140,10 +140,8 @@
      <Compile Include="Assets\Photon Unity Networking\UtilityScripts\SupportLogger.cs" />
      <Compile Include="Assets\Photon Unity Networking\UtilityScripts\TestDontDestroyOnLoad.cs" />
      <Compile Include="Assets\Photon Unity Networking\UtilityScripts\TimeKeeper.cs" />
-     <Compile Include="Assets\Scripts\BasicPlaneNormalTracer.cs" />
      <Compile Include="Assets\Scripts\BlitzInitialization.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />
-     <Compile Include="Assets\Scripts\CharacterControllerPlaneNormalTracer.cs" />
      <Compile Include="Assets\Scripts\Configuration.cs" />
      <Compile Include="Assets\Scripts\DualInitialization.cs" />
      <Compile Include="Assets\Scripts\GameLogic.cs" />
