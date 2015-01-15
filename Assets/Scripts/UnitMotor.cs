@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-
+//input情報を元に機体を動かす
 public class UnitMotor : MonoBehaviour {
 	CharacterController controller;
 	private AudioSource boost;
@@ -55,7 +55,7 @@ public class UnitMotor : MonoBehaviour {
 	public static float jumpSpeed = 18F;
 	private float hJumpSpeed = 20f;
 	public float rotationX = 0F;
-	public bool isGrounded;
+	public bool grounded;
 	
 	public int boosttype;
 	public int boostgauge;
@@ -71,7 +71,7 @@ public class UnitMotor : MonoBehaviour {
 		AudioSource[] audioSources = GetComponents<AudioSource>();
 		boost = audioSources[0];
 		boostgauge = boostmax;
-		isGrounded = controller.isGrounded;
+		grounded = controller.isGrounded;
 		lastPosition = transform.position;
 	}
 	
@@ -84,29 +84,32 @@ public class UnitMotor : MonoBehaviour {
 		if (canBoost)
 			BoostControl();
 		Squat ();
-		//if (isGrounded)
-		//moveDirection = AdjustGroundVelocityToNormal(this.moveDirection, this.groundNormal);
-
+		MoveAndPushDown ();
+		ApplyMove();
+	}
+	//緩やかな坂を下るときに機体が浮いてしまう場合機体位置を地面方向に修正する
+	//坂が急すぎるときはgroundedをfalseにする
+	void MoveAndPushDown(){
 		velosity = (transform.position - lastPosition) / Time.deltaTime;
 		lastPosition = transform.position;
 		Vector3 currentMovementOffset = moveDirection * Time.deltaTime;
 		
 		float pushDownOffset = Mathf.Max(controller.stepOffset, new Vector3(currentMovementOffset.x, 0, currentMovementOffset.z).magnitude);
-		if(isGrounded)
+		if(grounded)
 			currentMovementOffset -= pushDownOffset * Vector3.up;
 		
 		groundNormal = Vector3.zero;
 		controller.Move(currentMovementOffset);
-		if(isGrounded && !IsGroundedTest()){
-			isGrounded = false;
+		if(grounded && !IsGroundedTest()){
+			grounded = false;
 			transform.position += pushDownOffset * Vector3.up;
 		}
-		else if(!isGrounded && IsGroundedTest()){
-			isGrounded = true;
+		else if(!grounded && IsGroundedTest()){
+			grounded = true;
 		}
-		ApplyMove();
 	}
 
+	//ビット演算を使って入力情報をbool変数に変えている
 	void ApplyInputState(){
 		if ((64 & inputState) != 0){
 			inputMoveDirection.x = 1;
@@ -128,9 +131,12 @@ public class UnitMotor : MonoBehaviour {
 	void Turn(){
 		transform.localEulerAngles = new Vector3(0, rotationX, 0);
 	}
-	
+
+	//入力情報から速度ベクトルを計算する
 	void Walk(){
-		if (isGrounded && (_characterState == CharacterState.Walking || _characterState == CharacterState.Idle)){
+		if (grounded && (_characterState == CharacterState.Walking || _characterState == CharacterState.Idle)){
+			//まず-1<=x<=1,-1<=y<=1の範囲で動かすことでx,y方向それぞれの
+			//最大速度に対する相対値を計算している
 			switch (Mathf.RoundToInt(inputMoveDirection.x)){
 			case 1:
 				rawDirection.x += accspeed;
@@ -155,16 +161,19 @@ public class UnitMotor : MonoBehaviour {
 			}
 			rawDirection.x =Mathf.Clamp (rawDirection.x,-1,1);
 			rawDirection.z =Mathf.Clamp (rawDirection.z,-1,1);
-			
+			//計算したベクトルの長さが0に近いときは0に丸め
+			//他は斜め方向でも最大値が1を超えないよう半径１の円の内部に変換している
 			if(rawDirection.magnitude <= 0.01f){
 				rawDirection = Vector2.zero;
 				moveDirection = rawDirection;
 			}
 			else {
 				if (Mathf.Abs(rawDirection.x) >= Mathf.Abs(rawDirection.z))
-					moveDirection = Mathf.Abs(rawDirection.x) / rawDirection.magnitude * rawDirection;
+					moveDirection 
+						= Mathf.Abs(rawDirection.x) / rawDirection.magnitude * rawDirection;
 				else
-					moveDirection = Mathf.Abs (rawDirection.z) / rawDirection.magnitude * rawDirection;
+					moveDirection
+						= Mathf.Abs (rawDirection.z) / rawDirection.magnitude * rawDirection;
 			}
 			moveDirection = transform.TransformDirection(moveDirection);
 			moveDirection *= walkspeed;
@@ -186,7 +195,7 @@ public class UnitMotor : MonoBehaviour {
 	}
 	
 	void Squat(){
-		if (isGrounded && inputSquat && _characterState != CharacterState.Boosting){
+		if (grounded && inputSquat && _characterState != CharacterState.Boosting){
 			_characterState = CharacterState.Squatting;
 			moveDirection *= 0;
 		} else if (_characterState == CharacterState.Squatting)
@@ -194,18 +203,19 @@ public class UnitMotor : MonoBehaviour {
 	}
 	
 	void Jump(){
-		if (isGrounded) {
+		if (grounded) {
 			if (inputJump && canJump && _characterState != CharacterState.Boosting){
-				isGrounded = false;
+				grounded = false;
 				StartCoroutine("JumpCoolDown");
 				boost.PlayOneShot(boost.clip);
-				moveDirection = transform.TransformDirection(new Vector3(inputMoveDirection.x * hJumpSpeed,
-				                                                         jumpSpeed * (1f + 0.002f * velosity.magnitude),
-				                                                         inputMoveDirection.y * hJumpSpeed));
+				moveDirection
+					= transform.TransformDirection(new Vector3(inputMoveDirection.x * hJumpSpeed,
+					                                           jumpSpeed * (1f + 0.002f * velosity.magnitude),
+					                                           inputMoveDirection.y * hJumpSpeed));
 			} else if (_characterState == CharacterState.Jumping)
 				_characterState = 0;
 		}
-		if (!isGrounded && _characterState != CharacterState.Boosting){
+		if (!grounded && _characterState != CharacterState.Boosting){
 			_characterState = CharacterState.Jumping;
 			horizontalSpeed = new Vector2(moveDirection.x, moveDirection.z).magnitude;
 			accelDirection = new Vector3(inputMoveDirection.x, 0, inputMoveDirection.y);
@@ -226,7 +236,7 @@ public class UnitMotor : MonoBehaviour {
 	}
 	
 	void BoostControl(){
-		if (isGrounded && inputBoost
+		if (grounded && inputBoost
 		    && (_characterState == CharacterState.Walking || _characterState == CharacterState.Idle || _characterState == CharacterState.Braking)
 		    && boostgauge >= 28) {
 			boost.PlayOneShot (boost.clip);
@@ -296,7 +306,7 @@ public class UnitMotor : MonoBehaviour {
 	}
 	
 	void ApplyMove(){
-		if (!isGrounded)
+		if (!grounded)
 			moveDirection.y -= gravity * Time.deltaTime;
 		//controller.Move(moveDirection * 
 		 //               Time.deltaTime);

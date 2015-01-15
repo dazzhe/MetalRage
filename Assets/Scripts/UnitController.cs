@@ -1,13 +1,13 @@
 using UnityEngine;
 using System.Collections;
-
+//このスクリプトは自分の機体についているときのみenabledになる
 public class UnitController : MonoBehaviour {
 	GameObject normdisp;
-
-	private static string[] pkse = {"","01_shot","02_double_kill","03_mass_kill","04_multi_kill",
-								"05_crazy_kill","06_great_kill","07_excellent","08_massacre",
-								"09_super_action","10_unbellevable","11_fantastic","12_bigbang",
-								"13_holy_shot","14_holy_shot_haha"};
+	private static string[] pkSE
+		= {"","01_shot","02_double_kill","03_mass_kill","04_multi_kill",
+		"05_crazy_kill","06_great_kill","07_excellent","08_massacre",
+		"09_super_action","10_unbellevable","11_fantastic","12_bigbang",
+		"13_holy_shot","14_holy_shot_haha"};
 
 	WeaponControl weaponctrl;
 	UnitMotor motor;
@@ -29,6 +29,7 @@ public class UnitController : MonoBehaviour {
 	}
 
 	void Update () {
+		//トラフィックを減らすために１バイトの変数に入力情報をまとめている
 		byte b = 0;
 
 		motor.rotationX
@@ -77,9 +78,9 @@ public class UnitController : MonoBehaviour {
 			killcount++;
 			normaldisplay.KillCount();
 			if (killcount > 14)
-				SoundPlayer.Instance.PlaySE(pkse[14]);
+				SoundPlayer.Instance.PlaySE(pkSE[14]);
 			else
-				SoundPlayer.Instance.PlaySE(pkse[killcount]);
+				SoundPlayer.Instance.PlaySE(pkSE[killcount]);
 		}
 	}
 }
