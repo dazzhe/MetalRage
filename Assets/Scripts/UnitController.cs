@@ -13,7 +13,7 @@ public class UnitController : MonoBehaviour {
 	UnitMotor motor;
 	NormalDisplay normaldisplay;
 	Status stat;
-	
+	Canvas settings;
 	GUIText noltext;
 	
 	private int killcount;
@@ -26,30 +26,35 @@ public class UnitController : MonoBehaviour {
 		normaldisplay = normdisp.GetComponent<NormalDisplay>();
 		GameObject nolbar = GameObject.Find("NOLBar");
 		noltext = nolbar.GetComponent<GUIText>();
+		settings = GameObject.Find("Settings").GetComponent<Canvas>();
 	}
 
 	void Update () {
 		//トラフィックを減らすために１バイトの変数に入力情報をまとめている.
 		byte b = 0;
-
-		motor.rotationX
-			= transform.localEulerAngles.y
-			+ Input.GetAxis("Mouse X") * Configuration.sensitivity * motor.sensimag;
-		if (Input.GetAxisRaw("Horizontal") == 1)
-			b += 64;
-		else if (Input.GetAxisRaw("Horizontal") == -1)
-			b += 192;
-		if (Input.GetAxisRaw("Vertical") == 1)
-			b += 16;
-		else if (Input.GetAxisRaw("Vertical") == -1)
-			b += 48;
-		if (Input.GetButtonDown ("Jump"))
-			b += 8;
-		if (Input.GetButtonDown("Boost"))
-			b += 4;
-		if (Input.GetButton("Squat"))
-			b += 2;
-
+		if (!settings.enabled){
+			motor.rotationX
+				= transform.localEulerAngles.y
+				+ Input.GetAxis("Mouse X") * Configuration.sensitivity * motor.sensimag;
+			if (Input.GetAxisRaw("Horizontal") == 1)
+				b += 64;
+			else if (Input.GetAxisRaw("Horizontal") == -1)	
+				b += 192;
+			if (Input.GetAxisRaw("Vertical") == 1)
+				b += 16;	
+			else if (Input.GetAxisRaw("Vertical") == -1)
+				b += 48;
+			if (Input.GetButtonDown ("Jump"))
+				b += 8;
+			if (Input.GetButtonDown("Boost"))
+				b += 4;
+			if (Input.GetButton("Squat"))
+				b += 2;
+			if (!Screen.lockCursor || Screen.showCursor){
+				Screen.lockCursor = true;
+				Screen.showCursor = false;
+			}
+		}
 		if (motor.inputState != b){
 			GetComponent<PhotonView>().RPC("InputState",PhotonTargets.All, b);
 		}

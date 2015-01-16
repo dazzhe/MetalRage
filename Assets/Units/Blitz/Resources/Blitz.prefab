@@ -27,21 +27,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &100002
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 400002}
-  m_Layer: 0
-  m_Name: Lamp
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &100004
 GameObject:
   m_ObjectHideFlags: 1
@@ -54,21 +39,6 @@ GameObject:
   - 23: {fileID: 2300000}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &100006
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 400006}
-  m_Layer: 0
-  m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -691,21 +661,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &100090
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 400090}
-  m_Layer: 0
-  m_Name: Lamp
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &100092
 GameObject:
   m_ObjectHideFlags: 1
@@ -738,36 +693,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &100096
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 400096}
-  m_Layer: 0
-  m_Name: Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &100098
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 400098}
-  m_Layer: 0
-  m_Name: Lamp
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &100100
 GameObject:
   m_ObjectHideFlags: 1
@@ -779,21 +704,6 @@ GameObject:
   - 137: {fileID: 13700000}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &100102
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 400102}
-  m_Layer: 0
-  m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -836,21 +746,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &100108
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 400108}
-  m_Layer: 0
-  m_Name: Lamp
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &100110
 GameObject:
   m_ObjectHideFlags: 1
@@ -863,21 +758,6 @@ GameObject:
   - 23: {fileID: 2300004}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &100112
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 400112}
-  m_Layer: 0
-  m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -985,18 +865,6 @@ Transform:
   - {fileID: 400008}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!4 &400002
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_LocalRotation: {x: .169075772, y: -.755880356, z: .272171438, w: .570947468}
-  m_LocalPosition: {x: -4.07624531, y: 5.903862, z: -1.00545394}
-  m_LocalScale: {x: 100.000015, y: 100.000008, z: 100}
-  m_Children: []
-  m_Father: {fileID: 400104}
-  m_RootOrder: 3
 --- !u!4 &400004
 Transform:
   m_ObjectHideFlags: 1
@@ -1009,18 +877,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 400104}
   m_RootOrder: 2
---- !u!4 &400006
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100006}
-  m_LocalRotation: {x: .210611343, y: .905240178, z: -.0892817229, w: -.358066887}
-  m_LocalPosition: {x: -7.48113155, y: 5.34366512, z: 6.50763941}
-  m_LocalScale: {x: 100.000015, y: 100.000023, z: 100.000008}
-  m_Children: []
-  m_Father: {fileID: 400104}
-  m_RootOrder: 4
 --- !u!4 &400008
 Transform:
   m_ObjectHideFlags: 1
@@ -1032,8 +888,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400092}
-  - {fileID: 400090}
-  - {fileID: 400096}
   m_Father: {fileID: 400000}
   m_RootOrder: 2
 --- !u!4 &400010
@@ -1554,18 +1408,6 @@ Transform:
   - {fileID: 400104}
   m_Father: {fileID: 400000}
   m_RootOrder: 0
---- !u!4 &400090
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100090}
-  m_LocalRotation: {x: .169075772, y: -.755880356, z: .272171438, w: .570947468}
-  m_LocalPosition: {x: -4.07624531, y: 5.903862, z: -1.00545394}
-  m_LocalScale: {x: 100.000015, y: 100.000008, z: 100}
-  m_Children: []
-  m_Father: {fileID: 400008}
-  m_RootOrder: 1
 --- !u!4 &400092
 Transform:
   m_ObjectHideFlags: 1
@@ -1593,30 +1435,6 @@ Transform:
   - {fileID: 400082}
   m_Father: {fileID: 400106}
   m_RootOrder: 0
---- !u!4 &400096
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100096}
-  m_LocalRotation: {x: .210611343, y: .905240178, z: -.0892817229, w: -.358066887}
-  m_LocalPosition: {x: -7.48113155, y: 5.34366512, z: 6.50763941}
-  m_LocalScale: {x: 100.000015, y: 100.000023, z: 100.000008}
-  m_Children: []
-  m_Father: {fileID: 400008}
-  m_RootOrder: 2
---- !u!4 &400098
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100098}
-  m_LocalRotation: {x: .169075772, y: -.755880356, z: .272171438, w: .570947468}
-  m_LocalPosition: {x: -4.07624531, y: 6.92371941, z: -1.00545394}
-  m_LocalScale: {x: 100.000015, y: 100.000008, z: 100}
-  m_Children: []
-  m_Father: {fileID: 400106}
-  m_RootOrder: 2
 --- !u!4 &400100
 Transform:
   m_ObjectHideFlags: 1
@@ -1629,18 +1447,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 400106}
   m_RootOrder: 1
---- !u!4 &400102
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100102}
-  m_LocalRotation: {x: .210611343, y: .905240178, z: -.0892817229, w: -.358066887}
-  m_LocalPosition: {x: -7.48113155, y: 6.36352205, z: 6.50763941}
-  m_LocalScale: {x: 100.000015, y: 100.000023, z: 100.000008}
-  m_Children: []
-  m_Father: {fileID: 400106}
-  m_RootOrder: 3
 --- !u!4 &400104
 Transform:
   m_ObjectHideFlags: 1
@@ -1654,8 +1460,6 @@ Transform:
   - {fileID: 409986}
   - {fileID: 409984}
   - {fileID: 400004}
-  - {fileID: 400002}
-  - {fileID: 400006}
   m_Father: {fileID: 400088}
   m_RootOrder: 1
 --- !u!4 &400106
@@ -1670,22 +1474,8 @@ Transform:
   m_Children:
   - {fileID: 400094}
   - {fileID: 400100}
-  - {fileID: 400098}
-  - {fileID: 400102}
   m_Father: {fileID: 400000}
   m_RootOrder: 1
---- !u!4 &400108
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100108}
-  m_LocalRotation: {x: .169075772, y: -.755880356, z: .272171438, w: .570947468}
-  m_LocalPosition: {x: -4.07624531, y: 5.903862, z: -1.00545394}
-  m_LocalScale: {x: 100.000015, y: 100.000008, z: 100}
-  m_Children: []
-  m_Father: {fileID: 400114}
-  m_RootOrder: 3
 --- !u!4 &400110
 Transform:
   m_ObjectHideFlags: 1
@@ -1698,18 +1488,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 400114}
   m_RootOrder: 2
---- !u!4 &400112
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100112}
-  m_LocalRotation: {x: .210611343, y: .905240178, z: -.0892817229, w: -.358066887}
-  m_LocalPosition: {x: -7.48113155, y: 5.34366512, z: 6.50763941}
-  m_LocalScale: {x: 100.000015, y: 100.000023, z: 100.000008}
-  m_Children: []
-  m_Father: {fileID: 400114}
-  m_RootOrder: 4
 --- !u!4 &400114
 Transform:
   m_ObjectHideFlags: 1
@@ -1723,8 +1501,6 @@ Transform:
   - {fileID: 409982}
   - {fileID: 409980}
   - {fileID: 400110}
-  - {fileID: 400108}
-  - {fileID: 400112}
   m_Father: {fileID: 400088}
   m_RootOrder: 0
 --- !u!4 &409980
@@ -1977,7 +1753,7 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
-  Mute: 0
+  Mute: 1
   Priority: 128
   DopplerLevel: 1
   MinDistance: 11.756897
@@ -2031,7 +1807,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: a4a061a383826d94995c3a24f0065593, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2089,7 +1865,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 822b426ffa377d241a84c049644a36dd, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2147,7 +1923,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: b80317c5bbeca2c41991b7bc0983d8ce, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2205,7 +1981,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: b80317c5bbeca2c41991b7bc0983d8ce, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

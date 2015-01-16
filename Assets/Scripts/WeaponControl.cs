@@ -6,6 +6,7 @@ public class WeaponControl : MonoBehaviour {
 	public GameObject weapon1;
 	public GameObject weapon2;
 	UnitMotor motor;
+	Canvas settings;
 	GameObject aimedObject;
 	GameObject hinderingObject;
 	GameObject targetObject;
@@ -53,6 +54,10 @@ public class WeaponControl : MonoBehaviour {
 	private Vector3 originPos;
 	private float fixSpeed = 25f;
 	private Vector3 center = Vector3.zero;
+	private bool inputReload = false;
+	private bool inputShot1 = false;
+	[System.NonSerialized]
+	public bool inputShot2 = false;
 	Ray ray;
 	RaycastHit hit;
 	RaycastHit hinderinghit;
@@ -76,6 +81,7 @@ public class WeaponControl : MonoBehaviour {
 	}
 	
 	void Start () {
+		settings = GameObject.Find ("Settings").GetComponent<Canvas>();
 		motor = GetComponent<UnitMotor>();
 		AudioSource[] audioSources = GetComponents<AudioSource>();
 		reload = audioSources[2];
@@ -90,11 +96,20 @@ public class WeaponControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Elevation ();
+		if (!settings.enabled){
+			inputReload = Input.GetButtonDown("Reload");
+			inputShot1 = Input.GetButton("Fire1");
+			inputShot2 = Input.GetButton("Fire2");
+			Elevation ();
+		} else {
+			inputReload = false;
+			inputShot1 = false;
+			inputShot2 = false;
+		}
 		StartCoroutine(ShotControl ());
 		RecoilControl();
 		DispersionControl();
-		if (Input.GetButtonDown("Reload") && load != maxload && !isReloading)
+		if (inputReload && load != maxload && !isReloading)
 		    StartCoroutine(this.Reload());
 	}
 
@@ -105,7 +120,7 @@ public class WeaponControl : MonoBehaviour {
 	}
 
 	IEnumerator ShotControl(){
-		if (Input.GetButton("Fire1") && load > 0 && !cooldown && canShot && !isReloading){
+		if (inputShot1 && load > 0 && !cooldown && canShot && !isReloading){
 			Shot();
 			MakeShots ();
 			cooldown = true;

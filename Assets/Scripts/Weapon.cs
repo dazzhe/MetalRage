@@ -26,7 +26,7 @@ public class Weapon : MonoBehaviour {
 	// Update is called once per frame
 	void LateUpdate () {
 		if (myPV.isMine && this.gameObject.tag == "Weapon_R"){
-			if (Input.GetButtonDown ("Fire2"))
+			if (weaponctrl.inputShot2)
 				HalfZoom();
 		}
 	}

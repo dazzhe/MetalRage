@@ -22,7 +22,7 @@ public class MAF : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (myPV.isMine){
-            if (Input.GetButtonDown("Fire2"))
+            if (weaponctrl.inputShot2)
                 myPV.RPC("ShieldAnimation",PhotonTargets.AllBuffered);
         }
 	}
