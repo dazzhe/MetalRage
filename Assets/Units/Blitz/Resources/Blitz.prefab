@@ -812,7 +812,7 @@ GameObject:
   - 114: {fileID: 11465236}
   - 82: {fileID: 8265476}
   m_Layer: 0
-  m_Name: sunaipa-
+  m_Name: IFP-40
   m_TagString: Weapon_L
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -896,7 +896,7 @@ GameObject:
   - 114: {fileID: 11465234}
   - 82: {fileID: 8265478}
   m_Layer: 0
-  m_Name: sunaipa-
+  m_Name: IFP-40
   m_TagString: Weapon_R
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1787,7 +1787,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: cd038f6ea82d71d41a2701f5d615c7ea, type: 2}
+  - {fileID: 2100000, guid: 7820b037cf9e1e54cacb1ccf0309a7fa, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -1807,7 +1807,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: cd038f6ea82d71d41a2701f5d615c7ea, type: 2}
+  - {fileID: 2100000, guid: 7d382df1d17d4964a854a8a177543507, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -1827,7 +1827,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: cd038f6ea82d71d41a2701f5d615c7ea, type: 2}
+  - {fileID: 2100000, guid: 7820b037cf9e1e54cacb1ccf0309a7fa, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -2560,7 +2560,7 @@ SkinnedMeshRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: cd038f6ea82d71d41a2701f5d615c7ea, type: 2}
+  - {fileID: 2100000, guid: 7d382df1d17d4964a854a8a177543507, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -2616,7 +2616,7 @@ SkinnedMeshRenderer:
   m_RootBone: {fileID: 400082}
   m_AABB:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 1.50241315, y: 4.49533701, z: 1.51205039}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_DirtyAABB: 0
 --- !u!143 &14300000
 CharacterController:
