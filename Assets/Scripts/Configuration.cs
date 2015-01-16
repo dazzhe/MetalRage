@@ -34,7 +34,7 @@ public class Configuration : MonoBehaviour {
 			}
 			sensitivity = sensiSL.value * 0.2f;
 			sensiTX.text = sensiSL.value.ToString();
-			AudioListener.volume = volSL.value * 0.02f;
+			AudioListener.volume = volSL.value * 0.01f;
 			volTX.text = volSL.value.ToString();
 		}
 		/*if (Input.GetButtonDown("sensitivity up")){
