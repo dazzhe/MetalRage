@@ -153,6 +153,8 @@
   <ItemGroup>
     <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
       <Project>{CABBF05F-3C3A-2A67-C482-8787C87FFCCE}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-CSharp.csproj">
+      <Project>{B6EB3AB2-050B-C23A-C6DE-E1DE6A017FB6}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-UnityScript.unityproj">
       <Project>{40FD31D9-624E-40B0-E98A-1A4CBDC22427}</Project>      <Name>Assembly-UnityScript</Name>    </ProjectReference>
   </ItemGroup>

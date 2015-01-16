@@ -99,7 +99,7 @@ public class WeaponControl : MonoBehaviour {
 		if (!settings.enabled){
 			inputReload = Input.GetButtonDown("Reload");
 			inputShot1 = Input.GetButton("Fire1");
-			inputShot2 = Input.GetButton("Fire2");
+			inputShot2 = Input.GetButtonDown("Fire2");
 			Elevation ();
 		} else {
 			inputReload = false;

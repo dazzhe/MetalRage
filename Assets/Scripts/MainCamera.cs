@@ -6,6 +6,7 @@ public class MainCamera : MonoBehaviour {
 	public GameObject objc;
 	WeaponControl weaponctrl;
 	UnitMotor motor;
+	Canvas settings;
 	public Transform cameraTransform;
 	private float positionz;
 	public Vector3 cp;
@@ -21,6 +22,7 @@ public class MainCamera : MonoBehaviour {
 	private int dir;
 
 	void Start () {
+		settings = GameObject.Find("Settings").GetComponent<Canvas>();
 		AudioSource[] audioSources = GetComponents<AudioSource>();
 		lean = audioSources[1];
 		leaning = false;
@@ -69,7 +71,7 @@ public class MainCamera : MonoBehaviour {
 	}
 
 	void Lean(){
-		if (motor.moveDirection.x == 0 && motor.moveDirection.z == 0){
+		if (motor.moveDirection.x == 0 && motor.moveDirection.z == 0 && !settings.enabled){
 			if (Input.GetButtonDown ("right lean")){
 				lean.PlayOneShot (lean.clip);
 				leaning = true;
