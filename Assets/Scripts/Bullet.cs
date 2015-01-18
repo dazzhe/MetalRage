@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Bullet : MonoBehaviour {
-
+	public GameObject impact;
 	private float speed = 10.0F;
 	public Vector3 originPos;
 	public Vector3 targetPos;
@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour {
 			transform.position = originPos + ((float)renderingCount / totalRenderingCount) * direction * speed;
 			yield return new WaitForSeconds(0.02f);
 		}
-		GameObject.Instantiate(Resources.Load("impactEffect"),targetPos,transform.rotation);
+		GameObject.Instantiate(impact,targetPos,transform.rotation);
 		Destroy (gameObject);
 		//yield return new WaitForSeconds(1f);
 		//transform.position += direction.normalized * speed;

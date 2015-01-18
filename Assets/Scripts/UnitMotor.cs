@@ -254,11 +254,11 @@ public class UnitMotor : MonoBehaviour {
 					boostDirection = transform.TransformDirection(new Vector3(-1F, 0F, 1F).normalized);
 					boosttype = 2;
 				}
-				else if (h == 1 && rawDirection.y < 0){
+				else if (h == 1 && rawDirection.z < -0.2){
 					boostDirection = transform.TransformDirection(new Vector3(1F, 0F, -1F).normalized);
 					boosttype = 0;
 				}
-				else if (h == -1 && rawDirection.y < 0){
+				else if (h == -1 && rawDirection.z < -0.2){
 					boostDirection = transform.TransformDirection(new Vector3(-1F, 0F, -1F).normalized);
 					boosttype = 2;
 				}

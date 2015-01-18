@@ -76,4 +76,20 @@ public class NormalDisplay : MonoBehaviour {
 		reticleL.color = Color.white;
 		reticleR.color = Color.white;
 	}
+
+	public static void DeleteReticle(){
+		reticleC.enabled = false;
+		reticleD.enabled = false;
+		reticleU.enabled = false;
+		reticleL.enabled = false;
+		reticleR.enabled = false;
+	}
+
+	public static void EnableReticle(){
+		reticleC.enabled = true;
+		reticleD.enabled = true;
+		reticleU.enabled = true;
+		reticleL.enabled = true;
+		reticleR.enabled = true;
+	}
 }

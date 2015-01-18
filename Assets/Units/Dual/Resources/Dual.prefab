@@ -863,10 +863,10 @@ AudioSource:
   Mute: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 6.29479742
+  MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -921,10 +921,10 @@ AudioSource:
   Mute: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 6.26678228
+  MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -979,25 +979,55 @@ AudioSource:
   Mute: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 6.26678228
+  MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0
+    - time: .0125335641
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -79.8176193
+      outSlope: -79.8176193
+      tangentMode: 0
+    - time: .034199547
+      value: .401840508
+      inSlope: -19.9544048
+      outSlope: -19.9544048
+      tangentMode: 0
+    - time: .0501342565
+      value: .25
+      inSlope: -4.98860121
+      outSlope: -4.98860121
+      tangentMode: 0
+    - time: .100268513
+      value: .125
+      inSlope: -1.2471503
+      outSlope: -1.2471503
+      tangentMode: 0
+    - time: .200537026
+      value: 0
+      inSlope: -.311787575
+      outSlope: -.311787575
+      tangentMode: 0
+    - time: .355411947
+      value: 0
+      inSlope: -.0779468939
+      outSlope: -.0779468939
+      tangentMode: 0
+    - time: .802148104
+      value: .015625
+      inSlope: -.0194867235
+      outSlope: -.0194867235
       tangentMode: 0
     - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      value: .0125335641
+      inSlope: -.0125385681
+      outSlope: -.0125385681
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -1037,10 +1067,10 @@ AudioSource:
   Mute: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 7.0511961
+  MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
