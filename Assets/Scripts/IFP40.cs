@@ -52,7 +52,8 @@ public class IFP40 : MonoBehaviour {
 	
 	void OnDestroy(){
 		if (Camera.main != null)
-			ZoomOff();
+			Camera.main.fieldOfView = 90;
+		NormalDisplay.EnableReticle();
 	}
 	
 	[RPC]
