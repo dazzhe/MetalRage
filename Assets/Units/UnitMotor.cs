@@ -1,13 +1,23 @@
 using UnityEngine;
 using System.Collections;
-//input情報を元に機体を動かす.
+//入力情報を元に機体を動かす.
 public class UnitMotor : MonoBehaviour {
 	CharacterController controller;
 	private AudioSource boost;
 
+	//機体ごとにインスペクタで数値を設定する.
+	public bool canBoost = true;
+	[SerializeField]
+	private float boostspeed = 40F;
+	[SerializeField]
+	private float jumpSpeed = 18F;
+	[SerializeField]
+	private float walkspeed = 17F;
+	[SerializeField]
+	private float accspeed = 0.2f;
+
 	[System.NonSerialized]
 	public byte inputState = 0;
-
 	[System.NonSerialized]
 	public Vector2 inputMoveDirection;
 	private bool inputJump;
@@ -18,13 +28,9 @@ public class UnitMotor : MonoBehaviour {
 	public float sensimag = 1f;
 
 	private Vector3 lastPosition;
-	public Vector3 velosity;
-
-	public float horizontalSpeed;
+	private Vector3 velosity;
 	private Vector3 groundNormal;
-	public bool canBoost = true;
 	private bool canJump = true;
-
 	public enum CharacterState{
 		Idle = 0,
 		Walking = 1,
@@ -34,48 +40,44 @@ public class UnitMotor : MonoBehaviour {
 		Acceling = 5,
 		Braking = 6
 	}
+	[System.NonSerialized]
 	public CharacterState _characterState;
+	[System.NonSerialized]
 	public Vector3 moveDirection = 
 		Vector3.zero;
 	private Vector3 boostDirection = 
 		Vector3.zero;
 	private Vector3 accelDirection = 
 		Vector3.zero;
-	public Vector3 rawDirection =
+	private Vector3 rawDirection =
 		Vector3.zero;
+	private float gravity = 40.0F;
 
-	public static float gravity = 40.0F;
-	
-	public static float walkspeed = 17F;
-	public static float accspeed = 0.2f;
-	private float hspeed;
-	private float vspeed;
-	
-	public static float boostspeed = 40F;
-	public static float jumpSpeed = 18F;
+	//ジャンプしたときの水平方向の初速度
 	private float hJumpSpeed = 20f;
+	[System.NonSerialized]
 	public float rotationX = 0F;
-	public bool grounded;
-	
+	private bool grounded = false;
+	[System.NonSerialized]
 	public int boosttype;
+	[System.NonSerialized]
 	public int boostgauge;
+	[System.NonSerialized]
 	public int boostmax = 100;
 	
-	public float boostCount;
-	public static float boostTime = 0.2F;
-
-	// Use this for initialization
+	private float boostCount;
+	private float boostTime = 0.2F;
+	
 	void Start () {
 		StartCoroutine("BoostRegen");
 		controller = GetComponent<CharacterController>();
 		AudioSource[] audioSources = GetComponents<AudioSource>();
 		boost = audioSources[0];
 		boostgauge = boostmax;
-		grounded = controller.isGrounded;
 		lastPosition = transform.position;
 	}
-	
-	// Update is called once per frame
+
+	//入力情報を受け取った後で処理を実行したほうが良いのでLateUpdateを使う.
 	void LateUpdate () {
 		ApplyInputState();
 		Walk ();
@@ -85,7 +87,8 @@ public class UnitMotor : MonoBehaviour {
 			BoostControl();
 		Squat ();
 		MoveAndPushDown ();
-		ApplyMove();
+		if (!grounded)
+			moveDirection.y -= gravity * Time.deltaTime;
 	}
 	//緩やかな坂を下るときに機体が浮いてしまう場合機体位置を地面方向に修正する.
 	//坂が急すぎるときはgroundedをfalseにする.
@@ -127,7 +130,7 @@ public class UnitMotor : MonoBehaviour {
 		inputBoost = (4 & inputState) != 0;
 		inputSquat = (2 & inputState) != 0;
 	}
-
+	//機体全体を水平方向に回転させる.
 	void Turn(){
 		transform.localEulerAngles = new Vector3(0, rotationX, 0);
 	}
@@ -180,7 +183,7 @@ public class UnitMotor : MonoBehaviour {
 			if (rawDirection.magnitude != 0)
 				_characterState = CharacterState.Walking;
 			else if (_characterState == CharacterState.Walking)
-				_characterState = 0;
+				_characterState = CharacterState.Idle;
 		}
 		else{
 			if (_characterState == CharacterState.Walking)
@@ -208,16 +211,17 @@ public class UnitMotor : MonoBehaviour {
 				grounded = false;
 				StartCoroutine("JumpCoolDown");
 				boost.PlayOneShot(boost.clip);
+				//移動速度が大きいほど高くジャンプさせる.
 				moveDirection
 					= transform.TransformDirection(new Vector3(inputMoveDirection.x * hJumpSpeed,
 					                                           jumpSpeed * (1f + 0.002f * velosity.magnitude),
 					                                           inputMoveDirection.y * hJumpSpeed));
 			} else if (_characterState == CharacterState.Jumping)
-				_characterState = 0;
+				_characterState = CharacterState.Idle;
 		}
 		if (!grounded && _characterState != CharacterState.Boosting){
 			_characterState = CharacterState.Jumping;
-			horizontalSpeed = new Vector2(moveDirection.x, moveDirection.z).magnitude;
+			float horizontalSpeed = new Vector2(moveDirection.x, moveDirection.z).magnitude;
 			accelDirection = new Vector3(inputMoveDirection.x, 0, inputMoveDirection.y);
 
 			if (horizontalSpeed > hJumpSpeed){
@@ -237,12 +241,15 @@ public class UnitMotor : MonoBehaviour {
 	
 	void BoostControl(){
 		if (grounded && inputBoost
-		    && (_characterState == CharacterState.Walking || _characterState == CharacterState.Idle || _characterState == CharacterState.Braking)
+		    && (_characterState == CharacterState.Walking
+		    	|| _characterState == CharacterState.Idle
+		    	|| _characterState == CharacterState.Braking)
 		    && boostgauge >= 28) {
 			boost.PlayOneShot (boost.clip);
 			boostgauge -= 28;
 			float h = inputMoveDirection.x;
 			float v = inputMoveDirection.y;
+			//boosttypeを設定しているのはアニメーションのため(未実装).
 			if (inputMoveDirection.y != -1 && h != 0) {
 				boostDirection = transform.InverseTransformDirection(moveDirection.normalized);
 				
@@ -284,6 +291,7 @@ public class UnitMotor : MonoBehaviour {
 	}
 	
 	IEnumerator BoostStart(){
+		//Acceling中はジャンプとしゃがみを受け付ける.
 		moveDirection = boostDirection * boostspeed;
 		_characterState = CharacterState.Acceling;
 		yield return new WaitForSeconds(0.05f);
@@ -295,6 +303,7 @@ public class UnitMotor : MonoBehaviour {
 	}
 
 	void Boost(){
+		//衝突した場合停止させる.
 		if ((controller.collisionFlags & CollisionFlags.Sides) != 0)
 			moveDirection = Vector3.zero;
 	}
@@ -305,20 +314,13 @@ public class UnitMotor : MonoBehaviour {
 			_characterState = CharacterState.Walking;
 	}
 	
-	void ApplyMove(){
-		if (!grounded)
-			moveDirection.y -= gravity * Time.deltaTime;
-		//controller.Move(moveDirection * 
-		 //               Time.deltaTime);
-	}
-
 	private bool IsGroundedTest(){
 		return (groundNormal.y > 0.01);
 	}
 
 	void OnControllerColliderHit(ControllerColliderHit hit) {
 		if(hit.normal.y > 0 && hit.normal.y > groundNormal.y && hit.moveDirection.y < 0)
-			this.groundNormal = hit.normal;
+			groundNormal = hit.normal;
 	}
 	
 	//private Vector3 AdjustGroundVelocityToNormal(Vector3 hVelocity, Vector3 groundNormal) {

@@ -26,6 +26,8 @@ public class Status :MonoBehaviour{
 			if (HP != 0)
 				lastAttackedPlayer = attackedPlayer;
 			myPV.RPC("NetworkReduceHP", PhotonTargets.All, damage);
+			//複数のプレイヤーにキル判定が入らないように.
+			//死んだとき最後に攻撃した機体のプレイヤーにキルしたときの処理を渡すようにする.
 			if (HP == 0){
 				lastAttackedPlayer.GetComponent<PhotonView>().RPC("OnKilledPlayer", PhotonTargets.All);
 				acceptDamage = false;

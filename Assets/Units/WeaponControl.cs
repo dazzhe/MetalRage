@@ -11,9 +11,10 @@ public class WeaponControl : MonoBehaviour {
 	GameObject hinderingObject;
 	GameObject targetObject;
 
+	//機体ごとにインスペクタ上で設定する
 	public int damage = 13;
-	public float recoil = 0.4f;
-	public float mindispersion = 10f;
+	public float recoil = 0.4f;//反動.
+	public float mindispersion = 10f;//ばらつき.
 	public float dispersiongrow = 4f;
 	public float maxrange = 0;
 	public float reloadTime = 1.5f;
@@ -90,6 +91,7 @@ public class WeaponControl : MonoBehaviour {
 		canShot = true;
 		dispersion = mindispersion;
 		NormalDisplay.SetReticle(dispersion);
+		//8番のレイヤー(操作している機体)を無視する.
 		mask = 1 << 8;
 		mask = ~mask;
 	}
@@ -168,6 +170,8 @@ public class WeaponControl : MonoBehaviour {
 			aimedObject = hit.collider.gameObject;
 			targetObject = aimedObject;
 
+			//狙っているオブジェクトと機体の間に障害物があった場合.
+			//障害物で弾がヒットするようにする.
 			originPos = transform.position;
 			shootDirection = (target - originPos).normalized;
 			if (Physics.Raycast (originPos, shootDirection, out hinderinghit, maxrange, mask)){
@@ -175,6 +179,8 @@ public class WeaponControl : MonoBehaviour {
 				target = hinderinghit.point;
 			}
 
+			//相手にダメージ判定があればレティクルを赤くし.
+			//ダメージを与える.
 			Hit dam = targetObject.GetComponentInParent<Hit>();
 			if (dam != null){
 				dam.TakeDamage(damage, this.gameObject);
@@ -195,12 +201,10 @@ public class WeaponControl : MonoBehaviour {
 		else
 			recoilrotationy -= 1F;
 		recoilrotationx += Random.Range(-recoil,recoil);
-		if (dispersion < 30f){
+		if (dispersion < 30f)
 			dispersion += dispersiongrow;
-		}
-		else{
+		else
 			dispersion = 30f;
-		}
 	}
 
 	IEnumerator HitMark(){

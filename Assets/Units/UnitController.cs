@@ -55,6 +55,7 @@ public class UnitController : MonoBehaviour {
 				Screen.showCursor = false;
 			}
 		}
+		//入力情報を同期させる.
 		if (motor.inputState != b){
 			GetComponent<PhotonView>().RPC("InputState",PhotonTargets.All, b);
 		}
@@ -77,6 +78,8 @@ public class UnitController : MonoBehaviour {
 		}
 	}
 
+	//自分の攻撃によって死んだプレイヤーが実行する関数であるため.
+	//RPC関数となっている.
 	[RPC]
 	void OnKilledPlayer(){
 		if (GetComponent<PhotonView>().isMine){
