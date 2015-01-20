@@ -1176,10 +1176,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 100080}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0522aef8f816ac049bae51ae7f59f789, type: 3}
+  m_Script: {fileID: 11500000, guid: 247d253d1645ecc4890077b75adc857a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  van: {fileID: 100092}
+  unit: {fileID: 100092}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1371,18 +1371,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 184df896ea8a3ea4d9243ca97da6c173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velosity: {x: 0, y: 0, z: 0}
-  horizontalSpeed: 0
   canBoost: 1
-  _characterState: 0
-  moveDirection: {x: 0, y: 0, z: 0}
-  rawDirection: {x: 0, y: 0, z: 0}
-  rotationX: 0
-  grounded: 0
-  boosttype: 0
-  boostgauge: 0
-  boostmax: 100
-  boostCount: 0
+  boostspeed: 40
+  jumpSpeed: 18
+  walkspeed: 17
+  accspeed: .200000003
 --- !u!114 &11400032
 MonoBehaviour:
   m_ObjectHideFlags: 1
