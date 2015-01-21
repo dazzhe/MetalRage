@@ -72,7 +72,7 @@ public class UnitController : MonoBehaviour {
 	
 	void LateUpdate(){
 		if (stat.HP == 0){
-			normaldisplay.DeathCount();
+			ScoreBoard._myEntry.IncrementDeath();
 			GameObject go = GameObject.Find ("RandomMatchmaker");
 			go.GetComponent<GameManager>().Die(transform.position, this.gameObject);
 		}
@@ -84,7 +84,7 @@ public class UnitController : MonoBehaviour {
 	void OnKilledPlayer(){
 		if (GetComponent<PhotonView>().isMine){
 			killcount++;
-			normaldisplay.KillCount();
+			ScoreBoard._myEntry.IncrementKill();
 			if (killcount > 14)
 				SoundPlayer.Instance.PlaySE(pkSE[14]);
 			else

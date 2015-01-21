@@ -44,4 +44,9 @@ MonoBehaviour:
   - NetworkReduceHP
   - OnKilledPlayer
   - InputState
+  - AddPlayer
+  - IncDeath
+  - IncKill
+  - SetName
+  - Initialize
   DisableAutoOpenWizard: 0

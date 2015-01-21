@@ -66,8 +66,8 @@ public class UnitMotor : MonoBehaviour {
 	public int boostmax = 100;
 	
 	private float boostCount;
-	private float boostTime = 0.15F;
-	
+	private float boostTime = 0.2F;
+
 	void Start () {
 		StartCoroutine("BoostRegen");
 		controller = GetComponent<CharacterController>();
@@ -309,7 +309,7 @@ public class UnitMotor : MonoBehaviour {
 	}
 	
 	void BoostBrake(){
-		moveDirection = Vector3.Lerp(moveDirection, Vector3.zero, 2f * Time.deltaTime);
+		moveDirection = Vector3.Lerp(moveDirection, Vector3.zero, 6f * Time.deltaTime);
 		if (moveDirection.magnitude <= walkspeed)
 			_characterState = CharacterState.Walking;
 	}

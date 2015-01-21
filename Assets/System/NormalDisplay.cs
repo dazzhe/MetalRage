@@ -4,8 +4,6 @@ using System.Collections;
 
 public class NormalDisplay : MonoBehaviour {
 	public Text HPtext;
-	Text killcounter;
-	Text deathcounter;
 	Slider boostgauge;
 	public Slider HPBar;
 	static Image reticleC;
@@ -14,13 +12,8 @@ public class NormalDisplay : MonoBehaviour {
 	static Image reticleL;
 	static Image reticleR;
 
-	int kill;
-	int death;
-
 	// Use this for initialization
 	void Start () {
-		killcounter = transform.FindChild ("KillCounter").GetComponent<Text>();
-		deathcounter = transform.FindChild ("DeathCounter").GetComponent<Text>();
 		boostgauge = transform.FindChild ("BoostGauge").GetComponent<Slider>();
 		HPBar = transform.FindChild ("HPBar").GetComponent<Slider>();
 		HPtext = transform.FindChild ("HPText").GetComponent<Text>();
@@ -30,24 +23,6 @@ public class NormalDisplay : MonoBehaviour {
 		reticleL = transform.FindChild ("reticle").FindChild ("left").GetComponent<Image>();
 		reticleR = transform.FindChild ("reticle").FindChild ("right").GetComponent<Image>();
 		reticleC.transform.position = new Vector3(Screen.width/2, Screen.height/2, 0);
-		kill = 0;
-		death = 0;
-		killcounter.text = "Kill: " + kill;
-		deathcounter.text = "Death: " + death;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	}
-
-	public void KillCount(){
-		this.kill++;
-		killcounter.text = "Kill: " + kill;
-	}
-
-	public void DeathCount(){
-		this.death++;
-		deathcounter.text = "Death: " + death;
 	}
 
 	public void SetBoostGauge(int boost){
