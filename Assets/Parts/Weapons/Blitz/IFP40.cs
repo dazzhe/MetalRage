@@ -21,7 +21,8 @@ public class IFP40 : MonoBehaviour {
 		weaponctrl = van.GetComponent<WeaponControl>();
 		motor = van.GetComponent<UnitMotor>();
 		isZooming =false;
-		NormalDisplay.DeleteReticle();
+		if (myPV.isMine)
+			NormalDisplay.DeleteReticle();
 	}
 	
 	// Update is called once per frame
@@ -51,9 +52,11 @@ public class IFP40 : MonoBehaviour {
 	}
 	
 	void OnDestroy(){
-		if (Camera.main != null)
-			Camera.main.fieldOfView = 90;
-		NormalDisplay.EnableReticle();
+		if (myPV.isMine){
+			if (Camera.main != null)
+				Camera.main.fieldOfView = 90;
+			NormalDisplay.EnableReticle();
+		}
 	}
 	
 	[RPC]

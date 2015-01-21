@@ -30,6 +30,7 @@ public class RandomMatchmaker : Photon.MonoBehaviour{
 	public void JoinRoom(){
 		InputField i = canvas.transform.FindChild("Image/InputField").GetComponent<InputField>();
 		name = i.text;
+		PhotonNetwork.playerName = name;
 		Destroy (canvas);
 		PhotonNetwork.JoinRandomRoom();
 	}
