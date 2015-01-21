@@ -53,7 +53,7 @@ public class UnitMotor : MonoBehaviour {
 		Vector3.zero;
 	private float gravity = 40.0F;
 
-	//ジャンプしたときの水平方向の初速度
+	//ジャンプしたときの水平方向の初速度.
 	private float hJumpSpeed = 20f;
 	[System.NonSerialized]
 	public float rotationX = 0F;

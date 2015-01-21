@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Hit : MonoBehaviour {
@@ -12,5 +12,4 @@ public class Hit : MonoBehaviour {
 	public void TakeDamage(int damage, GameObject attackedPlayer){
 		stat.ReduceHP(Mathf.FloorToInt(damage * defence), attackedPlayer);
 	}
-
 }

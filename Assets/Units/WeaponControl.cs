@@ -11,7 +11,7 @@ public class WeaponControl : MonoBehaviour {
 	GameObject hinderingObject;
 	GameObject targetObject;
 
-	//機体ごとにインスペクタ上で設定する
+	//機体ごとにインスペクタ上で設定する.
 	public int damage = 13;
 	public float recoil = 0.4f;//反動.
 	public float mindispersion = 10f;//ばらつき.
