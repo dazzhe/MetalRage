@@ -66,7 +66,7 @@ public class UnitMotor : MonoBehaviour {
 	public int boostmax = 100;
 	
 	private float boostCount;
-	private float boostTime = 0.2F;
+	private float boostTime = 0.15F;
 	
 	void Start () {
 		StartCoroutine("BoostRegen");

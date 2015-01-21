@@ -66,7 +66,7 @@ public class SoundPlayer : SingletonMonoBehaviour<SoundPlayer> {
 		}
 		
 		source.clip = this.seDict[seName];
-		source.volume = 0.5f;
+		source.volume = 0.3f;
 		source.Play();
 	}
 	

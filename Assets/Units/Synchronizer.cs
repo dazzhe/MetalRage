@@ -8,7 +8,7 @@ public class Synchronizer : Photon.MonoBehaviour {
 	private short correctRotationX = 0;
 	private byte correctRotationY = 0;
 
-	void Start(){
+	void Awake(){
 		motor = GetComponent<UnitMotor>();
 		wcontrol = GetComponent<WeaponControl>();
 	}

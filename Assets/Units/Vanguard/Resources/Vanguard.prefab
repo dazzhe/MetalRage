@@ -1778,7 +1778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBoost: 1
   boostspeed: 40
-  jumpSpeed: 18
+  jumpSpeed: 14
   walkspeed: 17
   accspeed: .200000003
 --- !u!114 &11400030
