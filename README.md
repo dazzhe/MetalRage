@@ -11,8 +11,16 @@ http://unitygameuploader.jpn.org/game/2968.html
 * Unity  
 * Blender    
 
+<<<<<<< HEAD
 <pre>
 '$git clone'
 </pre>
 でローカルにフォルダを作成してUnityでプロジェクトフォルダとして読み込めば中間ファイルが自動的に生成されます。  
 モデルデータの読み込みのためにBlenderのインストールが必須です。
+=======
+'$git clone'  
+でローカルにフォルダを作成すればUnityでプロジェクトフォルダとして読み込まれて、  
+中間ファイルが自動的に作成されます。  
+モデルデータの読み込みのためにBlenderのインストールが必須です。    
+
+>>>>>>> origin/master
