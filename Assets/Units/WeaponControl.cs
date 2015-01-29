@@ -4,8 +4,7 @@ using System.Collections;
 public class WeaponControl : MonoBehaviour {
 	UnitMotor motor;
 	Canvas settings;
-	GameObject aimedObject;
-	GameObject hinderingObject;
+	[System.NonSerialized]
 	public GameObject targetObject;
 
 	public bool isRecoiling = false;
@@ -25,8 +24,6 @@ public class WeaponControl : MonoBehaviour {
 
 	[System.NonSerialized]
 	public Vector3 targetPos;
-	[System.NonSerialized]
-	public Vector3 shootDirection;
 
 	[System.NonSerialized]
 	public int load;
@@ -43,7 +40,6 @@ public class WeaponControl : MonoBehaviour {
 	public bool inputShot2 = false;
 	Ray ray;
 	RaycastHit hit;
-	RaycastHit hinderinghit;
 	
 	private float DispersionCorrection(){
 		switch(motor._characterState){
@@ -84,6 +80,7 @@ public class WeaponControl : MonoBehaviour {
 			inputShot1 = false;
 			inputShot2 = false;
 		}
+		SetTarget();
 		RecoilControl();
 		DispersionControl();
 	}
@@ -116,6 +113,7 @@ public class WeaponControl : MonoBehaviour {
 	}
 
 	void SetTarget(){
+		ray = Camera.main.ScreenPointToRay(center);
 		if (Physics.Raycast(ray, out hit, 1000, mask)) {
 			targetPos = hit.point;
 			targetObject = hit.collider.gameObject;

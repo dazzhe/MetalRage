@@ -10,6 +10,9 @@ public class Hit : MonoBehaviour {
 	}
 
 	public void TakeDamage(int damage, GameObject attackedPlayer){
-		stat.ReduceHP(Mathf.FloorToInt(damage * defence), attackedPlayer);
+		if (damage > 0)
+			stat.ReduceHP(Mathf.FloorToInt(damage * defence), attackedPlayer);
+		else
+			stat.ReduceHP(Mathf.FloorToInt(damage), attackedPlayer);
 	}
 }

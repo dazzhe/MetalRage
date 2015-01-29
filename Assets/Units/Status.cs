@@ -15,9 +15,6 @@ public class Status :MonoBehaviour{
 
 	void Awake(){
 		myPV = GetComponent<PhotonView>();
-	}
-
-	void Start(){
 		HP = maxHP;
 	}
 
@@ -26,6 +23,8 @@ public class Status :MonoBehaviour{
 			if (HP != 0)
 				lastAttackedPlayer = attackedPlayer;
 			myPV.RPC("NetworkReduceHP", PhotonTargets.All, damage);
+			HP -= damage;
+			HP = Mathf.Clamp(HP,0,maxHP);
 			//複数のプレイヤーにキル判定が入らないように.
 			//死んだとき最後に攻撃した機体のプレイヤーにキルしたときの処理を渡すようにする.
 			if (HP == 0){
@@ -37,9 +36,17 @@ public class Status :MonoBehaviour{
 
 	[RPC]
 	void NetworkReduceHP(int damage){
-		HP -= damage;
-		if (HP < 0)
-			HP = 0;
+		if (myPV.isMine){
+			HP -= damage;
+			if (HP < 0)
+				HP = 0;
+			if (HP > maxHP)
+				HP = maxHP;
+			myPV.RPC("SetHP",PhotonTargets.OthersBuffered,HP);
+		}
 	}
-
+	[RPC]
+	void SetHP(int HP){
+		this.HP = HP;
+	}
 }

@@ -6,18 +6,28 @@ public class IFP40 : WeaponRay {
 	
 	void Awake () {
 		isZooming = false;
-		NormalDisplay.DeleteReticle();
 		maxload = 6;
 		damage = 200;
-		recoil = 10f;//反動.
+		recoil = 6f;//反動.
 		mindispersion = 0f;//ばらつき.
 		dispersiongrow = 0f;
 		maxrange = 1000;
 		reloadTime = 3f;
 		interval = 2F;
 		Init ();
+		if (myPV.isMine)
+			NormalDisplay.DeleteReticle();
 	}
-
+	protected IEnumerator ShotControl(){
+		if (wcontrol.inputShot1 && load > 0 && !cooldown && canShot && !isReloading){
+			Shot();
+			ZoomOff();
+			myPV.RPC("MakeShots",PhotonTargets.All);
+			cooldown = true;
+			yield return new WaitForSeconds(interval);
+			cooldown = false;
+		}
+	}
 	void LateUpdate () {
 		StartCoroutine(ShotControl ());
 		if (wcontrol.inputReload && load != maxload && !isReloading)

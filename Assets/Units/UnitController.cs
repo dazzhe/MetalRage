@@ -8,7 +8,6 @@ public class UnitController : MonoBehaviour {
 		"09_super_action","10_unbellevable","11_fantastic","12_bigbang",
 		"13_holy_shot","14_holy_shot_haha"};
 
-	WeaponControl weaponctrl;
 	UnitMotor motor;
 	NormalDisplay normaldisplay;
 	Status stat;
@@ -18,7 +17,6 @@ public class UnitController : MonoBehaviour {
 
 	void Start () {
 		GameObject normdisp = GameObject.Find ("NormalDisplay");
-		weaponctrl = GetComponent<WeaponControl>();
 		motor = GetComponent<UnitMotor>();
 		stat = GetComponent<Status>();
 		normaldisplay = normdisp.GetComponent<NormalDisplay>();

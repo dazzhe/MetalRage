@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public abstract class Weapon : MonoBehaviour{
-	private AudioSource reload;
+	protected GameObject unit;
+	protected AudioSource reload;
 	protected PhotonView myPV;
 	protected WeaponControl wcontrol;
 	protected NormalDisplay normdisp;
@@ -23,9 +24,10 @@ public abstract class Weapon : MonoBehaviour{
 	protected bool cooldown = false;
 
 	protected void Init () {
+		unit = transform.parent.parent.parent.gameObject;
 		myPV = GetComponent<PhotonView>();
-		wcontrol = GetComponentInParent<WeaponControl>();
-		motor = GetComponentInParent<UnitMotor>();
+		wcontrol = unit.GetComponent<WeaponControl>();
+		motor = unit.GetComponent<UnitMotor>();
 		AudioSource[] audioSources = GetComponents<AudioSource>();
 		reload = audioSources[0];
 		load = maxload;

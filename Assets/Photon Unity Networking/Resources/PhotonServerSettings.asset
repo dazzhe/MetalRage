@@ -50,4 +50,7 @@ MonoBehaviour:
   - SetName
   - Initialize
   - Shield
+  - Default
+  - RepairRPC
+  - SetHP
   DisableAutoOpenWizard: 0
