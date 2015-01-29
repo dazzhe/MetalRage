@@ -1,42 +1,15 @@
 fileFormatVersion: 2
-guid: 432d68d4655997d46bd91861f17c0237
+guid: 7a74f4a6e380cd64e9454bd0e6fb0c18
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: Bone
-    100002: Bone_L
-    100004: Bone_L_001
-    100006: Bone_L_002
-    100008: Bone_L_003
-    100010: Bone_R
-    100012: Bone_R_001
-    100014: Bone_R_002
-    100016: Bone_R_003
-    100018: LowerBody
-    100020: LowerBody_Mesh
-    100022: //RootNode
-    400000: Bone
-    400002: Bone_L
-    400004: Bone_L_001
-    400006: Bone_L_002
-    400008: Bone_L_003
-    400010: Bone_R
-    400012: Bone_R_001
-    400014: Bone_R_002
-    400016: Bone_R_003
-    400018: LowerBody
-    400020: LowerBody_Mesh
-    400022: //RootNode
-    4300000: LowerBody_Mesh
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Cube
     7400000: Default Take
-    7400002: Fall
-    7400004: Rise
-    7400006: Squat
-    7400008: Idle
-    7400010: Walk
     9500000: //RootNode
-    11100000: //RootNode
-    13700000: LowerBody_Mesh
   materials:
     importMaterials: 1
     materialName: 0
@@ -88,6 +61,6 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 1
+  animationType: 2
   additionalBone: 0
   userData: 

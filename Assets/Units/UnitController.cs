@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections;
 //このスクリプトは自分の機体についているときのみenabledになる.
 public class UnitController : MonoBehaviour {
-	GameObject normdisp;
 	private static string[] pkSE
 		= {"","01_shot","02_double_kill","03_mass_kill","04_multi_kill",
 		"05_crazy_kill","06_great_kill","07_excellent","08_massacre",
@@ -14,18 +13,15 @@ public class UnitController : MonoBehaviour {
 	NormalDisplay normaldisplay;
 	Status stat;
 	Canvas settings;
-	GUIText noltext;
 	
 	private int killcount;
 
 	void Start () {
-		normdisp = GameObject.Find ("NormalDisplay");
+		GameObject normdisp = GameObject.Find ("NormalDisplay");
 		weaponctrl = GetComponent<WeaponControl>();
 		motor = GetComponent<UnitMotor>();
 		stat = GetComponent<Status>();
 		normaldisplay = normdisp.GetComponent<NormalDisplay>();
-		GameObject nolbar = GameObject.Find("NOLBar");
-		noltext = nolbar.GetComponent<GUIText>();
 		settings = GameObject.Find("Settings").GetComponent<Canvas>();
 	}
 
@@ -61,7 +57,6 @@ public class UnitController : MonoBehaviour {
 		}
 		normaldisplay.HPtext.text = stat.HP.ToString();
 		normaldisplay.HPBar.value = 1f * stat.HP / stat.maxHP;
-		noltext.text = weaponctrl.load.ToString();
 		normaldisplay.SetBoostGauge(motor.boostgauge);
 	}
 

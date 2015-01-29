@@ -1,59 +1,41 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MAF : MonoBehaviour {
-    private PhotonView myPV;
-	public bool isOpen;
-    Animator _anim;
-	private Collider co;
-	WeaponControl weaponctrl;
-	public GameObject unit;
-	
+public class MAF : WeaponRay {
+	public bool isOpen = true;
+
 	// Use this for initialization
 	void Awake () {
-        myPV = PhotonView.Get(this);
-		weaponctrl = unit.GetComponent<WeaponControl>();
-        _anim = this.GetComponent<Animator>();
-		co = this.GetComponent<Collider>();
-		isOpen = true;
-		GetComponent<Hit>().defence = 0.2f;
+		maxload = 800;
+		damage = 13;
+		recoil = 0f;//反動.
+		mindispersion = 0f;//ばらつき.
+		dispersiongrow = 0f;
+		maxrange = 10;
+		reloadTime = 1.5f;
+		interval = 0.06F;
+		Init ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (myPV.isMine){
-            if (weaponctrl.inputShot2)
-                myPV.RPC("ShieldAnimation",PhotonTargets.AllBuffered);
-        }
+		StartCoroutine(ShotControl ());
+        if (wcontrol.inputShot2)
+			myPV.RPC("Shield",PhotonTargets.AllBuffered);
+		NormalDisplay.SetReticle(mindispersion * wcontrol.desiredDispersion);
 	}
 	
 	[RPC]
-	void MakeShot(){
-		//audio.Play();
-		StartCoroutine (this.EmitFire());
-	}
-
-    [RPC]
-    void ShieldAnimation(){
-        if (isOpen){
-            isOpen = false;
-			weaponctrl.canShot = false;
-			_anim.SetBool("isOpen",false);
-			co.enabled = true;
-			co.isTrigger = true;
-        }
-        else {
-            isOpen = true;
-			weaponctrl.canShot = true;
-            _anim.SetBool("isOpen",true);
-			co.enabled = false;
-			co.isTrigger = false;
+	void Shield(){
+		if (isOpen){
+			isOpen = false;
+			canShot = false;
+			transform.BroadcastMessage("ShieldClose");
 		}
-    }
-
-	IEnumerator EmitFire(){
-		particleSystem.Play(); 
-		yield return new WaitForSeconds(0.1f);
-		particleSystem.Stop();
+		else {
+			isOpen = true;
+			canShot = true;
+			transform.BroadcastMessage("ShieldOpen");
+		}
 	}
 }

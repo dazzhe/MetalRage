@@ -1,62 +1,40 @@
 fileFormatVersion: 2
-guid: f5a85b8a35841b148b23d80774be6d97
+guid: 9b0f56cd2ed201d49a7a6b159ffba66f
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: Armature
-    100002: Bone
-    100004: Bone_001
-    100006: Bone_L
-    100008: Bone_L_001
-    100010: Bone_L_002
-    100012: Bone_L_003
-    100014: Bone_L_004
-    100016: Bone_L_005
-    100018: Bone_L_006
-    100020: Bone_R
-    100022: Bone_R_001
-    100024: Bone_R_002
-    100026: Bone_R_003
-    100028: Bone_R_004
-    100030: Bone_R_005
-    100032: Bone_R_006
-    100034: Camera
-    100036: Cube
-    100038: //RootNode
-    100040: Lamp
-    400000: Armature
-    400002: Bone
-    400004: Bone_001
-    400006: Bone_L
-    400008: Bone_L_001
-    400010: Bone_L_002
-    400012: Bone_L_003
-    400014: Bone_L_004
-    400016: Bone_L_005
-    400018: Bone_L_006
-    400020: Bone_R
-    400022: Bone_R_001
-    400024: Bone_R_002
-    400026: Bone_R_003
-    400028: Bone_R_004
-    400030: Bone_R_005
-    400032: Bone_R_006
-    400034: Camera
-    400036: Cube
-    400038: //RootNode
-    400040: Lamp
-    4300000: Cube
+    100000: Base
+    100002: L1
+    100004: L2
+    100006: L3
+    100008: L4
+    100010: LowerBody
+    100012: LowerBody_Mesh
+    100014: R1
+    100016: R2
+    100018: R3
+    100020: R4
+    100022: //RootNode
+    400000: Base
+    400002: L1
+    400004: L2
+    400006: L3
+    400008: L4
+    400010: LowerBody
+    400012: LowerBody_Mesh
+    400014: R1
+    400016: R2
+    400018: R3
+    400020: R4
+    400022: //RootNode
+    4300000: LowerBody_Mesh
     7400000: Default Take
-    7400002: boost
-    7400004: boost_left
-    7400006: boost_right
-    7400008: jump
-    7400010: jump_2
-    7400012: syoki
-    7400014: walk
+    7400002: Idle
+    7400004: Squat
+    7400006: Walk
     9500000: //RootNode
     11100000: //RootNode
-    13700000: Cube
+    13700000: LowerBody_Mesh
   materials:
     importMaterials: 1
     materialName: 0
@@ -76,7 +54,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .00999999978
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1

@@ -4,6 +4,7 @@ using System.Collections;
 
 public class NormalDisplay : MonoBehaviour {
 	public Text HPtext;
+	public Text NOLtext;
 	Slider boostgauge;
 	public Slider HPBar;
 	static Image reticleC;
@@ -17,6 +18,7 @@ public class NormalDisplay : MonoBehaviour {
 		boostgauge = transform.FindChild ("BoostGauge").GetComponent<Slider>();
 		HPBar = transform.FindChild ("HPBar").GetComponent<Slider>();
 		HPtext = transform.FindChild ("HPText").GetComponent<Text>();
+		NOLtext = transform.FindChild ("NOLText").GetComponent<Text>();
 		reticleC = transform.FindChild ("reticle").FindChild ("center").GetComponent<Image>();
 		reticleD = transform.FindChild ("reticle").FindChild ("down").GetComponent<Image>();
 		reticleU = transform.FindChild ("reticle").FindChild ("up").GetComponent<Image>();
