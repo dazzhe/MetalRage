@@ -5,10 +5,11 @@ using System.Collections.Generic;
 public class GameManager : Photon.MonoBehaviour {
 	PhotonView myPV;
 	GameObject explosion;
-	private Vector3[] spawnPositions = new Vector3[]{
-		new Vector3(10f, -5f, 5f), new Vector3(-92f, -20f, 6f),
-		new Vector3(0f, -20f, 100f), new Vector3(-34f,11f,-12f),
-		new Vector3(-34f, -24f,-108f), new Vector3(-100f, -24f, -150f)};
+	//respawnX[0]<-RespawnRangeX of RedTeam
+	//respawnX[1]<-RespawnRangeX of BlueTeam...
+	private float[,] respawnX = new float[2,2] {{-90, 27},{-90, 46}};
+	private float[,] respawnZ = new float[2,2] {{120, 142},{-157, -143}};
+	public static int myTeam = 5;	//<-if RedTeam then 0 else 1
 	/*
 	struct PlayerData{
 		public string playerName;
@@ -19,21 +20,17 @@ public class GameManager : Photon.MonoBehaviour {
 	}
 	private List<PlayerData> PlayerList;
 	*/
-
-	// Use this for initialization
+	
 	void Start () {
 		myPV = GetComponent<PhotonView>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	public void Spawn(string unit){
-		GameObject player 
-			= PhotonNetwork.Instantiate(unit,
-			                            spawnPositions[Random.Range(0, 6)],
+		Vector3 spawnPos = new Vector3(Random.Range(respawnX[myTeam,0],respawnX[myTeam,1]),
+		                               -22f,
+		                               Random.Range(respawnZ[myTeam,0],respawnZ[myTeam,1]));
+		GameObject player
+			= PhotonNetwork.Instantiate(unit, spawnPos,
 			                            Quaternion.identity, 0) as GameObject;
 		GetComponent<UnitOption>().enabled = false;
 		player.layer = 8;
@@ -41,14 +38,15 @@ public class GameManager : Photon.MonoBehaviour {
 		player.GetComponent<UnitMotor>().enabled = true;
 		player.GetComponent<WeaponControl>().enabled = true;
 		player.GetComponent<MainCamera>().enabled = true;
+		FriendOrEnemy fn = player.GetComponent<FriendOrEnemy>();
+		fn.team = myTeam;
+		fn.playerName = PhotonNetwork.playerName;
 	}
 
 	public void Die(Vector3 pos, GameObject go){
 		PhotonNetwork.Destroy(go);
 		PhotonNetwork.RPC(myPV, "Explosion", PhotonTargets.All,pos);
-		GetComponent<UnitOption>().enabled = true;
-		Screen.lockCursor = false;
-		Screen.showCursor = true;
+		UnitOption.UnitSelect();
 	}
 
 	[RPC]

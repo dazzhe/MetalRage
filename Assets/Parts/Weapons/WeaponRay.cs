@@ -38,7 +38,7 @@ public abstract class WeaponRay : Weapon {
 			//相手にダメージ判定があればレティクルを赤くし.
 			//ダメージを与える.
 			Hit dam = targetObject.GetComponentInParent<Hit>();
-			if (dam != null){
+			if (dam != null && targetObject.layer == 10){
 				dam.TakeDamage(damage, unit);
 				StopCoroutine("HitMark");
 				StartCoroutine("HitMark");

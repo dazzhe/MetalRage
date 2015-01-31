@@ -60,7 +60,7 @@ public class RepairArm : Weapon {
 		repair.PlayOneShot(repair.clip);
 		if (myPV.isMine){
 			Hit h = wcontrol.targetObject.GetComponentInParent<Hit>();
-			if (h != null && s.HP != s.maxHP && load >= 15
+			if (h != null && wcontrol.targetObject.layer == 9 && s.HP != s.maxHP && load >= 15
 			    && (wcontrol.targetObject.transform.position
 			   	  - transform.position).magnitude <= 4f){
 				h.TakeDamage(damage,unit);

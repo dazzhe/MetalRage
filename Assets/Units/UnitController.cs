@@ -66,7 +66,7 @@ public class UnitController : MonoBehaviour {
 	void LateUpdate(){
 		if (stat.HP == 0){
 			ScoreBoard._myEntry.IncrementDeath();
-			GameObject go = GameObject.Find ("RandomMatchmaker");
+			GameObject go = GameObject.Find ("GameManager");
 			go.GetComponent<GameManager>().Die(transform.position, this.gameObject);
 		}
 	}

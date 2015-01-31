@@ -11,7 +11,7 @@ public class MAF : WeaponRay {
 		recoil = 0f;//反動.
 		mindispersion = 0f;//ばらつき.
 		dispersiongrow = 0f;
-		maxrange = 10;
+		maxrange = 25;
 		reloadTime = 1.5f;
 		interval = 0.06F;
 		Init ();

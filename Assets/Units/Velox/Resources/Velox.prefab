@@ -178,7 +178,7 @@ GameObject:
   - 4: {fileID: 441392}
   - 114: {fileID: 11441394}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: MainWeapons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -197,6 +197,21 @@ GameObject:
   - 95: {fileID: 9541394}
   m_Layer: 0
   m_Name: Velox_Head
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &179244
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 479244}
+  m_Layer: 0
+  m_Name: SubWeapons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -424,6 +439,7 @@ Transform:
   m_Children:
   - {fileID: 441392}
   - {fileID: 441394}
+  - {fileID: 479244}
   m_Father: {fileID: 406658}
   m_RootOrder: 0
 --- !u!4 &424466
@@ -433,12 +449,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 124466}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .629999995, y: .839999974, z: .709999979}
+  m_LocalPosition: {x: -331.817566, y: -227.64743, z: 43.0597305}
   m_LocalScale: {x: .200000003, y: .200000003, z: .300000012}
   m_Children:
   - {fileID: 424468}
   - {fileID: 424470}
-  m_Father: {fileID: 441392}
+  m_Father: {fileID: 479244}
   m_RootOrder: 0
 --- !u!4 &424468
 Transform:
@@ -525,8 +541,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: .624751091, z: -.485267639}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 424466}
+  m_Children: []
   m_Father: {fileID: 406662}
   m_RootOrder: 0
 --- !u!4 &441394
@@ -541,6 +556,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 406662}
   m_RootOrder: 1
+--- !u!4 &479244
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 179244}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 332.447571, y: 229.112183, z: -42.8349991}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 424466}
+  m_Father: {fileID: 406662}
+  m_RootOrder: 2
 --- !u!4 &480396
 Transform:
   m_ObjectHideFlags: 1

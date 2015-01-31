@@ -53,4 +53,7 @@ MonoBehaviour:
   - Default
   - RepairRPC
   - SetHP
+  - Init
+  - SpawnRPC
+  - Sync
   DisableAutoOpenWizard: 0

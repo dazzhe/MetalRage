@@ -69,4 +69,5 @@ public class NormalDisplay : MonoBehaviour {
 		reticleL.enabled = true;
 		reticleR.enabled = true;
 	}
+
 }

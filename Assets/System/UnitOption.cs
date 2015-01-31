@@ -4,14 +4,17 @@ using System.Collections;
 public class UnitOption : MonoBehaviour {
 	public string unit;
 	GameManager gm;
-	// Use this for initialization
-	void Start () {
+	static UnitOption uo;
+
+	void Awake () {
 		gm = GetComponent<GameManager>();
+		uo = this;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public static void UnitSelect(){
+		uo.enabled = true;
+		Screen.lockCursor = false;
+		Screen.showCursor = true;
 	}
 
 	void OnGUI(){

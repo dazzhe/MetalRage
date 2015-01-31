@@ -4,8 +4,10 @@ using UnityEngine.UI;
 
 public class PlayerInScoreboard : MonoBehaviour {
 	public string playerName;
+	public int playerID = 0;
 	public int kill = 0;
 	public int death = 0;
+	public int team;
 	Text _kill;
 	Text _death;
 	PhotonView myPV;
@@ -16,20 +18,16 @@ public class PlayerInScoreboard : MonoBehaviour {
 		_kill = transform.FindChild("Kill").GetComponent<Text>();
 		_death = transform.FindChild("Death").GetComponent<Text>();
 		if (myPV.isMine)
-			myPV.RPC("Initialize",PhotonTargets.AllBuffered,playerName);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (myPV.isMine){
-			_death.text = death.ToString();
-		}
+			myPV.RPC("Init",PhotonTargets.AllBuffered,playerName,team);
 	}
 
 	[RPC]
-	public void Initialize(string name){
-		GameObject scoreList
-			= GameObject.Find("Scoreboard/Panel/PlayerScoreList");
+	public void Init(string name, int t){
+		GameObject scoreList = null;
+		if (t == 0)
+			scoreList = GameObject.Find("Scoreboard/Panel/REDPlayerScoreList");
+		if (t == 1)
+			scoreList = GameObject.Find("Scoreboard/Panel/BLUEPlayerScoreList");
 		transform.parent = scoreList.transform;
 		transform.localScale = new Vector3(1f,1f,1f);
 		Text _name = transform.FindChild("Name").GetComponent<Text>();
@@ -52,5 +50,9 @@ public class PlayerInScoreboard : MonoBehaviour {
 	private void IncDeath(){
 		death++;
 		_death.text = death.ToString();
+	}
+
+	public void AddScore(){
+		ScoreBoard.score[team] += kill;
 	}
 }

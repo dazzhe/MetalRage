@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class WeaponControl : MonoBehaviour {
+	static Text EIR;
 	UnitMotor motor;
 	Canvas settings;
 	[System.NonSerialized]
@@ -40,7 +42,7 @@ public class WeaponControl : MonoBehaviour {
 	public bool inputShot2 = false;
 	Ray ray;
 	RaycastHit hit;
-	
+
 	private float DispersionCorrection(){
 		switch(motor._characterState){
 		case UnitMotor.CharacterState.Idle:
@@ -61,6 +63,7 @@ public class WeaponControl : MonoBehaviour {
 	
 	void Start () {
 		settings = GameObject.Find ("Settings").GetComponent<Canvas>();
+		EIR = GameObject.Find("NormalDisplay/EnemyInReticle").GetComponent<Text>();
 		motor = GetComponent<UnitMotor>();
 		center = new Vector3(Screen.width/2, Screen.height/2, 0);
 		//8番のレイヤー(操作している機体)を無視する.
@@ -117,7 +120,17 @@ public class WeaponControl : MonoBehaviour {
 		if (Physics.Raycast(ray, out hit, 1000, mask)) {
 			targetPos = hit.point;
 			targetObject = hit.collider.gameObject;
+			if (targetObject.layer == 10){
+				StopCoroutine("ShowEnemyName");
+				StartCoroutine("ShowEnemyName");
+			}
 		}
+	}
+
+	private IEnumerator ShowEnemyName(){
+		EIR.text = targetObject.GetComponentInParent<FriendOrEnemy>().playerName;
+		yield return new WaitForSeconds(0.2f);
+		EIR.text = "";
 	}
 
 	void OnDestroy(){
