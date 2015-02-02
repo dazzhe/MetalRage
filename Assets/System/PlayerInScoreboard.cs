@@ -46,6 +46,7 @@ public class PlayerInScoreboard : Photon.MonoBehaviour {
 		transform.localScale = new Vector3(1f,1f,1f);
 		Text _name = transform.FindChild("Name").GetComponent<Text>();
 		_name.text = name;
+		team = t;
 	}
 
 	public void IncrementKill(){

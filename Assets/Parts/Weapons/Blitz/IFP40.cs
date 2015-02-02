@@ -17,6 +17,7 @@ public class IFP40 : WeaponRay {
 		Init ();
 		if (myPV.isMine)
 			NormalDisplay.DeleteReticle();
+		wcontrol.isBlitzMain = true;
 	}
 	protected IEnumerator ShotControl(){
 		if (wcontrol.inputShot1 && load > 0 && !cooldown && canShot && !isReloading){

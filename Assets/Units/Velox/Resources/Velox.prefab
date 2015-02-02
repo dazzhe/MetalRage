@@ -19,6 +19,7 @@ GameObject:
   - 82: {fileID: 8206662}
   - 114: {fileID: 11406654}
   - 114: {fileID: 11406656}
+  - 114: {fileID: 11483862}
   m_Layer: 0
   m_Name: Velox
   m_TagString: Player
@@ -1171,6 +1172,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   van: {fileID: 106658}
+--- !u!114 &11483862
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38c1b638cbad89c47bf7a664889ab3fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 5
+  playerName: 
 --- !u!137 &13724478
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

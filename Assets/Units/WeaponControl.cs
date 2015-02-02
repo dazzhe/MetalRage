@@ -38,6 +38,7 @@ public class WeaponControl : MonoBehaviour {
 	public Vector3 center = Vector3.zero;
 	public bool inputReload = false;
 	public bool inputShot1 = false;
+	public bool isBlitzMain = false;
 	[System.NonSerialized]
 	public bool inputShot2 = false;
 	Ray ray;
@@ -83,7 +84,8 @@ public class WeaponControl : MonoBehaviour {
 			inputShot1 = false;
 			inputShot2 = false;
 		}
-		SetTarget();
+		if (!isBlitzMain)
+			SetTarget();
 		RecoilControl();
 		DispersionControl();
 	}
