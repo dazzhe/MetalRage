@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class PlayerInScoreboard : MonoBehaviour {
+public class PlayerInScoreboard : Photon.MonoBehaviour {
 	public string playerName;
 	public int playerID = 0;
 	public int kill = 0;
@@ -12,7 +12,6 @@ public class PlayerInScoreboard : MonoBehaviour {
 	Text _death;
 	PhotonView myPV;
 
-	// Use this for initialization
 	void Start () {
 		myPV = GetComponent<PhotonView>();
 		_kill = transform.FindChild("Kill").GetComponent<Text>();
@@ -21,6 +20,21 @@ public class PlayerInScoreboard : MonoBehaviour {
 			myPV.RPC("Init",PhotonTargets.AllBuffered,playerName,team);
 	}
 
+	void Update(){
+		_kill.text = kill.ToString();
+		_death.text = death.ToString();
+	}
+
+	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info){
+		if (stream.isWriting){
+			stream.SendNext(kill);
+			stream.SendNext(death);
+		}
+		else{
+			kill = (int)stream.ReceiveNext();
+			death = (int)stream.ReceiveNext();
+		}
+	}
 	[RPC]
 	public void Init(string name, int t){
 		GameObject scoreList = null;
@@ -35,19 +49,11 @@ public class PlayerInScoreboard : MonoBehaviour {
 	}
 
 	public void IncrementKill(){
-		myPV.RPC("IncKill",PhotonTargets.AllBuffered);
-	}
-	[RPC]
-	private void IncKill(){
 		kill++;
 		_kill.text = kill.ToString();
 	}
 
 	public void IncrementDeath(){
-		myPV.RPC("IncDeath",PhotonTargets.AllBuffered);
-	}
-	[RPC]
-	private void IncDeath(){
 		death++;
 		_death.text = death.ToString();
 	}

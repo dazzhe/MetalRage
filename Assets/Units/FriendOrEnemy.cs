@@ -11,14 +11,20 @@ public class FriendOrEnemy : MonoBehaviour {
 	void Start () {
 		myPV = GetComponent<PhotonView>();
 		style = new GUIStyle();
-		if (myPV.isMine)
-			myPV.RPC("Sync",PhotonTargets.OthersBuffered,team,playerName);
+		if (myPV.isMine){
+			team = GameManager.myTeam;
+			playerName = PhotonNetwork.playerName;
+			//We can't send variables of GameObject type so we name this unit for identifying
+			name = PhotonNetwork.player.ID.ToString();
+			myPV.RPC("Sync",PhotonTargets.OthersBuffered,team,playerName,name);
+		}
 		StartCoroutine(WaitAndProceed ());
 	}
 
 	[RPC]
-	void Sync(int t, string name){
-		playerName = name;
+	void Sync(int t, string n, string objectName){
+		name = objectName;
+		playerName = n;
 		team = t;
 	}
 

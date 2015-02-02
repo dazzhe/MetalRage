@@ -1782,7 +1782,7 @@ MonoBehaviour:
   synchronization: 0
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
-  instantiationId: 0
+  instantiationId: -1
 --- !u!114 &11450782
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -13,7 +13,7 @@ public class HAR6 : WeaponRay {
 		dispersiongrow = 0.4f;
 		maxrange = 1000;
 		reloadTime = 1.5f;
-		interval = 0.06F;
+		interval = 0.07F;
 		Init ();
 	}
 	

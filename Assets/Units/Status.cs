@@ -9,7 +9,6 @@ public class Status :MonoBehaviour{
 	[System.NonSerialized]
 	public int HP;
 
-	private bool acceptDamage = true;
 	PhotonView myPV;
 	private GameObject lastAttackedPlayer;
 
@@ -18,33 +17,25 @@ public class Status :MonoBehaviour{
 		HP = maxHP;
 	}
 
-	public void ReduceHP(int damage, GameObject attackedPlayer){
-		if (acceptDamage){
-			if (HP != 0)
-				lastAttackedPlayer = attackedPlayer;
-			myPV.RPC("NetworkReduceHP", PhotonTargets.All, damage);
+	//this will be called in local
+	public void ReduceHP(int damage, string attacker){
+		myPV.RPC("NetworkReduceHP", PhotonTargets.All, damage, attacker);
+	}
+
+	//Only an owner of this unit proceeds this
+	[RPC]
+	void NetworkReduceHP(int damage, string attacker){
+		if (myPV.isMine && HP != 0){
 			HP -= damage;
-			HP = Mathf.Clamp(HP,0,maxHP);
-			//複数のプレイヤーにキル判定が入らないように.
-			//死んだとき最後に攻撃した機体のプレイヤーにキルしたときの処理を渡すようにする.
-			if (HP == 0){
-				lastAttackedPlayer.GetComponent<PhotonView>().RPC("OnKilledPlayer", PhotonTargets.All);
-				acceptDamage = false;
-			}
+			HP = Mathf.Clamp(HP, 0, maxHP);
+			myPV.RPC("SetHP",PhotonTargets.OthersBuffered,HP);
+			if (HP == 0)
+				GameObject.Find(attacker)
+					.GetComponent<PhotonView>()
+					.RPC ("OnKilledPlayer",PhotonTargets.Others);
 		}
 	}
 
-	[RPC]
-	void NetworkReduceHP(int damage){
-		if (myPV.isMine){
-			HP -= damage;
-			if (HP < 0)
-				HP = 0;
-			if (HP > maxHP)
-				HP = maxHP;
-			myPV.RPC("SetHP",PhotonTargets.OthersBuffered,HP);
-		}
-	}
 	[RPC]
 	void SetHP(int HP){
 		this.HP = HP;

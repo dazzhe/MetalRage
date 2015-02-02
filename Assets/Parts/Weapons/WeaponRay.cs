@@ -39,7 +39,7 @@ public abstract class WeaponRay : Weapon {
 			//ダメージを与える.
 			Hit dam = targetObject.GetComponentInParent<Hit>();
 			if (dam != null && targetObject.layer == 10){
-				dam.TakeDamage(damage, unit);
+				dam.TakeDamage(damage, unit.name);
 				StopCoroutine("HitMark");
 				StartCoroutine("HitMark");
 			}

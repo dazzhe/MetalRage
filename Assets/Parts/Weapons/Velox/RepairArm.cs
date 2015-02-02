@@ -63,7 +63,7 @@ public class RepairArm : Weapon {
 			if (h != null && wcontrol.targetObject.layer == 9 && s.HP != s.maxHP && load >= 15
 			    && (wcontrol.targetObject.transform.position
 			   	  - transform.position).magnitude <= 4f){
-				h.TakeDamage(damage,unit);
+				h.TakeDamage(damage,unit.name);
 				RemainingLoads(15);
 			}
 		}

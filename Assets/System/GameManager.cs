@@ -38,9 +38,6 @@ public class GameManager : Photon.MonoBehaviour {
 		player.GetComponent<UnitMotor>().enabled = true;
 		player.GetComponent<WeaponControl>().enabled = true;
 		player.GetComponent<MainCamera>().enabled = true;
-		FriendOrEnemy fn = player.GetComponent<FriendOrEnemy>();
-		fn.team = myTeam;
-		fn.playerName = PhotonNetwork.playerName;
 	}
 
 	public void Die(Vector3 pos, GameObject go){

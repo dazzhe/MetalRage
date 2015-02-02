@@ -282,7 +282,7 @@ MonoBehaviour:
   group: 0
   prefixBackup: -1
   observed: {fileID: 11459978}
-  synchronization: 0
+  synchronization: 1
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   instantiationId: -1
@@ -298,8 +298,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: 
+  playerID: 0
   kill: 0
   death: 0
+  team: 0
 --- !u!222 &22231770
 CanvasRenderer:
   m_ObjectHideFlags: 1

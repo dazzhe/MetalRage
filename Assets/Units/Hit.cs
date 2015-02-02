@@ -8,11 +8,11 @@ public class Hit : MonoBehaviour {
 	void Start () {
 		stat = GetComponentInParent<Status>();
 	}
-
-	public void TakeDamage(int damage, GameObject attackedPlayer){
+	
+	public void TakeDamage(int damage, string attacker){
 		if (damage > 0)
-			stat.ReduceHP(Mathf.FloorToInt(damage * defence), attackedPlayer);
+			stat.ReduceHP(Mathf.FloorToInt(damage * defence), attacker);
 		else
-			stat.ReduceHP(Mathf.FloorToInt(damage), attackedPlayer);
+			stat.ReduceHP(Mathf.FloorToInt(damage), attacker);	//not to reduce repair
 	}
 }
