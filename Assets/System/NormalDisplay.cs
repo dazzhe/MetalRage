@@ -4,7 +4,7 @@ using System.Collections;
 
 public class NormalDisplay : MonoBehaviour {
 	public Text HPtext;
-	public Text NOLtext;
+	public static Text NOLtext;
 	Slider boostgauge;
 	public Slider HPBar;
 	static Image reticleC;
@@ -55,11 +55,16 @@ public class NormalDisplay : MonoBehaviour {
 	}
 
 	public static void DeleteReticle(){
-		reticleC.enabled = false;
-		reticleD.enabled = false;
-		reticleU.enabled = false;
-		reticleL.enabled = false;
-		reticleR.enabled = false;
+		if (reticleC != null)
+			reticleC.enabled = false;
+		if (reticleD != null)
+			reticleD.enabled = false;
+		if (reticleU != null)
+			reticleU.enabled = false;
+		if (reticleL != null)
+			reticleL.enabled = false;
+		if (reticleR != null)
+			reticleR.enabled = false;
 	}
 
 	public static void EnableReticle(){

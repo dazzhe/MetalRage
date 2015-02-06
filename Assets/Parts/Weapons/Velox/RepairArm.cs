@@ -8,49 +8,49 @@ public class RepairArm : Weapon {
 	Text HP;
 	Status s;
 	void Awake () {
-		maxload = 100;
-		damage = -40;
-		recoil = 0f;//反動.
-		mindispersion = 0f;//ばらつき.
-		dispersiongrow = 0f;
-		maxrange = 1000;
+		param.magazine = 100;
+		param.damage = -40;
+		param.recoil = 0f;//反動.
+		param.mindispersion = 0f;//ばらつき.
+		param.dispersiongrow = 0f;
+		param.maxrange = 1000;
 		_animation = GetComponent<Animation>();
 		Init ();
 		AudioSource[] audioSources = GetComponents<AudioSource>();
 		repair = audioSources[0];
 		HP = GameObject.Find("NormalDisplay/HP").GetComponent<Text>();
-		if (myPV.isMine){
+		if (component.myPV.isMine){
 			StartCoroutine("Remain");
 			NormalDisplay.DeleteReticle();
 		}
 	}
 	IEnumerator Remain(){
 		while(true){
-			if (load < maxload && _animation.IsPlaying("Default")){
-				load += 2;
-				if (load > maxload)
-					load = maxload;
-				normdisp.NOLtext.text = load.ToString();
+			if (param.load < param.magazine && _animation.IsPlaying("Default")){
+				param.load += 2;
+				if (param.load > param.magazine)
+					param.load = param.magazine;
+				NormalDisplay.NOLtext.text = param.load.ToString();
 			}
 			yield return new WaitForSeconds(0.1f);
 		}
 	}
 
 	void LateUpdate () {
-		s = wcontrol.targetObject.GetComponent<Status>();
+		s = component.wcontrol.targetObject.GetComponent<Status>();
 		if (s != null)
 			HP.text = s.HP.ToString();
 		else
 			HP.text = "";
-		if (wcontrol.inputShot1){
+		if (component.wcontrol.inputShot1){
 			if (_animation.IsPlaying("Default"))
 				_animation.CrossFade("PreRepair",0.5f);
 			else if (!_animation.IsPlaying("PreRepair") && !_animation.IsPlaying("Repair"))
-				myPV.RPC ("RepairRPC",PhotonTargets.All);
+				component.myPV.RPC ("RepairRPC",PhotonTargets.All);
 		}
 		else {
-			if (!myPV.isMine && _animation.IsPlaying("Default"))
-				myPV.RPC ("Default",PhotonTargets.All);
+			if (!component.myPV.isMine && _animation.IsPlaying("Default"))
+				component.myPV.RPC ("Default",PhotonTargets.All);
 			else
 				_animation.Play("Default");
 		}
@@ -58,12 +58,12 @@ public class RepairArm : Weapon {
 
 	void Repair(){
 		repair.PlayOneShot(repair.clip);
-		if (myPV.isMine){
-			Hit h = wcontrol.targetObject.GetComponentInParent<Hit>();
-			if (h != null && wcontrol.targetObject.layer == 9 && s.HP != s.maxHP && load >= 15
-			    && (wcontrol.targetObject.transform.position
+		if (component.myPV.isMine){
+			Hit h = component.wcontrol.targetObject.GetComponentInParent<Hit>();
+			if (h != null && component.wcontrol.targetObject.layer == 9 && s.HP != s.maxHP && param.load >= 15
+			    && (component.wcontrol.targetObject.transform.position
 			   	  - transform.position).magnitude <= 4f){
-				h.TakeDamage(damage,unit.name);
+				h.TakeDamage(param.damage,component.unit.name);
 				RemainingLoads(15);
 			}
 		}

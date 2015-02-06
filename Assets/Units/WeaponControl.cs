@@ -20,7 +20,7 @@ public class WeaponControl : MonoBehaviour {
 	public float recoilrotationy = 0F;
 
 	[System.NonSerialized]
-	public float dispersionRate;
+	public float dispersionRate = 0;
 	[System.NonSerialized]
 	public float desiredDispersion;
 
@@ -71,8 +71,7 @@ public class WeaponControl : MonoBehaviour {
 		mask = 1 << 8;
 		mask = ~mask;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		if (!settings.enabled){
 			inputReload = Input.GetButtonDown("Reload");
@@ -114,7 +113,7 @@ public class WeaponControl : MonoBehaviour {
 		if (dispersionRate < 1){
 			dispersionRate = 1;
 		}
-		desiredDispersion = dispersionRate * DispersionCorrection();
+		desiredDispersion = dispersionRate * DispersionCorrection() * Screen.height * 0.001f;
 	}
 
 	void SetTarget(){
@@ -137,5 +136,6 @@ public class WeaponControl : MonoBehaviour {
 
 	void OnDestroy(){
 		NormalDisplay.WhiteReticle();
+		EIR.text = "";
 	}
 }
