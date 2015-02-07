@@ -53,12 +53,14 @@ public class IFP40 : Weapon {
 		Camera.main.fieldOfView = 15;
 		isZooming = true;
 		component.motor.sensimag = 0.2f;
+		param.mindispersion = 0f;
 		NormalDisplay.EnableReticle();
 	}
 	void ZoomOff(){
 		Camera.main.fieldOfView = 90;
 		isZooming = false;
 		component.motor.sensimag = 1f;
+		param.mindispersion = 100f;
 		NormalDisplay.DeleteReticle();
 	}
 	void OnDestroy(){
