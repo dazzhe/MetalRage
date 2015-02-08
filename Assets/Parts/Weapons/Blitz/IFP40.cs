@@ -5,6 +5,7 @@ public class IFP40 : Weapon {
 	WeaponRay wr;
 	
 	void Awake () {
+		param.ammo = 76;
 		param.magazine = 6;
 		param.damage = 200;
 		param.recoil = 6f;
@@ -80,6 +81,20 @@ public class IFP40 : Weapon {
 			NormalDisplay.ShowReticle();
 		}
 	}
+
+	protected override void Disable (){
+		component.wcontrol.isBlitzMain = false;
+		ZoomOff();
+		NormalDisplay.ShowReticle();
+		base.Disable ();
+	}
+
+	protected override void Enable (){
+		component.wcontrol.isBlitzMain = true;
+		NormalDisplay.HideReticle();
+		base.Enable ();
+	}
+
 	[RPC]
 	protected void MakeShots(){
 		transform.BroadcastMessage("MakeShot",wr.targetPos);

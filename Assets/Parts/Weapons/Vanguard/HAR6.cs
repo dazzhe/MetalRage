@@ -5,6 +5,7 @@ public class HAR6 : Weapon {
 	private static bool isZooming = false;
 	WeaponRay wr;
 	void Awake () {
+		param.ammo = 1120;
 		param.magazine = 80;
 		param.damage = 13;
 		param.recoil = 0.4f;//反動.
@@ -73,5 +74,10 @@ public class HAR6 : Weapon {
 	void OnDestroy(){
 		if (Camera.main != null && component.myPV.isMine)
 			Camera.main.fieldOfView = 90;
+	}
+
+	protected override void Disable (){
+		ZoomOff();
+		base.Disable ();
 	}
 }

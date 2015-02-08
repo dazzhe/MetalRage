@@ -33,7 +33,7 @@ public class WeaponRay : MonoBehaviour
 		Hit dam = targetObject.GetComponentInParent<Hit>();
 		if (dam != null && targetObject.layer == 10) {
 			dam.TakeDamage(param.damage, component.unit.name);
-			SendMessage("HitMark");
+			component.wcontrol.HitMark();
 		}
 	}
 

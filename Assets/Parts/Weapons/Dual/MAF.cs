@@ -7,10 +7,11 @@ public class MAF : Weapon {
 
 	// Use this for initialization
 	void Awake () {
-		param.magazine = 800;
+		param.ammo = 900;
+		param.magazine = 900;
 		param.damage = 13;
-		param.recoil = 0f;//反動.
-		param.mindispersion = 0f;//ばらつき.
+		param.recoil = 0f;
+		param.mindispersion = 0f;
 		param.dispersiongrow = 0f;
 		param.maxrange = 25;
 		param.reloadTime = 1.5f;
@@ -38,6 +39,12 @@ public class MAF : Weapon {
 			yield return new WaitForSeconds(param.interval);
 			param.cooldown = false;
 		}
+	}
+
+	protected override void Disable (){
+		if (!isOpen)
+			component.myPV.RPC("Shield",PhotonTargets.AllBuffered);
+		base.Disable ();
 	}
 	[RPC]
 	void Shield(){

@@ -6,6 +6,8 @@ public class WeaponControl : MonoBehaviour {
 	static Text EIR;
 	UnitMotor motor;
 	Canvas settings;
+	WeaponSelect[] weapons = new WeaponSelect[3];
+	private int enabledWeapon = 0;
 	[System.NonSerialized]
 	public GameObject targetObject;
 
@@ -29,7 +31,7 @@ public class WeaponControl : MonoBehaviour {
 
 	[System.NonSerialized]
 	public int load;
-
+	
 	private float minimumY = -60F;
 	private float maximumY = 60F;
 	public LayerMask mask;
@@ -58,7 +60,7 @@ public class WeaponControl : MonoBehaviour {
 			return 0.5f;
 		case UnitMotor.CharacterState.Jumping:
 			return 1.5f;
-		}
+			}
 		return 1f;
 	}
 	
@@ -66,6 +68,12 @@ public class WeaponControl : MonoBehaviour {
 		settings = GameObject.Find ("Settings").GetComponent<Canvas>();
 		EIR = GameObject.Find("NormalDisplay/EnemyInReticle").GetComponent<Text>();
 		motor = GetComponent<UnitMotor>();
+		weapons[0] = transform.Find ("Offset/MainWeapon").GetComponent<WeaponSelect>();
+		weapons[1] = transform.Find ("Offset/RightWeapon").GetComponent<WeaponSelect>();
+		weapons[2] = transform.Find ("Offset/LeftWeapon").GetComponent<WeaponSelect>();
+		for (int i = 0; i <= 2; i++)
+			weapons[i].enabled = true;
+		weapons[0].SendEnable();
 		center = new Vector3(Screen.width/2, Screen.height/2, 0);
 		//8番のレイヤー(操作している機体)を無視する.
 		mask = 1 << 8;
@@ -74,6 +82,7 @@ public class WeaponControl : MonoBehaviour {
 
 	void Update () {
 		if (!settings.enabled){
+			WeaponSelect();
 			inputReload = Input.GetButtonDown("Reload");
 			inputShot1 = Input.GetButton("Fire1");
 			inputShot2 = Input.GetButtonDown("Fire2");
@@ -87,6 +96,24 @@ public class WeaponControl : MonoBehaviour {
 			SetTarget();
 		RecoilControl();
 		DispersionControl();
+	}
+
+	void WeaponSelect(){
+		if (Input.GetButtonDown("MainWeapon") && enabledWeapon != 0){
+			weapons[enabledWeapon].SendDisable();
+			weapons[0].SendEnable();
+			enabledWeapon = 0;
+		}
+		if (Input.GetButtonDown("RightWeapon") && enabledWeapon != 1){
+			weapons[enabledWeapon].SendDisable();
+			weapons[1].SendEnable();
+			enabledWeapon = 1;
+		}
+		if (Input.GetButtonDown("LeftWeapon") && enabledWeapon != 2){
+			weapons[enabledWeapon].SendDisable();
+			weapons[2].SendEnable();
+			enabledWeapon = 2;
+		}
 	}
 
 	void Elevation(){
@@ -128,6 +155,16 @@ public class WeaponControl : MonoBehaviour {
 		}
 	}
 
+	public void HitMark(){
+		StopCoroutine("HitMarkCoroutine");
+		StartCoroutine("HitMarkCoroutine");
+	}
+	
+	private IEnumerator HitMarkCoroutine(){
+		NormalDisplay.RedReticle();
+		yield return new WaitForSeconds(0.3f);
+		NormalDisplay.WhiteReticle();
+	}
 	private IEnumerator ShowEnemyName(){
 		EIR.text = targetObject.GetComponentInParent<FriendOrEnemy>().playerName;
 		yield return new WaitForSeconds(0.2f);

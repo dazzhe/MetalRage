@@ -15,7 +15,5 @@ public class Bullet : MonoBehaviour {
 		yield return new WaitForSeconds(0.07f);
 		GameObject.Instantiate(impact,targetPos,transform.rotation);
 		Destroy (gameObject);
-		//yield return new WaitForSeconds(1f);
-		//transform.position += direction.normalized * speed;
 	}
 }

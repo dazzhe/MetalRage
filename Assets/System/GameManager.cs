@@ -33,7 +33,7 @@ public class GameManager : Photon.MonoBehaviour {
 			= PhotonNetwork.Instantiate(unit, spawnPos,
 			                            Quaternion.identity, 0) as GameObject;
 		GetComponent<UnitOption>().enabled = false;
-		player.layer = 8;
+		player.SetLayerRecursively(8);
 		player.GetComponent<UnitController>().enabled = true;
 		player.GetComponent<UnitMotor>().enabled = true;
 		player.GetComponent<WeaponControl>().enabled = true;

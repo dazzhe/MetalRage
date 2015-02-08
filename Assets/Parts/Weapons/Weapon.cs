@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class WeaponParam{
+	public int ammo = 0;
 	public int magazine = 0;
 	public int damage = 0;
 	public float recoil = 0;//反動.
@@ -35,14 +36,14 @@ public abstract class Weapon : MonoBehaviour{
 		component.myPV = GetComponent<PhotonView>();
 		component.wcontrol = component.unit.GetComponent<WeaponControl>();
 		component.motor = component.unit.GetComponent<UnitMotor>();
-		AudioSource[] audioSources = GetComponents<AudioSource>();
-		component.reload = audioSources[0];
+		if (GetComponent<AudioSource>()){
+			AudioSource[] audioSources = GetComponents<AudioSource>();
+			component.reload = audioSources[0];
+		}
 		param.load = param.magazine;
 		param.canShot = true;
 		NormalDisplay.SetReticle(component.wcontrol.dispersionRate * param.mindispersion);
 		NormalDisplay.NOLtext.text = param.load.ToString();
-		if (component.myPV.isMine)
-			this.enabled = true;
 	}
 
 	protected void RecoilAndDisperse(){
@@ -72,20 +73,12 @@ public abstract class Weapon : MonoBehaviour{
 		}
 		component.wcontrol.isRecoiling = false;
 	}
-	protected void HitMark(){
-		StopCoroutine("HitMarkCoroutine");
-		StartCoroutine("HitMarkCoroutine");
-	}
 
-	private IEnumerator HitMarkCoroutine(){
-		NormalDisplay.RedReticle();
-		yield return new WaitForSeconds(0.3f);
-		NormalDisplay.WhiteReticle();
-	}
 	
 	protected void RemainingLoads(int b){
-		param.load -= b;
-		if (param.load == 0){
+		param.load = Mathf.Clamp(param.load - b, 0, param.magazine);
+		param.ammo = Mathf.Clamp(param.ammo - b, 0, param.ammo);
+		if (param.load == 0 && param.ammo != 0){
 			StartCoroutine(this.Reload ());
 		}
 		NormalDisplay.NOLtext.text = param.load.ToString();
@@ -98,5 +91,22 @@ public abstract class Weapon : MonoBehaviour{
 		param.load = param.magazine;
 		param.isReloading = false;
 		NormalDisplay.NOLtext.text = param.load.ToString();
+	}
+
+	protected virtual void Enable(){
+		NormalDisplay.NOLtext.text = param.load.ToString();
+		StopCoroutine("EnableCoroutine");
+		StartCoroutine("EnableCoroutine");
+	}
+
+	protected IEnumerator EnableCoroutine(){
+		yield return new WaitForSeconds(param.interval);
+		this.enabled = true;
+	}
+	protected virtual void Disable(){
+		component.wcontrol.isRecoiling = false;
+		param.cooldown = false;
+		StopAllCoroutines();
+		this.enabled = false;
 	}
 }
