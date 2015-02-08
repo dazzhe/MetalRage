@@ -21,7 +21,7 @@ public class RepairArm : Weapon {
 		HP = GameObject.Find("NormalDisplay/HP").GetComponent<Text>();
 		if (component.myPV.isMine){
 			StartCoroutine("Remain");
-			NormalDisplay.DeleteReticle();
+			NormalDisplay.HideReticle();
 		}
 	}
 	IEnumerator Remain(){
@@ -81,6 +81,6 @@ public class RepairArm : Weapon {
 	void OnDestroy(){
 		if (Camera.main != null)
 			Camera.main.fieldOfView = 90;
-		NormalDisplay.EnableReticle();
+		NormalDisplay.ShowReticle();
 	}
 }

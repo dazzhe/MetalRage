@@ -3,11 +3,12 @@ using System.Collections;
 public class IFP40 : Weapon {
 	private bool isZooming = false;
 	WeaponRay wr;
+	
 	void Awake () {
 		param.magazine = 6;
 		param.damage = 200;
-		param.recoil = 6f;//反動.
-		param.mindispersion = 0f;//ばらつき.
+		param.recoil = 6f;
+		param.mindispersion = 0f;
 		param.dispersiongrow = 0f;
 		param.maxrange = 1000;
 		param.reloadTime = 3f;
@@ -17,7 +18,7 @@ public class IFP40 : Weapon {
 		wr.component = this.component;
 		Init ();
 		if (component.myPV.isMine)
-			NormalDisplay.DeleteReticle();
+			NormalDisplay.HideReticle();
 		component.wcontrol.isBlitzMain = true;
 	}
 
@@ -26,7 +27,7 @@ public class IFP40 : Weapon {
 			wr.RayShot();
 			RecoilAndDisperse ();
 			RemainingLoads(2);
-			ZoomOff();
+			StartCoroutine("ZoomOffCoroutine");
 			component.myPV.RPC("MakeShots",PhotonTargets.All);
 			param.cooldown = true;
 			yield return new WaitForSeconds(param.interval);
@@ -41,9 +42,11 @@ public class IFP40 : Weapon {
 				StartCoroutine(this.Reload());
 			if (component.wcontrol.inputShot2){
 				if (isZooming)
-					ZoomOff();
-				else
+					ZoomOff ();
+				else {
+					StopCoroutine("ZoomOffCoroutine");
 					ZoomOn ();
+				}
 			}
 			NormalDisplay.SetReticle(param.mindispersion * component.wcontrol.desiredDispersion);
 		}
@@ -54,20 +57,27 @@ public class IFP40 : Weapon {
 		isZooming = true;
 		component.motor.sensimag = 0.2f;
 		param.mindispersion = 0f;
-		NormalDisplay.EnableReticle();
+		NormalDisplay.ShowReticle();
 	}
+
+	IEnumerator ZoomOffCoroutine(){
+		yield return new WaitForSeconds(0.3f);
+		ZoomOff ();
+	}
+
 	void ZoomOff(){
 		Camera.main.fieldOfView = 90;
 		isZooming = false;
 		component.motor.sensimag = 1f;
 		param.mindispersion = 100f;
-		NormalDisplay.DeleteReticle();
+		NormalDisplay.HideReticle();
 	}
+
 	void OnDestroy(){
 		if (component.myPV.isMine){
 			if (Camera.main != null)
 				Camera.main.fieldOfView = 90;
-			NormalDisplay.EnableReticle();
+			NormalDisplay.ShowReticle();
 		}
 	}
 	[RPC]
