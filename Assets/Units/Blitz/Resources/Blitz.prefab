@@ -2561,14 +2561,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f1960bab3c27044986562b22f82c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isRecoiling: 0
-  mask:
-    serializedVersion: 2
-    m_Bits: 0
-  center: {x: 0, y: 0, z: 0}
-  inputReload: 0
-  inputShot1: 0
-  isBlitzMain: 0
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2691,7 +2683,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 105544}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98e43a6cff832d8449f05536f4c19e14, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ecd727d8ad063845922701a8d54d97c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11405546
@@ -2702,7 +2694,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100088}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98e43a6cff832d8449f05536f4c19e14, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ecd727d8ad063845922701a8d54d97c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11405548
@@ -2744,7 +2736,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 105542}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98e43a6cff832d8449f05536f4c19e14, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ecd727d8ad063845922701a8d54d97c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11411508

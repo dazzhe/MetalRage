@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
-public class WeaponSelect : MonoBehaviour {
+public class WeaponManager : MonoBehaviour {
 	private GameObject weapon;
 	void Awake () {
 		weapon = transform.GetChild(0).gameObject;

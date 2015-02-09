@@ -6,11 +6,10 @@ public class WeaponControl : MonoBehaviour {
 	static Text EIR;
 	UnitMotor motor;
 	Canvas settings;
-	WeaponSelect[] weapons = new WeaponSelect[3];
-	private int enabledWeapon = 0;
+	WeaponManager[] weapons = new WeaponManager[3];
 	[System.NonSerialized]
 	public GameObject targetObject;
-
+	[System.NonSerialized]
 	public bool isRecoiling = false;
 	[System.NonSerialized]
 	public float rotationY = 0F;
@@ -20,31 +19,29 @@ public class WeaponControl : MonoBehaviour {
 	public float recoilrotationx = 0F;
 	[System.NonSerialized]
 	public float recoilrotationy = 0F;
-
 	[System.NonSerialized]
 	public float dispersionRate = 0;
 	[System.NonSerialized]
 	public float desiredDispersion;
-
 	[System.NonSerialized]
 	public Vector3 targetPos;
-
 	[System.NonSerialized]
-	public int load;
-	
-	private float minimumY = -60F;
-	private float maximumY = 60F;
 	public LayerMask mask;
-	private Vector3 originPos;
-	private float fixSpeed = 25f;
+	[System.NonSerialized]
 	public Vector3 center = Vector3.zero;
+	[System.NonSerialized]
 	public bool inputReload = false;
+	[System.NonSerialized]
 	public bool inputShot1 = false;
+	[System.NonSerialized]
 	public bool isBlitzMain = false;
 	[System.NonSerialized]
 	public bool inputShot2 = false;
-	Ray ray;
-	RaycastHit hit;
+
+	private int enabledWeapon = 0;	//0 = Main, 1 = Right, 2 = Left
+	private float minimumY = -60F;
+	private float maximumY = 60F;
+	private float recoilFixSpeed = 25f;
 
 	private float DispersionCorrection(){
 		switch(motor._characterState){
@@ -68,11 +65,9 @@ public class WeaponControl : MonoBehaviour {
 		settings = GameObject.Find ("Settings").GetComponent<Canvas>();
 		EIR = GameObject.Find("NormalDisplay/EnemyInReticle").GetComponent<Text>();
 		motor = GetComponent<UnitMotor>();
-		weapons[0] = transform.Find ("Offset/MainWeapon").GetComponent<WeaponSelect>();
-		weapons[1] = transform.Find ("Offset/RightWeapon").GetComponent<WeaponSelect>();
-		weapons[2] = transform.Find ("Offset/LeftWeapon").GetComponent<WeaponSelect>();
-		for (int i = 0; i <= 2; i++)
-			weapons[i].enabled = true;
+		weapons[0] = transform.Find ("Offset/MainWeapon").GetComponent<WeaponManager>();
+		weapons[1] = transform.Find ("Offset/RightWeapon").GetComponent<WeaponManager>();
+		weapons[2] = transform.Find ("Offset/LeftWeapon").GetComponent<WeaponManager>();
 		weapons[0].SendEnable();
 		center = new Vector3(Screen.width/2, Screen.height/2, 0);
 		//8番のレイヤー(操作している機体)を無視する.
@@ -126,7 +121,7 @@ public class WeaponControl : MonoBehaviour {
 		if ((recoilrotationx == 0 && recoilrotationy == 0) || isRecoiling)
 			return;
 		if (recoilrotationy > 0F)
-			recoilrotationy -= fixSpeed * Time.deltaTime;
+			recoilrotationy -= recoilFixSpeed * Time.deltaTime;
 		if (recoilrotationy < 0f)
 			recoilrotationy = 0f;
 		if (recoilrotationx != 0)
@@ -134,24 +129,24 @@ public class WeaponControl : MonoBehaviour {
 	}
 
 	void DispersionControl(){
-		if (dispersionRate > 1){
-			dispersionRate -= 3f * Time.deltaTime;
-		}
-		if (dispersionRate < 1){
-			dispersionRate = 1;
-		}
+		if (dispersionRate == 1)
+			return;
+		dispersionRate = Mathf.Clamp(dispersionRate - 3f * Time.deltaTime, 1, dispersionRate);
 		desiredDispersion = dispersionRate * DispersionCorrection() * Screen.height * 0.001f;
 	}
-
+	
 	void SetTarget(){
-		ray = Camera.main.ScreenPointToRay(center);
-		if (Physics.Raycast(ray, out hit, 1000, mask)) {
-			targetPos = hit.point;
-			targetObject = hit.collider.gameObject;
-			if (targetObject.layer == 10){
-				StopCoroutine("ShowEnemyName");
-				StartCoroutine("ShowEnemyName");
-			}
+		Ray ray = Camera.main.ScreenPointToRay(center);
+		RaycastHit hit;
+		if (!Physics.Raycast(ray, out hit, 1000, mask)) {
+			targetPos = ray.GetPoint(1000);
+			return;
+		}
+		targetPos = hit.point;
+		targetObject = hit.collider.gameObject;
+		if (targetObject.layer == 10){
+			StopCoroutine("ShowEnemyName");
+			StartCoroutine("ShowEnemyName");
 		}
 	}
 
@@ -165,6 +160,7 @@ public class WeaponControl : MonoBehaviour {
 		yield return new WaitForSeconds(0.3f);
 		NormalDisplay.WhiteReticle();
 	}
+
 	private IEnumerator ShowEnemyName(){
 		EIR.text = targetObject.GetComponentInParent<FriendOrEnemy>().playerName;
 		yield return new WaitForSeconds(0.2f);
