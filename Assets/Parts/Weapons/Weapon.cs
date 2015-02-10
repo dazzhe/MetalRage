@@ -30,6 +30,9 @@ public class WeaponComponent{
 public abstract class Weapon : MonoBehaviour{
 	protected WeaponParam param = new WeaponParam();
 	protected WeaponComponent component = new WeaponComponent();
+	protected GameObject sightObject;
+	protected Sight sight;
+	protected string sightPrefabName = "";
 
 	protected void Init () {
 		component.unit = transform.parent.parent.parent.gameObject;
@@ -42,8 +45,12 @@ public abstract class Weapon : MonoBehaviour{
 		}
 		param.load = param.magazine;
 		param.canShot = true;
-		NormalDisplay.SetReticle(component.wcontrol.dispersionRate * param.mindispersion);
 		NormalDisplay.NOLtext.text = param.load.ToString();
+		if (component.myPV.isMine && sightPrefabName != ""){
+			sightObject = GameObject.Instantiate(Resources.Load(sightPrefabName),Vector3.zero, Quaternion.identity) as GameObject;
+			sight = sightObject.GetComponentInChildren<Sight>();
+			sight.HideSight();
+		}
 	}
 
 	protected void RecoilAndDisperse(){
@@ -73,7 +80,6 @@ public abstract class Weapon : MonoBehaviour{
 		}
 		component.wcontrol.isRecoiling = false;
 	}
-
 	
 	protected void RemainingLoads(int b){
 		param.load = Mathf.Clamp(param.load - b, 0, param.magazine);
@@ -95,6 +101,8 @@ public abstract class Weapon : MonoBehaviour{
 
 	protected virtual void Enable(){
 		NormalDisplay.NOLtext.text = param.load.ToString();
+		if (sight != null)
+			sight.ShowSight();
 		StopCoroutine("EnableCoroutine");
 		StartCoroutine("EnableCoroutine");
 	}
@@ -103,10 +111,13 @@ public abstract class Weapon : MonoBehaviour{
 		yield return new WaitForSeconds(param.interval);
 		this.enabled = true;
 	}
+
 	protected virtual void Disable(){
 		component.wcontrol.isRecoiling = false;
 		param.cooldown = false;
 		StopAllCoroutines();
 		this.enabled = false;
+		if (sight != null)
+			sight.HideSight();
 	}
 }

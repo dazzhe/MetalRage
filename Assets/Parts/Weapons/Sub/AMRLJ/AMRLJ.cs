@@ -12,6 +12,7 @@ public class AMRLJ : Weapon {
 		param.mindispersion = 0f;
 		param.dispersiongrow = 0f;
 		param.interval = 1.5f;
+		sightPrefabName = "HAR-6_Sight";
 		Init ();
 	}
 

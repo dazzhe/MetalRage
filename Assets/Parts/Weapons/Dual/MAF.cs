@@ -5,7 +5,6 @@ public class MAF : Weapon {
 	public bool isOpen = true;
 	WeaponRay wr;
 
-	// Use this for initialization
 	void Awake () {
 		param.ammo = 900;
 		param.magazine = 900;
@@ -16,18 +15,18 @@ public class MAF : Weapon {
 		param.maxrange = 25;
 		param.reloadTime = 1.5f;
 		param.interval = 0.06F;
+		sightPrefabName = "HAR-6_Sight";
 		wr = this.gameObject.AddComponent<WeaponRay>();
 		wr.param = this.param;
 		wr.component = this.component;
 		Init ();
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		StartCoroutine(ShotControl ());
 		if (component.wcontrol.inputShot2)
 			component.myPV.RPC("Shield",PhotonTargets.AllBuffered);
-		NormalDisplay.SetReticle(param.mindispersion * component.wcontrol.desiredDispersion);
+		sight.SetArea(param.mindispersion * component.wcontrol.desiredDispersion);
 	}
 	protected IEnumerator ShotControl(){
 		if (component.wcontrol.inputShot1 && param.load > 0 && !param.cooldown && param.canShot && !param.isReloading){
@@ -46,6 +45,7 @@ public class MAF : Weapon {
 			component.myPV.RPC("Shield",PhotonTargets.AllBuffered);
 		base.Disable ();
 	}
+
 	[RPC]
 	void Shield(){
 		if (isOpen){

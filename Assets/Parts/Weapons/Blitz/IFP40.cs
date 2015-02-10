@@ -3,7 +3,8 @@ using System.Collections;
 public class IFP40 : Weapon {
 	WeaponRay ray;
 	WeaponZoom zoom;
-	
+
+
 	void Awake () {
 		param.ammo = 76;
 		param.magazine = 6;
@@ -14,6 +15,7 @@ public class IFP40 : Weapon {
 		param.maxrange = 1000;
 		param.reloadTime = 3f;
 		param.interval = 2F;
+		sightPrefabName = "HAR-6_Sight";
 		ray = this.gameObject.AddComponent<WeaponRay>();
 		ray.param = this.param;
 		ray.component = this.component;
@@ -22,7 +24,7 @@ public class IFP40 : Weapon {
 		zoom.zoomRatio = 10f;
 		Init ();
 		if (component.myPV.isMine)
-			NormalDisplay.HideReticle();
+			sight.HideSight();
 		component.wcontrol.isBlitzMain = true;
 	}
 
@@ -50,7 +52,7 @@ public class IFP40 : Weapon {
 				else
 					this.ZoomOn();
 			}
-			NormalDisplay.SetReticle(param.mindispersion * component.wcontrol.desiredDispersion);
+			sight.SetArea(param.mindispersion * component.wcontrol.desiredDispersion);
 		}
 	}
 
@@ -61,18 +63,18 @@ public class IFP40 : Weapon {
 
 	void ZoomOff(){
 		zoom.ZoomOff();
-		NormalDisplay.HideReticle();
+		sight.HideSight();
 	}
 
 	void ZoomOn(){
 		StopCoroutine("ZoomOffCoroutine");
 		zoom.ZoomOn();
-		NormalDisplay.ShowReticle();
+		sight.ShowSight();
 	}
 
 	void OnDestroy(){
 		if (component.myPV.isMine)
-			NormalDisplay.ShowReticle();
+			sight.ShowSight();
 	}
 
 	protected override IEnumerator Reload (){
@@ -83,14 +85,13 @@ public class IFP40 : Weapon {
 	protected override void Disable (){
 		component.wcontrol.isBlitzMain = false;
 		zoom.ZoomOff();
-		NormalDisplay.ShowReticle();
 		base.Disable ();
 	}
 
 	protected override void Enable (){
 		component.wcontrol.isBlitzMain = true;
-		NormalDisplay.HideReticle();
 		base.Enable ();
+		sight.HideSight();
 	}
 
 	[RPC]

@@ -4,6 +4,7 @@ using System.Collections;
 public class HAR6 : Weapon {
 	WeaponRay ray;
 	WeaponZoom zoom;
+
 	void Awake () {
 		param.ammo = 1120;
 		param.magazine = 80;
@@ -13,7 +14,8 @@ public class HAR6 : Weapon {
 		param.dispersiongrow = 0.4f;
 		param.maxrange = 1000;
 		param.reloadTime = 1.5f;
-		param.interval = 0.07F;
+		param.interval = 0.07f;
+		sightPrefabName = "HAR-6_Sight";
 		ray = this.gameObject.AddComponent<WeaponRay>();
 		ray.param = this.param;
 		ray.component = this.component;
@@ -35,7 +37,7 @@ public class HAR6 : Weapon {
 			else
 				zoom.ZoomOn();
 		}
-		NormalDisplay.SetReticle(param.mindispersion * component.wcontrol.desiredDispersion);
+		sight.SetArea(param.mindispersion * component.wcontrol.desiredDispersion * 2);
 	}
 
 	protected IEnumerator ShotControl(){

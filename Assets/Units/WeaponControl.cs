@@ -6,6 +6,7 @@ public class WeaponControl : MonoBehaviour {
 	static Text EIR;
 	UnitMotor motor;
 	Canvas settings;
+	Sight[] sights;
 	WeaponManager[] weapons = new WeaponManager[3];
 	[System.NonSerialized]
 	public GameObject targetObject;
@@ -69,6 +70,8 @@ public class WeaponControl : MonoBehaviour {
 		weapons[1] = transform.Find ("Offset/RightWeapon").GetComponent<WeaponManager>();
 		weapons[2] = transform.Find ("Offset/LeftWeapon").GetComponent<WeaponManager>();
 		weapons[0].SendEnable();
+
+		sights = GameObject.FindObjectsOfType(typeof(Sight)) as Sight[];
 		center = new Vector3(Screen.width/2, Screen.height/2, 0);
 		//8番のレイヤー(操作している機体)を無視する.
 		mask = 1 << 8;
@@ -150,25 +153,26 @@ public class WeaponControl : MonoBehaviour {
 		}
 	}
 
+	private IEnumerator ShowEnemyName(){
+		EIR.text = targetObject.GetComponentInParent<FriendOrEnemy>().playerName;
+		yield return new WaitForSeconds(0.2f);
+		EIR.text = "";
+	}
+	
 	public void HitMark(){
 		StopCoroutine("HitMarkCoroutine");
 		StartCoroutine("HitMarkCoroutine");
 	}
 	
 	private IEnumerator HitMarkCoroutine(){
-		NormalDisplay.RedReticle();
+		foreach (Sight sight in sights)
+			sight.SetColor(Color.red);
 		yield return new WaitForSeconds(0.3f);
-		NormalDisplay.WhiteReticle();
-	}
-
-	private IEnumerator ShowEnemyName(){
-		EIR.text = targetObject.GetComponentInParent<FriendOrEnemy>().playerName;
-		yield return new WaitForSeconds(0.2f);
-		EIR.text = "";
+		foreach (Sight sight in sights)
+			sight.SetColor(Color.white);
 	}
 
 	void OnDestroy(){
-		NormalDisplay.WhiteReticle();
 		EIR.text = "";
 	}
 }
