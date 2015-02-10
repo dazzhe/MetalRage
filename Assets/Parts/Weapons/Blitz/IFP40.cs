@@ -1,8 +1,8 @@
 using UnityEngine;
 using System.Collections;
 public class IFP40 : Weapon {
-	private bool isZooming = false;
-	WeaponRay wr;
+	WeaponRay ray;
+	WeaponZoom zoom;
 	
 	void Awake () {
 		param.ammo = 76;
@@ -14,9 +14,12 @@ public class IFP40 : Weapon {
 		param.maxrange = 1000;
 		param.reloadTime = 3f;
 		param.interval = 2F;
-		wr = this.gameObject.AddComponent<WeaponRay>();
-		wr.param = this.param;
-		wr.component = this.component;
+		ray = this.gameObject.AddComponent<WeaponRay>();
+		ray.param = this.param;
+		ray.component = this.component;
+		zoom = this.gameObject.AddComponent<WeaponZoom>();
+		zoom.component = this.component;
+		zoom.zoomRatio = 10f;
 		Init ();
 		if (component.myPV.isMine)
 			NormalDisplay.HideReticle();
@@ -25,7 +28,7 @@ public class IFP40 : Weapon {
 
 	protected IEnumerator ShotControl(){
 		if (component.wcontrol.inputShot1 && param.load > 0 && !param.cooldown && param.canShot && !param.isReloading){
-			wr.RayShot();
+			ray.RayShot();
 			RecoilAndDisperse ();
 			RemainingLoads(2);
 			StartCoroutine("ZoomOffCoroutine");
@@ -42,49 +45,44 @@ public class IFP40 : Weapon {
 			if (component.wcontrol.inputReload && param.load != param.magazine && !param.isReloading)
 				StartCoroutine(this.Reload());
 			if (component.wcontrol.inputShot2){
-				if (isZooming)
-					ZoomOff ();
-				else {
-					StopCoroutine("ZoomOffCoroutine");
-					ZoomOn ();
-				}
+				if (zoom.isZooming)
+					this.ZoomOff ();
+				else
+					this.ZoomOn();
 			}
 			NormalDisplay.SetReticle(param.mindispersion * component.wcontrol.desiredDispersion);
 		}
 	}
 
-	void ZoomOn(){
-		Camera.main.fieldOfView = 15;
-		isZooming = true;
-		component.motor.sensimag = 0.2f;
-		param.mindispersion = 0f;
-		NormalDisplay.ShowReticle();
-	}
-
 	IEnumerator ZoomOffCoroutine(){
 		yield return new WaitForSeconds(0.3f);
-		ZoomOff ();
+		this.ZoomOff ();
 	}
 
 	void ZoomOff(){
-		Camera.main.fieldOfView = 90;
-		isZooming = false;
-		component.motor.sensimag = 1f;
-		param.mindispersion = 100f;
+		zoom.ZoomOff();
 		NormalDisplay.HideReticle();
 	}
 
+	void ZoomOn(){
+		StopCoroutine("ZoomOffCoroutine");
+		zoom.ZoomOn();
+		NormalDisplay.ShowReticle();
+	}
+
 	void OnDestroy(){
-		if (component.myPV.isMine){
-			if (Camera.main != null)
-				Camera.main.fieldOfView = 90;
+		if (component.myPV.isMine)
 			NormalDisplay.ShowReticle();
-		}
+	}
+
+	protected override IEnumerator Reload (){
+		this.ZoomOff();
+		return base.Reload ();
 	}
 
 	protected override void Disable (){
 		component.wcontrol.isBlitzMain = false;
-		ZoomOff();
+		zoom.ZoomOff();
 		NormalDisplay.ShowReticle();
 		base.Disable ();
 	}
@@ -96,7 +94,7 @@ public class IFP40 : Weapon {
 	}
 
 	[RPC]
-	protected void MakeShots(){
-		transform.BroadcastMessage("MakeShot",wr.targetPos);
+	private void MakeShots(){
+		transform.BroadcastMessage("MakeShot",ray.targetPos);
 	}
 }
