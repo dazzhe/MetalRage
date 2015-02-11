@@ -7,7 +7,8 @@ public class Sight : MonoBehaviour {
 	private Image[] images;
 
 	void Start () {
-		controllableSection = transform.Find("ControllableSection").GetComponent<RectTransform>();
+		if (transform.Find("ControllableSection"))
+			controllableSection = transform.Find("ControllableSection").GetComponent<RectTransform>();
 		images = GetComponentsInChildren<Image>();
 	}
 	

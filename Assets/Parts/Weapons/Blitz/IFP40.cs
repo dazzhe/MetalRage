@@ -3,7 +3,7 @@ using System.Collections;
 public class IFP40 : Weapon {
 	WeaponRay ray;
 	WeaponZoom zoom;
-
+	GameObject zoomCamera;
 
 	void Awake () {
 		param.ammo = 76;
@@ -15,16 +15,22 @@ public class IFP40 : Weapon {
 		param.maxrange = 1000;
 		param.reloadTime = 3f;
 		param.interval = 2F;
-		sightPrefabName = "HAR-6_Sight";
+		sightPrefabName = "IFP-40_Sight";
 		ray = this.gameObject.AddComponent<WeaponRay>();
 		ray.param = this.param;
 		ray.component = this.component;
 		zoom = this.gameObject.AddComponent<WeaponZoom>();
 		zoom.component = this.component;
-		zoom.zoomRatio = 10f;
+		zoom.zoomRatio = 1.5f;
 		Init ();
-		if (component.myPV.isMine)
+		if (component.myPV.isMine){
 			sight.HideSight();
+			zoomCamera = GameObject.Instantiate(Resources.Load("ZoomCamera"),Vector3.zero,Quaternion.identity) as GameObject;
+			zoomCamera.transform.parent = Camera.main.transform;
+			zoomCamera.transform.localPosition = Vector3.zero;
+			zoomCamera.transform.localRotation = Quaternion.identity;
+			zoomCamera.SetActive(false);
+		}
 		component.wcontrol.isBlitzMain = true;
 	}
 
@@ -52,7 +58,6 @@ public class IFP40 : Weapon {
 				else
 					this.ZoomOn();
 			}
-			sight.SetArea(param.mindispersion * component.wcontrol.desiredDispersion);
 		}
 	}
 
@@ -63,18 +68,21 @@ public class IFP40 : Weapon {
 
 	void ZoomOff(){
 		zoom.ZoomOff();
+		zoomCamera.SetActive(false);
 		sight.HideSight();
 	}
 
 	void ZoomOn(){
 		StopCoroutine("ZoomOffCoroutine");
 		zoom.ZoomOn();
+		component.motor.sensimag = 0.2f;
+		zoomCamera.SetActive(true);
 		sight.ShowSight();
 	}
 
 	void OnDestroy(){
 		if (component.myPV.isMine)
-			sight.ShowSight();
+			Destroy (zoomCamera);
 	}
 
 	protected override IEnumerator Reload (){
