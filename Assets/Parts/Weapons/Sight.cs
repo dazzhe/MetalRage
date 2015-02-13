@@ -14,6 +14,7 @@ public class Sight : MonoBehaviour {
 	}
 	
 	void Update(){
+		if (controllableSection == null) return;
 		float size = controllableSection.sizeDelta.x;
 		if (size == extent) return;
 		if (Mathf.Abs(size - extent) < 0.1){
