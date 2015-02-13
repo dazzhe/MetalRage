@@ -9,16 +9,17 @@ public class AMRLJ : Weapon {
 		param.ammo = 4;
 		param.magazine = 4;
 		param.recoil = 0f;
-		param.mindispersion = 0f;
-		param.dispersiongrow = 0f;
+		param.mindispersion = 10f;	//only for showing sight
+		param.dispersiongrow = 3f;
 		param.interval = 1.5f;
-		sightPrefabName = "HAR-6_Sight";
+		sightPrefabName = "Rocket_Sight";
 		Init ();
 	}
 
 	void LateUpdate () {
 		if(component.wcontrol.inputShot1 && param.load != 0 && !param.cooldown && param.canShot)
 			StartCoroutine("Shot");
+		sight.extent = param.mindispersion * component.wcontrol.desiredDispersion * 2;
 	}
 
 	IEnumerator Shot(){

@@ -36,6 +36,7 @@ public class Rocket : MonoBehaviour {
 			if (dam2 != null && (scol.gameObject.layer == 10 || scol.gameObject.layer == 8)) {
 				dam2.TakeDamage(50, shooterPlayer);
 				wcontrol.HitMark();
+				Debug.Log("A");
 			}
 		}
 		myPV.RPC("Explosion",PhotonTargets.All,transform.position);

@@ -37,7 +37,7 @@ public class HAR6 : Weapon {
 			else
 				zoom.ZoomOn();
 		}
-		sight.SetArea(param.mindispersion * component.wcontrol.desiredDispersion * 2);
+		sight.extent = param.mindispersion * component.wcontrol.desiredDispersion * 2;
 	}
 
 	protected IEnumerator ShotControl(){

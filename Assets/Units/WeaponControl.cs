@@ -132,8 +132,6 @@ public class WeaponControl : MonoBehaviour {
 	}
 
 	void DispersionControl(){
-		if (dispersionRate == 1)
-			return;
 		dispersionRate = Mathf.Clamp(dispersionRate - 3f * Time.deltaTime, 1, dispersionRate);
 		desiredDispersion = dispersionRate * DispersionCorrection() * Screen.height * 0.001f;
 	}
