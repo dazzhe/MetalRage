@@ -112,6 +112,11 @@ public abstract class Weapon : MonoBehaviour{
 		this.enabled = true;
 	}
 
+	protected virtual void OnDestroy(){
+		if (component.myPV.isMine && sightObject != null)
+			Destroy (sightObject);
+	}
+
 	protected virtual void Disable(){
 		component.wcontrol.isRecoiling = false;
 		param.cooldown = false;

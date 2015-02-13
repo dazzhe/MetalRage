@@ -80,7 +80,8 @@ public class IFP40 : Weapon {
 		sight.ShowSight();
 	}
 
-	void OnDestroy(){
+	protected override void OnDestroy(){
+		base.OnDestroy();
 		if (component.myPV.isMine)
 			Destroy (zoomCamera);
 	}
