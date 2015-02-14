@@ -2,12 +2,15 @@
 using System.Collections;
 
 public class Rocket : MonoBehaviour {
-	private float maxSpeed = 50f;
+	private float maxSpeed = 200f;
 	private float currentSpeed = 0f;
-	public int damage = 120;
+
+	[System.NonSerialized]
+	public int damage = 100;
+
 	public string shooterPlayer;
 	public WeaponControl wcontrol;
-
+	private float radiusOfExplosion = 8f;
 	private Vector3 direction;
 	public Vector3 targetPos;
 	private PhotonView myPV;
@@ -25,16 +28,18 @@ public class Rocket : MonoBehaviour {
 	void OnCollisionEnter(Collision col){
 		if (!myPV.isMine)
 			return;
-		Hit dam = col.gameObject.GetComponentInParent<Hit>();
-		if (dam != null && col.gameObject.layer == 10) {
-			dam.TakeDamage(50, shooterPlayer);
-			wcontrol.HitMark();
-		}
-		Collider[] collidersInSphere = Physics.OverlapSphere(transform.position, 7f);
+		Collider[] collidersInSphere = Physics.OverlapSphere(transform.position, radiusOfExplosion);
 		foreach (Collider scol in collidersInSphere){
-			Hit dam2 = scol.gameObject.GetComponentInParent<Hit>();
-			if (dam2 != null && (scol.gameObject.layer == 10 || scol.gameObject.layer == 8)) {
-				dam2.TakeDamage(50, shooterPlayer);
+			Hit dam = scol.gameObject.GetComponentInParent<Hit>();
+			if (dam != null && (scol.gameObject.layer == 10 || scol.gameObject.layer == 8)) {
+
+				float distance = Mathf.Clamp((transform.position - scol.gameObject.transform.position).magnitude,
+				                             3f, radiusOfExplosion);
+				//distance = 3 -> correctDamage = damage (distance between the rocket and surface is about 0)
+				//distance = rOE -> correctDamage = damage * 0.2
+				float correctDamage = (float)damage
+					* ( -0.8f / (radiusOfExplosion - 3f) * (distance - 3f) + 1f );
+				dam.TakeDamage(Mathf.FloorToInt(correctDamage), shooterPlayer);
 				wcontrol.HitMark();
 			}
 		}

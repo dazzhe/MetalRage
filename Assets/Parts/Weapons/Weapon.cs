@@ -66,10 +66,10 @@ public abstract class Weapon : MonoBehaviour{
 		component.wcontrol.isRecoiling = true;
 		float nextRecoilRotY;
 		float nextRecoilRotX;
-		if (component.wcontrol.recoilrotationy < 14F)
+		if (component.wcontrol.recoilrotationy < 14f)
 			nextRecoilRotY = component.wcontrol.recoilrotationy + param.recoil * (1f + component.wcontrol.desiredDispersion);
 		else
-			nextRecoilRotY = component.wcontrol.recoilrotationy - 1F;
+			nextRecoilRotY = component.wcontrol.recoilrotationy - 1f;
 		nextRecoilRotX = component.wcontrol.recoilrotationx + Random.Range(-param.recoil,param.recoil);
 		int i = 0;
 		while(i <= 6){

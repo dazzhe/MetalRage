@@ -35,8 +35,6 @@ public class FriendOrEnemy : MonoBehaviour {
 			yield return new WaitForSeconds(0.5f);
 		if (!myPV.isMine){
 			if (GameManager.myTeam == team){
-				Debug.Log ("myteam="+GameManager.myTeam.ToString());
-				Debug.Log ("team="+team.ToString());
 				this.gameObject.SetLayerRecursively(9);//Teammate
 				style.fontSize = 20;
 				style.normal.textColor = Color.green;
