@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class Configuration : MonoBehaviour
 {
-	public static float sensitivity = 2.0f;
-	public static float volume = 0.5f;
+	public static float sensitivity = 2.0F;
+	public static float volume = 0.5F;
 
 	[SerializeField] Canvas canvas;
 	[SerializeField] Slider sensitivitySlider;
@@ -14,6 +14,24 @@ public class Configuration : MonoBehaviour
 	[SerializeField] Text sensitivityValue;
 	[SerializeField] Text volumeValue;
 	[SerializeField] Text qualityValue;
+
+	public void UpdateSensitivity()
+	{
+		sensitivity = sensitivitySlider.value * 0.2F;
+		sensitivityValue.text = sensitivitySlider.value.ToString();
+	}
+	
+	public void UpdateSoundVolume()
+	{
+		AudioListener.volume = volumeSlider.value * 0.01F;
+		volumeValue.text = volumeSlider.value.ToString();
+	}
+	
+	public void UpdateQuality()
+	{
+		QualitySettings.SetQualityLevel((int)qualitySlider.value, true);
+		qualityValue.text = qualitySlider.value.ToString();
+	}
 
 	// Use this for initialization
 	void Start()
@@ -26,10 +44,6 @@ public class Configuration : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Menu")) {
 			ToggleCanvas();
-		}
-
-		if (canvas.enabled) {
-			UpdateConfiguration();
 		}
 	}
 
@@ -44,19 +58,7 @@ public class Configuration : MonoBehaviour
 	
 	void ShowCursor()
 	{
-		if (Screen.lockCursor || !Screen.showCursor) {
-			Screen.lockCursor = false;
-			Screen.showCursor = true;
-		}
-	}
-
-	void UpdateConfiguration()
-	{
-		sensitivity = sensitivitySlider.value * 0.2f;
-		sensitivityValue.text = sensitivitySlider.value.ToString();
-		AudioListener.volume = volumeSlider.value * 0.01f;
-		volumeValue.text = volumeSlider.value.ToString();
-		QualitySettings.SetQualityLevel((int)qualitySlider.value, true);
-		qualityValue.text = qualitySlider.value.ToString();
+		Screen.lockCursor = false;
+		Screen.showCursor = true;
 	}
 }
