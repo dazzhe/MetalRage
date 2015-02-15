@@ -103,6 +103,7 @@ public abstract class Weapon : MonoBehaviour{
 		NormalDisplay.NOLtext.text = param.load.ToString();
 		if (sight != null)
 			sight.ShowSight();
+		interruptReloading();
 		StopCoroutine("EnableCoroutine");
 		StartCoroutine("EnableCoroutine");
 	}
@@ -124,5 +125,11 @@ public abstract class Weapon : MonoBehaviour{
 		this.enabled = false;
 		if (sight != null)
 			sight.HideSight();
+	}
+
+	void interruptReloading()
+	{
+		StopCoroutine("Reload");
+		param.isReloading = false;
 	}
 }
