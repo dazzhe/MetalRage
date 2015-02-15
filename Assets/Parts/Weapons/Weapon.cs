@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
-public class WeaponParam{
+public class WeaponParam
+{
 	public int ammo = 0;
 	public int magazine = 0;
 	public int damage = 0;
@@ -17,7 +18,8 @@ public class WeaponParam{
 	public bool canShot;
 }
 
-public class WeaponComponent{
+public class WeaponComponent
+{
 	public GameObject unit;
 	public AudioSource reload;
 	public PhotonView myPV;
@@ -27,52 +29,58 @@ public class WeaponComponent{
 }
 
 //Base class of weapons
-public abstract class Weapon : MonoBehaviour{
+public abstract class Weapon : MonoBehaviour
+{
 	protected WeaponParam param = new WeaponParam();
 	protected WeaponComponent component = new WeaponComponent();
 	protected GameObject sightObject;
 	protected Sight sight;
 	protected string sightPrefabName = "";
 
-	protected void Init () {
+	protected void Init()
+	{
 		component.unit = transform.parent.parent.parent.gameObject;
 		component.myPV = GetComponent<PhotonView>();
 		component.wcontrol = component.unit.GetComponent<WeaponControl>();
 		component.motor = component.unit.GetComponent<UnitMotor>();
-		if (GetComponent<AudioSource>()){
+		if (GetComponent<AudioSource>()) {
 			AudioSource[] audioSources = GetComponents<AudioSource>();
 			component.reload = audioSources[0];
 		}
 		param.load = param.magazine;
 		param.canShot = true;
 		NormalDisplay.NOLtext.text = param.load.ToString();
-		if (component.myPV.isMine && sightPrefabName != ""){
-			sightObject = GameObject.Instantiate(Resources.Load(sightPrefabName),Vector3.zero, Quaternion.identity) as GameObject;
+		if (component.myPV.isMine && sightPrefabName != "") {
+			sightObject = GameObject.Instantiate(Resources.Load(sightPrefabName), Vector3.zero, Quaternion.identity) as GameObject;
 			sight = sightObject.GetComponentInChildren<Sight>();
 			sight.HideSight();
 		}
 	}
 
-	protected void RecoilAndDisperse(){
+	protected void RecoilAndDisperse()
+	{
 		StopCoroutine("Recoil");
 		StartCoroutine("Recoil");
-		if (component.wcontrol.dispersionRate < 3f)
+		if (component.wcontrol.dispersionRate < 3f) {
 			component.wcontrol.dispersionRate += param.dispersiongrow;
-		else
+		} else {
 			component.wcontrol.dispersionRate = 3f;
+		}
 	}
 
-	private IEnumerator Recoil(){
+	private IEnumerator Recoil()
+	{
 		component.wcontrol.isRecoiling = true;
 		float nextRecoilRotY;
 		float nextRecoilRotX;
-		if (component.wcontrol.recoilrotationy < 14f)
+		if (component.wcontrol.recoilrotationy < 14f) {
 			nextRecoilRotY = component.wcontrol.recoilrotationy + param.recoil * (1f + component.wcontrol.desiredDispersion);
-		else
+		} else {
 			nextRecoilRotY = component.wcontrol.recoilrotationy - 1f;
-		nextRecoilRotX = component.wcontrol.recoilrotationx + Random.Range(-param.recoil,param.recoil);
+		}
+		nextRecoilRotX = component.wcontrol.recoilrotationx + Random.Range(-param.recoil, param.recoil);
 		int i = 0;
-		while(i <= 6){
+		while (i <= 6) {
 			component.wcontrol.recoilrotationx = Mathf.Lerp(component.wcontrol.recoilrotationx, nextRecoilRotX, 50f * Time.deltaTime);
 			component.wcontrol.recoilrotationy = Mathf.Lerp(component.wcontrol.recoilrotationy, nextRecoilRotY, 50f * Time.deltaTime);
 			i++;
@@ -81,16 +89,18 @@ public abstract class Weapon : MonoBehaviour{
 		component.wcontrol.isRecoiling = false;
 	}
 	
-	protected void RemainingLoads(int b){
+	protected void RemainingLoads(int b)
+	{
 		param.load = Mathf.Clamp(param.load - b, 0, param.magazine);
 		param.ammo = Mathf.Clamp(param.ammo - b, 0, param.ammo);
-		if (param.load == 0 && param.ammo != 0){
-			StartCoroutine(this.Reload ());
+		if (param.load == 0 && param.ammo != 0) {
+			StartCoroutine(this.Reload());
 		}
 		NormalDisplay.NOLtext.text = param.load.ToString();
 	}
 	
-	protected virtual IEnumerator Reload(){
+	protected virtual IEnumerator Reload()
+	{
 		component.reload.PlayOneShot(component.reload.clip);
 		param.isReloading = true;
 		yield return new WaitForSeconds(param.reloadTime);
@@ -99,32 +109,39 @@ public abstract class Weapon : MonoBehaviour{
 		NormalDisplay.NOLtext.text = param.load.ToString();
 	}
 
-	protected virtual void Enable(){
+	protected virtual void Enable()
+	{
 		NormalDisplay.NOLtext.text = param.load.ToString();
-		if (sight != null)
+		if (sight != null) {
 			sight.ShowSight();
+		}
 		interruptReloading();
 		StopCoroutine("EnableCoroutine");
 		StartCoroutine("EnableCoroutine");
 	}
 
-	protected IEnumerator EnableCoroutine(){
+	protected IEnumerator EnableCoroutine()
+	{
 		yield return new WaitForSeconds(param.interval);
 		this.enabled = true;
 	}
 
-	protected virtual void OnDestroy(){
-		if (component.myPV.isMine && sightObject != null)
-			Destroy (sightObject);
+	protected virtual void OnDestroy()
+	{
+		if (component.myPV.isMine && sightObject != null) {
+			Destroy(sightObject);
+		}
 	}
 
-	protected virtual void Disable(){
+	protected virtual void Disable()
+	{
 		component.wcontrol.isRecoiling = false;
 		param.cooldown = false;
 		StopAllCoroutines();
 		this.enabled = false;
-		if (sight != null)
+		if (sight != null) {
 			sight.HideSight();
+		}
 	}
 
 	void interruptReloading()
