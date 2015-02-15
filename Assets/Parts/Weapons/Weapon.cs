@@ -49,7 +49,6 @@ public abstract class Weapon : MonoBehaviour
 		}
 		param.load = param.magazine;
 		param.canShot = true;
-		NormalDisplay.NOLtext.text = param.load.ToString();
 		if (component.myPV.isMine && sightPrefabName != "") {
 			sightObject = GameObject.Instantiate(Resources.Load(sightPrefabName), Vector3.zero, Quaternion.identity) as GameObject;
 			sight = sightObject.GetComponentInChildren<Sight>();
@@ -92,11 +91,10 @@ public abstract class Weapon : MonoBehaviour
 	protected void RemainingLoads(int b)
 	{
 		param.load = Mathf.Clamp(param.load - b, 0, param.magazine);
-		param.ammo = Mathf.Clamp(param.ammo - b, 0, param.ammo);
 		if (param.load == 0 && param.ammo != 0) {
 			StartCoroutine(this.Reload());
 		}
-		NormalDisplay.NOLtext.text = param.load.ToString();
+		NormalDisplay.SetMagazine(param.load);
 	}
 	
 	protected virtual IEnumerator Reload()
@@ -104,14 +102,18 @@ public abstract class Weapon : MonoBehaviour
 		component.reload.PlayOneShot(component.reload.clip);
 		param.isReloading = true;
 		yield return new WaitForSeconds(param.reloadTime);
-		param.load = param.magazine;
+		int supplyLoad = Mathf.Min(param.magazine - param.load, param.ammo);
+		param.load += supplyLoad;
+		param.ammo -= supplyLoad;
 		param.isReloading = false;
-		NormalDisplay.NOLtext.text = param.load.ToString();
+		NormalDisplay.SetMagazine(param.load);
+		NormalDisplay.SetAmmo(param.ammo);
 	}
 
 	protected virtual void Enable()
 	{
-		NormalDisplay.NOLtext.text = param.load.ToString();
+		NormalDisplay.SetMagazine(param.load);
+		NormalDisplay.SetAmmo(param.ammo);
 		if (sight != null) {
 			sight.ShowSight();
 		}

@@ -7,7 +7,6 @@ public class MAF : Weapon {
 	Animator animator;
 
 	void Awake () {
-		param.ammo = 900;
 		param.magazine = 900;
 		param.damage = 13;
 		param.recoil = 0f;

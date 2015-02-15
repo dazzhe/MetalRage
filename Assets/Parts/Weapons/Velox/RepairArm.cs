@@ -29,7 +29,7 @@ public class RepairArm : Weapon {
 				param.load += 2;
 				if (param.load > param.magazine)
 					param.load = param.magazine;
-				NormalDisplay.NOLtext.text = param.load.ToString();
+				NormalDisplay.SetMagazine(param.load);
 			}
 			yield return new WaitForSeconds(0.1f);
 		}

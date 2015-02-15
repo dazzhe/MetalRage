@@ -3,19 +3,39 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class NormalDisplay : MonoBehaviour {
-	public Text HPtext;
-	public static Text NOLtext;
-	Slider boostgauge;
-	public Slider HPBar;
-
-	void Start () {
-		boostgauge = transform.FindChild ("BoostGauge").GetComponent<Slider>();
-		HPBar = transform.FindChild ("HPBar").GetComponent<Slider>();
-		HPtext = transform.FindChild ("HPText").GetComponent<Text>();
-		NOLtext = transform.FindChild ("NOLText").GetComponent<Text>();
+	private static Text HPValue;
+	private static Slider HPBar;
+	private static Text magazineValue;
+	private static Text ammoValue;
+	private static Slider boostGauge;
+	
+	void Start ()
+	{
+		boostGauge = transform.FindChild ("BoostGauge").GetComponent<Slider>();
+		HPValue = transform.FindChild ("Status/HPValue").GetComponent<Text>();
+		HPBar = transform.FindChild ("Status/HPBar").GetComponent<Slider>();
+		magazineValue = transform.FindChild ("Ammunition/Magazine").GetComponent<Text>();
+		ammoValue = transform.FindChild ("Ammunition/Ammo").GetComponent<Text>();
 	}
 
-	public void SetBoostGauge(int boost){
-		boostgauge.value = boost / 100f;
+	public static void SetBoostGauge(int boost)
+	{
+		boostGauge.value = boost / 100f;
+	}
+
+	public static void SetHP(int HP, int maxHP)
+	{
+		HPValue.text = HP.ToString("D3");
+		HPBar.value = (float)HP / (float)maxHP;
+	}
+
+	public static void SetMagazine(int magazine)
+	{
+		magazineValue.text = magazine.ToString("D3");
+	}
+
+	public static void SetAmmo(int ammo)
+	{
+		ammoValue.text = ammo.ToString("D4");
 	}
 }

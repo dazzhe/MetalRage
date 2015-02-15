@@ -6,7 +6,6 @@ public class AMRLJ : Weapon {
 	AudioSource repair;
 	Status s;
 	void Awake () {
-		param.ammo = 4;
 		param.magazine = 4;
 		param.recoil = 0f;
 		param.mindispersion = 10f;	//only for showing sight

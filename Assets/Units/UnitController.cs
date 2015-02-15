@@ -9,21 +9,20 @@ public class UnitController : MonoBehaviour {
 		"13_holy_shot","14_holy_shot_haha"};
 
 	UnitMotor motor;
-	NormalDisplay normaldisplay;
 	Status stat;
 	Canvas settings;
 	
 	private int killcount;
 
-	void Start () {
-		GameObject normdisp = GameObject.Find ("NormalDisplay");
+	void Start ()
+	{
 		motor = GetComponent<UnitMotor>();
 		stat = GetComponent<Status>();
-		normaldisplay = normdisp.GetComponent<NormalDisplay>();
 		settings = GameObject.Find("Settings").GetComponent<Canvas>();
 	}
 
-	void Update () {
+	void Update ()
+	{
 		//トラフィックを減らすために１バイトの変数に入力情報をまとめている.
 		byte b = 0;
 		if (!settings.enabled){
@@ -50,20 +49,22 @@ public class UnitController : MonoBehaviour {
 			}
 		}
 		//入力情報を同期させる.
-		if (motor.inputState != b){
+		if (motor.inputState != b)
+		{
 			GetComponent<PhotonView>().RPC("InputState",PhotonTargets.All, b);
 		}
-		normaldisplay.HPtext.text = stat.HP.ToString();
-		normaldisplay.HPBar.value = 1f * stat.HP / stat.maxHP;
-		normaldisplay.SetBoostGauge(motor.boostgauge);
+		NormalDisplay.SetHP(stat.HP,stat.maxHP);
+		NormalDisplay.SetBoostGauge(motor.boostgauge);
 	}
 
 	[RPC]
-	public void InputState(byte inputState){
+	public void InputState(byte inputState)
+	{
 		GetComponent<UnitMotor>().inputState = inputState;
 	}
 	
-	void LateUpdate(){
+	void LateUpdate()
+	{
 		if (stat.HP == 0){
 			ScoreBoard._myEntry.IncrementDeath();
 			GameObject go = GameObject.Find ("GameManager");
@@ -74,14 +75,16 @@ public class UnitController : MonoBehaviour {
 	//自分の攻撃によって死んだプレイヤーが実行する関数であるため.
 	//RPC関数となっている.
 	[RPC]
-	void OnKilledPlayer(){
+	void OnKilledPlayer()
+	{
 		if (GetComponent<PhotonView>().isMine){
 			killcount++;
 			ScoreBoard._myEntry.IncrementKill();
-			if (killcount > 14)
+			if (killcount > 14) {
 				SoundPlayer.Instance.PlaySE(pkSE[14]);
-			else
+			} else {
 				SoundPlayer.Instance.PlaySE(pkSE[killcount]);
+			}
 		}
 	}
 }
