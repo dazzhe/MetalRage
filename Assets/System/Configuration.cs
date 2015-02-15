@@ -6,24 +6,19 @@ public class Configuration : MonoBehaviour
 {
 	public static float sensitivity = 2.0f;
 	public static float volume = 0.5f;
-	Canvas canvas;
-	Slider sensitivitySlider;
-	Slider volumeSlider;
-	Slider qualitySlider;
-	Text sensitivityValue;
-	Text volumeValue;
-	Text qualityValue;
+
+	[SerializeField] Canvas canvas;
+	[SerializeField] Slider sensitivitySlider;
+	[SerializeField] Slider volumeSlider;
+	[SerializeField] Slider qualitySlider;
+	[SerializeField] Text sensitivityValue;
+	[SerializeField] Text volumeValue;
+	[SerializeField] Text qualityValue;
 
 	// Use this for initialization
 	void Start()
 	{
-		canvas = GetComponent<Canvas>();
-		sensitivitySlider = transform.FindChild("Sensitivity").GetComponent<Slider>();
-		sensitivityValue = transform.FindChild("Sensitivity/Value").GetComponent<Text>();
-		volumeSlider = transform.FindChild("Volume").GetComponent<Slider>();
-		volumeValue = transform.FindChild("Volume/Value").GetComponent<Text>();
-		qualitySlider = transform.FindChild("Quality").GetComponent<Slider>();
-		qualityValue = transform.FindChild("Quality/Value").GetComponent<Text>();
+
 	}
 	
 	// Update is called once per frame

@@ -20688,6 +20688,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbcb38e1fdc939444a01ad4e68cdda06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 1549343404}
+  sensitivitySlider: {fileID: 643166585}
+  volumeSlider: {fileID: 196738294}
+  qualitySlider: {fileID: 631198906}
+  sensitivityValue: {fileID: 1433527736}
+  volumeValue: {fileID: 1312856793}
+  qualityValue: {fileID: 601327570}
 --- !u!1 &1557369545
 GameObject:
   m_ObjectHideFlags: 0
