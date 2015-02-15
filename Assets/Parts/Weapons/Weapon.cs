@@ -117,7 +117,6 @@ public abstract class Weapon : MonoBehaviour
 		if (sight != null) {
 			sight.ShowSight();
 		}
-		interruptReloading();
 		StopCoroutine("EnableCoroutine");
 		StartCoroutine("EnableCoroutine");
 	}
@@ -140,6 +139,7 @@ public abstract class Weapon : MonoBehaviour
 		component.wcontrol.isRecoiling = false;
 		param.cooldown = false;
 		StopAllCoroutines();
+		interruptReloading();
 		this.enabled = false;
 		if (sight != null) {
 			sight.HideSight();
@@ -148,7 +148,6 @@ public abstract class Weapon : MonoBehaviour
 
 	void interruptReloading()
 	{
-		StopCoroutine("Reload");
 		param.isReloading = false;
 	}
 }
