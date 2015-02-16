@@ -4,26 +4,51 @@ using UnityEngine.UI;
 
 public class Configuration : MonoBehaviour
 {
-	public static float sensitivity = 2.0f;
-	public static float volume = 0.5f;
-	Canvas canvas;
-	Slider sensitivitySlider;
-	Slider volumeSlider;
-	Slider qualitySlider;
-	Text sensitivityValue;
-	Text volumeValue;
-	Text qualityValue;
+	public static float sensitivity;
+	public static float volume;
+	public static int quality;
+
+	const string SensitivityKey = "ConfigurationSensitivity";
+	const string SoundVolumeKey = "ConfigurationSoundVolume";
+	const string QualityKey = "ConfigurationQuality";
+
+	[SerializeField] Canvas canvas;
+	[SerializeField] Slider sensitivitySlider;
+	[SerializeField] Slider volumeSlider;
+	[SerializeField] Slider qualitySlider;
+	[SerializeField] Text sensitivityValue;
+	[SerializeField] Text volumeValue;
+	[SerializeField] Text qualityValue;
+
+	public void UpdateSensitivity()
+	{
+		sensitivity = sensitivitySlider.value * 0.2F;
+		sensitivityValue.text = sensitivitySlider.value.ToString();
+		PlayerPrefs.SetFloat(SensitivityKey, sensitivity);
+	}
+	
+	public void UpdateSoundVolume()
+	{
+		volume = volumeSlider.value * 0.01F;
+		AudioListener.volume = volume;
+		volumeValue.text = volumeSlider.value.ToString();
+		PlayerPrefs.SetFloat(SoundVolumeKey, volume);
+	}
+	
+	public void UpdateQuality()
+	{
+		quality = (int)qualitySlider.value;
+		QualitySettings.SetQualityLevel(quality, true);
+		qualityValue.text = qualitySlider.value.ToString();
+		PlayerPrefs.SetInt(QualityKey, quality);
+	}
 
 	// Use this for initialization
 	void Start()
 	{
-		canvas = GetComponent<Canvas>();
-		sensitivitySlider = transform.FindChild("Sensitivity").GetComponent<Slider>();
-		sensitivityValue = transform.FindChild("Sensitivity/Value").GetComponent<Text>();
-		volumeSlider = transform.FindChild("Volume").GetComponent<Slider>();
-		volumeValue = transform.FindChild("Volume/Value").GetComponent<Text>();
-		qualitySlider = transform.FindChild("Quality").GetComponent<Slider>();
-		qualityValue = transform.FindChild("Quality/Value").GetComponent<Text>();
+		InitializeSensitivity();
+		InitializeSoundVolume();
+		InitializeQuality();
 	}
 	
 	// Update is called once per frame
@@ -32,10 +57,29 @@ public class Configuration : MonoBehaviour
 		if (Input.GetButtonDown("Menu")) {
 			ToggleCanvas();
 		}
+	}
+	
+	void InitializeSensitivity()
+	{
+		sensitivity = PlayerPrefs.GetFloat(SensitivityKey, 2F);
+		sensitivitySlider.value = sensitivity * 5F;
+		sensitivityValue.text = sensitivitySlider.value.ToString();
+	}
 
-		if (canvas.enabled) {
-			UpdateConfiguration();
-		}
+	void InitializeSoundVolume()
+	{
+		volume = PlayerPrefs.GetFloat(SoundVolumeKey, 0.5F);
+		AudioListener.volume = volume;
+		volumeSlider.value = volume * 100F;
+		volumeValue.text = volumeSlider.value.ToString();
+	}
+
+	void InitializeQuality()
+	{
+		quality = PlayerPrefs.GetInt(QualityKey, QualitySettings.GetQualityLevel());
+		QualitySettings.SetQualityLevel(quality, true);
+		qualitySlider.value = (float)quality;
+		qualityValue.text = qualitySlider.value.ToString();
 	}
 
 	void ToggleCanvas()
@@ -49,19 +93,7 @@ public class Configuration : MonoBehaviour
 	
 	void ShowCursor()
 	{
-		if (Screen.lockCursor || !Screen.showCursor) {
-			Screen.lockCursor = false;
-			Screen.showCursor = true;
-		}
-	}
-
-	void UpdateConfiguration()
-	{
-		sensitivity = sensitivitySlider.value * 0.2f;
-		sensitivityValue.text = sensitivitySlider.value.ToString();
-		AudioListener.volume = volumeSlider.value * 0.01f;
-		volumeValue.text = volumeSlider.value.ToString();
-		QualitySettings.SetQualityLevel((int)qualitySlider.value, true);
-		qualityValue.text = qualitySlider.value.ToString();
+		Screen.lockCursor = false;
+		Screen.showCursor = true;
 	}
 }
