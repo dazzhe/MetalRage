@@ -11,8 +11,8 @@ public class RepairArm : Weapon {
 		param.magazine = 100;
 		param.damage = -40;
 		param.recoil = 0f;//反動.
-		param.mindispersion = 0f;//ばらつき.
-		param.dispersiongrow = 0f;
+		param.minDispersion = 0f;//ばらつき.
+		param.dispersionGrow = 0f;
 		param.maxrange = 1000;
 		_animation = GetComponent<Animation>();
 		Init ();

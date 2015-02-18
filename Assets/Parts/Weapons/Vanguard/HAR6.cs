@@ -10,8 +10,8 @@ public class HAR6 : Weapon {
 		param.magazine = 80;
 		param.damage = 13;
 		param.recoil = 0.4f;
-		param.mindispersion = 10f;
-		param.dispersiongrow = 0.4f;
+		param.minDispersion = 10f;
+		param.dispersionGrow = 0.4f;
 		param.maxrange = 1000;
 		param.reloadTime = 1.5f;
 		param.interval = 0.07f;
@@ -37,7 +37,7 @@ public class HAR6 : Weapon {
 			else
 				zoom.ZoomOn();
 		}
-		sight.extent = param.mindispersion * component.wcontrol.desiredDispersion * 2;
+		sight.extent = param.minDispersion * component.wcontrol.desiredDispersion * 2;
 	}
 
 	protected IEnumerator ShotControl(){

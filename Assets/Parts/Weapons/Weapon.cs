@@ -7,8 +7,9 @@ public class WeaponParam
 	public int magazine = 0;
 	public int damage = 0;
 	public float recoil = 0;//反動.
-	public float mindispersion = 0;//ばらつき.
-	public float dispersiongrow = 0;
+	public float maxRecoil = 14;
+	public float minDispersion = 0;//ばらつき.
+	public float dispersionGrow = 0;
 	public float maxrange = 0;
 	public float reloadTime = 0;
 	public float interval = 0;
@@ -61,7 +62,7 @@ public abstract class Weapon : MonoBehaviour
 		StopCoroutine("Recoil");
 		StartCoroutine("Recoil");
 		if (component.wcontrol.dispersionRate < 3f) {
-			component.wcontrol.dispersionRate += param.dispersiongrow;
+			component.wcontrol.dispersionRate += param.dispersionGrow;
 		} else {
 			component.wcontrol.dispersionRate = 3f;
 		}
@@ -72,12 +73,18 @@ public abstract class Weapon : MonoBehaviour
 		component.wcontrol.isRecoiling = true;
 		float nextRecoilRotY;
 		float nextRecoilRotX;
-		if (component.wcontrol.recoilrotationy < 14f) {
-			nextRecoilRotY = component.wcontrol.recoilrotationy + param.recoil * (1f + component.wcontrol.desiredDispersion);
+		float desiredRecoil = param.recoil * (1f + component.wcontrol.desiredDispersion);
+		if (component.wcontrol.recoilrotationy <= param.maxRecoil - 1f) {
+			nextRecoilRotY = component.wcontrol.recoilrotationy + desiredRecoil;
 		} else {
-			nextRecoilRotY = component.wcontrol.recoilrotationy - 1f;
+			nextRecoilRotY = NextRecoilInRange(param.maxRecoil - 1f,
+			                                   param.maxRecoil,
+			                                   component.wcontrol.recoilrotationy,
+			                                   0.5f);
 		}
-		nextRecoilRotX = component.wcontrol.recoilrotationx + Random.Range(-param.recoil, param.recoil);
+		nextRecoilRotX = NextRecoilInRange(-3f, 3f,
+		                                   component.wcontrol.recoilrotationx,
+		                                   desiredRecoil);
 		int i = 0;
 		while (i <= 6) {
 			component.wcontrol.recoilrotationx = Mathf.Lerp(component.wcontrol.recoilrotationx, nextRecoilRotX, 50f * Time.deltaTime);
@@ -86,6 +93,12 @@ public abstract class Weapon : MonoBehaviour
 			yield return null;
 		}
 		component.wcontrol.isRecoiling = false;
+	}
+
+	private float NextRecoilInRange(float min, float max, float origin, float range)
+	{
+		float recoil = Random.Range(-range, range);
+		return (min < origin + recoil && origin + recoil < max) ? origin + recoil : origin - recoil;
 	}
 	
 	protected void RemainingLoads(int b)

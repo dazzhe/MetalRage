@@ -8,8 +8,8 @@ public class AMRLJ : Weapon {
 	void Awake () {
 		param.magazine = 4;
 		param.recoil = 0f;
-		param.mindispersion = 10f;	//only for showing sight
-		param.dispersiongrow = 3f;
+		param.minDispersion = 10f;	//only for showing sight
+		param.dispersionGrow = 3f;
 		param.interval = 1.5f;
 		sightPrefabName = "Rocket_Sight";
 		Init ();
@@ -18,7 +18,7 @@ public class AMRLJ : Weapon {
 	void LateUpdate () {
 		if(component.wcontrol.inputShot1 && param.load != 0 && !param.cooldown && param.canShot)
 			StartCoroutine("Shot");
-		sight.extent = param.mindispersion * component.wcontrol.desiredDispersion * 2;
+		sight.extent = param.minDispersion * component.wcontrol.desiredDispersion * 2;
 	}
 
 	IEnumerator Shot(){

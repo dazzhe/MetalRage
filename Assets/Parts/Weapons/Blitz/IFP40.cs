@@ -10,8 +10,8 @@ public class IFP40 : Weapon {
 		param.magazine = 6;
 		param.damage = 200;
 		param.recoil = 6f;
-		param.mindispersion = 0f;
-		param.dispersiongrow = 0f;
+		param.minDispersion = 0f;
+		param.dispersionGrow = 0f;
 		param.maxrange = 1000;
 		param.reloadTime = 3f;
 		param.interval = 2F;

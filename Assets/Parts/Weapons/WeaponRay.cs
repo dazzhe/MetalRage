@@ -39,7 +39,7 @@ public class WeaponRay : MonoBehaviour
 
 	private Vector3 CalculateShotPoint()
 	{
-		float r = Random.value * param.mindispersion * component.wcontrol.desiredDispersion;
+		float r = Random.value * param.minDispersion * component.wcontrol.desiredDispersion;
 		float theta = Random.value * 2 * Mathf.PI;
 		return component.wcontrol.center + new Vector3(r * Mathf.Cos(theta), r * Mathf.Sin(theta), 0);
 	}
