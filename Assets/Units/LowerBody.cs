@@ -2,15 +2,15 @@
 using System.Collections;
 
 public class LowerBody : MonoBehaviour {
-	public GameObject van;
+	[SerializeField]
+	private GameObject unit;
 
 	UnitMotor motor;
-
 
 	private Animation _animation;
 
 	void Start () {
-		motor = van.GetComponent<UnitMotor>();
+		motor = unit.GetComponent<UnitMotor>();
 		_animation = GetComponent<Animation>();
 		//animation["Walk"].speed = 1.2f;
 	}
