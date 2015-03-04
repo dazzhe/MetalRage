@@ -43,18 +43,16 @@ public class Configuration : MonoBehaviour
 		PlayerPrefs.SetInt(QualityKey, quality);
 	}
 
-	// Use this for initialization
 	void Start()
 	{
 		InitializeSensitivity();
 		InitializeSoundVolume();
 		InitializeQuality();
 	}
-	
-	// Update is called once per frame
+
 	void Update()
 	{
-		if (Input.GetButtonDown("Menu")) {
+		if (Input.GetButtonDown("Menu") && canvas.enabled) {
 			ToggleCanvas();
 		}
 	}
@@ -82,12 +80,15 @@ public class Configuration : MonoBehaviour
 		qualityValue.text = qualitySlider.value.ToString();
 	}
 
-	void ToggleCanvas()
+	public void ToggleCanvas()
 	{
 		canvas.enabled = !canvas.enabled;
 
 		if (canvas.enabled) {
 			ShowCursor();
+			Menu.activeWindowLevel = 2;
+		} else {
+			Menu.activeWindowLevel = 0;
 		}
 	}
 	

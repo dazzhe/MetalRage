@@ -10,7 +10,6 @@ public class UnitController : MonoBehaviour {
 
 	UnitMotor motor;
 	Status stat;
-	Canvas settings;
 	
 	private int killcount;
 
@@ -18,14 +17,13 @@ public class UnitController : MonoBehaviour {
 	{
 		motor = GetComponent<UnitMotor>();
 		stat = GetComponent<Status>();
-		settings = GameObject.Find("Settings").GetComponent<Canvas>();
 	}
 
 	void Update ()
 	{
 		//トラフィックを減らすために１バイトの変数に入力情報をまとめている.
 		byte b = 0;
-		if (!settings.enabled){
+		if (Menu.activeWindowLevel == 0){
 			motor.rotationX
 				= transform.localEulerAngles.y
 				+ Input.GetAxis("Mouse X") * Configuration.sensitivity * motor.sensimag;

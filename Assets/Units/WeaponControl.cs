@@ -5,7 +5,6 @@ using System.Collections;
 public class WeaponControl : MonoBehaviour {
 	static Text EIR;
 	UnitMotor motor;
-	Canvas settings;
 	Sight[] sights;
 	WeaponManager[] weapons = new WeaponManager[3];
 	[System.NonSerialized]
@@ -63,7 +62,6 @@ public class WeaponControl : MonoBehaviour {
 	}
 	
 	void Start () {
-		settings = GameObject.Find ("Settings").GetComponent<Canvas>();
 		EIR = GameObject.Find("NormalDisplay/EnemyInReticle").GetComponent<Text>();
 		motor = GetComponent<UnitMotor>();
 		weapons[0] = transform.Find ("Offset/MainWeapon").GetComponent<WeaponManager>();
@@ -79,7 +77,7 @@ public class WeaponControl : MonoBehaviour {
 	}
 
 	void Update () {
-		if (!settings.enabled){
+		if (Menu.activeWindowLevel == 0){
 			WeaponSelect();
 			inputReload = Input.GetButtonDown("Reload");
 			inputShot1 = Input.GetButton("Fire1");
