@@ -2,12 +2,14 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
-public class RepairArm : Weapon {
+public class RepairArm : Weapon
+{
 	private Animation _animation;
 	AudioSource repair;
 	Text HP;
 	Status s;
-	void Awake () {
+	void Awake ()
+	{
 		param.magazine = 100;
 		param.damage = -40;
 		param.recoil = 0f;//反動.
@@ -23,7 +25,8 @@ public class RepairArm : Weapon {
 			StartCoroutine("Remain");
 		}
 	}
-	IEnumerator Remain(){
+	IEnumerator Remain()
+	{
 		while(true){
 			if (param.load < param.magazine && _animation.IsPlaying("Default")){
 				param.load += 2;
@@ -35,9 +38,10 @@ public class RepairArm : Weapon {
 		}
 	}
 
-	void LateUpdate () {
+	void LateUpdate ()
+	{
 		s = component.wcontrol.targetObject.GetComponent<Status>();
-		if (s != null)
+		if (s != null && component.wcontrol.targetObject.layer == 9)
 			HP.text = s.HP.ToString();
 		else
 			HP.text = "";
@@ -55,7 +59,8 @@ public class RepairArm : Weapon {
 		}
 	}
 
-	void Repair(){
+	void Repair()
+	{
 		repair.PlayOneShot(repair.clip);
 		if (component.myPV.isMine){
 			Hit h = component.wcontrol.targetObject.GetComponentInParent<Hit>();
@@ -68,13 +73,21 @@ public class RepairArm : Weapon {
 		}
 	}
 
+	protected override void OnDestroy ()
+	{
+		base.OnDestroy ();
+		HP.text = "";
+	}
+
 	[RPC]
-	void Default(){
+	void Default()
+	{
 		_animation.Play("Default");
 	}
 
 	[RPC]
-	void RepairRPC(){
+	void RepairRPC()
+	{
 		_animation.Play ("Repair");
 	}
 }
