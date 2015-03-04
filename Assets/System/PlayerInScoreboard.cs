@@ -20,6 +20,7 @@ public class PlayerInScoreboard : Photon.MonoBehaviour {
 			myPV.RPC("Init",PhotonTargets.AllBuffered,playerName,team);
 	}
 
+
 	void Update(){
 		_kill.text = kill.ToString();
 		_death.text = death.ToString();
@@ -47,6 +48,7 @@ public class PlayerInScoreboard : Photon.MonoBehaviour {
 		Text _name = transform.FindChild("Name").GetComponent<Text>();
 		_name.text = name;
 		team = t;
+		ScoreBoard.startAdding = true;
 	}
 
 	public void IncrementKill(){

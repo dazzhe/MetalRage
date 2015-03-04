@@ -56,4 +56,5 @@ MonoBehaviour:
   - Init
   - SpawnRPC
   - Sync
+  - EntryPlayer
   DisableAutoOpenWizard: 0

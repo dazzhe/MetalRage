@@ -2,34 +2,40 @@ using UnityEngine;
 using UnityEngine.UI;
 public class RandomMatchmaker : Photon.MonoBehaviour{
     private PhotonView myPhotonView;
-	public GameObject canvas;
+	[SerializeField]
+	private GameObject inputNameWindow;
     // Use this for initialization
-    void Start(){
+    void Start()
+	{
         PhotonNetwork.ConnectUsingSettings("0.1");
 		PhotonNetwork.sendRate = 30;
 	}
 
     void OnJoinedLobby(){
-
+		inputNameWindow.SetActive(true);
     }
 
-    void OnPhotonRandomJoinFailed(){
+    void OnPhotonRandomJoinFailed()
+	{
         PhotonNetwork.CreateRoom(null);
     }
 
-    void OnJoinedRoom(){
+    void OnJoinedRoom()
+	{
 		ScoreBoard.SelectTeam();
 		this.enabled = false;
     }
 
-	public void JoinRoom(){
-		InputField i = canvas.transform.FindChild("Image/InputField").GetComponent<InputField>();
+	public void JoinRoom()
+	{
+		InputField i = inputNameWindow.transform.FindChild("Image/InputField").GetComponent<InputField>();
 		PhotonNetwork.playerName = i.text;
-		Destroy (canvas);
+		Destroy (inputNameWindow);
 		PhotonNetwork.JoinRandomRoom();
 	}
 	
-	void OnGUI(){
+	void OnGUI()
+	{
         GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
     }
 }
