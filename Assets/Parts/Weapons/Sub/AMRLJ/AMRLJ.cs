@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class AMRLJ : Weapon {
@@ -7,7 +7,7 @@ public class AMRLJ : Weapon {
 	Status s;
 	void Awake () {
 		param.magazine = 4;
-		param.recoil = 0f;
+		param.recoilY = 0f;
 		param.minDispersion = 10f;	//only for showing sight
 		param.dispersionGrow = 3f;
 		param.interval = 1.5f;

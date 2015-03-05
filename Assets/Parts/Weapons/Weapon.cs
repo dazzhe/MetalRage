@@ -6,8 +6,10 @@ public class WeaponParam
 	public int ammo = 0;
 	public int magazine = 0;
 	public int damage = 0;
-	public float recoil = 0;//反動.
-	public float maxRecoil = 14;
+	public float recoilY = 0;//反動.
+	public float recoilX = 0;
+	public float maxRecoilY = 14f;
+	public float maxRecoilX = 3f;
 	public float minDispersion = 0;//ばらつき.
 	public float dispersionGrow = 0;
 	public float maxrange = 0;
@@ -73,18 +75,19 @@ public abstract class Weapon : MonoBehaviour
 		component.wcontrol.isRecoiling = true;
 		float nextRecoilRotY;
 		float nextRecoilRotX;
-		float desiredRecoil = param.recoil * (1f + component.wcontrol.desiredDispersion);
-		if (component.wcontrol.recoilrotationy <= param.maxRecoil - 1f) {
-			nextRecoilRotY = component.wcontrol.recoilrotationy + desiredRecoil;
+		float desiredRecoilY = param.recoilY * (1f + component.wcontrol.desiredDispersion);
+		float desiredRecoilX = param.recoilX * (1f + component.wcontrol.desiredDispersion);
+		if (component.wcontrol.recoilrotationy <= param.maxRecoilY - 1f) {
+			nextRecoilRotY = component.wcontrol.recoilrotationy + desiredRecoilY;
 		} else {
-			nextRecoilRotY = NextRecoilInRange(param.maxRecoil - 1f,
-			                                   param.maxRecoil,
+			nextRecoilRotY = NextRecoilInRange(param.maxRecoilY - 1f,
+			                                   param.maxRecoilY,
 			                                   component.wcontrol.recoilrotationy,
 			                                   0.5f);
 		}
-		nextRecoilRotX = NextRecoilInRange(-3f, 3f,
+		nextRecoilRotX = NextRecoilInRange(-param.maxRecoilX, param.maxRecoilX,
 		                                   component.wcontrol.recoilrotationx,
-		                                   desiredRecoil);
+		                                   desiredRecoilX);
 		int i = 0;
 		while (i <= 6) {
 			component.wcontrol.recoilrotationx = Mathf.Lerp(component.wcontrol.recoilrotationx, nextRecoilRotX, 50f * Time.deltaTime);

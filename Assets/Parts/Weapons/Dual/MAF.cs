@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class MAF : Weapon {
@@ -9,7 +9,7 @@ public class MAF : Weapon {
 	void Awake () {
 		param.magazine = 900;
 		param.damage = 13;
-		param.recoil = 0f;
+		param.recoilY = 0f;
 		param.minDispersion = 0f;
 		param.dispersionGrow = 0f;
 		param.maxrange = 25;

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class HAR6 : Weapon {
@@ -9,7 +9,8 @@ public class HAR6 : Weapon {
 		param.ammo = 1120;
 		param.magazine = 80;
 		param.damage = 13;
-		param.recoil = 0.4f;
+		param.recoilY = 0.4f;
+		param.recoilX = 0.4f;
 		param.minDispersion = 10f;
 		param.dispersionGrow = 0.4f;
 		param.maxrange = 1000;

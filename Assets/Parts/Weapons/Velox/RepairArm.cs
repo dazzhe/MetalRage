@@ -12,7 +12,7 @@ public class RepairArm : Weapon
 	{
 		param.magazine = 100;
 		param.damage = -40;
-		param.recoil = 0f;//反動.
+		param.recoilY = 0f;//反動.
 		param.minDispersion = 0f;//ばらつき.
 		param.dispersionGrow = 0f;
 		param.maxrange = 1000;

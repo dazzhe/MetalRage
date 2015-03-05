@@ -9,7 +9,7 @@ public class IFP40 : Weapon {
 		param.ammo = 76;
 		param.magazine = 6;
 		param.damage = 200;
-		param.recoil = 6f;
+		param.recoilY = 0.5f;
 		param.minDispersion = 0f;
 		param.dispersionGrow = 0f;
 		param.maxrange = 1000;
