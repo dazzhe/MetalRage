@@ -15,6 +15,7 @@ public class WeaponParam
 	public float maxrange = 0;
 	public float reloadTime = 0;
 	public float interval = 0;
+	public float setupTime = 1f;
 	public bool isReloading;
 	public int load;
 	public bool cooldown = false;
@@ -139,7 +140,7 @@ public abstract class Weapon : MonoBehaviour
 
 	protected IEnumerator EnableCoroutine()
 	{
-		yield return new WaitForSeconds(param.interval);
+		yield return new WaitForSeconds(param.setupTime);
 		this.enabled = true;
 	}
 
