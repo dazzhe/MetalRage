@@ -25,6 +25,7 @@ public class WeaponParam
 public class WeaponComponent
 {
 	public GameObject unit;
+	public AudioSource setup;
 	public AudioSource reload;
 	public PhotonView myPV;
 	public WeaponControl wcontrol;
@@ -49,7 +50,10 @@ public abstract class Weapon : MonoBehaviour
 		component.motor = component.unit.GetComponent<UnitMotor>();
 		if (GetComponent<AudioSource>()) {
 			AudioSource[] audioSources = GetComponents<AudioSource>();
-			component.reload = audioSources[0];
+			component.setup = audioSources[0];
+			if (audioSources.Length > 1){
+				component.reload = audioSources[1];
+			}
 		}
 		param.load = param.magazine;
 		param.canShot = true;
@@ -131,6 +135,7 @@ public abstract class Weapon : MonoBehaviour
 	{
 		NormalDisplay.SetMagazine(param.load);
 		NormalDisplay.SetAmmo(param.ammo);
+		component.setup.PlayOneShot(component.setup.clip);
 		if (sight != null) {
 			sight.ShowSight();
 		}
@@ -156,6 +161,7 @@ public abstract class Weapon : MonoBehaviour
 		component.wcontrol.isRecoiling = false;
 		param.cooldown = false;
 		StopAllCoroutines();
+		component.setup.Stop();
 		interruptReloading();
 		this.enabled = false;
 		if (sight != null) {

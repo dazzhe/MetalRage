@@ -19,7 +19,7 @@ public class RepairArm : Weapon
 		_animation = GetComponent<Animation>();
 		Init ();
 		AudioSource[] audioSources = GetComponents<AudioSource>();
-		repair = audioSources[0];
+		repair = audioSources[1];
 		HP = GameObject.Find("NormalDisplay/HP").GetComponent<Text>();
 		if (component.myPV.isMine){
 			StartCoroutine("Remain");

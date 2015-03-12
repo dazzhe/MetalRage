@@ -70,5 +70,4 @@ public class AMRLJ : Weapon
 		anim.Play ("SettingUp");
 		base.Disable ();
 	}
-
 }
