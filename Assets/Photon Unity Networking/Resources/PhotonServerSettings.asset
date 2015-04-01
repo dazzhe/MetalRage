@@ -57,4 +57,5 @@ MonoBehaviour:
   - SpawnRPC
   - Sync
   - EntryPlayer
+  - SendChatRPC
   DisableAutoOpenWizard: 0
