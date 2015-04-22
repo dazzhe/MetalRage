@@ -66,6 +66,6 @@ public class InRoomChat : Photon.MonoBehaviour
 		_chatText.transform.parent = chatList.transform;
 		_chatText.transform.localScale = new Vector3(1f, 1f, 1f);
 		Text chatText = _chatText.GetComponent<Text>();
-		chatText.text = senderName + ": " + inputField.text;
+		chatText.text = senderName + ": " + text;
 	}
 }
