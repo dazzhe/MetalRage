@@ -14,7 +14,7 @@ public class UnitOption : MonoBehaviour {
 	public static void UnitSelect(){
 		uo.enabled = true;
 		Screen.lockCursor = false;
-		Screen.showCursor = true;
+		Cursor.visible = true;
 	}
 
 	void OnGUI(){

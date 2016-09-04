@@ -30,5 +30,5 @@ function Awake ()
 {
 	var controller : CharacterController = GetComponent(CharacterController);
 	if (!controller)
-		gameObject.AddComponent("CharacterController");
+		gameObject.AddComponent.<CharacterController>();
 }

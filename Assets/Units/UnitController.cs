@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-//このスクリプトは自分の機体についているときのみenabledになる.
+//縺薙?繧ｹ繧ｯ繝ｪ繝励ヨ縺ｯ閾ｪ蛻??讖滉ｽ薙↓縺､縺?※縺?ｋ縺ｨ縺阪?縺ｿenabled縺ｫ縺ｪ繧?
 public class UnitController : MonoBehaviour {
 	private static string[] pkSE
 		= {"","01_shot","02_double_kill","03_mass_kill","04_multi_kill",
@@ -21,7 +21,7 @@ public class UnitController : MonoBehaviour {
 
 	void Update ()
 	{
-		//トラフィックを減らすために１バイトの変数に入力情報をまとめている.
+		//繝医Λ繝輔ぅ繝?け繧呈ｸ帙ｉ縺吶◆繧√↓?代ヰ繧､繝医?螟画焚縺ｫ蜈･蜉帶ュ蝣ｱ繧偵∪縺ｨ繧√※縺?ｋ.
 		byte b = 0;
 		if (Menu.activeWindowLevel == 0){
 			motor.rotationX
@@ -41,12 +41,12 @@ public class UnitController : MonoBehaviour {
 				b += 4;
 			if (Input.GetButton("Squat"))
 				b += 2;
-			if (!Screen.lockCursor || Screen.showCursor){
+			if (!Screen.lockCursor || Cursor.visible){
 				Screen.lockCursor = true;
-				Screen.showCursor = false;
+				Cursor.visible = false;
 			}
 		}
-		//入力情報を同期させる.
+		//蜈･蜉帶ュ蝣ｱ繧貞酔譛溘＆縺帙ｋ.
 		if (motor.inputState != b)
 		{
 			GetComponent<PhotonView>().RPC("InputState",PhotonTargets.All, b);
@@ -70,8 +70,8 @@ public class UnitController : MonoBehaviour {
 		}
 	}
 
-	//自分の攻撃によって死んだプレイヤーが実行する関数であるため.
-	//RPC関数となっている.
+	//閾ｪ蛻??謾ｻ謦?↓繧医▲縺ｦ豁ｻ繧薙□繝励Ξ繧､繝､繝ｼ縺悟ｮ溯｡後☆繧矩未謨ｰ縺ｧ縺ゅｋ縺溘ａ.
+	//RPC髢｢謨ｰ縺ｨ縺ｪ縺｣縺ｦ縺?ｋ.
 	[RPC]
 	void OnKilledPlayer()
 	{

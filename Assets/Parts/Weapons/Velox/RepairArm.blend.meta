@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 0b7366befc33f154d9f3b4d521f3abe9
 ModelImporter:
-  serializedVersion: 16
+  serializedVersion: 18
   fileIDToRecycleName:
     100000: __________________
     100002: Bone
@@ -10,6 +10,7 @@ ModelImporter:
     100008: Bone_003
     100010: Cube
     100012: //RootNode
+    100014: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
     400000: __________________
     400002: Bone
     400004: Bone_001
@@ -17,6 +18,7 @@ ModelImporter:
     400008: Bone_003
     400010: Cube
     400012: //RootNode
+    400014: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
     4300000: Cube
     7400000: Default Take
     7400002: Default
@@ -34,6 +36,10 @@ ModelImporter:
     bakeSimulation: 0
     optimizeGameObjects: 0
     motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
     animationCompression: 1
     animationRotationError: .5
     animationPositionError: .5
@@ -212,11 +218,13 @@ ModelImporter:
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
+    keepQuads: 0
     weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
+    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     splitTangentsAcrossUV: 1
@@ -239,3 +247,5 @@ ModelImporter:
   animationType: 1
   additionalBone: 0
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 

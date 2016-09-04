@@ -28,8 +28,8 @@ public class MAF3Motor : MonoBehaviour {
 	}
 	
 	IEnumerator EmitFire(){
-		particleSystem.Play(); 
+		GetComponent<ParticleSystem>().Play(); 
 		yield return new WaitForSeconds(0.1f);
-		particleSystem.Stop();
+		GetComponent<ParticleSystem>().Stop();
 	}
 }

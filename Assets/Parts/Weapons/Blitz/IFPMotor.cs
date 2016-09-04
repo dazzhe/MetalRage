@@ -11,7 +11,7 @@ public class IFPMotor : MonoBehaviour {
 	}
 	
 	void MakeShot(Vector3 targetPos){
-		audio.Play();
+		GetComponent<AudioSource>().Play();
 		StartCoroutine(this.ShowMuzzleFlash());
 		StartCoroutine (this.CreateBullet(targetPos));
 	}

@@ -43,6 +43,6 @@ public class LowerBody : MonoBehaviour {
 	}
 
 	void play(){
-		audio.Play();
+		GetComponent<AudioSource>().Play();
 	}
 }

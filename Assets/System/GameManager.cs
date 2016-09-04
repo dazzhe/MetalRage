@@ -7,8 +7,9 @@ public class GameManager : Photon.MonoBehaviour {
 	GameObject explosion;
 	//respawnX[0]<-RespawnRangeX of RedTeam
 	//respawnX[1]<-RespawnRangeX of BlueTeam...
-	private float[,] respawnX = new float[2,2] {{-90, 27},{-90, 46}};
-	private float[,] respawnZ = new float[2,2] {{120, 142},{-157, -143}};
+	private float[,] respawnX = new float[2,2] {{-13, 15},{-12, 4}};
+    private float[] respawnY = new float[2] { 6, 9 };
+	private float[,] respawnZ = new float[2,2] {{-75, -55},{69, 80}};
 	public static int myTeam = 5;	//<-if RedTeam then 0 else 1
 	/*
 	struct PlayerData{
@@ -27,7 +28,7 @@ public class GameManager : Photon.MonoBehaviour {
 
 	public void Spawn(string unit){
 		Vector3 spawnPos = new Vector3(Random.Range(respawnX[myTeam,0],respawnX[myTeam,1]),
-		                               -22f,
+		                               respawnY[myTeam],
 		                               Random.Range(respawnZ[myTeam,0],respawnZ[myTeam,1]));
 		GameObject player
 			= PhotonNetwork.Instantiate(unit, spawnPos,

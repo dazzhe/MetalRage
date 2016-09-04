@@ -36,6 +36,6 @@ public class Menu : MonoBehaviour {
 	void ShowCursor()
 	{
 		Screen.lockCursor = false;
-		Screen.showCursor = true;
+		Cursor.visible = true;
 	}
 }

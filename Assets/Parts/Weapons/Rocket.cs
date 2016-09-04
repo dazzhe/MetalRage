@@ -22,7 +22,7 @@ public class Rocket : MonoBehaviour {
 	
 	void FixedUpdate () {
 		currentSpeed = Mathf.Lerp(currentSpeed, maxSpeed, 5f * Time.deltaTime);
-		rigidbody.velocity = currentSpeed * direction;
+		GetComponent<Rigidbody>().velocity = currentSpeed * direction;
 	}
 
 	void OnCollisionEnter(Collision col){
