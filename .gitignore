@@ -1,0 +1,45 @@
+# Unity
+/Temp/
+/Obj/
+/obj/
+/UnityGenerated/
+/Library/
+/UnityPackageManager/
+sysinfo.txt
+
+# Editors
+/ExportedObj/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln
+*.user
+*.unityproj
+*.booproj
+.vs/
+.vscode/
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+
+# Builds
+/Build/
+/docs/Release/
+.gradle
+
+# External Assets
+/Assets/*
+!MetalRage
+!MetalRage.meta
