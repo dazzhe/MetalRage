@@ -1,0 +1,63 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;}
+ul{list-style:none;}
+table{border-collapse:collapse;border-spacing:0;}
+caption,th{text-align:left;}
+q:before,q:after{content:'';}
+object,embed{vertical-align:top;}
+legend{display:none;}
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+img,abbr,acronym,fieldset{border:0;}
+
+body{
+	font: 14px/1.9 'Noto Sans JP', Arial, Verdana, 游ゴシック, YuGothic,'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', メイリオ, Meiryo,sans-serif;
+	font-weight: 300;
+	-webkit-text-size-adjust:100%;
+	overflow-x: hidden;
+	color: #000;
+	background: #fff;
+}
+
+.btn-square {
+	display: inline-block;
+	width: 300px;
+	height: 100px;
+	font-size: 80px;
+	text-align: center;
+	line-height: 1.2;
+	padding: 0.5em 1em;
+	text-decoration: none;
+	background: #668ad8;
+	color: #FFF;
+	border-bottom: solid 4px #627295;
+	border-radius: 3px;
+  }
+  .btn-square:active {
+	-webkit-transform: translateY(4px);
+	transform: translateY(4px);
+	border-bottom: none;
+}
+
+#logo{
+	position: fixed;
+	z-index: 1;
+	top:50px;
+	left:calc(50% - 300px);
+	width:600px;
+	height:200px;
+}
+
+#play{
+	position: fixed;
+	top: 400px;
+	left: 150px;
+}
+
+.background {
+	z-index: 0;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+}
