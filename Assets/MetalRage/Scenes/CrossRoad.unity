@@ -286,7 +286,7 @@ PrefabInstance:
     - target: {fileID: 9163485777685981900, guid: 631b669786bed104faf921a4e510aabe,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9163485777685981900, guid: 631b669786bed104faf921a4e510aabe,
         type: 3}
@@ -333,7 +333,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &473488482 stripped
 GameObject:
@@ -419,7 +419,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &812424420
 GameObject:
@@ -468,8 +468,9 @@ Transform:
   - {fileID: 1570512384}
   - {fileID: 1549343399}
   - {fileID: 15048430}
+  - {fileID: 1804361842}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1064187303
 GameObject:
@@ -502,7 +503,7 @@ Transform:
   m_LocalScale: {x: 5786.28, y: 1, z: 5330.8}
   m_Children: []
   m_Father: {fileID: 2145053550}
-  m_RootOrder: 407
+  m_RootOrder: 347
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1064187305
 MeshRenderer:
@@ -731,7 +732,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1804361843}
+      - m_Target: {fileID: 0}
         m_MethodName: SendChat
         m_Mode: 1
         m_Arguments:
@@ -1085,7 +1086,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1804361841
 GameObject:
@@ -1102,7 +1103,7 @@ GameObject:
   - component: {fileID: 1804361844}
   - component: {fileID: 1804361843}
   m_Layer: 5
-  m_Name: Chat Window
+  m_Name: ChatUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1121,8 +1122,8 @@ RectTransform:
   m_Children:
   - {fileID: 1486155779}
   - {fileID: 1351847306}
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_Father: {fileID: 812424422}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1138,18 +1139,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1804361841}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 043bd8ce63fde7c41a9ee103809fa981, type: 3}
+  m_Script: {fileID: 11500000, guid: d4c05b80bdc4d48448e09bc2c9e5128b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GuiRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
-  IsVisible: 1
-  AlignBottom: 0
-  messages: []
+  inputField: {fileID: 1351847307}
+  chatList: {fileID: 1486155778}
 --- !u!114 &1804361844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1295,7 +1289,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1976677971
 GameObject:
@@ -1328,7 +1322,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1976677974
 MonoBehaviour:
@@ -1410,7 +1404,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2145053550 stripped
 Transform:

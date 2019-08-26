@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class UnitController : MonoBehaviour {
-    private static string[] pkSE
+    private static string[] killVoiceNames
         = {"","01_shot","02_double_kill","03_mass_kill","04_multi_kill",
         "05_crazy_kill","06_great_kill","07_excellent","08_massacre",
         "09_super_action","10_unbellevable","11_fantastic","12_bigbang",
@@ -9,7 +9,7 @@ public class UnitController : MonoBehaviour {
     private UnitMotor motor;
     private Status stat;
 
-    private int killcount;
+    private int killCount;
 
     private void Start() {
         this.motor = GetComponent<UnitMotor>();
@@ -27,21 +27,17 @@ public class UnitController : MonoBehaviour {
             } else if (Input.GetAxisRaw("Horizontal") == -1) {
                 b += 192;
             }
-
             if (Input.GetAxisRaw("Vertical") == 1) {
                 b += 16;
             } else if (Input.GetAxisRaw("Vertical") == -1) {
                 b += 48;
             }
-
             if (Input.GetButtonDown("Jump")) {
                 b += 8;
             }
-
             if (Input.GetButtonDown("Boost")) {
                 b += 4;
             }
-
             if (Input.GetButton("Squat")) {
                 b += 2;
             }
@@ -73,12 +69,12 @@ public class UnitController : MonoBehaviour {
     [PunRPC]
     private void OnKilledPlayer() {
         if (GetComponent<PhotonView>().isMine) {
-            this.killcount++;
+            ++this.killCount;
             ScoreBoardUI.myEntry.IncrementKill();
-            if (this.killcount > 14) {
-                SoundManager.Instance.PlaySE(pkSE[14]);
+            if (this.killCount > 14) {
+                AudioManager.Instance.PlaySE(killVoiceNames[14]);
             } else {
-                SoundManager.Instance.PlaySE(pkSE[this.killcount]);
+                AudioManager.Instance.PlaySE(killVoiceNames[this.killCount]);
             }
         }
     }

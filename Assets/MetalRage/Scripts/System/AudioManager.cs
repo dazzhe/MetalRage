@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class SoundManager : SingletonBehaviour<SoundManager> {
+public class AudioManager : SingletonBehaviour<AudioManager> {
     public List<AudioClip> BGMList;
     public List<AudioClip> SEList;
     public int MaxSE = 20;
