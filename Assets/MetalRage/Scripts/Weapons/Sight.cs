@@ -43,7 +43,7 @@ public class Sight : MonoBehaviour {
         }
     }
 
-    public void ShowSight() {
+    public void Show() {
         foreach (Transform child in this.transform) {
             child.gameObject.SetActive(true);
         }

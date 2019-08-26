@@ -9,6 +9,8 @@ public class ChatUI : Photon.MonoBehaviour {
     private InputField inputField;
     [SerializeField]
     private GameObject chatList;
+    [SerializeField]
+    private GameObject chatTextPrefab;
 
     public void Start() {
         if (string.IsNullOrEmpty(PhotonNetwork.playerName)) {
@@ -46,7 +48,6 @@ public class ChatUI : Photon.MonoBehaviour {
     [PunRPC]
     private void SendChatRPC(string text, PhotonMessageInfo mi) {
         string senderName = "anonymous";
-
         if (mi.sender != null) {
             if (!string.IsNullOrEmpty(mi.sender.NickName)) {
                 senderName = mi.sender.NickName;
@@ -54,11 +55,10 @@ public class ChatUI : Photon.MonoBehaviour {
                 senderName = "player " + mi.sender.ID;
             }
         }
-
-        GameObject _chatText = (GameObject)Instantiate(Resources.Load("ChatText"));
-        _chatText.transform.parent = this.chatList.transform;
-        _chatText.transform.localScale = new Vector3(1f, 1f, 1f);
-        Text chatText = _chatText.GetComponent<Text>();
+        GameObject chatTextObj = Instantiate(this.chatTextPrefab);
+        chatTextObj.transform.parent = this.chatList.transform;
+        chatTextObj.transform.localScale = new Vector3(1f, 1f, 1f);
+        Text chatText = chatTextObj.GetComponent<Text>();
         chatText.text = senderName + ": " + text;
     }
 }

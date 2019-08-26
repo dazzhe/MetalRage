@@ -80,7 +80,7 @@ public class IFP40 : Weapon {
         this.zoom.ZoomOn();
         this.component.motor.sensimag = 0.2f;
         this.zoomCamera.SetActive(true);
-        this.sight.ShowSight();
+        this.sight.Show();
     }
 
     protected override void OnDestroy() {

@@ -125,14 +125,12 @@ public abstract class Weapon : MonoBehaviour {
         UIManager.Instance.StatusUI.SetMagazine(this.param.load);
         UIManager.Instance.StatusUI.SetAmmo(this.param.ammo);
         this.component.setup.PlayOneShot(this.component.setup.clip);
-        if (this.sight != null) {
-            this.sight.ShowSight();
-        }
-        StopCoroutine("EnableCoroutine");
-        StartCoroutine("EnableCoroutine");
+        this.sight?.Show();
+        StopCoroutine(Enabling());
+        StartCoroutine(Enabling());
     }
 
-    protected IEnumerator EnableCoroutine() {
+    protected IEnumerator Enabling() {
         yield return new WaitForSeconds(this.param.setupTime);
         this.enabled = true;
     }
