@@ -1,48 +1,33 @@
-﻿using UnityEngine;
-using System.Collections;
+using UnityEngine;
 
 public class LowerBody : MonoBehaviour {
-	[SerializeField]
-	private GameObject unit;
+    [SerializeField]
+    private GameObject unit;
+    private UnitMotor motor;
 
-	UnitMotor motor;
+    private new Animation animation;
 
-	private Animation _animation;
+    private void Start() {
+        this.motor = this.unit.GetComponent<UnitMotor>();
+        this.animation = GetComponent<Animation>();
+    }
 
-	void Start () {
-		motor = unit.GetComponent<UnitMotor>();
-		_animation = GetComponent<Animation>();
-		//animation["Walk"].speed = 1.2f;
-	}
+    private void Update() {
+        if (this.motor._characterState == UnitMotor.CharacterState.Walking) {
+            this.animation.CrossFade("Walk", 0.1f);
+        } else if (this.animation.IsPlaying("Walk")) {
+            this.animation.Stop("Walk");
+        }
+        if (this.motor._characterState == UnitMotor.CharacterState.Idle) {
+            this.animation.CrossFade("Idle", 0.5f);
+        }
+        if (this.motor._characterState == UnitMotor.CharacterState.Squatting) {
+            this.animation.CrossFade("Squat", 0.1f);
+        }
+    }
 
-	void Update () {
-		if (motor._characterState == UnitMotor.CharacterState.Walking)
-			_animation.CrossFade ("Walk",0.1f);
-		else if (_animation.IsPlaying("Walk"))
-			_animation.Stop("Walk");
-
-		if (motor._characterState == UnitMotor.CharacterState.Idle){
-			_animation.CrossFade ("Idle",0.5f);
-		}
-
-		/*if (vanguard._characterState == Vanguard.CharacterState.Boosting){
-			if (vanguard.boosttype == 0){}
-				_animation.Play ("boost_right");
-			if (vanguard.boosttype == 1){}
-				_animation.Play ("boost");
-			if (vanguard.boosttype == 2){}
-				_animation.Play ("boost_left");
-		}*/
-
-		//if (vanguard.Ground && Input.GetButtonDown("Jump"))
-			//_animation.Play("jump_2");
-
-		if (motor._characterState == UnitMotor.CharacterState.Squatting)
-			_animation.CrossFade("Squat",0.1f);
-
-	}
-
-	void play(){
-		GetComponent<AudioSource>().Play();
-	}
+    // Call from animation clip.
+    private void PlayWalkClip() {
+        GetComponent<AudioSource>().Play();
+    }
 }
