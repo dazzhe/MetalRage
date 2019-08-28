@@ -5,10 +5,13 @@ You can play the current version at UnityGameUploader.
 http://unitygameuploader.jpn.org/game/2968.html    
 
 
-## Installation    
+## Development Requirements
+### Softwares
+- Unity 2018.4.6f1
+- Blender
 
-*Requirements*
-* Unity 5.3.3f1
-* Blender    
-
-Clone this repo and open git directory as project folder in Unity.
+### Unity Packages
+- Standard Assets
+  - https://assetstore.unity.com/packages/essentials/asset-packs/standard-assets-32351
+- War FX
+  - https://assetstore.unity.com/packages/vfx/particles/war-fx-5669
