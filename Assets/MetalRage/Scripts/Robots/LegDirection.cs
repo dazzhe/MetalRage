@@ -16,7 +16,7 @@ public class LegDirection : MonoBehaviour {
     }
 
     private void Update() {
-        if (this.motor._characterState == UnitMotor.CharacterState.Walking) {
+        if (this.motor.characterState == UnitMotor.CharacterState.Walking) {
             this.h = this.motor.inputMoveDirection.x;
             this.v = this.motor.inputMoveDirection.y;
             if (this.h > 0 && this.v > 0) {
@@ -41,7 +41,7 @@ public class LegDirection : MonoBehaviour {
                                                       0.1f);
             }
         }
-        if (this.motor._characterState == UnitMotor.CharacterState.Boosting) {
+        if (this.motor.characterState == UnitMotor.CharacterState.Boosting) {
             this.transform.rotation = Quaternion.Slerp(this.transform.rotation,
                                                   Quaternion.LookRotation(this.unit.transform.forward),
                                                   0.1f);

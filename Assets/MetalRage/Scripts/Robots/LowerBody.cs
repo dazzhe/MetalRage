@@ -5,25 +5,22 @@ public class LowerBody : MonoBehaviour {
     private GameObject unit;
     private UnitMotor motor;
 
-    private new Animation animation;
+    private Animator animator;
 
     private void Start() {
         this.motor = this.unit.GetComponent<UnitMotor>();
-        this.animation = GetComponent<Animation>();
+        this.animator = GetComponent<Animator>();
     }
 
     private void Update() {
-        if (this.motor._characterState == UnitMotor.CharacterState.Walking) {
-            this.animation.CrossFade("Walk", 0.1f);
-        } else if (this.animation.IsPlaying("Walk")) {
-            this.animation.Stop("Walk");
+        this.animator.SetBool("IsGrounded", this.motor.isGrounded);
+        if (this.motor.characterState == UnitMotor.CharacterState.Walking) {
+            this.animator.SetFloat("WalkSpeed", this.motor.MoveDirection.magnitude);
         }
-        if (this.motor._characterState == UnitMotor.CharacterState.Idle) {
-            this.animation.CrossFade("Idle", 0.5f);
+        if (this.motor.characterState == UnitMotor.CharacterState.Idle) {
+            this.animator.SetFloat("WalkSpeed", this.motor.MoveDirection.magnitude);
         }
-        if (this.motor._characterState == UnitMotor.CharacterState.Squatting) {
-            this.animation.CrossFade("Squat", 0.1f);
-        }
+        this.animator.SetBool("IsCrouching", this.motor.characterState == UnitMotor.CharacterState.Squatting);
     }
 
     // Call from animation clip.

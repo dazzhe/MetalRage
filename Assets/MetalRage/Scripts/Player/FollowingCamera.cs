@@ -70,7 +70,7 @@ public class FollowingCamera : MonoBehaviour {
     }
 
     private void Lean() {
-        if (this.motor.moveDirection.x == 0 && this.motor.moveDirection.z == 0) {
+        if (this.motor.MoveDirection.x == 0 && this.motor.MoveDirection.z == 0) {
             if (Input.GetButtonDown("right lean")) {
                 this.lean.PlayOneShot(this.lean.clip);
                 this.leaning = true;

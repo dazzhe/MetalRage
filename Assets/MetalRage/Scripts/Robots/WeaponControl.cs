@@ -43,7 +43,7 @@ public class WeaponControl : MonoBehaviour {
     private float recoilFixSpeed = 25f;
 
     private float DispersionCorrection() {
-        switch (this.motor._characterState) {
+        switch (this.motor.characterState) {
             case UnitMotor.CharacterState.Idle:
                 return 1f;
             case UnitMotor.CharacterState.Walking:

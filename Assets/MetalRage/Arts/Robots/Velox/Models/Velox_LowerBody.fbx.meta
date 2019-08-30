@@ -1,0 +1,157 @@
+fileFormatVersion: 2
+guid: c81b14839231f054d87494cc5269cbc9
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Base
+    100002: Base_end
+    100004: Base_end_end
+    100006: Base_end_end_end
+    100008: L1
+    100010: L2
+    100012: L3
+    100014: L4
+    100016: L4_end
+    100018: L4_end_end
+    100020: L4_end_end_end
+    100022: LowerBody
+    100024: LowerBody_Mesh
+    100026: R1
+    100028: R2
+    100030: R3
+    100032: R4
+    100034: R4_end
+    100036: R4_end_end
+    100038: R4_end_end_end
+    100040: //RootNode
+    400000: Base
+    400002: Base_end
+    400004: Base_end_end
+    400006: Base_end_end_end
+    400008: L1
+    400010: L2
+    400012: L3
+    400014: L4
+    400016: L4_end
+    400018: L4_end_end
+    400020: L4_end_end_end
+    400022: LowerBody
+    400024: LowerBody_Mesh
+    400026: R1
+    400028: R2
+    400030: R3
+    400032: R4
+    400034: R4_end
+    400036: R4_end_end
+    400038: R4_end_end_end
+    400040: //RootNode
+    2100000: Material.001
+    4300000: LowerBody_Mesh
+    7400000: LowerBody|Camera.002|Camera.001|Camera.001|Camera|CameraAction|Camera|Cam
+    7400002: LowerBody|Camera.002|Camera.001|Camera.001|Camera|Idle.001|Camera|Idle.00
+    7400004: LowerBody|Camera.002|Camera.001|Lamp|Lamp|CameraAction|Lamp|CameraAction|
+    7400006: LowerBody|Camera.002|Camera.001|Lamp|Lamp|Idle.001|Lamp|Idle.001|Camera.0
+    7400008: LowerBody|Lamp.001|Lamp|Camera.001|Camera|CameraAction|Camera|CameraActio
+    7400010: LowerBody|Lamp.001|Lamp|Camera.001|Camera|Idle.001|Camera|Idle.001|Lamp|C
+    7400012: LowerBody|Lamp.001|Lamp|Lamp|Lamp|CameraAction|Lamp|CameraAction|Lamp|Lam
+    7400014: LowerBody|Lamp.001|Lamp|Lamp|Lamp|Idle.001|Lamp|Idle.001|Lamp|Lamp|Lamp|I
+    7400016: LowerBody|LowerBody
+    7400018: LowerBody|LowerBody|LowerBody|Camera.001|Camera|CameraAction|Camera|Camer
+    7400020: LowerBody|LowerBody|LowerBody|Camera.001|Camera|Idle.001|Camera|Idle.001|
+    7400022: LowerBody|LowerBody|LowerBody|Lamp|Lamp|CameraAction|Lamp|CameraAction|Lo
+    7400024: LowerBody|LowerBody|LowerBody|Lamp|Lamp|Idle.001|Lamp|Idle.001|LowerBody|
+    7400026: LowerBody|LowerBody|LowerBody|LowerBody|LowerBody|Idle.001|LowerBody|Idle
+    7400028: LowerBody|LowerBody|LowerBody|LowerBody|LowerBody|Idle|LowerBody|Idle|Low
+    7400030: LowerBody|LowerBody|LowerBody|LowerBody|LowerBody|Squat|LowerBody|Squat|L
+    7400032: LowerBody|LowerBody|LowerBody|LowerBody|LowerBody|Walk|LowerBody|Walk|Low
+    7400034: LowerBody|Idle
+    7400036: LowerBody|Squat
+    7400038: LowerBody|Walk
+    9500000: //RootNode
+    13700000: LowerBody_Mesh
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

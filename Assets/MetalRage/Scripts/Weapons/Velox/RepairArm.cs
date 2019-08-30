@@ -74,6 +74,9 @@ public class RepairArm : Weapon {
 
     protected override void OnDestroy() {
         base.OnDestroy();
+        if (UIManager.Instance == null) {
+            return;
+        }
         UIManager.Instance.StatusUI.TargetingFriend = null;
     }
 
