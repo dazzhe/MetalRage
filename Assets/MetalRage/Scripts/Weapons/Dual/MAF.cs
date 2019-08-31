@@ -15,6 +15,46 @@ public class MAF : Weapon {
     private new Collider collider;
     private ParticleSystem[] particleSystems;
 
+    public Animator Animator {
+        get {
+            if (this.animator == null) {
+                this.animator = GetComponent<Animator>();
+            }
+            return this.animator;
+        }
+        set => this.animator = value;
+    }
+
+    private Collider Collider {
+        get {
+            if (this.collider == null) {
+                this.collider = GetComponent<Collider>();
+            }
+            return this.collider;
+        }
+        set => this.collider = value;
+    }
+
+    private AudioSource Audio {
+        get {
+            if (this.audio == null) {
+                this.audio = GetComponent<AudioSource>();
+            }
+            return this.audio;
+        }
+        set => this.audio = value;
+    }
+
+    private ParticleSystem[] ParticleSystems {
+        get {
+            if (this.particleSystems == null) {
+                this.particleSystems = GetComponentsInChildren<ParticleSystem>();
+            }
+            return this.particleSystems;
+        }
+        set => this.particleSystems = value;
+    }
+
     private void Awake() {
         this.param.magazine = 900;
         this.param.damage = 13;
@@ -28,11 +68,7 @@ public class MAF : Weapon {
         this.wr.param = this.param;
         this.wr.component = this.component;
         Init();
-        this.animator = GetComponent<Animator>();
         this.sightAnimator = this.sight.GetComponent<Animator>();
-        this.collider = GetComponent<Collider>();
-        this.particleSystems = GetComponentsInChildren<ParticleSystem>();
-        this.audio = GetComponent<AudioSource>();
     }
 
     private void Update() {
@@ -72,25 +108,25 @@ public class MAF : Weapon {
     }
 
     private void CloseShield() {
-        this.audio.PlayOneShot(this.shieldCloseClip);
-        this.animator.SetBool("IsOpen", false);
-        this.collider.enabled = true;
-        this.collider.isTrigger = true;
+        this.Audio.PlayOneShot(this.shieldCloseClip);
+        this.Animator.SetBool("IsOpen", false);
+        this.Collider.enabled = true;
+        this.Collider.isTrigger = true;
     }
 
     private void OpenShield() {
-        this.audio.PlayOneShot(this.shieldOpenClip);
-        this.animator.SetBool("IsOpen", true);
-        this.collider.enabled = false;
-        this.collider.isTrigger = false;
+        this.Audio.PlayOneShot(this.shieldOpenClip);
+        this.Animator.SetBool("IsOpen", true);
+        this.Collider.enabled = false;
+        this.Collider.isTrigger = false;
     }
 
     private IEnumerator EmitFire() {
-        foreach (var particleSystem in this.particleSystems) {
+        foreach (var particleSystem in this.ParticleSystems) {
             particleSystem.Play();
         }
         yield return new WaitForSeconds(0.1f);
-        foreach (var particleSystem in this.particleSystems) {
+        foreach (var particleSystem in this.ParticleSystems) {
             particleSystem.Stop();
         }
     }
