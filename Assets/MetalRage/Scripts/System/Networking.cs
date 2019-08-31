@@ -15,7 +15,7 @@ public class Networking : Photon.PunBehaviour {
     }
 
     private void Start() {
-        PhotonNetwork.ConnectUsingSettings("0.2");
+        PhotonNetwork.ConnectToRegion(CloudRegionCode.jp, "0.2");
         PhotonNetwork.autoJoinLobby = true;
         PhotonNetwork.sendRate = 30;
     }
@@ -34,7 +34,6 @@ public class Networking : Photon.PunBehaviour {
 
     public override void OnJoinedRoom() {
         UIManager.Instance.ScoreBoardUI.SelectTeam();
-        this.enabled = false;
     }
 
     // Call from GUI button
@@ -45,6 +44,11 @@ public class Networking : Photon.PunBehaviour {
     }
 
     private void OnGUI() {
-        GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
+        var connectionStateString = PhotonNetwork.connectionStateDetailed.ToString();
+        if (connectionStateString == "Joined") {
+            GUILayout.Label($"Ping: {PhotonNetwork.GetPing()}");
+        } else {
+            GUILayout.Label(connectionStateString);
+        }
     }
 }
