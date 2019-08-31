@@ -3,9 +3,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
     //respawnX[0]<-RespawnRangeX of RedTeam
     //respawnX[1]<-RespawnRangeX of BlueTeam...
-    private float[,] respawnX = new float[2, 2] { { -13, 15 }, { -12, 4 } };
+    private float[,] respawnX = new float[2, 2] { { -92, -40 }, { -43, 7 } };
     private float[] respawnY = new float[2] { 6, 9 };
-    private float[,] respawnZ = new float[2, 2] { { -75, -55 }, { 69, 80 } };
+    private float[,] respawnZ = new float[2, 2] { { -126, -114 }, { 182, 190 } };
     public static int PlayerTeam { get; set; } = 5;   //<-if RedTeam then 0 else 1
 
     private PhotonView photonView;
