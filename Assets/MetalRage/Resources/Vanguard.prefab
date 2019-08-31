@@ -667,6 +667,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 280
   armor: 1
+  explosionPrefab: {fileID: 100004, guid: 169b10ce10f4327cb9f40f6b117ed8d7, type: 3}
 --- !u!114 &11450782
 MonoBehaviour:
   m_ObjectHideFlags: 0

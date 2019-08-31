@@ -63,7 +63,7 @@ public class RepairArm : Weapon {
         if (this.component.myPV.isMine) {
             Hit hit = this.component.wcontrol.targetObject.GetComponentInParent<Hit>();
             if (hit != null && this.component.wcontrol.targetObject.layer == 9 &&
-                this.targetingUnitStatus.HP != this.targetingUnitStatus.maxHP && this.param.load >= 15
+                this.targetingUnitStatus.HP != this.targetingUnitStatus.MaxHP && this.param.load >= 15
                 && (this.component.wcontrol.targetObject.transform.position
                      - this.transform.position).magnitude <= 4f) {
                 hit.TakeDamage(this.param.damage, this.component.unit.name);

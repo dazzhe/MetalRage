@@ -3,8 +3,12 @@ using UnityEngine;
 
 public class MAF : Weapon {
     public bool isOpen = true;
+
     private WeaponRay wr;
     private Animator animator;
+    private Animator sightAnimator;
+    private new Collider collider;
+    private ParticleSystem[] particleSystems;
 
     private void Awake() {
         this.param.magazine = 900;
@@ -19,9 +23,10 @@ public class MAF : Weapon {
         this.wr.param = this.param;
         this.wr.component = this.component;
         Init();
-        if (this.component.myPV.isMine) {
-            this.animator = this.sight.GetComponent<Animator>();
-        }
+        this.animator = GetComponent<Animator>();
+        this.sightAnimator = this.sight.GetComponent<Animator>();
+        this.collider = GetComponent<Collider>();
+        this.particleSystems = GetComponentsInChildren<ParticleSystem>();
     }
 
     private void Update() {
@@ -33,7 +38,7 @@ public class MAF : Weapon {
 
     protected IEnumerator ShotControl() {
         if (this.component.wcontrol.inputShot1 && this.param.load > 0 && !this.param.cooldown && this.param.canShot && !this.param.isReloading) {
-            this.animator.SetBool("rotate", true);
+            this.sightAnimator.SetBool("rotate", true);
             this.wr.RayShot();
             RecoilAndDisperse();
             RemainingLoads(2);
@@ -42,7 +47,7 @@ public class MAF : Weapon {
             yield return new WaitForSeconds(this.param.interval);
             this.param.cooldown = false;
         } else if (this.component.wcontrol.inputShot1 != true) {
-            this.animator.SetBool("rotate", false);
+            this.sightAnimator.SetBool("rotate", false);
         }
     }
 
@@ -54,16 +59,44 @@ public class MAF : Weapon {
         base.Disable();
     }
 
+
+    private void MakeShot() {
+        //audio.Play();
+        StartCoroutine(EmitFire());
+    }
+
+    private void CloseShield() {
+        this.animator.SetBool("IsOpen", false);
+        this.collider.enabled = true;
+        this.collider.isTrigger = true;
+    }
+
+    private void OpenShield() {
+        this.animator.SetBool("IsOpen", true);
+        this.collider.enabled = false;
+        this.collider.isTrigger = false;
+    }
+
+    private IEnumerator EmitFire() {
+        foreach (var particleSystem in this.particleSystems) {
+            particleSystem.Play();
+        }
+        yield return new WaitForSeconds(0.1f);
+        foreach (var particleSystem in this.particleSystems) {
+            particleSystem.Stop();
+        }
+    }
+
     [PunRPC]
     private void Shield() {
         if (this.isOpen) {
             this.isOpen = false;
             this.param.canShot = false;
-            this.transform.BroadcastMessage("ShieldClose");
+            CloseShield();
         } else {
             this.isOpen = true;
             this.param.canShot = true;
-            this.transform.BroadcastMessage("ShieldOpen");
+            OpenShield();
         }
     }
 

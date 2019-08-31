@@ -14,8 +14,8 @@ public class Synchronizer : Photon.MonoBehaviour, IPunObservable {
 
     private void Update() {
         if (!this.photonView.isMine) {
-            var isCorrectPosTooFar = Vector3.Distance(this.transform.position, this.correctPlayerPos) > 1f;
-            this.transform.position = isCorrectPosTooFar
+            var isTooFarFromCorrectPosition = Vector3.Distance(this.transform.position, this.correctPlayerPos) > 2f;
+            this.transform.position = isTooFarFromCorrectPosition
                 ? this.correctPlayerPos
                 : Vector3.Lerp(this.transform.position, this.correctPlayerPos, Time.deltaTime * 10f);
             float correctRotationX = ((float)this.correctRotationX + 18000) / 100;

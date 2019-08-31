@@ -49,7 +49,7 @@ public class UnitController : MonoBehaviour {
         if (this.motor.inputState != b) {
             GetComponent<PhotonView>().RPC("InputState", PhotonTargets.All, b);
         }
-        UIManager.Instance.StatusUI.SetHP(this.stat.HP, this.stat.maxHP);
+        UIManager.Instance.StatusUI.SetHP(this.stat.HP, this.stat.MaxHP);
         UIManager.Instance.StatusUI.SetBoostGauge(this.motor.boostgauge);
     }
 

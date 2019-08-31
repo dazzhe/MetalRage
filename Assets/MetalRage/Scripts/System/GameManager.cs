@@ -30,16 +30,10 @@ public class GameManager : MonoBehaviour {
 
     public void Die(Vector3 pos, GameObject go) {
         PhotonNetwork.Destroy(go);
-        PhotonNetwork.RPC(this.photonView, "Explosion", PhotonTargets.All, true, pos);
         UnitOption.UnitSelect();
     }
 
     public void QuitApplication() {
         Application.Quit();
-    }
-
-    [PunRPC]
-    private void Explosion(Vector3 pos) {
-        Instantiate(Resources.Load("explosion"), pos, Quaternion.identity);
     }
 }

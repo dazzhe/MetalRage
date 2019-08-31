@@ -9,6 +9,6 @@ public class Hit : MonoBehaviour {
     }
 
     public void TakeDamage(int damage, string attackerName) {
-        this.status.ReduceHP(Mathf.FloorToInt(damage * this.defence), attackerName);
+        this.status.ReduceHP(Mathf.FloorToInt(damage / this.defence), attackerName);
     }
 }
