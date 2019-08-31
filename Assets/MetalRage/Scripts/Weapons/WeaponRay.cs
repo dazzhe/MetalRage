@@ -21,7 +21,7 @@ public class WeaponRay : MonoBehaviour {
         this.targetPos = hit.point;
         GameObject targetObject = hit.collider.gameObject;
         Hit dam = targetObject.GetComponentInParent<Hit>();
-        if (dam != null && targetObject.layer == LayerMask.GetMask("Enemy")) {
+        if (dam != null && targetObject.layer == LayerMask.NameToLayer("Enemy")) {
             dam.TakeDamage(this.param.damage, this.component.unit.name);
             this.component.wcontrol.HitMark();
         }

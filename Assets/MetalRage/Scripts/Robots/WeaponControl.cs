@@ -143,7 +143,7 @@ public class WeaponControl : MonoBehaviour {
         }
         this.targetPos = hit.point;
         this.targetObject = hit.collider.gameObject;
-        if (this.targetObject.layer == LayerMask.GetMask("Enemy")) {
+        if (this.targetObject.layer == LayerMask.NameToLayer("Enemy")) {
             StopCoroutine(ShowEnemyName());
             StartCoroutine(ShowEnemyName());
         }
