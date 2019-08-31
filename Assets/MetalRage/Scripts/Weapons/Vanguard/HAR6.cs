@@ -16,7 +16,6 @@ public class HAR6 : Weapon {
         this.param.maxrange = 1000;
         this.param.reloadTime = 1.5f;
         this.param.interval = 0.07f;
-        this.sightPrefabName = "HAR-6_Sight";
         this.ray = this.gameObject.AddComponent<WeaponRay>();
         this.ray.param = this.param;
         this.ray.component = this.component;

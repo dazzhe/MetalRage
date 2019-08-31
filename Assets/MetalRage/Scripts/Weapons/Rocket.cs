@@ -1,6 +1,9 @@
 using UnityEngine;
 
 public class Rocket : MonoBehaviour {
+    [SerializeField]
+    private GameObject explosionPrefab;
+
     private float maxSpeed = 200f;
     private float currentSpeed = 0f;
 
@@ -50,6 +53,6 @@ public class Rocket : MonoBehaviour {
 
     [PunRPC]
     private void Explosion(Vector3 position) {
-        GameObject.Instantiate(Resources.Load("Explosion"), position, Quaternion.identity);
+        Instantiate(this.explosionPrefab, position, Quaternion.identity);
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+
 public class IFP40 : Weapon {
     private WeaponRay ray;
     private WeaponZoom zoom;
@@ -15,7 +16,6 @@ public class IFP40 : Weapon {
         this.param.maxrange = 1000;
         this.param.reloadTime = 3f;
         this.param.interval = 2F;
-        this.sightPrefabName = "IFP-40_Sight";
         this.ray = this.gameObject.AddComponent<WeaponRay>();
         this.ray.param = this.param;
         this.ray.component = this.component;

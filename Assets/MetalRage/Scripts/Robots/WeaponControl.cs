@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class WeaponControl : MonoBehaviour {
     private UnitMotor motor;
@@ -25,10 +24,6 @@ public class WeaponControl : MonoBehaviour {
     [System.NonSerialized]
     public Vector3 targetPos;
     [System.NonSerialized]
-    public LayerMask mask;
-    [System.NonSerialized]
-    public Vector3 center = Vector3.zero;
-    [System.NonSerialized]
     public bool inputReload = false;
     [System.NonSerialized]
     public bool inputShot1 = false;
@@ -37,27 +32,30 @@ public class WeaponControl : MonoBehaviour {
     [System.NonSerialized]
     public bool inputShot2 = false;
 
+    public Vector3 Center { get => new Vector3(Screen.width / 2, Screen.height / 2, 0); }
+
     private int enabledWeapon = 0;  //0 = Main, 1 = Right, 2 = Left
-    private float minimumY = -60F;
-    private float maximumY = 60F;
+    private float minimumY = -60f;
+    private float maximumY = 60f;
     private float recoilFixSpeed = 25f;
 
     private float DispersionCorrection() {
         switch (this.motor.characterState) {
-            case UnitMotor.CharacterState.Idle:
-                return 1f;
-            case UnitMotor.CharacterState.Walking:
-                return 1f;
-            case UnitMotor.CharacterState.Boosting:
-                return 1.3f;
-            case UnitMotor.CharacterState.Braking:
-                return 1.2f;
-            case UnitMotor.CharacterState.Squatting:
-                return 0.5f;
-            case UnitMotor.CharacterState.Jumping:
-                return 1.5f;
+        case UnitMotor.CharacterState.Idle:
+            return 1f;
+        case UnitMotor.CharacterState.Walking:
+            return 1f;
+        case UnitMotor.CharacterState.Boosting:
+            return 1.3f;
+        case UnitMotor.CharacterState.Braking:
+            return 1.2f;
+        case UnitMotor.CharacterState.Squatting:
+            return 0.5f;
+        case UnitMotor.CharacterState.Jumping:
+            return 1.5f;
+        default:
+            return 1f;
         }
-        return 1f;
     }
 
     private void Start() {
@@ -66,12 +64,7 @@ public class WeaponControl : MonoBehaviour {
         this.weapons[1] = this.transform.Find("Offset/RightWeapon").GetComponent<WeaponManager>();
         this.weapons[2] = this.transform.Find("Offset/LeftWeapon").GetComponent<WeaponManager>();
         this.weapons[0].SendEnable();
-
-        this.sights = GameObject.FindObjectsOfType(typeof(Sight)) as Sight[];
-        this.center = new Vector3(Screen.width / 2, Screen.height / 2, 0);
-        //8番のレイヤー(操作している機体)を無視する.
-        this.mask = 1 << 8;
-        this.mask = ~this.mask;
+        this.sights = FindObjectsOfType(typeof(Sight)) as Sight[];
     }
 
     private void Update() {
@@ -89,7 +82,6 @@ public class WeaponControl : MonoBehaviour {
         if (!this.isBlitzMain) {
             SetTarget();
         }
-
         RecoilControl();
         DispersionControl();
     }
@@ -142,16 +134,18 @@ public class WeaponControl : MonoBehaviour {
     }
 
     private void SetTarget() {
-        Ray ray = Camera.main.ScreenPointToRay(this.center);
-        if (!Physics.Raycast(ray, out RaycastHit hit, 1000, this.mask)) {
-            this.targetPos = ray.GetPoint(1000);
+        Ray ray = Camera.main.ScreenPointToRay(this.Center);
+        var layerMask = LayerMask.GetMask("Player");
+        layerMask = ~layerMask;
+        if (!Physics.Raycast(ray, out RaycastHit hit, 1000f, layerMask)) {
+            this.targetPos = ray.GetPoint(1000f);
             return;
         }
         this.targetPos = hit.point;
         this.targetObject = hit.collider.gameObject;
-        if (this.targetObject.layer == 10) {
-            StopCoroutine("ShowEnemyName");
-            StartCoroutine("ShowEnemyName");
+        if (this.targetObject.layer == LayerMask.GetMask("Enemy")) {
+            StopCoroutine(ShowEnemyName());
+            StartCoroutine(ShowEnemyName());
         }
     }
 
@@ -162,8 +156,8 @@ public class WeaponControl : MonoBehaviour {
     }
 
     public void HitMark() {
-        StopCoroutine("HitMarkCoroutine");
-        StartCoroutine("HitMarkCoroutine");
+        StopCoroutine(HitMarkCoroutine());
+        StartCoroutine(HitMarkCoroutine());
     }
 
     private IEnumerator HitMarkCoroutine() {

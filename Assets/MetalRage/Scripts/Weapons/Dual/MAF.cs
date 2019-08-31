@@ -14,8 +14,7 @@ public class MAF : Weapon {
         this.param.dispersionGrow = 0f;
         this.param.maxrange = 25;
         this.param.reloadTime = 1.5f;
-        this.param.interval = 0.06F;
-        this.sightPrefabName = "MAF_Sight";
+        this.param.interval = 0.06f;
         this.wr = this.gameObject.AddComponent<WeaponRay>();
         this.wr.param = this.param;
         this.wr.component = this.component;

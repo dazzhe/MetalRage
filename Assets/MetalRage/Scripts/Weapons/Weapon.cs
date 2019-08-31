@@ -30,13 +30,19 @@ public class WeaponComponent {
     public UnitMotor motor;
 }
 
-//Base class of weapons
+/// <summary>
+/// Base class of weapons.
+/// </summary>
 public abstract class Weapon : MonoBehaviour {
+    [SerializeField]
+    private GameObject sightPrefab;
+
     protected WeaponParam param = new WeaponParam();
     protected WeaponComponent component = new WeaponComponent();
     protected GameObject sightObject;
     protected Sight sight;
-    protected string sightPrefabName = "";
+
+    public GameObject SightPrefab { get => this.sightPrefab; set => this.sightPrefab = value; }
 
     protected void Init() {
         this.component.unit = this.transform.parent.parent.parent.gameObject;
@@ -52,16 +58,16 @@ public abstract class Weapon : MonoBehaviour {
         }
         this.param.load = this.param.magazine;
         this.param.canShot = true;
-        if (this.component.myPV.isMine && this.sightPrefabName != "") {
-            this.sightObject = GameObject.Instantiate(Resources.Load(this.sightPrefabName), Vector3.zero, Quaternion.identity) as GameObject;
+        if (this.component.myPV.isMine && this.SightPrefab != null) {
+            this.sightObject = Instantiate(this.SightPrefab, Vector3.zero, Quaternion.identity);
             this.sight = this.sightObject.GetComponentInChildren<Sight>();
             this.sight.HideSight();
         }
     }
 
     protected void RecoilAndDisperse() {
-        StopCoroutine("Recoil");
-        StartCoroutine("Recoil");
+        StopCoroutine(Recoil());
+        StartCoroutine(Recoil());
         if (this.component.wcontrol.dispersionRate < 3f) {
             this.component.wcontrol.dispersionRate += this.param.dispersionGrow;
         } else {
@@ -146,14 +152,14 @@ public abstract class Weapon : MonoBehaviour {
         this.param.cooldown = false;
         StopAllCoroutines();
         this.component.setup.Stop();
-        interruptReloading();
+        InterruptReloading();
         this.enabled = false;
         if (this.sight != null) {
             this.sight.HideSight();
         }
     }
 
-    private void interruptReloading() {
+    private void InterruptReloading() {
         this.param.isReloading = false;
     }
 }

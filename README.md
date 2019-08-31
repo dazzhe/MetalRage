@@ -11,6 +11,8 @@ http://unitygameuploader.jpn.org/game/2968.html
 - Blender
 
 ### Unity Packages
+- Photon Unity Networking Classic - FREE
+  - https://assetstore.unity.com/packages/tools/network/photon-unity-networking-classic-free-1786
 - Standard Assets
   - https://assetstore.unity.com/packages/essentials/asset-packs/standard-assets-32351
 - War FX

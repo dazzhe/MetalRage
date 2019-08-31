@@ -1,35 +1,36 @@
-﻿using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class MAF3Motor : MonoBehaviour {
-	Animator _anim;
-	private Collider co;
-	void Awake () {
-		GetComponent<Hit>().defence = 0.2f;
-		_anim = this.GetComponent<Animator>();
-		co = this.GetComponent<Collider>();
-	}
+    private Animator _anim;
+    private Collider co;
 
-	void MakeShot(){
-		//audio.Play();
-		StartCoroutine (this.EmitFire());
-	}
+    private void Awake() {
+        GetComponent<Hit>().defence = 0.2f;
+        this._anim = GetComponent<Animator>();
+        this.co = GetComponent<Collider>();
+    }
 
-	void ShieldClose(){
-		_anim.SetBool("isOpen",false);
-		co.enabled = true;
-		co.isTrigger = true;
-	}
+    private void MakeShot() {
+        //audio.Play();
+        StartCoroutine(EmitFire());
+    }
 
-	void ShieldOpen(){
-		_anim.SetBool("isOpen",true);
-		co.enabled = false;
-		co.isTrigger = false;
-	}
-	
-	IEnumerator EmitFire(){
-		GetComponent<ParticleSystem>().Play(); 
-		yield return new WaitForSeconds(0.1f);
-		GetComponent<ParticleSystem>().Stop();
-	}
+    private void ShieldClose() {
+        this._anim.SetBool("isOpen", false);
+        this.co.enabled = true;
+        this.co.isTrigger = true;
+    }
+
+    private void ShieldOpen() {
+        this._anim.SetBool("isOpen", true);
+        this.co.enabled = false;
+        this.co.isTrigger = false;
+    }
+
+    private IEnumerator EmitFire() {
+        GetComponent<ParticleSystem>().Play();
+        yield return new WaitForSeconds(0.1f);
+        GetComponent<ParticleSystem>().Stop();
+    }
 }
