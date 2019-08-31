@@ -1,14 +1,10 @@
 # MetalRage
-
-Our goal is reproducting MetalRage with Unity.
-You can play the current version at UnityGameUploader.
-http://unitygameuploader.jpn.org/game/2968.html    
-
+MetalRage is a Robot TPS game.
+https://dazzhe.github.io/MetalRage/
 
 ## Development Requirements
 ### Softwares
 - Unity 2018.4.6f1
-- Blender
 
 ### Unity Packages
 - Photon Unity Networking Classic - FREE
