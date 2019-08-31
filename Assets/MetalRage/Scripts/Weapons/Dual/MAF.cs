@@ -2,11 +2,16 @@ using System.Collections;
 using UnityEngine;
 
 public class MAF : Weapon {
-    public bool isOpen = true;
+    [SerializeField]
+    private AudioClip shieldOpenClip;
+    [SerializeField]
+    private AudioClip shieldCloseClip;
 
+    private bool isOpen = false;
     private WeaponRay wr;
     private Animator animator;
     private Animator sightAnimator;
+    private new AudioSource audio;
     private new Collider collider;
     private ParticleSystem[] particleSystems;
 
@@ -27,6 +32,7 @@ public class MAF : Weapon {
         this.sightAnimator = this.sight.GetComponent<Animator>();
         this.collider = GetComponent<Collider>();
         this.particleSystems = GetComponentsInChildren<ParticleSystem>();
+        this.audio = GetComponent<AudioSource>();
     }
 
     private void Update() {
@@ -66,12 +72,14 @@ public class MAF : Weapon {
     }
 
     private void CloseShield() {
+        this.audio.PlayOneShot(this.shieldCloseClip);
         this.animator.SetBool("IsOpen", false);
         this.collider.enabled = true;
         this.collider.isTrigger = true;
     }
 
     private void OpenShield() {
+        this.audio.PlayOneShot(this.shieldOpenClip);
         this.animator.SetBool("IsOpen", true);
         this.collider.enabled = false;
         this.collider.isTrigger = false;
@@ -102,6 +110,6 @@ public class MAF : Weapon {
 
     [PunRPC]
     protected void MakeShots() {
-        this.transform.BroadcastMessage("MakeShot", this.wr.targetPos);
+        MakeShot();
     }
 }

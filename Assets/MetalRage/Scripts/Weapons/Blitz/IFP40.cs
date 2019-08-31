@@ -1,10 +1,12 @@
 using System.Collections;
 using UnityEngine;
-
 public class IFP40 : Weapon {
+    [SerializeField]
+    private GameObject zoomCameraPrefab;
+
+    private GameObject zoomCamera;
     private WeaponRay ray;
     private WeaponZoom zoom;
-    private GameObject zoomCamera;
 
     private void Awake() {
         this.param.ammo = 76;
@@ -25,7 +27,7 @@ public class IFP40 : Weapon {
         Init();
         if (this.component.myPV.isMine) {
             this.sight.HideSight();
-            this.zoomCamera = GameObject.Instantiate(Resources.Load("ZoomCamera"), Vector3.zero, Quaternion.identity) as GameObject;
+            this.zoomCamera = Instantiate(this.zoomCameraPrefab, Vector3.zero, Quaternion.identity) as GameObject;
             this.zoomCamera.transform.parent = Camera.main.transform;
             this.zoomCamera.transform.localPosition = Vector3.zero;
             this.zoomCamera.transform.localRotation = Quaternion.identity;

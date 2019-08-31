@@ -1303,7 +1303,8 @@ MonoBehaviour:
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -1418,6 +1419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sightPrefab: {fileID: 178702, guid: da08fcecc16619542bd2a568d7294795, type: 3}
+  zoomCameraPrefab: {fileID: 123532, guid: 69f622b9e88fbdd44a1ded03a7ef5bc5, type: 3}
 --- !u!82 &8250008
 AudioSource:
   m_ObjectHideFlags: 0
