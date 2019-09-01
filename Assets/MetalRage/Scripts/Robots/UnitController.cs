@@ -60,7 +60,7 @@ public class UnitController : MonoBehaviour {
 
     private void LateUpdate() {
         if (this.stat.HP == 0) {
-            ScoreBoardUI.myEntry.IncrementDeath();
+            ScoreboardUI.myEntry.IncrementDeath();
             GameObject go = GameObject.Find("GameManager");
             go.GetComponent<GameManager>().Die(this.transform.position, this.gameObject);
         }
@@ -70,7 +70,7 @@ public class UnitController : MonoBehaviour {
     private void OnKilledPlayer() {
         if (GetComponent<PhotonView>().isMine) {
             ++this.killCount;
-            ScoreBoardUI.myEntry.IncrementKill();
+            ScoreboardUI.myEntry.IncrementKill();
             if (this.killCount > 14) {
                 AudioManager.Instance.PlaySE(killVoiceNames[14]);
             } else {

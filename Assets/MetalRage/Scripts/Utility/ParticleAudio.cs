@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FlameThrower : MonoBehaviour {
+public class ParticleAudio : MonoBehaviour {
     [SerializeField]
     private new ParticleSystem particleSystem;
     [SerializeField]

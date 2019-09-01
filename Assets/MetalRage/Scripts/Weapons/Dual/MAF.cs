@@ -83,7 +83,7 @@ public class MAF : Weapon {
             this.sightAnimator.SetBool("rotate", true);
             this.wr.RayShot();
             RecoilAndDisperse();
-            RemainingLoads(2);
+            SetRemainingLoads(2);
             this.component.myPV.RPC("MakeShots", PhotonTargets.All);
             this.param.cooldown = true;
             yield return new WaitForSeconds(this.param.interval);

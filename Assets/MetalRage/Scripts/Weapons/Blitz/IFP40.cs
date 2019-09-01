@@ -40,7 +40,7 @@ public class IFP40 : Weapon {
         if (this.component.wcontrol.inputShot1 && this.param.load > 0 && !this.param.cooldown && this.param.canShot && !this.param.isReloading) {
             this.ray.RayShot();
             RecoilAndDisperse();
-            RemainingLoads(2);
+            SetRemainingLoads(2);
             StartCoroutine("ZoomOffCoroutine");
             this.component.myPV.RPC("MakeShots", PhotonTargets.All);
             this.param.cooldown = true;

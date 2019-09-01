@@ -45,7 +45,7 @@ public class HAR6 : Weapon {
         if (this.component.wcontrol.inputShot1 && this.param.load > 0 && !this.param.cooldown && this.param.canShot && !this.param.isReloading) {
             this.ray.RayShot();
             RecoilAndDisperse();
-            RemainingLoads(2);
+            SetRemainingLoads(2);
             this.component.myPV.RPC("MakeShots", PhotonTargets.All, this.ray.targetPos);
             this.param.cooldown = true;
             yield return new WaitForSeconds(this.param.interval);

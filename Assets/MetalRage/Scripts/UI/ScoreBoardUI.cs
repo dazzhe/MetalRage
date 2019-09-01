@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreBoardUI : CanvasUI {
+public class ScoreboardUI : CanvasUI {
     private Text scoreR;
     private Text scoreB;
     [SerializeField]
@@ -12,7 +12,7 @@ public class ScoreBoardUI : CanvasUI {
 
     private bool isAlwaysVisible = false;
 
-    public static PlayerInScoreboard myEntry;
+    public static PlayerScoreEntry myEntry;
     public static bool startAdding = false;
     public static int[] score = { 0, 0 };
 
@@ -53,9 +53,8 @@ public class ScoreBoardUI : CanvasUI {
             = PhotonNetwork.Instantiate("PlayerScoreEntry",
                                         Vector3.zero,
                                         Quaternion.identity, 0) as GameObject;
-        ScoreBoardUI.myEntry = myEntry.GetComponent<PlayerInScoreboard>();
-        ScoreBoardUI.myEntry.playerName = PhotonNetwork.playerName;
-        ScoreBoardUI.myEntry.team = team;
+        ScoreboardUI.myEntry = myEntry.GetComponent<PlayerScoreEntry>();
+        ScoreboardUI.myEntry.team = team;
         UnitOption.UnitSelect();
         this.isAlwaysVisible = false;
     }

@@ -6,7 +6,7 @@ public class UIManager : SingletonBehaviour<UIManager> {
     [SerializeField]
     private StatusUI statusUI;
     [SerializeField]
-    private ScoreBoardUI scoreBoardUI;
+    private ScoreboardUI scoreBoardUI;
 
     private bool isCursorVisible = true;
 
@@ -30,11 +30,11 @@ public class UIManager : SingletonBehaviour<UIManager> {
         private set => this.statusUI = value;
     }
 
-    public ScoreBoardUI ScoreBoardUI {
+    public ScoreboardUI ScoreboardUI {
         get {
             if (this.scoreBoardUI == null) {
-                var obj = this.transform.Find("ScoreBoardUI");
-                this.scoreBoardUI = obj?.GetComponent<ScoreBoardUI>();
+                var obj = this.transform.Find("ScoreboardUI");
+                this.scoreBoardUI = obj?.GetComponent<ScoreboardUI>();
             }
             return this.scoreBoardUI;
         }

@@ -31,7 +31,7 @@ public class AMRLJ : Weapon {
 
             MakeShot(this.component.wcontrol.targetPos);
             RecoilAndDisperse();
-            RemainingLoads(1);
+            SetRemainingLoads(1);
             if (i == 1) {
                 break;
             }

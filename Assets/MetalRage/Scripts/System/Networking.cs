@@ -33,7 +33,7 @@ public class Networking : Photon.PunBehaviour {
     }
 
     public override void OnJoinedRoom() {
-        UIManager.Instance.ScoreBoardUI.SelectTeam();
+        UIManager.Instance.ScoreboardUI.SelectTeam();
     }
 
     // Call from GUI button

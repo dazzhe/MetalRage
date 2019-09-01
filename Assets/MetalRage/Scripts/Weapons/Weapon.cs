@@ -107,7 +107,7 @@ public abstract class Weapon : MonoBehaviour {
         return (min < origin + recoil && origin + recoil < max) ? origin + recoil : origin - recoil;
     }
 
-    protected void RemainingLoads(int b) {
+    protected void SetRemainingLoads(int b) {
         this.param.load = Mathf.Clamp(this.param.load - b, 0, this.param.magazine);
         if (this.param.load == 0 && this.param.ammo != 0) {
             StartCoroutine(Reload());
