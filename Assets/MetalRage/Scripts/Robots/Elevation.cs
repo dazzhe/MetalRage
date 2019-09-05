@@ -9,6 +9,6 @@ public class Elevation : MonoBehaviour {
     }
 
     private void Update() {
-        this.transform.localEulerAngles = new Vector3(-this.weaponControl.rotationY, this.weaponControl.recoilrotationx, 0);
+        this.transform.localEulerAngles = new Vector3(-this.weaponControl.RotationY, this.weaponControl.RecoilRotation.x, 0);
     }
 }

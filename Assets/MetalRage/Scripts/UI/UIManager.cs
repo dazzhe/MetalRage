@@ -6,6 +6,8 @@ public class UIManager : SingletonBehaviour<UIManager> {
     [SerializeField]
     private StatusUI statusUI;
     [SerializeField]
+    private AmmoUI ammoUI;
+    [SerializeField]
     private ScoreboardUI scoreBoardUI;
 
     private bool isCursorVisible = true;
@@ -28,6 +30,16 @@ public class UIManager : SingletonBehaviour<UIManager> {
             return this.statusUI;
         }
         private set => this.statusUI = value;
+    }
+
+    public AmmoUI AmmoUI {
+        get {
+            if (this.ammoUI == null) {
+                this.ammoUI = this.transform.Find("AmmoUI").GetComponent<AmmoUI>();
+            }
+            return this.ammoUI;
+        }
+        private set => this.ammoUI = value;
     }
 
     public ScoreboardUI ScoreboardUI {

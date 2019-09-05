@@ -1,6 +1,9 @@
 using UnityEngine;
 
 public class FollowingCamera : MonoBehaviour {
+    [SerializeField]
+    private Vector3 cameraOffset;
+
     public GameObject objc;
     public Transform cameraTransform;
     public Vector3 cp;
@@ -66,7 +69,7 @@ public class FollowingCamera : MonoBehaviour {
     private void Setting() {
         this.cp = this.transform.position;
         this.cp.y += 2.5F;
-        this.defaultposition = this.cp + this.positionz * this.objc.transform.forward;
+        this.defaultposition = this.cameraOffset + this.cp + this.positionz * this.objc.transform.forward;
     }
 
     private void Lean() {
@@ -95,7 +98,7 @@ public class FollowingCamera : MonoBehaviour {
     }
 
     private void Distance() {
-        this.positionz = -5.5F + 4F * Mathf.Abs(this.weaponctrl.rotationY) / 60F;
+        this.positionz = -5.5F + 4F * Mathf.Abs(this.weaponctrl.RotationY) / 60F;
     }
 
     private void Follow() {

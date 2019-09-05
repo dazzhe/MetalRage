@@ -34,7 +34,6 @@ public class FriendOrEnemy : MonoBehaviour {
         while (GameManager.PlayerTeam == 5 || this.team == 5) {
             yield return new WaitForSeconds(0.5f);
         }
-
         if (!this.photonView.isMine) {
             if (GameManager.PlayerTeam == this.team) {
                 this.gameObject.SetLayerRecursively(9);//Teammate

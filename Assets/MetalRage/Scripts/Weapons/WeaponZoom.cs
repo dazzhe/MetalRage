@@ -1,19 +1,19 @@
 using UnityEngine;
 
 public class WeaponZoom : MonoBehaviour {
-    public bool isZooming = false;
+    public bool isZoomed = false;
     public WeaponComponent component = new WeaponComponent();
     public float zoomRatio;
 
-    public void ZoomOn() {
+    public void ZoomIn() {
         Camera.main.fieldOfView = 90f / this.zoomRatio;
-        this.isZooming = true;
+        this.isZoomed = true;
         this.component.motor.sensimag = 1f / this.zoomRatio;
     }
 
-    public void ZoomOff() {
-        Camera.main.fieldOfView = 90;
-        this.isZooming = false;
+    public void ZoomOut() {
+        Camera.main.fieldOfView = 90f;
+        this.isZoomed = false;
         this.component.motor.sensimag = 1f;
     }
 

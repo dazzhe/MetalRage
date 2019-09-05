@@ -34,6 +34,7 @@ public class HAR6Motor : MonoBehaviour {
         Bullet bullet = bulletObj.GetComponent<Bullet>();
         bullet.targetPos = targetPos;
         bullet.originPos = this.transform.position;
+        bullet.IgnoreCollider = this.transform.parent.parent.parent.parent.GetComponent<Collider>();
         yield return null;
     }
 }

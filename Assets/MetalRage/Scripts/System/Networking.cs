@@ -1,6 +1,5 @@
 #pragma warning disable 0649
 
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,15 +8,24 @@ public class Networking : Photon.PunBehaviour {
     private InputField playerNameInputField;
     [SerializeField]
     private GameObject inputNameWindow;
-    
-    private void Awake() {
-        this.gameObject.AddComponent<TaskDispatcher>();
-    }
+
+    private int frameCount = 0;
+    private int fps;
+    private float prevTimestamp = 0f;
 
     private void Start() {
         PhotonNetwork.ConnectToRegion(CloudRegionCode.jp, "0.2");
         PhotonNetwork.autoJoinLobby = true;
         PhotonNetwork.sendRate = 30;
+    }
+
+    private void Update() {
+        ++this.frameCount;
+        if (Time.time > this.prevTimestamp + 1f) {
+            this.prevTimestamp = Time.time;
+            this.fps = this.frameCount;
+            this.frameCount = 0;
+        }
     }
 
     public override void OnConnectedToMaster() {
@@ -46,7 +54,7 @@ public class Networking : Photon.PunBehaviour {
     private void OnGUI() {
         var connectionStateString = PhotonNetwork.connectionStateDetailed.ToString();
         if (connectionStateString == "Joined") {
-            GUILayout.Label($"Ping: {PhotonNetwork.GetPing()}");
+            GUILayout.Label($"Ping: {PhotonNetwork.GetPing()}\nFPS: {this.fps}");
         } else {
             GUILayout.Label(connectionStateString);
         }

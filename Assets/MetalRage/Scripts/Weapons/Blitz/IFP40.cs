@@ -9,8 +9,9 @@ public class IFP40 : Weapon {
     private WeaponZoom zoom;
 
     private void Awake() {
-        this.param.ammo = 76;
-        this.param.magazine = 6;
+        this.Ammo.ReserveBulletCount = 82;
+        this.Ammo.MagazineSize = 6;
+        this.Ammo.Reload();
         this.param.damage = 200;
         this.param.recoilY = 0.5f;
         this.param.minDispersion = 0f;
@@ -26,7 +27,7 @@ public class IFP40 : Weapon {
         this.zoom.zoomRatio = 1.5f;
         Init();
         if (this.component.myPV.isMine) {
-            this.sight.HideSight();
+            this.Gunsight.Hide();
             this.zoomCamera = Instantiate(this.zoomCameraPrefab, Vector3.zero, Quaternion.identity) as GameObject;
             this.zoomCamera.transform.parent = Camera.main.transform;
             this.zoomCamera.transform.localPosition = Vector3.zero;
@@ -37,11 +38,12 @@ public class IFP40 : Weapon {
     }
 
     protected IEnumerator ShotControl() {
-        if (this.component.wcontrol.inputShot1 && this.param.load > 0 && !this.param.cooldown && this.param.canShot && !this.param.isReloading) {
+        var canShot = !this.Ammo.IsMagazineEmpty && !this.param.cooldown && !this.param.isReloading;
+        if (this.component.wcontrol.inputShot1 && canShot) {
             this.ray.RayShot();
             RecoilAndDisperse();
-            SetRemainingLoads(2);
-            StartCoroutine("ZoomOffCoroutine");
+            ConsumeBullets(2);
+            StartCoroutine(ZoomOutRoutine());
             this.component.myPV.RPC("MakeShots", PhotonTargets.All);
             this.param.cooldown = true;
             yield return new WaitForSeconds(this.param.interval);
@@ -52,37 +54,36 @@ public class IFP40 : Weapon {
     private void LateUpdate() {
         if (this.component.myPV.isMine) {
             StartCoroutine(ShotControl());
-            if (this.component.wcontrol.inputReload && this.param.load != this.param.magazine && !this.param.isReloading) {
+            if (this.component.wcontrol.inputReload && this.Ammo.CanReload && !this.param.isReloading) {
                 StartCoroutine(Reload());
             }
 
             if (this.component.wcontrol.inputShot2) {
-                if (this.zoom.isZooming) {
-                    ZoomOff();
+                if (this.zoom.isZoomed) {
+                    ZoomOut();
                 } else {
-                    ZoomOn();
+                    ZoomIn();
                 }
             }
         }
     }
 
-    private IEnumerator ZoomOffCoroutine() {
+    private IEnumerator ZoomOutRoutine() {
         yield return new WaitForSeconds(0.3f);
-        ZoomOff();
+        ZoomOut();
     }
 
-    private void ZoomOff() {
-        this.zoom.ZoomOff();
+    private void ZoomOut() {
+        this.zoom.ZoomOut();
         this.zoomCamera.SetActive(false);
-        this.sight.HideSight();
+        this.Gunsight.Hide();
     }
 
-    private void ZoomOn() {
-        StopCoroutine("ZoomOffCoroutine");
-        this.zoom.ZoomOn();
-        this.component.motor.sensimag = 0.2f;
+    private void ZoomIn() {
+        StopCoroutine(ZoomOutRoutine());
+        this.zoom.ZoomIn();
         this.zoomCamera.SetActive(true);
-        this.sight.Show();
+        this.Gunsight.Show();
     }
 
     protected override void OnDestroy() {
@@ -93,20 +94,20 @@ public class IFP40 : Weapon {
     }
 
     protected override IEnumerator Reload() {
-        ZoomOff();
+        ZoomOut();
         return base.Reload();
     }
 
-    protected override void Disable() {
+    public override void Unselect() {
         this.component.wcontrol.isBlitzMain = false;
-        this.zoom.ZoomOff();
-        base.Disable();
+        this.zoom.ZoomOut();
+        base.Unselect();
     }
 
-    protected override void Enable() {
+    public override void Select() {
         this.component.wcontrol.isBlitzMain = true;
-        base.Enable();
-        this.sight.HideSight();
+        base.Select();
+        this.Gunsight.Hide();
     }
 
     [PunRPC]

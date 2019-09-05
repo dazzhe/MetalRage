@@ -6,8 +6,9 @@ public class HAR6 : Weapon {
     private WeaponZoom zoom;
 
     private void Awake() {
-        this.param.ammo = 1120;
-        this.param.magazine = 80;
+        this.Ammo.ReserveBulletCount = 1200;
+        this.Ammo.MagazineSize = 80;
+        this.Ammo.Reload();
         this.param.damage = 13;
         this.param.recoilY = 0.4f;
         this.param.recoilX = 0.4f;
@@ -27,25 +28,25 @@ public class HAR6 : Weapon {
 
     private void LateUpdate() {
         StartCoroutine(ShotControl());
-        if (this.component.wcontrol.inputReload && this.param.load != this.param.magazine && !this.param.isReloading) {
-            this.zoom.ZoomOff();
+        if (this.component.wcontrol.inputReload && this.Ammo.CanReload && !this.param.isReloading) {
+            this.zoom.ZoomOut();
             StartCoroutine(Reload());
         }
         if (this.component.wcontrol.inputShot2) {
-            if (this.zoom.isZooming) {
-                this.zoom.ZoomOff();
+            if (this.zoom.isZoomed) {
+                this.zoom.ZoomOut();
             } else {
-                this.zoom.ZoomOn();
+                this.zoom.ZoomIn();
             }
         }
-        this.sight.extent = this.param.minDispersion * this.component.wcontrol.desiredDispersion * 2;
+        this.Gunsight.extent = this.param.minDispersion * this.component.wcontrol.Dispersion * 2f;
     }
 
     protected IEnumerator ShotControl() {
-        if (this.component.wcontrol.inputShot1 && this.param.load > 0 && !this.param.cooldown && this.param.canShot && !this.param.isReloading) {
+        if (this.component.wcontrol.inputShot1 && !this.Ammo.IsMagazineEmpty && !this.param.cooldown && !this.param.isReloading) {
             this.ray.RayShot();
             RecoilAndDisperse();
-            SetRemainingLoads(2);
+            ConsumeBullets(2);
             this.component.myPV.RPC("MakeShots", PhotonTargets.All, this.ray.targetPos);
             this.param.cooldown = true;
             yield return new WaitForSeconds(this.param.interval);
@@ -54,7 +55,7 @@ public class HAR6 : Weapon {
     }
 
     protected override IEnumerator Reload() {
-        this.zoom.ZoomOff();
+        this.zoom.ZoomOut();
         return base.Reload();
     }
 
@@ -63,8 +64,8 @@ public class HAR6 : Weapon {
         this.transform.BroadcastMessage("MakeShot", targetPos);
     }
 
-    protected override void Disable() {
-        this.zoom.ZoomOff();
-        base.Disable();
+    public override void Unselect() {
+        this.zoom.ZoomOut();
+        base.Unselect();
     }
 }

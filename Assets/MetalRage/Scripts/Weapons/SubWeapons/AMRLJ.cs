@@ -5,9 +5,11 @@ public class AMRLJ : Weapon {
     private Animation anim;
 
     private void Awake() {
-        this.param.magazine = 4;
+        this.Ammo.MagazineSize = 4;
+        this.Ammo.ReserveBulletCount = 4;
+        this.Ammo.Reload();
         this.param.recoilY = 0f;
-        this.param.minDispersion = 10f; //only for showing sight
+        this.param.minDispersion = 10f; // For showing gunsight. Not actually disparse.
         this.param.dispersionGrow = 3f;
         this.param.interval = 1.5f;
         this.anim = GetComponent<Animation>();
@@ -15,27 +17,21 @@ public class AMRLJ : Weapon {
     }
 
     private void LateUpdate() {
-        if (this.component.wcontrol.inputShot1 && this.param.load != 0 && !this.param.cooldown && this.param.canShot) {
+        if (this.component.wcontrol.inputShot1 && !this.Ammo.IsMagazineEmpty && !this.param.cooldown) {
             StartCoroutine(Shot());
         }
-
-        this.sight.extent = this.param.minDispersion * this.component.wcontrol.desiredDispersion * 2;
+        this.Gunsight.extent = this.param.minDispersion * this.component.wcontrol.Dispersion * 2;
     }
 
     private IEnumerator Shot() {
         this.param.cooldown = true;
-        for (int i = 0; i <= 1; i++) {
-            if (this.param.load == 0) {
+        for (int i = 0; i <= 1; ++i) {
+            if (this.Ammo.LoadedBulletCount == 0) {
                 yield break;
             }
-
             MakeShot(this.component.wcontrol.targetPos);
             RecoilAndDisperse();
-            SetRemainingLoads(1);
-            if (i == 1) {
-                break;
-            }
-
+            ConsumeBullets(1);
             yield return new WaitForSeconds(0.2f);
         }
         yield return new WaitForSeconds(this.param.interval);
@@ -48,25 +44,25 @@ public class AMRLJ : Weapon {
 
     private IEnumerator CreateBullet(Vector3 targetPos) {
         Quaternion rot = Quaternion.LookRotation(targetPos - this.transform.position);
-        GameObject rocket = PhotonNetwork.Instantiate("Rocket", this.transform.parent.position, rot, 0);
-        Rocket _rocket = rocket.GetComponent<Rocket>();
-        _rocket.shooterPlayer = this.component.unit.name;
-        _rocket.wcontrol = this.component.wcontrol;
+        GameObject rocketObject = PhotonNetwork.Instantiate("Rocket", this.transform.parent.position, rot, 0);
+        Rocket rocket = rocketObject.GetComponent<Rocket>();
+        rocket.shooterPlayer = this.component.unit.name;
+        rocket.wcontrol = this.component.wcontrol;
         yield return null;
     }
 
-    protected override void Enable() {
+    public override void Select() {
         this.anim["SettingUp"].speed = 1;
         this.anim.Play("SettingUp");
-        base.Enable();
+        base.Select();
     }
 
-    protected override void Disable() {
+    public override void Unselect() {
         if (this.anim["SettingUp"].time == 0) {
             this.anim["SettingUp"].time = this.anim["SettingUp"].length;
         }
         this.anim["SettingUp"].speed = -3;
         this.anim.Play("SettingUp");
-        base.Disable();
+        base.Unselect();
     }
 }

@@ -3,24 +3,16 @@ using UnityEngine;
 
 public class WeaponControl : MonoBehaviour {
     private UnitMotor motor;
-    private Sight[] sights;
-    private WeaponManager[] weapons = new WeaponManager[3];
-    [System.NonSerialized]
-    public GameObject targetObject;
-    [System.NonSerialized]
-    public bool isRecoiling = false;
-    [System.NonSerialized]
-    public float rotationY = 0F;
-    [System.NonSerialized]
-    public float normalrotationY = 0F;
-    [System.NonSerialized]
-    public float recoilrotationx = 0F;
-    [System.NonSerialized]
-    public float recoilrotationy = 0F;
-    [System.NonSerialized]
-    public float dispersionRate = 0;
-    [System.NonSerialized]
-    public float desiredDispersion;
+    private Gunsight[] gunsights;
+    private Weapon[] weapons = new Weapon[3];
+
+    public GameObject TargetObject { get; set; }
+    public bool IsRecoiling { get; set; }
+    public float RotationY { get; set; }
+    public float BaseRotationY { get; set; }
+    public Vector2 RecoilRotation { get; set; }
+    public float DispersionRate { get; set; }
+    public float Dispersion { get; set; }
     [System.NonSerialized]
     public Vector3 targetPos;
     [System.NonSerialized]
@@ -34,9 +26,8 @@ public class WeaponControl : MonoBehaviour {
 
     public Vector3 Center { get => new Vector3(Screen.width / 2, Screen.height / 2, 0); }
 
-    private int enabledWeapon = 0;  //0 = Main, 1 = Right, 2 = Left
-    private float minimumY = -60f;
-    private float maximumY = 60f;
+    private int selecedWeaponIndex = 0;  //0 = Main, 1 = Right, 2 = Left
+    private RangeFloat elevationRange = new RangeFloat(-60f, 60f);
     private float recoilFixSpeed = 25f;
 
     private float DispersionCorrection() {
@@ -60,14 +51,15 @@ public class WeaponControl : MonoBehaviour {
 
     private void Start() {
         this.motor = GetComponent<UnitMotor>();
-        this.weapons[0] = this.transform.Find("Offset/MainWeapon").GetComponent<WeaponManager>();
-        this.weapons[1] = this.transform.Find("Offset/RightWeapon").GetComponent<WeaponManager>();
-        this.weapons[2] = this.transform.Find("Offset/LeftWeapon").GetComponent<WeaponManager>();
-        this.weapons[0].SendEnable();
-        this.sights = FindObjectsOfType(typeof(Sight)) as Sight[];
+        this.weapons[0] = this.transform.Find("Offset/MainWeapon").GetComponentInChildren<Weapon>();
+        this.weapons[1] = this.transform.Find("Offset/RightWeapon").GetComponentInChildren<Weapon>();
+        this.weapons[2] = this.transform.Find("Offset/LeftWeapon").GetComponentInChildren<Weapon>();
+        this.weapons[0].Select();
+        this.gunsights = FindObjectsOfType(typeof(Gunsight)) as Gunsight[];
     }
 
     private void Update() {
+        UIManager.Instance.AmmoUI.UpdateUI(this.weapons[this.selecedWeaponIndex].Ammo);
         if (UIManager.Instance.MenuUI.ActiveWindowLevel == 0) {
             WeaponSelect();
             this.inputReload = Input.GetButtonDown("Reload");
@@ -82,55 +74,54 @@ public class WeaponControl : MonoBehaviour {
         if (!this.isBlitzMain) {
             SetTarget();
         }
-        RecoilControl();
-        DispersionControl();
+        SuppressRecoil();
+        SuppressDispersion();
     }
 
     private void WeaponSelect() {
-        if (Input.GetButtonDown("MainWeapon") && this.enabledWeapon != 0) {
-            this.weapons[this.enabledWeapon].SendDisable();
-            this.weapons[0].SendEnable();
-            this.enabledWeapon = 0;
+        if (Input.GetButtonDown("MainWeapon") && this.selecedWeaponIndex != 0) {
+            this.weapons[this.selecedWeaponIndex].Unselect();
+            this.weapons[0].Select();
+            this.selecedWeaponIndex = 0;
         }
-        if (Input.GetButtonDown("RightWeapon") && this.enabledWeapon != 1) {
-            this.weapons[this.enabledWeapon].SendDisable();
-            this.weapons[1].SendEnable();
-            this.enabledWeapon = 1;
+        if (Input.GetButtonDown("RightWeapon") && this.selecedWeaponIndex != 1) {
+            this.weapons[this.selecedWeaponIndex].Unselect();
+            this.weapons[1].Select();
+            this.selecedWeaponIndex = 1;
         }
-        if (Input.GetButtonDown("LeftWeapon") && this.enabledWeapon != 2) {
-            this.weapons[this.enabledWeapon].SendDisable();
-            this.weapons[2].SendEnable();
-            this.enabledWeapon = 2;
+        if (Input.GetButtonDown("LeftWeapon") && this.selecedWeaponIndex != 2) {
+            this.weapons[this.selecedWeaponIndex].Unselect();
+            this.weapons[2].Select();
+            this.selecedWeaponIndex = 2;
         }
     }
 
     private void Elevation() {
-        this.normalrotationY += Input.GetAxis("Mouse Y") * Configuration.sensitivity * this.motor.sensimag;
-        this.normalrotationY = Mathf.Clamp(this.normalrotationY, this.minimumY, this.maximumY);
-        this.rotationY = this.normalrotationY + this.recoilrotationy;
+        this.BaseRotationY += Input.GetAxis("Mouse Y") * Configuration.sensitivity * this.motor.sensimag;
+        this.BaseRotationY = Mathf.Clamp(this.BaseRotationY, this.elevationRange.Min, this.elevationRange.Max);
+        this.RotationY = this.BaseRotationY + this.RecoilRotation.y;
     }
 
-    private void RecoilControl() {
-        if ((this.recoilrotationx == 0 && this.recoilrotationy == 0) || this.isRecoiling) {
+    private void SuppressRecoil() {
+        if ((this.RecoilRotation.x == 0f && this.RecoilRotation.y == 0f) || this.IsRecoiling) {
             return;
         }
-
-        if (this.recoilrotationy > 0F) {
-            this.recoilrotationy -= this.recoilFixSpeed * Time.deltaTime;
+        var recoilRotation = this.RecoilRotation;
+        if (this.RecoilRotation.y > 0f) {
+            recoilRotation.y -= this.recoilFixSpeed * Time.deltaTime;
         }
-
-        if (this.recoilrotationy < 0f) {
-            this.recoilrotationy = 0f;
+        if (this.RecoilRotation.y < 0f) {
+            recoilRotation.y = 0f;
         }
-
-        if (this.recoilrotationx != 0) {
-            this.recoilrotationx = Mathf.Lerp(this.recoilrotationx, 0, 0.1F);
+        if (this.RecoilRotation.x != 0) {
+            recoilRotation.x = Mathf.Lerp(this.RecoilRotation.x, 0, 0.1f);
         }
+        this.RecoilRotation = recoilRotation;
     }
 
-    private void DispersionControl() {
-        this.dispersionRate = Mathf.Clamp(this.dispersionRate - 3f * Time.deltaTime, 1, this.dispersionRate);
-        this.desiredDispersion = this.dispersionRate * DispersionCorrection() * Screen.height * 0.001f;
+    private void SuppressDispersion() {
+        this.DispersionRate = Mathf.Clamp(this.DispersionRate - 3f * Time.deltaTime, 1, this.DispersionRate);
+        this.Dispersion = this.DispersionRate * DispersionCorrection() * Screen.height * 0.001f;
     }
 
     private void SetTarget() {
@@ -142,31 +133,30 @@ public class WeaponControl : MonoBehaviour {
             return;
         }
         this.targetPos = hit.point;
-        this.targetObject = hit.collider.gameObject;
-        if (this.targetObject.layer == LayerMask.NameToLayer("Enemy")) {
+        this.TargetObject = hit.collider.gameObject;
+        if (this.TargetObject.layer == LayerMask.NameToLayer("Enemy")) {
             StopCoroutine(ShowEnemyName());
             StartCoroutine(ShowEnemyName());
         }
     }
 
     private IEnumerator ShowEnemyName() {
-        UIManager.Instance.StatusUI.TargetingEnemyName = this.targetObject.GetComponentInParent<FriendOrEnemy>().playerName;
+        UIManager.Instance.StatusUI.TargetingEnemyName = this.TargetObject.GetComponentInParent<FriendOrEnemy>().playerName;
         yield return new WaitForSeconds(0.2f);
         UIManager.Instance.StatusUI.TargetingEnemyName = "";
     }
 
     public void HitMark() {
-        StopCoroutine(HitMarkCoroutine());
-        StartCoroutine(HitMarkCoroutine());
+        StopCoroutine(HitMarkRoutine());
+        StartCoroutine(HitMarkRoutine());
     }
 
-    private IEnumerator HitMarkCoroutine() {
-        foreach (Sight sight in this.sights) {
+    private IEnumerator HitMarkRoutine() {
+        foreach (Gunsight sight in this.gunsights) {
             sight.SetColor(Color.red);
         }
-
         yield return new WaitForSeconds(0.3f);
-        foreach (Sight sight in this.sights) {
+        foreach (Gunsight sight in this.gunsights) {
             sight.SetColor(Color.white);
         }
     }

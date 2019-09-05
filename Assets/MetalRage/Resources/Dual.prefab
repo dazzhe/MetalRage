@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 682b12b421664f644aabf23d7883fa7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lb: {fileID: 6072354061948658802}
+  lowerBody: {fileID: 6072354061948658802}
 --- !u!1 &100092
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,6 +520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4a761d01df52d438c02835b128614a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraOffset: {x: 0, y: 0, z: 0}
   objc: {fileID: 100080}
   cameraTransform: {fileID: 0}
   cp: {x: 0, y: 0, z: 0}
@@ -1121,18 +1122,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6021947040699022172, guid: 94187193fedbbc7428f48dfd3f89fc47,
-        type: 3}
-      propertyPath: Mute
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6021947040699022172, guid: 94187193fedbbc7428f48dfd3f89fc47,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7386934352442381235, guid: 94187193fedbbc7428f48dfd3f89fc47, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94187193fedbbc7428f48dfd3f89fc47, type: 3}
 --- !u!4 &420372 stripped
 Transform:

@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4a761d01df52d438c02835b128614a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraOffset: {x: 0, y: 0, z: 0}
   objc: {fileID: 105542}
   cameraTransform: {fileID: 0}
   cp: {x: 0, y: 0, z: 0}
@@ -1418,7 +1419,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12e7d29e542c05348884e664c69725bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sightPrefab: {fileID: 178702, guid: da08fcecc16619542bd2a568d7294795, type: 3}
+  gunsightPrefab: {fileID: 178702, guid: da08fcecc16619542bd2a568d7294795, type: 3}
+  ammo:
+    magazineSize: 0
+    initialExtraBulletCount: 1
   zoomCameraPrefab: {fileID: 123532, guid: 69f622b9e88fbdd44a1ded03a7ef5bc5, type: 3}
 --- !u!82 &8250008
 AudioSource:
@@ -1431,7 +1435,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a4a061a383826d94995c3a24f0065593, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1563,7 +1567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 682b12b421664f644aabf23d7883fa7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lb: {fileID: 2211917932679538631}
+  lowerBody: {fileID: 2211917932679538631}
 --- !u!1 &167750
 GameObject:
   m_ObjectHideFlags: 0
@@ -2049,19 +2053,19 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: c6f355a9f3fad2a4eb6094e1275b3f31, type: 2}
-    - target: {fileID: 400050, guid: 145dd16705aa45142aba5211f4456dd7, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.6022712
-      objectReference: {fileID: 0}
-    - target: {fileID: 400050, guid: 145dd16705aa45142aba5211f4456dd7, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.71791345
-      objectReference: {fileID: 0}
     - target: {fileID: 400046, guid: 145dd16705aa45142aba5211f4456dd7, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0.6022712
       objectReference: {fileID: 0}
     - target: {fileID: 400046, guid: 145dd16705aa45142aba5211f4456dd7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.71791345
+      objectReference: {fileID: 0}
+    - target: {fileID: 400050, guid: 145dd16705aa45142aba5211f4456dd7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.6022712
+      objectReference: {fileID: 0}
+    - target: {fileID: 400050, guid: 145dd16705aa45142aba5211f4456dd7, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.71791345
       objectReference: {fileID: 0}

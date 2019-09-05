@@ -30,8 +30,8 @@ public class Synchronizer : Photon.MonoBehaviour, IPunObservable {
                 = Mathf.Lerp(this.motor.rotationX,
                              correctRotationX,
                              Time.deltaTime * 20f);
-            this.wcontrol.rotationY
-                = Mathf.Lerp(this.wcontrol.rotationY,
+            this.wcontrol.RotationY
+                = Mathf.Lerp(this.wcontrol.RotationY,
                               correctRotationY,
                               Time.deltaTime * 20f);
             if (this.motor.rotationX > 360f) {
@@ -50,7 +50,7 @@ public class Synchronizer : Photon.MonoBehaviour, IPunObservable {
             stream.SendNext(this.transform.position);
             // Compress RotationX to 0~360 and RotationY to -60~60.
             stream.SendNext((short)(this.motor.rotationX * 100 - 18000));
-            stream.SendNext((byte)(this.wcontrol.rotationY * 2 + 120));
+            stream.SendNext((byte)(this.wcontrol.RotationY * 2 + 120));
         } else {
             // Receive data
             this.correctPlayerPos = (Vector3)stream.ReceiveNext();

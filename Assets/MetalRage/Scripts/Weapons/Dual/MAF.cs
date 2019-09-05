@@ -56,7 +56,9 @@ public class MAF : Weapon {
     }
 
     private void Awake() {
-        this.param.magazine = 900;
+        this.Ammo.MagazineSize = 900;
+        this.Ammo.ReserveBulletCount = 900;
+        this.Ammo.Reload();
         this.param.damage = 13;
         this.param.recoilY = 0f;
         this.param.minDispersion = 0f;
@@ -68,7 +70,7 @@ public class MAF : Weapon {
         this.wr.param = this.param;
         this.wr.component = this.component;
         Init();
-        this.sightAnimator = this.sight.GetComponent<Animator>();
+        this.sightAnimator = this.Gunsight.GetComponent<Animator>();
     }
 
     private void Update() {
@@ -79,11 +81,12 @@ public class MAF : Weapon {
     }
 
     protected IEnumerator ShotControl() {
-        if (this.component.wcontrol.inputShot1 && this.param.load > 0 && !this.param.cooldown && this.param.canShot && !this.param.isReloading) {
+        var canShot = !this.Ammo.IsMagazineEmpty && !this.param.cooldown && this.isOpen && !this.param.isReloading;
+        if (this.component.wcontrol.inputShot1 && canShot) {
             this.sightAnimator.SetBool("rotate", true);
             this.wr.RayShot();
             RecoilAndDisperse();
-            SetRemainingLoads(2);
+            ConsumeBullets(2);
             this.component.myPV.RPC("MakeShots", PhotonTargets.All);
             this.param.cooldown = true;
             yield return new WaitForSeconds(this.param.interval);
@@ -93,12 +96,12 @@ public class MAF : Weapon {
         }
     }
 
-    protected override void Disable() {
+    public override void Unselect() {
         if (!this.isOpen) {
             this.component.myPV.RPC("Shield", PhotonTargets.AllBuffered);
         }
 
-        base.Disable();
+        base.Unselect();
     }
 
 
@@ -135,11 +138,9 @@ public class MAF : Weapon {
     private void Shield() {
         if (this.isOpen) {
             this.isOpen = false;
-            this.param.canShot = false;
             CloseShield();
         } else {
             this.isOpen = true;
-            this.param.canShot = true;
             OpenShield();
         }
     }

@@ -2,29 +2,25 @@ using System.Collections;
 using UnityEngine;
 
 public class WeaponParam {
-    public int ammo = 0;
-    public int magazine = 0;
     public int damage = 0;
-    public float recoilY = 0;//反動.
+    public float recoilY = 0;
     public float recoilX = 0;
     public float maxRecoilY = 14f;
     public float maxRecoilX = 3f;
-    public float minDispersion = 0;//ばらつき.
+    public float minDispersion = 0;
     public float dispersionGrow = 0;
     public float maxrange = 0;
     public float reloadTime = 0;
     public float interval = 0;
     public float setupTime = 1f;
     public bool isReloading;
-    public int load;
     public bool cooldown = false;
-    public bool canShot;
 }
 
 public class WeaponComponent {
     public GameObject unit;
     public AudioSource setup;
-    public AudioSource reload;
+    public AudioSource reloadAudio;
     public PhotonView myPV;
     public WeaponControl wcontrol;
     public UnitMotor motor;
@@ -35,14 +31,23 @@ public class WeaponComponent {
 /// </summary>
 public abstract class Weapon : MonoBehaviour {
     [SerializeField]
-    private GameObject sightPrefab;
+    private GameObject gunsightPrefab;
+    [SerializeField]
+    private Ammo ammo;
 
     protected WeaponParam param = new WeaponParam();
     protected WeaponComponent component = new WeaponComponent();
     protected GameObject sightObject;
-    protected Sight sight;
+    protected Gunsight Gunsight;
 
-    public GameObject SightPrefab { get => this.sightPrefab; set => this.sightPrefab = value; }
+    public GameObject GunsightPrefab => this.gunsightPrefab;
+    public Ammo Ammo => this.ammo;
+
+    protected virtual void OnDestroy() {
+        if (this.component.myPV.isMine && this.sightObject != null) {
+            Destroy(this.sightObject);
+        }
+    }
 
     protected void Init() {
         this.component.unit = this.transform.parent.parent.parent.gameObject;
@@ -53,53 +58,53 @@ public abstract class Weapon : MonoBehaviour {
             AudioSource[] audioSources = GetComponents<AudioSource>();
             this.component.setup = audioSources[0];
             if (audioSources.Length > 1) {
-                this.component.reload = audioSources[1];
+                this.component.reloadAudio = audioSources[1];
             }
         }
-        this.param.load = this.param.magazine;
-        this.param.canShot = true;
-        if (this.component.myPV.isMine && this.SightPrefab != null) {
-            this.sightObject = Instantiate(this.SightPrefab, Vector3.zero, Quaternion.identity);
-            this.sight = this.sightObject.GetComponentInChildren<Sight>();
-            this.sight.HideSight();
+        if (this.component.myPV.isMine && this.GunsightPrefab != null) {
+            this.sightObject = Instantiate(this.GunsightPrefab, Vector3.zero, Quaternion.identity);
+            this.Gunsight = this.sightObject.GetComponentInChildren<Gunsight>();
+            this.Gunsight.Hide();
         }
     }
 
     protected void RecoilAndDisperse() {
         StopCoroutine(Recoil());
         StartCoroutine(Recoil());
-        if (this.component.wcontrol.dispersionRate < 3f) {
-            this.component.wcontrol.dispersionRate += this.param.dispersionGrow;
+        if (this.component.wcontrol.DispersionRate < 3f) {
+            this.component.wcontrol.DispersionRate += this.param.dispersionGrow;
         } else {
-            this.component.wcontrol.dispersionRate = 3f;
+            this.component.wcontrol.DispersionRate = 3f;
         }
     }
 
     private IEnumerator Recoil() {
-        this.component.wcontrol.isRecoiling = true;
+        this.component.wcontrol.IsRecoiling = true;
         float nextRecoilRotY;
         float nextRecoilRotX;
-        float desiredRecoilY = this.param.recoilY * (1f + this.component.wcontrol.desiredDispersion);
-        float desiredRecoilX = this.param.recoilX * (1f + this.component.wcontrol.desiredDispersion);
-        if (this.component.wcontrol.recoilrotationy <= this.param.maxRecoilY - 1f) {
-            nextRecoilRotY = this.component.wcontrol.recoilrotationy + desiredRecoilY;
+        float desiredRecoilY = this.param.recoilY * (1f + this.component.wcontrol.Dispersion);
+        float desiredRecoilX = this.param.recoilX * (1f + this.component.wcontrol.Dispersion);
+        if (this.component.wcontrol.RecoilRotation.y <= this.param.maxRecoilY - 1f) {
+            nextRecoilRotY = this.component.wcontrol.RecoilRotation.y + desiredRecoilY;
         } else {
             nextRecoilRotY = NextRecoilInRange(this.param.maxRecoilY - 1f,
                                                this.param.maxRecoilY,
-                                               this.component.wcontrol.recoilrotationy,
+                                               this.component.wcontrol.RecoilRotation.y,
                                                0.5f);
         }
         nextRecoilRotX = NextRecoilInRange(-this.param.maxRecoilX, this.param.maxRecoilX,
-                                           this.component.wcontrol.recoilrotationx,
+                                           this.component.wcontrol.RecoilRotation.x,
                                            desiredRecoilX);
         int i = 0;
         while (i <= 6) {
-            this.component.wcontrol.recoilrotationx = Mathf.Lerp(this.component.wcontrol.recoilrotationx, nextRecoilRotX, 50f * Time.deltaTime);
-            this.component.wcontrol.recoilrotationy = Mathf.Lerp(this.component.wcontrol.recoilrotationy, nextRecoilRotY, 50f * Time.deltaTime);
+            this.component.wcontrol.RecoilRotation = new Vector2 {
+                x = Mathf.Lerp(this.component.wcontrol.RecoilRotation.x, nextRecoilRotX, 50f * Time.deltaTime),
+                y = Mathf.Lerp(this.component.wcontrol.RecoilRotation.y, nextRecoilRotY, 50f * Time.deltaTime)
+            };
             i++;
             yield return null;
         }
-        this.component.wcontrol.isRecoiling = false;
+        this.component.wcontrol.IsRecoiling = false;
     }
 
     private float NextRecoilInRange(float min, float max, float origin, float range) {
@@ -107,56 +112,43 @@ public abstract class Weapon : MonoBehaviour {
         return (min < origin + recoil && origin + recoil < max) ? origin + recoil : origin - recoil;
     }
 
-    protected void SetRemainingLoads(int b) {
-        this.param.load = Mathf.Clamp(this.param.load - b, 0, this.param.magazine);
-        if (this.param.load == 0 && this.param.ammo != 0) {
+    protected void ConsumeBullets(int count) {
+        this.Ammo.Consume(count);
+        if (this.Ammo.CanReload && this.Ammo.LoadedBulletCount == 0) {
             StartCoroutine(Reload());
         }
-        UIManager.Instance.StatusUI.SetMagazine(this.param.load);
     }
 
     protected virtual IEnumerator Reload() {
-        this.component.reload.PlayOneShot(this.component.reload.clip);
+        this.component.reloadAudio.PlayOneShot(this.component.reloadAudio.clip);
         this.param.isReloading = true;
         yield return new WaitForSeconds(this.param.reloadTime);
-        int supplyLoad = Mathf.Min(this.param.magazine - this.param.load, this.param.ammo);
-        this.param.load += supplyLoad;
-        this.param.ammo -= supplyLoad;
+        this.Ammo.Reload();
         this.param.isReloading = false;
-        UIManager.Instance.StatusUI.SetMagazine(this.param.load);
-        UIManager.Instance.StatusUI.SetAmmo(this.param.ammo);
     }
 
-    protected virtual void Enable() {
-        UIManager.Instance.StatusUI.SetMagazine(this.param.load);
-        UIManager.Instance.StatusUI.SetAmmo(this.param.ammo);
+    public virtual void Select() {
         this.component.setup.PlayOneShot(this.component.setup.clip);
-        this.sight?.Show();
-        StopCoroutine(Enabling());
-        StartCoroutine(Enabling());
+        this.Gunsight?.Show();
+        StopCoroutine(SelectRoutine());
+        StartCoroutine(SelectRoutine());
     }
 
-    protected IEnumerator Enabling() {
-        yield return new WaitForSeconds(this.param.setupTime);
-        this.enabled = true;
-    }
-
-    protected virtual void OnDestroy() {
-        if (this.component.myPV.isMine && this.sightObject != null) {
-            Destroy(this.sightObject);
-        }
-    }
-
-    protected virtual void Disable() {
-        this.component.wcontrol.isRecoiling = false;
+    public virtual void Unselect() {
+        this.component.wcontrol.IsRecoiling = false;
         this.param.cooldown = false;
         StopAllCoroutines();
         this.component.setup.Stop();
         InterruptReloading();
         this.enabled = false;
-        if (this.sight != null) {
-            this.sight.HideSight();
+        if (this.Gunsight != null) {
+            this.Gunsight.Hide();
         }
+    }
+
+    protected IEnumerator SelectRoutine() {
+        yield return new WaitForSeconds(this.param.setupTime);
+        this.enabled = true;
     }
 
     private void InterruptReloading() {

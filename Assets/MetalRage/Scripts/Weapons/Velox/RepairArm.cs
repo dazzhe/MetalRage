@@ -10,38 +10,38 @@ public class RepairArm : Weapon {
     private Animator animator;
     private new AudioSource audio;
     private Status targetingUnitStatus;
+    private RepairArmReticle reticle;
 
     private void Awake() {
-        this.param.magazine = 100;
+        this.Ammo.MagazineSize = 100;
+        this.Ammo.ReserveBulletCount = 100;
+        this.Ammo.Reload();
         this.param.damage = -40;
-        this.param.recoilY = 0f;//反動.
-        this.param.minDispersion = 0f;//ばらつき.
+        this.param.recoilY = 0f;
+        this.param.minDispersion = 0f;
         this.param.dispersionGrow = 0f;
         this.param.maxrange = 1000;
         this.animator = GetComponent<Animator>();
         this.audio = GetComponent<AudioSource>();
+        this.reticle = this.Gunsight.gameObject.GetComponent<RepairArmReticle>();
         Init();
         if (this.component.myPV.isMine) {
-            StartCoroutine(RegenerateRemainingBullet());
+            StartCoroutine(BulletRefillLoop());
         }
     }
 
-    private IEnumerator RegenerateRemainingBullet() {
+    private IEnumerator BulletRefillLoop() {
         while (true) {
-            if (this.param.load < this.param.magazine && !this.animator.GetBool(kIsRepairingKey)) {
-                this.param.load += 2;
-                if (this.param.load > this.param.magazine) {
-                    this.param.load = this.param.magazine;
-                }
-                UIManager.Instance.StatusUI.SetMagazine(this.param.load);
+            if (!this.Ammo.IsMagazineFull && !this.animator.GetBool(kIsRepairingKey)) {
+                this.Ammo.Supply(2);
             }
             yield return new WaitForSeconds(0.1f);
         }
     }
 
     private void LateUpdate() {
-        this.targetingUnitStatus = this.component.wcontrol.targetObject.GetComponent<Status>();
-        if (this.targetingUnitStatus != null && this.component.wcontrol.targetObject.layer == 9) {
+        this.targetingUnitStatus = this.component.wcontrol.TargetObject.GetComponent<Status>();
+        if (this.targetingUnitStatus != null && this.component.wcontrol.TargetObject.layer == 9) {
             UIManager.Instance.StatusUI.TargetingFriend = this.targetingUnitStatus;
         } else {
             UIManager.Instance.StatusUI.TargetingFriend = null;
@@ -64,13 +64,13 @@ public class RepairArm : Weapon {
     public void Repair() {
         this.audio.PlayOneShot(this.audio.clip);
         if (this.component.myPV.isMine) {
-            Hit hit = this.component.wcontrol.targetObject.GetComponentInParent<Hit>();
-            if (hit != null && this.component.wcontrol.targetObject.layer == 9 &&
-                this.targetingUnitStatus.HP != this.targetingUnitStatus.MaxHP && this.param.load >= 15
-                && (this.component.wcontrol.targetObject.transform.position
+            Hit hit = this.component.wcontrol.TargetObject.GetComponentInParent<Hit>();
+            if (hit != null && this.component.wcontrol.TargetObject.layer == 9 &&
+                this.targetingUnitStatus.HP != this.targetingUnitStatus.MaxHP && this.Ammo.LoadedBulletCount >= 15
+                && (this.component.wcontrol.TargetObject.transform.position
                      - this.transform.position).magnitude <= 4f) {
                 hit.TakeDamage(this.param.damage, this.component.unit.name);
-                SetRemainingLoads(15);
+                ConsumeBullets(15);
             }
         }
     }
