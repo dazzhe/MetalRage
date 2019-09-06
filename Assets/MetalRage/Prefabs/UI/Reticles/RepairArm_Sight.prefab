@@ -163,7 +163,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6615518728193955855}
   - component: {fileID: 4619317715039453776}
-  - component: {fileID: 8551734308614980209}
   - component: {fileID: 451857202638371306}
   m_Layer: 5
   m_Name: Fill
@@ -199,7 +198,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 48082498899933231}
   m_CullTransparentMesh: 0
---- !u!114 &8551734308614980209
+--- !u!114 &451857202638371306
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -208,7 +207,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 48082498899933231}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 222711f47cd44e240b68df835c9a159b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -228,30 +227,36 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
---- !u!114 &451857202638371306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 48082498899933231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 222711f47cd44e240b68df835c9a159b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  image: {fileID: 8551734308614980209}
-  fillAmounts:
+  maxStepCount: 14
+  mode: 0
+  fillRatios:
   - 0
-  - 0.125
-  - 0.2
-  - 0.275
-  - 0.35
-  - 0.425
-  - 0.65
-  - 0.725
-  - 0.8
-  - 1
+  - 0
+  - 5.48
+  - 5.48
+  - 5.48
+  - 5.48
+  - 5.48
+  - 5.48
+  - 5.48
+  - 5.48
+  - 5.48
+  - 5.48
+  - 5.48
+  - 5.48
+  - 5.48
+  - 5.48
+  - 5.48
+  - 5.48
+  - 5.48
+  - 5.48
+  - 5.48
+  - 5.48
+  - 5.48
+  - 5.48
+  - 5.48
+  - 5.48
+  stepCount: 0
 --- !u!1 &420192742635651270
 GameObject:
   m_ObjectHideFlags: 0

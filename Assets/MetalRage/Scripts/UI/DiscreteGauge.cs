@@ -1,27 +1,41 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DiscreteGauge : MonoBehaviour {
-    [SerializeField]
-    private Image image;
-    [SerializeField]
-    private float[] fillAmounts;
-
-    private int count = 0;
-
-    private void Awake() {
-        this.image = GetComponent<Image>();
+public class DiscreteGauge : Image {
+    public enum StepMode {
+        Constant,
+        Custom
     }
 
-    public int MaxFillCount {
-        get => this.fillAmounts.Length - 1;
-    }
+    //[SerializeField]
+    //private Image image;
+    [Range(1, 100)]
+    [SerializeField]
+    private int maxStepCount;
+    [SerializeField]
+    private StepMode mode = StepMode.Constant;
+    [SerializeField]
+    private float[] fillRatios;
+    [SerializeField]
+    private int stepCount = 0;
 
-    public int FillCount {
-        get => this.count;
+    public int StepCount {
+        get => this.stepCount;
         set {
-            this.image.fillAmount = this.fillAmounts[value];
-            this.count = value;
+            this.stepCount = Mathf.Clamp(value, 0, this.maxStepCount);
+            switch (this.mode) {
+                case StepMode.Constant:
+                    this.fillAmount = (float)this.stepCount / this.MaxStepCount;
+                    break;
+                case StepMode.Custom:
+                    this.fillAmount = this.FillRatios[this.stepCount];
+                    break;
+            }
         }
     }
+
+    public StepMode Mode { get => this.mode; }
+    public int MaxStepCount { get => this.maxStepCount; }
+    public float[] FillRatios { get => this.fillRatios; }
+
 }
