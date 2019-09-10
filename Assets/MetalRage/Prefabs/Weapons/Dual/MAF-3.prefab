@@ -4989,7 +4989,7 @@ MonoBehaviour:
   gunsightPrefab: {fileID: 187840, guid: ec6f03eaab3bd074cb69d036522ab5ac, type: 3}
   ammo:
     magazineSize: 0
-    initialExtraBulletCount: 1
+    reserveBulletCount: 0
   shieldOpenClip: {fileID: 8300000, guid: d59e47993057dd44893f9a82e31f5242, type: 3}
   shieldCloseClip: {fileID: 8300000, guid: a23225040370d00439117be0cb4cc070, type: 3}
 --- !u!114 &1248439190902093692

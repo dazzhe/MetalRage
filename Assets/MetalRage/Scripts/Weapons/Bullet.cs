@@ -22,14 +22,26 @@ public class Bullet : MonoBehaviour {
 
     private IEnumerator MoveUntilCollideRoutine() {
         var velocity = (this.targetPos - this.originPos).normalized * this.speed;
+        var renderers = GetComponentsInChildren<MeshRenderer>();
+        // Hide at the first frame.
+        foreach (var renderer in renderers) {
+            renderer.enabled = false;
+        }
+        yield return null;
+        foreach (var renderer in renderers) {
+            renderer.enabled = true;
+        }
         while (true) {
             var nextPosition = this.transform.position + velocity * Time.deltaTime;
             if (SweepTest(this.transform.position, nextPosition, out RaycastHit hitInfo)) {
+                nextPosition = hitInfo.point;
                 if (hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Enemy")) {
                     Instantiate(this.impactOnEnemyPrefab, hitInfo.point, this.transform.rotation);
                 } else {
                     Instantiate(this.impactPrefab, hitInfo.point, this.transform.rotation);
                 }
+                this.transform.position = nextPosition;
+                yield return null;
                 Destroy(this.gameObject);
                 yield break;
             }
