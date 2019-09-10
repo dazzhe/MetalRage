@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c27b3da45729c4148a7f85ac9ff6e2fc
+guid: c08d279e493db4f028981873faaf5219
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -61,7 +61,9 @@ ModelImporter:
     100110: Bone.021.R_end
     100112: Cube
     100114: Cube.001
-    100116: //RootNode
+    100116: Cube.002
+    100118: Cube.003
+    100120: //RootNode
     400000: Armature
     400002: Bone
     400004: Bone.001
@@ -120,17 +122,41 @@ ModelImporter:
     400110: Bone.021.R_end
     400112: Cube
     400114: Cube.001
-    400116: //RootNode
+    400116: Cube.002
+    400118: Cube.003
+    400120: //RootNode
     2100000: Material
     2100002: Material.001
     2300000: Cube.001
+    2300002: Cube.002
+    2300004: Cube.003
     3300000: Cube.001
+    3300002: Cube.002
+    3300004: Cube.003
     4300000: Cube
     4300002: Cube.001
-    7400000: Armature|idle.000
-    7400002: Armature|walk_G
+    4300004: Cube.002
+    4300006: Cube.003
+    7400000: 'Cube.001| '
+    7400002: Cube.001|3walk_G
+    7400004: Cube.001|Action
+    7400006: Cube.001|Action.002
+    7400008: Cube.001|Action.003
+    7400010: Cube.001|Action.004
+    7400012: Cube.001|Action.005
+    7400014: 'Armature| '
+    7400016: Armature|1idle.000
+    7400018: Armature|2down
+    7400020: Armature|3walk_G
+    7400022: Armature|Action
+    7400024: Armature|Action.001
+    7400026: Armature|Action.002
+    7400028: Armature|Action.003
+    7400030: Armature|Action.004
+    7400032: Armature|Action.005
     9500000: //RootNode
     13700000: Cube
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -151,14 +177,126 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Cube.001|3walk_G
+      takeName: Cube.001|3walk_G
+      firstFrame: 0
+      lastFrame: 66
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|1idle.000
+      takeName: Armature|1idle.000
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|2down
+      takeName: Armature|2down
+      firstFrame: 0
+      lastFrame: 13
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|3walk_G
+      takeName: Armature|3walk_G
+      firstFrame: 0
+      lastFrame: 66
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -208,7 +346,7 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2

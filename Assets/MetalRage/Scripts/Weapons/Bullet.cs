@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
     [SerializeField]
-    private GameObject impact;
+    private GameObject impactPrefab;
+    [SerializeField]
+    private GameObject impactOnEnemyPrefab;
     [SerializeField]
     private float speed;
     [SerializeField]
@@ -23,7 +25,11 @@ public class Bullet : MonoBehaviour {
         while (true) {
             var nextPosition = this.transform.position + velocity * Time.deltaTime;
             if (SweepTest(this.transform.position, nextPosition, out RaycastHit hitInfo)) {
-                Instantiate(this.impact, hitInfo.point, this.transform.rotation);
+                if (hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Enemy")) {
+                    Instantiate(this.impactOnEnemyPrefab, hitInfo.point, this.transform.rotation);
+                } else {
+                    Instantiate(this.impactPrefab, hitInfo.point, this.transform.rotation);
+                }
                 Destroy(this.gameObject);
                 yield break;
             }
