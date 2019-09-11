@@ -31,7 +31,7 @@ public class DCDD51 : Weapon {
         if (this.component.wcontrol.inputReload && this.Ammo.CanReload && !this.param.isReloading) {
             StartCoroutine(Reload());
         }
-        this.Gunsight.extent = this.param.minDispersion * this.component.wcontrol.Dispersion * 2f;
+        this.Crosshair.extent = this.param.minDispersion * this.component.wcontrol.Dispersion * 2f;
     }
 
     protected IEnumerator ShotControl() {

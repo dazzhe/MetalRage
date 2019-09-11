@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 public class IFP40 : Weapon {
     [SerializeField]
-    private GameObject zoomCameraPrefab;
+    private GameObject zoomCameraPrefab = default;
 
     private GameObject zoomCamera;
     private WeaponRay ray;
@@ -27,7 +27,7 @@ public class IFP40 : Weapon {
         this.zoom.zoomRatio = 1.5f;
         Init();
         if (this.component.myPV.isMine) {
-            this.Gunsight.Hide();
+            this.Crosshair.Hide();
             this.zoomCamera = Instantiate(this.zoomCameraPrefab, Vector3.zero, Quaternion.identity) as GameObject;
             this.zoomCamera.transform.parent = Camera.main.transform;
             this.zoomCamera.transform.localPosition = Vector3.zero;
@@ -76,14 +76,14 @@ public class IFP40 : Weapon {
     private void ZoomOut() {
         this.zoom.ZoomOut();
         this.zoomCamera.SetActive(false);
-        this.Gunsight.Hide();
+        this.Crosshair.Hide();
     }
 
     private void ZoomIn() {
         StopCoroutine(ZoomOutRoutine());
         this.zoom.ZoomIn();
         this.zoomCamera.SetActive(true);
-        this.Gunsight.Show();
+        this.Crosshair.Show();
     }
 
     protected override void OnDestroy() {
@@ -107,7 +107,7 @@ public class IFP40 : Weapon {
     public override void Select() {
         this.component.wcontrol.isBlitzMain = true;
         base.Select();
-        this.Gunsight.Hide();
+        this.Crosshair.Hide();
     }
 
     [PunRPC]

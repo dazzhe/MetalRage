@@ -35,7 +35,10 @@ public class Bullet : MonoBehaviour {
             var nextPosition = this.transform.position + velocity * Time.deltaTime;
             if (SweepTest(this.transform.position, nextPosition, out RaycastHit hitInfo)) {
                 nextPosition = hitInfo.point;
-                if (hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Enemy")) {
+                var isPlayer = hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Enemy") ||
+                    hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Teammate") ||
+                    hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Player");
+                if (isPlayer) {
                     Instantiate(this.impactOnEnemyPrefab, hitInfo.point, this.transform.rotation);
                 } else {
                     Instantiate(this.impactPrefab, hitInfo.point, this.transform.rotation);

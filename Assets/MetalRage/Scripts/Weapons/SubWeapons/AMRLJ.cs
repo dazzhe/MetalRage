@@ -20,7 +20,7 @@ public class AMRLJ : Weapon {
         if (this.component.wcontrol.inputShot1 && !this.Ammo.IsMagazineEmpty && !this.param.cooldown) {
             StartCoroutine(Shot());
         }
-        this.Gunsight.extent = this.param.minDispersion * this.component.wcontrol.Dispersion * 2;
+        this.Crosshair.extent = this.param.minDispersion * this.component.wcontrol.Dispersion * 2;
     }
 
     private IEnumerator Shot() {

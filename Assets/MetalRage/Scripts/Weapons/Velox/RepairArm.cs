@@ -23,7 +23,7 @@ public class RepairArm : Weapon {
         this.param.maxrange = 1000;
         this.animator = GetComponent<Animator>();
         this.audio = GetComponent<AudioSource>();
-        this.reticle = this.Gunsight.gameObject.GetComponent<RepairArmReticle>();
+        this.reticle = this.Crosshair.gameObject.GetComponent<RepairArmReticle>();
         Init();
         if (this.component.myPV.isMine) {
             StartCoroutine(BulletRefillLoop());

@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class WeaponControl : MonoBehaviour {
     private UnitMotor motor;
-    private Gunsight[] gunsights;
     private Weapon[] weapons = new Weapon[3];
 
     public GameObject TargetObject { get; set; }
@@ -55,7 +54,6 @@ public class WeaponControl : MonoBehaviour {
         this.weapons[1] = this.transform.Find("Offset/RightWeapon").GetComponentInChildren<Weapon>();
         this.weapons[2] = this.transform.Find("Offset/LeftWeapon").GetComponentInChildren<Weapon>();
         this.weapons[0].Select();
-        this.gunsights = FindObjectsOfType(typeof(Gunsight)) as Gunsight[];
     }
 
     private void Update() {
@@ -147,18 +145,7 @@ public class WeaponControl : MonoBehaviour {
     }
 
     public void HitMark() {
-        StopCoroutine(HitMarkRoutine());
-        StartCoroutine(HitMarkRoutine());
-    }
-
-    private IEnumerator HitMarkRoutine() {
-        foreach (Gunsight sight in this.gunsights) {
-            sight.SetColor(Color.red);
-        }
-        yield return new WaitForSeconds(0.3f);
-        foreach (Gunsight sight in this.gunsights) {
-            sight.SetColor(Color.white);
-        }
+        this.weapons[this.selecedWeaponIndex].Crosshair.ShowHitMark();
     }
 
     private void OnDestroy() {

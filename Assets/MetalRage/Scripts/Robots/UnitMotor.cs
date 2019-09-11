@@ -7,13 +7,15 @@ public class UnitMotor : MonoBehaviour {
 
     public bool canBoost = true;
     [SerializeField]
-    private float boostspeed = 40f;
+    private float boostSpeed = 40f;
     [SerializeField]
     private float jumpSpeed = 18f;
     [SerializeField]
-    private float walkspeed = 17f;
+    private float walkSpeed = 17f;
     [SerializeField]
-    private float accspeed = 0.2f;
+    private float accelSpeed = 0.2f;
+    [SerializeField]
+    private Engine engine = default;
 
     [System.NonSerialized]
     public byte inputState = 0;
@@ -86,8 +88,6 @@ public class UnitMotor : MonoBehaviour {
         }
     }
 
-    //緩やかな坂を下るときに機体が浮いてしまう場合機体位置を地面方向に修正する.
-    //坂が急すぎるときはgroundedをfalseにする.
     private void MoveAndPushDown() {
         this.velosity = (this.transform.position - this.lastPosition) / Time.deltaTime;
         this.lastPosition = this.transform.position;
@@ -140,24 +140,24 @@ public class UnitMotor : MonoBehaviour {
             //最大速度に対する相対値を計算している.
             switch (Mathf.RoundToInt(this.inputMoveDirection.x)) {
                 case 1:
-                    this.rawDirection.x += this.accspeed;
+                    this.rawDirection.x += this.accelSpeed;
                     break;
                 case -1:
-                    this.rawDirection.x -= this.accspeed;
+                    this.rawDirection.x -= this.accelSpeed;
                     break;
                 case 0:
-                    this.rawDirection.x = Mathf.Lerp(this.rawDirection.x, 0, this.accspeed);
+                    this.rawDirection.x = Mathf.Lerp(this.rawDirection.x, 0, this.accelSpeed);
                     break;
             }
             switch (Mathf.RoundToInt(this.inputMoveDirection.y)) {
                 case 1:
-                    this.rawDirection.z += this.accspeed;
+                    this.rawDirection.z += this.accelSpeed;
                     break;
                 case -1:
-                    this.rawDirection.z -= this.accspeed;
+                    this.rawDirection.z -= this.accelSpeed;
                     break;
                 case 0:
-                    this.rawDirection.z = Mathf.Lerp(this.rawDirection.z, 0f, this.accspeed);
+                    this.rawDirection.z = Mathf.Lerp(this.rawDirection.z, 0f, this.accelSpeed);
                     break;
             }
             this.rawDirection.x = Mathf.Clamp(this.rawDirection.x, -1, 1);
@@ -177,7 +177,7 @@ public class UnitMotor : MonoBehaviour {
                 }
             }
             this.MoveDirection = this.transform.TransformDirection(this.MoveDirection);
-            this.MoveDirection *= this.walkspeed;
+            this.MoveDirection *= this.walkSpeed;
             if (this.rawDirection.magnitude != 0) {
                 this.characterState = CharacterState.Walking;
             } else if (this.characterState == CharacterState.Walking) {
@@ -216,6 +216,7 @@ public class UnitMotor : MonoBehaviour {
                 this.isGrounded = false;
                 StartCoroutine(JumpCoolDown());
                 this.boost.PlayOneShot(this.boost.clip);
+                this.engine.ShowJetFlame(0.4f);
                 //移動速度が大きいほど高くジャンプさせる.
                 this.MoveDirection
                     = this.transform.TransformDirection(new Vector3(this.inputMoveDirection.x * this.hJumpSpeed,
@@ -252,6 +253,7 @@ public class UnitMotor : MonoBehaviour {
                 || this.characterState == CharacterState.Braking)
             && this.boostgauge >= 28) {
             this.boost.PlayOneShot(this.boost.clip);
+            this.engine.ShowJetFlame(0.4f);
             this.boostgauge -= 28;
             float h = this.inputMoveDirection.x;
             float v = this.inputMoveDirection.y;
@@ -294,7 +296,7 @@ public class UnitMotor : MonoBehaviour {
 
     private IEnumerator BoostStart() {
         // Jump and squat inputs are accepted only if CharacterState is "Acceling".
-        this.MoveDirection = this.boostDirection * this.boostspeed;
+        this.MoveDirection = this.boostDirection * this.boostSpeed;
         this.characterState = CharacterState.Acceling;
         yield return new WaitForSeconds(0.05f);
         if (this.characterState == CharacterState.Acceling) {
@@ -313,7 +315,7 @@ public class UnitMotor : MonoBehaviour {
 
     private void BoostBrake() {
         this.MoveDirection = Vector3.Lerp(this.MoveDirection, Vector3.zero, 6f * Time.deltaTime);
-        if (this.MoveDirection.magnitude <= this.walkspeed) {
+        if (this.MoveDirection.magnitude <= this.walkSpeed) {
             this.characterState = CharacterState.Walking;
         }
     }

@@ -4,9 +4,9 @@ public class RepairArmReticle : MonoBehaviour {
     [SerializeField]
     private DiscreteGauge fillGauge;
     [SerializeField]
-    private GameObject hpIcon;
+    private GameObject hpIcon = default;
     [SerializeField]
-    private GameObject highLight;
+    private GameObject highLight = default;
 
     public DiscreteGauge FillGauge { get => this.fillGauge; }
 

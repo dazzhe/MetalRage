@@ -41,10 +41,6 @@ public class UnitController : MonoBehaviour {
             if (Input.GetButton("Squat")) {
                 b += 2;
             }
-            if (Cursor.lockState == CursorLockMode.None || Cursor.visible) {
-                Cursor.lockState = CursorLockMode.Confined;
-                Cursor.visible = false;
-            }
         }
         if (this.motor.inputState != b) {
             GetComponent<PhotonView>().RPC("InputState", PhotonTargets.All, b);
@@ -72,9 +68,9 @@ public class UnitController : MonoBehaviour {
             ++this.killCount;
             ScoreboardUI.myEntry.IncrementKill();
             if (this.killCount > 14) {
-                AudioManager.Instance.PlaySE(killVoiceNames[14]);
+                AudioManager.Instance.PlaySE(13);
             } else {
-                AudioManager.Instance.PlaySE(killVoiceNames[this.killCount]);
+                AudioManager.Instance.PlaySE(this.killCount - 1);
             }
         }
     }

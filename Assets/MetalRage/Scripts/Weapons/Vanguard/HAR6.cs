@@ -39,7 +39,7 @@ public class HAR6 : Weapon {
                 this.zoom.ZoomIn();
             }
         }
-        this.Gunsight.extent = this.param.minDispersion * this.component.wcontrol.Dispersion * 2f;
+        this.Crosshair.extent = this.param.minDispersion * this.component.wcontrol.Dispersion * 2f;
     }
 
     protected IEnumerator ShotControl() {

@@ -3,11 +3,11 @@ using UnityEngine.UI;
 
 public class PlayerScoreEntry : Photon.MonoBehaviour {
     [SerializeField]
-    private Text playerNameText;
+    private Text playerNameText = default;
     [SerializeField]
-    private Text killCountText;
+    private Text killCountText = default;
     [SerializeField]
-    private Text deathCountText;
+    private Text deathCountText = default;
     
     private int killCount = 0;
     private int deathCount = 0;

@@ -37,15 +37,14 @@ public abstract class Weapon : MonoBehaviour {
 
     protected WeaponParam param = new WeaponParam();
     protected WeaponComponent component = new WeaponComponent();
-    protected GameObject sightObject;
-    protected Gunsight Gunsight;
+    public Crosshair Crosshair { get; protected set; }
 
     public GameObject GunsightPrefab => this.gunsightPrefab;
     public Ammo Ammo => this.ammo;
 
     protected virtual void OnDestroy() {
-        if (this.component.myPV.isMine && this.sightObject != null) {
-            Destroy(this.sightObject);
+        if (this.component.myPV.isMine && this.Crosshair != null) {
+            Destroy(this.Crosshair.gameObject);
         }
     }
 
@@ -62,9 +61,9 @@ public abstract class Weapon : MonoBehaviour {
             }
         }
         if (this.component.myPV.isMine && this.GunsightPrefab != null) {
-            this.sightObject = Instantiate(this.GunsightPrefab, Vector3.zero, Quaternion.identity);
-            this.Gunsight = this.sightObject.GetComponentInChildren<Gunsight>();
-            this.Gunsight.Hide();
+            var crosshairObj = Instantiate(this.GunsightPrefab, Vector3.zero, Quaternion.identity);
+            this.Crosshair = crosshairObj.GetComponentInChildren<Crosshair>();
+            this.Crosshair.Hide();
         }
     }
 
@@ -129,7 +128,7 @@ public abstract class Weapon : MonoBehaviour {
 
     public virtual void Select() {
         this.component.setup.PlayOneShot(this.component.setup.clip);
-        this.Gunsight?.Show();
+        this.Crosshair?.Show();
         StopCoroutine(SelectRoutine());
         StartCoroutine(SelectRoutine());
     }
@@ -141,8 +140,8 @@ public abstract class Weapon : MonoBehaviour {
         this.component.setup.Stop();
         InterruptReloading();
         this.enabled = false;
-        if (this.Gunsight != null) {
-            this.Gunsight.Hide();
+        if (this.Crosshair != null) {
+            this.Crosshair.Hide();
         }
     }
 

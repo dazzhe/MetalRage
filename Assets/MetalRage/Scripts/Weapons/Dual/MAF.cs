@@ -70,7 +70,7 @@ public class MAF : Weapon {
         this.wr.param = this.param;
         this.wr.component = this.component;
         Init();
-        this.sightAnimator = this.Gunsight.GetComponent<Animator>();
+        this.sightAnimator = this.Crosshair.GetComponent<Animator>();
     }
 
     private void Update() {
