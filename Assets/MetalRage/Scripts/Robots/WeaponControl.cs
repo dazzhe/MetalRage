@@ -95,7 +95,7 @@ public class WeaponControl : MonoBehaviour {
     }
 
     private void Elevation() {
-        this.BaseRotationY += Input.GetAxis("Mouse Y") * Configuration.sensitivity * this.motor.sensimag;
+        this.BaseRotationY += Input.GetAxis("Mouse Y") * Configuration.Sensitivity.GetFloat() * this.motor.sensimag;
         this.BaseRotationY = Mathf.Clamp(this.BaseRotationY, this.elevationRange.Min, this.elevationRange.Max);
         this.RotationY = this.BaseRotationY + this.RecoilRotation.y;
     }

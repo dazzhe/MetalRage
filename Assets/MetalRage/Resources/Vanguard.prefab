@@ -652,7 +652,7 @@ MonoBehaviour:
   jumpSpeed: 14
   walkSpeed: 17
   accelSpeed: 0.2
-  engine: {fileID: 4743785303501087971}
+  engine: {fileID: 4034159539484969597}
   MoveDirection: {x: 0, y: 0, z: 0}
   isGrounded: 0
 --- !u!114 &11400030
@@ -1719,22 +1719,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &4743785303501087971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1705246066782830031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7097da736c8a1964ab98e503eab5c065, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jetFlameEffects:
-  - {fileID: 5672193632107750766}
-  - {fileID: 1442821400874557330}
-  - {fileID: 4033235557244085274}
 --- !u!82 &6759079212410009343
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1994,32 +1978,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4079934904822139888, guid: 512f1bbba55dd9c47bd53692809649d0,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074195453655544076, guid: 512f1bbba55dd9c47bd53692809649d0,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742738447648017028, guid: 512f1bbba55dd9c47bd53692809649d0,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 512f1bbba55dd9c47bd53692809649d0, type: 3}
---- !u!1 &1705246066782830031 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7026522932111151953, guid: 512f1bbba55dd9c47bd53692809649d0,
+--- !u!114 &4034159539484969597 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4743785303501087971, guid: 512f1bbba55dd9c47bd53692809649d0,
     type: 3}
   m_PrefabInstance: {fileID: 8514469764966903454}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &4033235557244085274 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4742738447648017028, guid: 512f1bbba55dd9c47bd53692809649d0,
-    type: 3}
-  m_PrefabInstance: {fileID: 8514469764966903454}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &1442821400874557330 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 7074195453655544076, guid: 512f1bbba55dd9c47bd53692809649d0,
-    type: 3}
-  m_PrefabInstance: {fileID: 8514469764966903454}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &5672193632107750766 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4079934904822139888, guid: 512f1bbba55dd9c47bd53692809649d0,
-    type: 3}
-  m_PrefabInstance: {fileID: 8514469764966903454}
-  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7097da736c8a1964ab98e503eab5c065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5934508906956729555 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2626413643736793677, guid: 512f1bbba55dd9c47bd53692809649d0,

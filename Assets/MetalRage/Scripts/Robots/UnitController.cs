@@ -21,7 +21,7 @@ public class UnitController : MonoBehaviour {
         if (UIManager.Instance.MenuUI.ActiveWindowLevel == 0) {
             this.motor.rotationX
                 = this.transform.localEulerAngles.y
-                + Input.GetAxis("Mouse X") * Configuration.sensitivity * this.motor.sensimag;
+                + Input.GetAxis("Mouse X") * Configuration.Sensitivity.GetFloat() * this.motor.sensimag;
             if (Input.GetAxisRaw("Horizontal") == 1) {
                 b += 64;
             } else if (Input.GetAxisRaw("Horizontal") == -1) {

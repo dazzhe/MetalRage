@@ -94,13 +94,11 @@ public abstract class Weapon : MonoBehaviour {
         nextRecoilRotX = NextRecoilInRange(-this.param.maxRecoilX, this.param.maxRecoilX,
                                            this.component.wcontrol.RecoilRotation.x,
                                            desiredRecoilX);
-        int i = 0;
-        while (i <= 6) {
+        for (int i = 0; i < 7; ++i) {
             this.component.wcontrol.RecoilRotation = new Vector2 {
                 x = Mathf.Lerp(this.component.wcontrol.RecoilRotation.x, nextRecoilRotX, 50f * Time.deltaTime),
                 y = Mathf.Lerp(this.component.wcontrol.RecoilRotation.y, nextRecoilRotY, 50f * Time.deltaTime)
             };
-            i++;
             yield return null;
         }
         this.component.wcontrol.IsRecoiling = false;

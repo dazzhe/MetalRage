@@ -626,10 +626,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBoost: 1
-  boostspeed: 40
+  boostSpeed: 40
   jumpSpeed: 14
-  walkspeed: 15
-  accspeed: 0.2
+  walkSpeed: 17
+  accelSpeed: 0.2
+  engine: {fileID: 7264752489378043605}
   MoveDirection: {x: 0, y: 0, z: 0}
   isGrounded: 0
 --- !u!114 &11400018
@@ -907,6 +908,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2667497120577483318}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7264752489378043605 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4743785303501087971, guid: 512f1bbba55dd9c47bd53692809649d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 2667497120577483318}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7097da736c8a1964ab98e503eab5c065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3042039756605380509
 PrefabInstance:
   m_ObjectHideFlags: 0

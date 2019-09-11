@@ -346,10 +346,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBoost: 0
-  boostspeed: 40
+  boostSpeed: 40
   jumpSpeed: 14
-  walkspeed: 13
-  accspeed: 0.2
+  walkSpeed: 17
+  accelSpeed: 0.2
+  engine: {fileID: 0}
   MoveDirection: {x: 0, y: 0, z: 0}
   isGrounded: 0
 --- !u!114 &11400020
@@ -454,7 +455,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 400088}
-  - component: {fileID: 11405546}
   m_Layer: 0
   m_Name: LeftWeapon
   m_TagString: Untagged
@@ -477,18 +477,6 @@ Transform:
   m_Father: {fileID: 451768}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &11405546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ecd727d8ad063845922701a8d54d97c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &105542
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,7 +487,6 @@ GameObject:
   m_Component:
   - component: {fileID: 405542}
   - component: {fileID: 11405536}
-  - component: {fileID: 11405552}
   m_Layer: 0
   m_Name: MainWeapon
   m_TagString: Untagged
@@ -535,18 +522,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unit: {fileID: 100000}
---- !u!114 &11405552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 105542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ecd727d8ad063845922701a8d54d97c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &105544
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,7 +531,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 405544}
-  - component: {fileID: 11405544}
   m_Layer: 0
   m_Name: RightWeapon
   m_TagString: Untagged
@@ -579,18 +553,6 @@ Transform:
   m_Father: {fileID: 451768}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &11405544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 105544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ecd727d8ad063845922701a8d54d97c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &115228
 GameObject:
   m_ObjectHideFlags: 0
@@ -1422,7 +1384,7 @@ MonoBehaviour:
   gunsightPrefab: {fileID: 178702, guid: da08fcecc16619542bd2a568d7294795, type: 3}
   ammo:
     magazineSize: 0
-    initialExtraBulletCount: 1
+    reserveBulletCount: 0
   zoomCameraPrefab: {fileID: 123532, guid: 69f622b9e88fbdd44a1ded03a7ef5bc5, type: 3}
 --- !u!82 &8250008
 AudioSource:
@@ -2053,19 +2015,19 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: c6f355a9f3fad2a4eb6094e1275b3f31, type: 2}
-    - target: {fileID: 400046, guid: 145dd16705aa45142aba5211f4456dd7, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.6022712
-      objectReference: {fileID: 0}
-    - target: {fileID: 400046, guid: 145dd16705aa45142aba5211f4456dd7, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.71791345
-      objectReference: {fileID: 0}
     - target: {fileID: 400050, guid: 145dd16705aa45142aba5211f4456dd7, type: 3}
       propertyPath: m_LocalRotation.y
       value: -0.6022712
       objectReference: {fileID: 0}
     - target: {fileID: 400050, guid: 145dd16705aa45142aba5211f4456dd7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.71791345
+      objectReference: {fileID: 0}
+    - target: {fileID: 400046, guid: 145dd16705aa45142aba5211f4456dd7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6022712
+      objectReference: {fileID: 0}
+    - target: {fileID: 400046, guid: 145dd16705aa45142aba5211f4456dd7, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.71791345
       objectReference: {fileID: 0}

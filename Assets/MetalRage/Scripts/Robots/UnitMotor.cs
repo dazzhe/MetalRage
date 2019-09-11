@@ -216,7 +216,7 @@ public class UnitMotor : MonoBehaviour {
                 this.isGrounded = false;
                 StartCoroutine(JumpCoolDown());
                 this.boost.PlayOneShot(this.boost.clip);
-                this.engine.ShowJetFlame(0.4f);
+                this.engine?.ShowJetFlame(0.4f);
                 //移動速度が大きいほど高くジャンプさせる.
                 this.MoveDirection
                     = this.transform.TransformDirection(new Vector3(this.inputMoveDirection.x * this.hJumpSpeed,

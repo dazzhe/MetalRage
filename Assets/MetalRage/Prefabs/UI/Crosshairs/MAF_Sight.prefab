@@ -532,7 +532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a81326ef5b200e4caff871ec6907723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controllableSection: {fileID: 22487838}
+  cornOfFireIndicator: {fileID: 22487838}
   extent: 10
 --- !u!95 &9505864
 Animator:
