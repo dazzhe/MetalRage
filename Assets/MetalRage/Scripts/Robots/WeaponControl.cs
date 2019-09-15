@@ -133,15 +133,10 @@ public class WeaponControl : MonoBehaviour {
         this.targetPos = hit.point;
         this.TargetObject = hit.collider.gameObject;
         if (this.TargetObject.layer == LayerMask.NameToLayer("Enemy")) {
-            StopCoroutine(ShowEnemyName());
-            StartCoroutine(ShowEnemyName());
+            UIManager.Instance.StatusUI.TargetingEnemyName = this.TargetObject.GetComponentInParent<FriendOrEnemy>().playerName;
+        } else {
+            UIManager.Instance.StatusUI.TargetingEnemyName = "";
         }
-    }
-
-    private IEnumerator ShowEnemyName() {
-        UIManager.Instance.StatusUI.TargetingEnemyName = this.TargetObject.GetComponentInParent<FriendOrEnemy>().playerName;
-        yield return new WaitForSeconds(0.2f);
-        UIManager.Instance.StatusUI.TargetingEnemyName = "";
     }
 
     public void HitMark() {
