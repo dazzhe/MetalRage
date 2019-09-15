@@ -584,9 +584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraOffset: {x: 0, y: 4.5, z: 0}
-  objc: {fileID: 3820319239196502198}
-  cameraTransform: {fileID: 0}
-  cp: {x: 0, y: 0, z: 0}
+  mainWeaponTransform: {fileID: 3820319239196275926}
 --- !u!114 &3820319239186259244
 MonoBehaviour:
   m_ObjectHideFlags: 0

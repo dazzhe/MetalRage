@@ -5,11 +5,9 @@ public class DCDD51 : Weapon {
     [SerializeField]
     private Transform leftMuzzlePoint;
     [SerializeField]
-    private Transform rightrMuzzlePoint;
+    private Transform rightMuzzlePoint;
     [SerializeField]
     private AudioClip shotClip;
-    //[SerializeField]
-    //private AudioClip 
 
     private void Awake() {
         this.Ammo.ReserveBulletCount = 64;

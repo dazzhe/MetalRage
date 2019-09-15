@@ -15,7 +15,7 @@ public class HAR6Motor : MonoBehaviour {
     private void MakeShot(Vector3 targetPos) {
         GetComponent<AudioSource>().Play();
         StartCoroutine(ShowMuzzleFlash());
-        StartCoroutine(CreateBullet(targetPos));
+        CreateBullet(targetPos);
     }
 
     private IEnumerator ShowMuzzleFlash() {
@@ -29,12 +29,11 @@ public class HAR6Motor : MonoBehaviour {
         }
     }
 
-    private IEnumerator CreateBullet(Vector3 targetPos) {
-        GameObject bulletObj = Instantiate(this.bulletPrefab, this.transform.position, this.transform.rotation) as GameObject;
+    private void CreateBullet(Vector3 endPosition) {
+        GameObject bulletObj = Instantiate(this.bulletPrefab, this.transform.position, this.transform.rotation);
         Bullet bullet = bulletObj.GetComponent<Bullet>();
-        bullet.targetPos = targetPos;
-        bullet.originPos = this.transform.position;
+        bullet.EndPosition = endPosition;
+        bullet.StartPosition = this.transform.position;
         bullet.IgnoreCollider = this.transform.parent.parent.parent.parent.GetComponent<Collider>();
-        yield return null;
     }
 }

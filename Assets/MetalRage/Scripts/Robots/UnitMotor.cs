@@ -51,10 +51,8 @@ public class UnitMotor : MonoBehaviour {
     //ジャンプしたときの水平方向の初速度.
     private float hJumpSpeed = 20f;
     [System.NonSerialized]
-    public float rotationX = 0F;
+    public float rotationX = 0f;
     public bool isGrounded = false;
-    [System.NonSerialized]
-    public int boosttype;
     [System.NonSerialized]
     public int boostgauge;
     [System.NonSerialized]
@@ -212,7 +210,7 @@ public class UnitMotor : MonoBehaviour {
             if (this.inputJump && this.canJump && this.characterState != CharacterState.Boosting) {
                 this.isGrounded = false;
                 StartCoroutine(JumpCoolDown());
-                this.engine?.ShowJetFlame(0.4f);
+                this.engine?.ShowJetFlame(0.4f, Vector3.forward);
                 //移動速度が大きいほど高くジャンプさせる.
                 this.MoveDirection
                     = this.transform.TransformDirection(new Vector3(this.inputMoveDirection.x * this.hJumpSpeed,
@@ -248,35 +246,29 @@ public class UnitMotor : MonoBehaviour {
                 || this.characterState == CharacterState.Idle
                 || this.characterState == CharacterState.Braking)
             && this.boostgauge >= 28) {
-            this.engine.ShowJetFlame(0.4f);
             this.boostgauge -= 28;
             float h = this.inputMoveDirection.x;
             float v = this.inputMoveDirection.y;
-            if (this.inputMoveDirection.y != -1 && h != 0) {
-                this.boostDirection = this.transform.InverseTransformDirection(this.MoveDirection.normalized);
+            if (v != -1 && h != 0) {
                 if (h == 1 && v == 1) {
                     this.boostDirection = this.transform.TransformDirection(new Vector3(1F, 0F, 1F).normalized);
-                    this.boosttype = 0;
                 } else if (h == -1 && v == 1) {
                     this.boostDirection = this.transform.TransformDirection(new Vector3(-1F, 0F, 1F).normalized);
-                    this.boosttype = 2;
                 } else if (h == 1 && this.rawDirection.z < -0.2) {
                     this.boostDirection = this.transform.TransformDirection(new Vector3(1F, 0F, -1F).normalized);
-                    this.boosttype = 0;
                 } else if (h == -1 && this.rawDirection.z < -0.2) {
                     this.boostDirection = this.transform.TransformDirection(new Vector3(-1F, 0F, -1F).normalized);
-                    this.boosttype = 2;
                 } else if (h == 1 && v == 0) {
                     this.boostDirection = this.transform.right;
-                    this.boosttype = 0;
                 } else if (h == -1 && v == 0) {
                     this.boostDirection = -this.transform.right;
-                    this.boosttype = 2;
+                } else {
+                    this.boostDirection = this.transform.InverseTransformDirection(this.MoveDirection).normalized;
                 }
             } else {
                 this.boostDirection = this.transform.forward;
-                this.boosttype = 1;
             }
+            this.engine.ShowJetFlame(0.4f, Vector3.forward);
             StartCoroutine(BoostStart());
         }
 

@@ -27,8 +27,8 @@ public class IFPMotor : MonoBehaviour {
 	IEnumerator CreateBullet(Vector3 targetPos){
 		GameObject bul = GameObject.Instantiate(bullet,transform.position,transform.rotation) as GameObject;
 		Bullet _bul = bul.GetComponent<Bullet>();
-		_bul.targetPos = targetPos;
-		_bul.originPos = transform.position;
+		_bul.EndPosition = targetPos;
+		_bul.StartPosition = transform.position;
 		yield return null;
 	}
 }

@@ -7,13 +7,22 @@ public class Bullet : MonoBehaviour {
     [SerializeField]
     private GameObject impactOnEnemyPrefab;
     [SerializeField]
-    private float speed;
+    private int damage;
+    [SerializeField]
+    private float speed = 100f;
     [SerializeField]
     private float lifeTime = 0.5f;
 
-    public Vector3 originPos;
-    public Vector3 targetPos;
+    private PhotonView photonView;
+
+    public GameObject Owner { get; set; }
+    public Vector3 StartPosition { get; set; }
+    public Vector3 EndPosition { get; set; }
     public Collider IgnoreCollider { get; set; }
+
+    private void Awake() {
+        this.photonView = GetComponent<PhotonView>();
+    }
 
     private void Start() {
         StartCoroutine(MoveUntilCollideRoutine());
@@ -21,7 +30,7 @@ public class Bullet : MonoBehaviour {
     }
 
     private IEnumerator MoveUntilCollideRoutine() {
-        var velocity = (this.targetPos - this.originPos).normalized * this.speed;
+        var velocity = (this.EndPosition - this.StartPosition).normalized * this.speed;
         var renderers = GetComponentsInChildren<MeshRenderer>();
         // Hide at the first frame.
         foreach (var renderer in renderers) {
@@ -35,11 +44,16 @@ public class Bullet : MonoBehaviour {
             var nextPosition = this.transform.position + velocity * Time.deltaTime;
             if (SweepTest(this.transform.position, nextPosition, out RaycastHit hitInfo)) {
                 nextPosition = hitInfo.point;
-                var isPlayer = hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Enemy") ||
+                var hasCollidedToRobot = hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Enemy") ||
                     hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Teammate") ||
                     hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Player");
-                if (isPlayer) {
+                if (hasCollidedToRobot) {
                     Instantiate(this.impactOnEnemyPrefab, hitInfo.point, this.transform.rotation);
+                    if (this.damage > 0 && this.photonView.isMine) {
+                        this.Owner.GetComponent<WeaponControl>().HitMark();
+                        var attackerID = this.Owner.GetComponent<FriendOrEnemy>().name;
+                        hitInfo.collider.gameObject.GetComponent<Status>().ReduceHP(this.damage, attackerID);
+                    }
                 } else {
                     Instantiate(this.impactPrefab, hitInfo.point, this.transform.rotation);
                 }

@@ -5,6 +5,8 @@ public class HAR6 : Weapon {
     private WeaponRay ray;
     private WeaponZoom zoom;
 
+    public GameObject Owner;
+
     private void Awake() {
         this.Ammo.ReserveBulletCount = 1200;
         this.Ammo.MagazineSize = 80;
