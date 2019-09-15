@@ -15,11 +15,11 @@ public class Rocket : MonoBehaviour {
     private float radiusOfExplosion = 8f;
     private Vector3 direction;
     public Vector3 targetPos;
-    private PhotonView myPV;
+    private PhotonView photonView;
 
     private void Start() {
         this.direction = this.transform.forward;
-        this.myPV = GetComponent<PhotonView>();
+        this.photonView = GetComponent<PhotonView>();
     }
 
     private void FixedUpdate() {
@@ -28,10 +28,9 @@ public class Rocket : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision col) {
-        if (!this.myPV.isMine) {
+        if (!this.photonView.isMine) {
             return;
         }
-
         Collider[] collidersInSphere = Physics.OverlapSphere(this.transform.position, this.radiusOfExplosion);
         foreach (Collider scol in collidersInSphere) {
             Hit dam = scol.gameObject.GetComponentInParent<Hit>();
@@ -47,7 +46,7 @@ public class Rocket : MonoBehaviour {
                 this.wcontrol.HitMark();
             }
         }
-        this.myPV.RPC("Explosion", PhotonTargets.All, this.transform.position);
+        this.photonView.RPC("Explosion", PhotonTargets.All, this.transform.position);
         PhotonNetwork.Destroy(this.gameObject);
     }
 

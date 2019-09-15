@@ -18,31 +18,31 @@ public class UnitOption : MonoBehaviour {
     private void OnGUI() {
         if (GUI.Button(new Rect(20, 40, 80, 20), "Vanguard")) {
             this.unit = "Vanguard";
-            this.gm.Spawn(this.unit);
+            this.gm.SpawnLocalPlayer(this.unit);
             UIManager.Instance.HideCursor();
             UIManager.Instance.StatusUI.Show();
         }
         if (GUI.Button(new Rect(20, 70, 80, 20), "Dual")) {
             this.unit = "Dual";
-            this.gm.Spawn(this.unit);
+            this.gm.SpawnLocalPlayer(this.unit);
             UIManager.Instance.HideCursor();
             UIManager.Instance.StatusUI.Show();
         }
         if (GUI.Button(new Rect(20, 100, 80, 20), "Blitz")) {
             this.unit = "Blitz";
-            this.gm.Spawn(this.unit);
+            this.gm.SpawnLocalPlayer(this.unit);
             UIManager.Instance.HideCursor();
             UIManager.Instance.StatusUI.Show();
         }
         if (GUI.Button(new Rect(20, 130, 80, 20), "Velox")) {
             this.unit = "Velox";
-            this.gm.Spawn(this.unit);
+            this.gm.SpawnLocalPlayer(this.unit);
             UIManager.Instance.HideCursor();
             UIManager.Instance.StatusUI.Show();
         }
         if (GUI.Button(new Rect(20, 160, 80, 20), "Vincere")) {
             this.unit = "Vincere";
-            this.gm.Spawn(this.unit);
+            this.gm.SpawnLocalPlayer(this.unit);
             UIManager.Instance.HideCursor();
             UIManager.Instance.StatusUI.Show();
         }

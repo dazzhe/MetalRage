@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class UnitMotor : MonoBehaviour {
     private CharacterController controller;
-    private AudioSource boost;
 
     public bool canBoost = true;
     [SerializeField]
@@ -67,8 +66,6 @@ public class UnitMotor : MonoBehaviour {
     private void Start() {
         StartCoroutine(BoostRegen());
         this.controller = GetComponent<CharacterController>();
-        AudioSource[] audioSources = GetComponents<AudioSource>();
-        this.boost = audioSources[0];
         this.boostgauge = this.boostmax;
         this.lastPosition = this.transform.position;
     }
@@ -215,7 +212,6 @@ public class UnitMotor : MonoBehaviour {
             if (this.inputJump && this.canJump && this.characterState != CharacterState.Boosting) {
                 this.isGrounded = false;
                 StartCoroutine(JumpCoolDown());
-                this.boost.PlayOneShot(this.boost.clip);
                 this.engine?.ShowJetFlame(0.4f);
                 //移動速度が大きいほど高くジャンプさせる.
                 this.MoveDirection
@@ -252,7 +248,6 @@ public class UnitMotor : MonoBehaviour {
                 || this.characterState == CharacterState.Idle
                 || this.characterState == CharacterState.Braking)
             && this.boostgauge >= 28) {
-            this.boost.PlayOneShot(this.boost.clip);
             this.engine.ShowJetFlame(0.4f);
             this.boostgauge -= 28;
             float h = this.inputMoveDirection.x;

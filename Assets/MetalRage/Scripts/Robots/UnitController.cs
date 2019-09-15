@@ -1,15 +1,10 @@
+using System.Linq;
 using UnityEngine;
 
 public class UnitController : MonoBehaviour {
-    private static string[] killVoiceNames
-        = {"","01_shot","02_double_kill","03_mass_kill","04_multi_kill",
-        "05_crazy_kill","06_great_kill","07_excellent","08_massacre",
-        "09_super_action","10_unbellevable","11_fantastic","12_bigbang",
-        "13_holy_shot","14_holy_shot_haha"};
     private UnitMotor motor;
     private Status stat;
-
-    private int killCount;
+    private int killStreakCount;
 
     private void Start() {
         this.motor = GetComponent<UnitMotor>();
@@ -56,21 +51,27 @@ public class UnitController : MonoBehaviour {
 
     private void LateUpdate() {
         if (this.stat.HP == 0) {
-            ScoreboardUI.myEntry.IncrementDeath();
-            GameObject go = GameObject.Find("GameManager");
-            go.GetComponent<GameManager>().Die(this.transform.position, this.gameObject);
+            GameManager.Instance.KillLocalPlayer();
+            PhotonNetwork.Destroy(this.gameObject);
         }
     }
 
+    public void HandleKillPlayer(int attackerID) {
+        GetComponent<PhotonView>().RPC("HandleKillPlayerOnNetwork", PhotonTargets.All, attackerID);
+    }
+
     [PunRPC]
-    private void OnKilledPlayer() {
+    private void HandleKillPlayerOnNetwork(int attackerID) {
+        if (GetComponent<PhotonView>().owner.IsMasterClient) {
+            var attackerTeam = (TeamColor)PhotonNetwork.playerList.First(p => p.ID == attackerID).CustomProperties["Team"];
+            GameManager.Instance.GetTeam(attackerTeam).Score++;
+        }
         if (GetComponent<PhotonView>().isMine) {
-            ++this.killCount;
             ScoreboardUI.myEntry.IncrementKill();
-            if (this.killCount > 14) {
+            if (++this.killStreakCount > 14) {
                 AudioManager.Instance.PlaySE(13);
             } else {
-                AudioManager.Instance.PlaySE(this.killCount - 1);
+                AudioManager.Instance.PlaySE(this.killStreakCount - 1);
             }
         }
     }

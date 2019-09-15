@@ -1,11 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class AudioManager : SingletonBehaviour<AudioManager> {
     [SerializeField]
     private AudioClip[] SEs = default;
+    [SerializeField]
+    private AudioClip leanClip = default;
 
     private new AudioSource audio;
 
@@ -15,5 +14,9 @@ public class AudioManager : SingletonBehaviour<AudioManager> {
 
     public void PlaySE(int clipIndex) {
         this.audio.PlayOneShot(this.SEs[clipIndex]);
+    }
+
+    public void PlayLeanSE() {
+        this.audio.PlayOneShot(this.leanClip);
     }
 }

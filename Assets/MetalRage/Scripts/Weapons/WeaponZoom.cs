@@ -19,7 +19,7 @@ public class WeaponZoom : MonoBehaviour {
 
     private void OnDestroy() {
         if (Camera.main != null && this.component.myPV.isMine) {
-            Camera.main.fieldOfView = 90;
+            Camera.main.fieldOfView = 90f;
         }
     }
 }

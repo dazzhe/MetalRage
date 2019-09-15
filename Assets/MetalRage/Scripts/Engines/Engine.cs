@@ -3,11 +3,17 @@ using UnityEngine;
 
 public class Engine : MonoBehaviour {
     [SerializeField]
-    private ParticleSystem[] jetFlameEffects = default;
+    private ParticleSystem jetFlameParticle = default;
 
     private Coroutine showJetFrameRoutine;
+    private new AudioSource audio;
+
+    private void Awake() {
+        this.audio = GetComponent<AudioSource>();
+    }
 
     public void ShowJetFlame(float duration) {
+        this.audio.Play();
         if (this.showJetFrameRoutine != null) {
             StopCoroutine(this.showJetFrameRoutine);
         }
@@ -15,15 +21,11 @@ public class Engine : MonoBehaviour {
     }
 
     public void ShowJetFlame() {
-        foreach (var jetFlameEffect in this.jetFlameEffects) {
-            jetFlameEffect.Play();
-        }
+        this.jetFlameParticle.Play();
     }
 
     public void HideJetFlame() {
-        foreach (var jetFlameEffect in this.jetFlameEffects) {
-            jetFlameEffect.Stop();
-        }
+        this.jetFlameParticle.Stop();
     }
 
     private IEnumerator ShowJetFlameRoutine(float duration) {

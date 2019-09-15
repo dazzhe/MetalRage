@@ -34,9 +34,9 @@ public class Status : MonoBehaviour {
             this.HP = Mathf.Clamp(this.HP, 0, this.MaxHP);
             this.myPV.RPC("SetHP", PhotonTargets.OthersBuffered, this.HP);
             if (this.HP == 0) {
-                GameObject.Find(attacker)
-                    .GetComponent<PhotonView>()
-                    .RPC("OnKilledPlayer", PhotonTargets.Others);
+                var attackerObj = GameObject.Find(attacker);
+                var attackerID = attackerObj.GetComponent<FriendOrEnemy>().playerID;
+                attackerObj.GetComponent<UnitController>().HandleKillPlayer(attackerID);
             }
         }
     }

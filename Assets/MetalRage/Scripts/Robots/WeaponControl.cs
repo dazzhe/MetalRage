@@ -145,7 +145,7 @@ public class WeaponControl : MonoBehaviour {
     }
 
     public void HitMark() {
-        this.weapons[this.selecedWeaponIndex].Crosshair.ShowHitMark();
+        this.weapons[this.selecedWeaponIndex].Crosshair.ShowHitMark(0.5f);
     }
 
     private void OnDestroy() {

@@ -53,7 +53,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2654b1c67f6818a41a8f486a90675133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impact: {fileID: 100000, guid: 1a46d0e530065604a929f1345b16d1f4, type: 3}
+  impactPrefab: {fileID: 100000, guid: c994fde8e6848a3771503f184e0c9cb4, type: 3}
+  impactOnEnemyPrefab: {fileID: 100000, guid: 599de8cd5945bc342b024c04f77366eb, type: 3}
+  speed: 1500
+  lifeTime: 0.5
   originPos: {x: 0, y: 0, z: 0}
   targetPos: {x: 0, y: 0, z: 0}
 --- !u!120 &12052498

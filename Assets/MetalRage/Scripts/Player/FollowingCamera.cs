@@ -8,7 +8,6 @@ public class FollowingCamera : MonoBehaviour {
     public Transform cameraTransform;
     public Vector3 cp;
 
-    private AudioSource lean;
     private WeaponControl weaponctrl;
     private UnitMotor motor;
     private float positionz;
@@ -24,8 +23,6 @@ public class FollowingCamera : MonoBehaviour {
     private int dir;
 
     private void Start() {
-        AudioSource[] audioSources = GetComponents<AudioSource>();
-        this.lean = audioSources[1];
         this.leaning = false;
         this.weaponctrl = GetComponent<WeaponControl>();
         this.motor = GetComponent<UnitMotor>();
@@ -49,8 +46,6 @@ public class FollowingCamera : MonoBehaviour {
         if (!this.leaning) {
             Follow();
             Distance();
-            //transform.position = cp + transform.right * positionx
-            //	+ transform.forward * positionz;
         } else {
             this.offset = Mathf.Lerp(this.offset, this.dir * 5f, 0.2F);
             this.position = this.defaultposition + this.transform.right * this.offset;
@@ -75,12 +70,12 @@ public class FollowingCamera : MonoBehaviour {
     private void Lean() {
         if (this.motor.MoveDirection.x == 0 && this.motor.MoveDirection.z == 0) {
             if (Input.GetButtonDown("right lean")) {
-                this.lean.PlayOneShot(this.lean.clip);
+                AudioManager.Instance.PlayLeanSE();
                 this.leaning = true;
                 this.dir = 1;
             }
             if (Input.GetButtonDown("left lean")) {
-                this.lean.PlayOneShot(this.lean.clip);
+                AudioManager.Instance.PlayLeanSE();
                 this.leaning = true;
                 this.dir = -1;
             }

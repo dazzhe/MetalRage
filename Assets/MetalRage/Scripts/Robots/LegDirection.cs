@@ -2,48 +2,31 @@ using UnityEngine;
 
 public class LegDirection : MonoBehaviour {
     [SerializeField]
-    private GameObject unit = default;
+    private GameObject unit;
 
     private UnitMotor motor;
-    private float h;
-    private float v;
-    private static Vector3 rf = new Vector3(1, 0, 1);
-    private static Vector3 lf = new Vector3(-1, 0, 1);
 
     private void Start() {
         this.motor = this.unit.GetComponent<UnitMotor>();
     }
 
     private void Update() {
+        var currentAngle = this.transform.localRotation.eulerAngles.y;
+        currentAngle = currentAngle > 180f ? currentAngle - 360f : currentAngle;
+        float destinationAngle = currentAngle;
         if (this.motor.characterState == UnitMotor.CharacterState.Walking) {
-            this.h = this.motor.inputMoveDirection.x;
-            this.v = this.motor.inputMoveDirection.y;
-            if (this.h > 0 && this.v > 0) {
-                this.transform.rotation = Quaternion.Slerp(this.transform.rotation,
-                                                      Quaternion.LookRotation(this.unit.transform.TransformDirection(rf)),
-                                                      0.1f);
-            } else if (this.h > 0 && this.v == 0) {
-                this.transform.rotation = Quaternion.Slerp(this.transform.rotation,
-                                                      Quaternion.LookRotation(this.unit.transform.right),
-                                                      0.1f);
-            } else if ((this.h == 0 && this.v > 0) || this.v < 0) {
-                this.transform.rotation = Quaternion.Slerp(this.transform.rotation,
-                                                      Quaternion.LookRotation(this.unit.transform.forward),
-                                                      0.1f);
-            } else if (this.h < 0 && this.v > 0) {
-                this.transform.rotation = Quaternion.Slerp(this.transform.rotation,
-                                                      Quaternion.LookRotation(this.unit.transform.TransformDirection(lf)),
-                                                      0.1f);
-            } else if (this.h < 0 && this.v == 0) {
-                this.transform.rotation = Quaternion.Slerp(this.transform.rotation,
-                                                      Quaternion.LookRotation(-this.unit.transform.right),
-                                                      0.1f);
-            }
+            var h = this.motor.inputMoveDirection.x;
+            var v = this.motor.inputMoveDirection.y;
+            destinationAngle = h > 0 && v > 0 ? 45f :
+                              h > 0 && v == 0 ? 90f :
+                   (h == 0 && v > 0) || v < 0 ? 0f :
+                               h < 0 && v > 0 ? -45f :
+                              h < 0 && v == 0 ? -90f : currentAngle;
         }
         if (this.motor.characterState == UnitMotor.CharacterState.Boosting) {
-            this.transform.rotation = Quaternion.Slerp(this.transform.rotation,
-                                                  Quaternion.LookRotation(this.unit.transform.forward),
-                                                  0.1f);
+            destinationAngle = 0f;
         }
+        var newAngle = Mathf.Lerp(currentAngle, destinationAngle, 5f * Time.deltaTime);
+        this.transform.localRotation = Quaternion.AngleAxis(newAngle, Vector3.up);
     }
 }

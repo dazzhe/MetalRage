@@ -1,39 +1,38 @@
+using System.Linq;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
-    //respawnX[0]<-RespawnRangeX of RedTeam
-    //respawnX[1]<-RespawnRangeX of BlueTeam...
+public class GameManager : SingletonBehaviour<GameManager> {
+    [SerializeField]
+    private Team blueTeam = new Team(TeamColor.Blue, default);
+    [SerializeField]
+    private Team redTeam = new Team(TeamColor.Red, default);
 
-    private float[,] respawnX = new float[2, 2] { { -13, 15 }, { -12, 4 } };
-    private float[] respawnY = new float[2] { 6, 9 };
-    private float[,] respawnZ = new float[2, 2] { { -75, -55 }, { 69, 80 } };
-    //private float[,] respawnX = new float[2, 2] { { -92, -40 }, { -43, 7 } };
-    //private float[] respawnY = new float[2] { 6, 9 };
-    //private float[,] respawnZ = new float[2, 2] { { -126, -114 }, { 182, 190 } };
-    public static int PlayerTeam { get; set; } = 5;   //<-if RedTeam then 0 else 1
+    public TeamColor PlayerTeam { get; set; } = TeamColor.None;
 
-    private PhotonView photonView;
-    private GameObject explosion;
-
-    private void Awake() {
-        this.photonView = GetComponent<PhotonView>();
+    public Team GetTeam(TeamColor teamColor) {
+        switch (teamColor) {
+            case TeamColor.Blue:
+                return this.blueTeam;
+            case TeamColor.Red:
+                return this.redTeam;
+            default:
+                return null;
+        }
     }
 
-    public void Spawn(string unit) {
-        Vector3 spawnPos = new Vector3(Random.Range(this.respawnX[PlayerTeam, 0], this.respawnX[PlayerTeam, 1]),
-                                       this.respawnY[PlayerTeam],
-                                       Random.Range(this.respawnZ[PlayerTeam, 0], this.respawnZ[PlayerTeam, 1]));
-        GameObject player = PhotonNetwork.Instantiate(unit, spawnPos, Quaternion.identity, 0);
+    public void SpawnLocalPlayer(string unit) {
+        Vector3 spawnPosition = GetTeam(this.PlayerTeam).SpawnArea.RandomPosition();
+        GameObject playerObj = PhotonNetwork.Instantiate(unit, spawnPosition, Quaternion.identity, 0);
         GetComponent<UnitOption>().enabled = false;
-        player.SetLayerRecursively(8);
-        player.GetComponent<UnitController>().enabled = true;
-        player.GetComponent<UnitMotor>().enabled = true;
-        player.GetComponent<WeaponControl>().enabled = true;
-        player.GetComponent<FollowingCamera>().enabled = true;
+        playerObj.SetLayerRecursively(8);
+        playerObj.GetComponent<UnitController>().enabled = true;
+        playerObj.GetComponent<UnitMotor>().enabled = true;
+        playerObj.GetComponent<WeaponControl>().enabled = true;
+        playerObj.GetComponent<FollowingCamera>().enabled = true;
     }
 
-    public void Die(Vector3 pos, GameObject go) {
-        PhotonNetwork.Destroy(go);
+    public void KillLocalPlayer() {
+        ScoreboardUI.myEntry.IncrementDeath();
         UnitOption.UnitSelect();
     }
 

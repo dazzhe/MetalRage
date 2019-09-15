@@ -11,7 +11,7 @@ public class PlayerScoreEntry : Photon.MonoBehaviour {
     
     private int killCount = 0;
     private int deathCount = 0;
-    public int team;
+    public TeamColor team;
 
     private void Start() {
         if (this.photonView.isMine) {
@@ -42,24 +42,19 @@ public class PlayerScoreEntry : Photon.MonoBehaviour {
         PhotonNetwork.RPC(this.photonView, "IncrementDeathCountOnNetwork", PhotonTargets.AllBuffered, true);
     }
 
-    public void AddScore() {
-        ScoreboardUI.score[this.team] += this.killCount;
-    }
-
     [PunRPC]
-    private void Init(string name, int team) {
+    private void Init(string name, TeamColor team) {
         GameObject scoreList = null;
-        if (team == 0) {
+        if (team == TeamColor.Red) {
             scoreList = UIManager.Instance.ScoreboardUI.RedScoreList;
         }
-        if (team == 1) {
+        if (team == TeamColor.Blue) {
             scoreList = UIManager.Instance.ScoreboardUI.BlueScoreList;
         }
         this.transform.parent = scoreList.transform;
         this.transform.localScale = new Vector3(1f, 1f, 1f);
         this.playerNameText.text = name;
         this.team = team;
-        ScoreboardUI.startAdding = true;
     }
 
     [PunRPC]
