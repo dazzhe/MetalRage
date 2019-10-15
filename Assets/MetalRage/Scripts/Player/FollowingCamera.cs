@@ -1,108 +1,116 @@
 using UnityEngine;
 
+public enum CameraLeanType {
+    Right,
+    Left,
+    None
+}
+
 public class FollowingCamera : MonoBehaviour {
     [SerializeField]
     private Vector3 cameraOffset;
+    [SerializeField]
+    private Transform target = default; // Set this to MainWeapon.
+    [Min(0f)]
+    [SerializeField]
+    private float leanLength = 5f;
 
-    public GameObject objc;
-    public Transform cameraTransform;
-    public Vector3 cp;
+    private new Camera camera;
 
-    private WeaponControl weaponctrl;
-    private UnitMotor motor;
-    private float positionz;
-    private Vector3 defaultposition;
-    private Vector3 oldfd;
-    private Vector3 position;
-    private Vector3 desiredPosition;
-    private Vector3 lposition;
-    private Vector3 ldefaultposition;
-    private Vector3 closeOffset = new Vector3(0f, 2.5f, -1f);
-    private float offset = 0;
-    private bool leaning;
-    private int dir;
+    private CameraLeanType currentLeanType = CameraLeanType.None;
+    private Vector3 leanOffset;
+    private Vector3 leanDirection;
 
-    private void Start() {
-        this.leaning = false;
-        this.weaponctrl = GetComponent<WeaponControl>();
-        this.motor = GetComponent<UnitMotor>();
-        this.oldfd = this.objc.transform.forward;
+    private Vector3 baseLocalPosition;
+    private Vector3 localPosition;
+
+    private bool IsTargetMoving {
+        get {
+            var motor = GetComponent<UnitMotor>();
+            return motor.MoveDirection.x != 0 || motor.MoveDirection.z != 0 || motor.MoveDirection.y != 0;
+        }
+    }
+
+    private Vector3 OffsetByPitch {
+        get {
+            var offsetLength = -5.5f + 4f * Mathf.Abs(GetComponent<WeaponControl>().RotationY) / 60f;
+            return offsetLength * this.target.transform.forward;
+        }
+    }
+
+    private bool IsRightLeanTriggered => Input.GetButtonDown("right lean");
+    private bool IsLeftLeanTriggered => Input.GetButtonDown("left lean");
+
+    private void Awake() {
+        this.currentLeanType = CameraLeanType.None;
     }
 
     private void OnEnable() {
-        if (!this.cameraTransform && Camera.main) {
-            this.cameraTransform = Camera.main.transform;
+        if (this.camera == null && Camera.main != null) {
+            this.camera = Camera.main;
         }
-
-        if (!this.cameraTransform) {
+        if (this.camera == null) {
             this.enabled = false;
         }
     }
     
     private void LateUpdate() {
-        Setting();
-        Direction();
-        Lean();
-        if (!this.leaning) {
+        this.baseLocalPosition = this.cameraOffset + this.target.position + this.OffsetByPitch;
+        SetLeanType();
+        if (this.currentLeanType == CameraLeanType.None) {
             Follow();
-            Distance();
         } else {
-            this.offset = Mathf.Lerp(this.offset, this.dir * 5f, 0.2F);
-            this.position = this.defaultposition + this.transform.right * this.offset;
+            this.leanOffset = Vector3.Lerp(this.leanOffset, this.leanLength * this.leanDirection, 0.2f);
+            this.localPosition = this.baseLocalPosition + this.leanOffset;
         }
-        Vector3 closePosition = this.transform.position + this.transform.rotation * this.closeOffset;
-        Vector3 closeToFar = this.position - closePosition;
-        if (Physics.Raycast(closePosition, closeToFar, out RaycastHit hit, closeToFar.magnitude + 0.03f)) {
-            this.desiredPosition = hit.point;
-        } else {
-            this.desiredPosition = this.position;
+        // Collision Check
+        var cameraPositionFromTarget = this.localPosition - this.target.position;
+        if (Physics.Raycast(this.target.position, cameraPositionFromTarget, out RaycastHit hit, cameraPositionFromTarget.magnitude + 0.03f)) {
+            this.localPosition = hit.point;
         }
-
-        this.cameraTransform.position = this.desiredPosition;
+        this.camera.transform.rotation = this.target.rotation;
+        this.camera.transform.position = this.target.TransformPoint(this.localPosition);
     }
 
-    private void Setting() {
-        this.cp = this.transform.position;
-        this.cp.y += 2.5F;
-        this.defaultposition = this.cameraOffset + this.cp + this.positionz * this.objc.transform.forward;
-    }
-
-    private void Lean() {
-        if (this.motor.MoveDirection.x == 0 && this.motor.MoveDirection.z == 0) {
-            if (Input.GetButtonDown("right lean")) {
-                AudioManager.Instance.PlayLeanSE();
-                this.leaning = true;
-                this.dir = 1;
+    private void SetLeanType() {
+        if (!this.IsTargetMoving) {
+            if (this.IsRightLeanTriggered) {
+                TriggerLean(CameraLeanType.Right);
             }
-            if (Input.GetButtonDown("left lean")) {
-                AudioManager.Instance.PlayLeanSE();
-                this.leaning = true;
-                this.dir = -1;
+            if (this.IsLeftLeanTriggered) {
+                TriggerLean(CameraLeanType.Left);
             }
         }
-        if (!Input.GetButton("right lean") && !Input.GetButton("left lean") && this.leaning) {
-            this.leaning = false;
-            this.offset = 0;
+        var isLeanCanceled =
+            this.currentLeanType == CameraLeanType.Left && !Input.GetButton("right lean") ||
+            this.currentLeanType == CameraLeanType.Right && !Input.GetButton("left lean");
+        if (isLeanCanceled) {
+            TriggerLean(CameraLeanType.None);
         }
     }
 
-    private void Direction() {
-        this.cameraTransform.rotation = this.objc.transform.rotation;
-        this.position = this.cp + Quaternion.FromToRotation(this.oldfd, this.objc.transform.forward) * (this.position - this.cp);
-        this.oldfd = this.objc.transform.forward;
-    }
-
-    private void Distance() {
-        this.positionz = -5.5F + 4F * Mathf.Abs(this.weaponctrl.RotationY) / 60F;
+    private void TriggerLean(CameraLeanType leanType) {
+        switch (leanType) {
+        case CameraLeanType.Left:
+            AudioManager.Instance.PlayLeanSE();
+            this.currentLeanType = CameraLeanType.Left;
+            this.leanDirection = -this.transform.right;
+            break;
+        case CameraLeanType.Right:
+            AudioManager.Instance.PlayLeanSE();
+            this.currentLeanType = CameraLeanType.Right;
+            this.leanDirection = this.transform.right;
+            break;
+        case CameraLeanType.None:
+            this.currentLeanType = CameraLeanType.None;
+            this.leanOffset = Vector3.zero;
+            break;
+        }
     }
 
     private void Follow() {
-        this.lposition = this.transform.InverseTransformDirection(this.position);
-        this.ldefaultposition = this.transform.InverseTransformDirection(this.defaultposition);
-        this.lposition.x = Mathf.Lerp(this.lposition.x, this.ldefaultposition.x, 7F * Time.deltaTime);
-        this.lposition.y = Mathf.Lerp(this.lposition.y, this.ldefaultposition.y, 20F * Time.deltaTime);
-        this.lposition.z = Mathf.Lerp(this.lposition.z, this.ldefaultposition.z, 20F * Time.deltaTime);
-        this.position = this.transform.TransformDirection(this.lposition);
-        this.defaultposition = this.transform.TransformDirection(this.ldefaultposition);
+        this.localPosition.x = Mathf.Lerp(this.localPosition.x, this.baseLocalPosition.x, 7f * Time.deltaTime);
+        this.localPosition.y = Mathf.Lerp(this.localPosition.y, this.baseLocalPosition.y, 20f * Time.deltaTime);
+        this.localPosition.z = Mathf.Lerp(this.localPosition.z, this.baseLocalPosition.z, 20f * Time.deltaTime);
     }
 }
