@@ -100,7 +100,7 @@ MonoBehaviour:
   gunsightPrefab: {fileID: 154656, guid: 18a8259989c04da47901bb1cd6f6594c, type: 3}
   ammo:
     magazineSize: 0
-    initialExtraBulletCount: 1
+    reserveBulletCount: 0
 --- !u!114 &3042039756616307685
 MonoBehaviour:
   m_ObjectHideFlags: 0
