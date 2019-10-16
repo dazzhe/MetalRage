@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5481178158668136279}
   - component: {fileID: 5481178158668136276}
   m_Layer: 0
-  m_Name: Sun_Disc
+  m_Name: Sun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 158367784b8ae15419273aa5e9152f22, type: 2}
+  - {fileID: 2100000, guid: 0bc8e5548b04c4642acb45dc527ab8bb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
