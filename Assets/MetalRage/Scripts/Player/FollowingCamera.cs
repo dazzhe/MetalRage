@@ -10,7 +10,7 @@ public class FollowingCamera : MonoBehaviour {
     [SerializeField]
     private Vector3 cameraOffset;
     [SerializeField]
-    private Transform target = default; // Set this to MainWeapon.
+    private Transform target = default; // Set this as MainWeapon.
     [Min(0f)]
     [SerializeField]
     private float leanLength = 5f;

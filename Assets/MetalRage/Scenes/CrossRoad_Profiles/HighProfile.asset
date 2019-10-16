@@ -16,6 +16,7 @@ MonoBehaviour:
   - {fileID: 114032698563655560}
   - {fileID: 114997087192455608}
   - {fileID: 114430981188031908}
+  - {fileID: 114366121145600420}
 --- !u!114 &114032698563655560
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -34,21 +35,21 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 3.14
+    value: 1
   threshold:
     overrideState: 1
-    value: 0.5
+    value: 1
   softKnee:
     overrideState: 1
-    value: 0.492
+    value: 1
   clamp:
     overrideState: 0
     value: 65472
   diffusion:
     overrideState: 1
-    value: 7.1
+    value: 10
   anamorphicRatio:
-    overrideState: 1
+    overrideState: 0
     value: 0.116
   color:
     overrideState: 0
@@ -57,12 +58,49 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   dirtTexture:
-    overrideState: 0
-    value: {fileID: 0}
+    overrideState: 1
+    value: {fileID: 2800000, guid: 69e847bbff1cf5449a4ee0bbd045dbc9, type: 3}
     defaultState: 1
   dirtIntensity:
-    overrideState: 0
+    overrideState: 1
+    value: 2
+--- !u!114 &114366121145600420
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3f6f3f7c722b4544b97e3c75840aa33, type: 3}
+  m_Name: AutoExposure
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  filtering:
+    overrideState: 1
+    value: {x: 55.79485, y: 99}
+  minLuminance:
+    overrideState: 1
+    value: 4.2
+  maxLuminance:
+    overrideState: 1
+    value: 9
+  keyValue:
+    overrideState: 1
+    value: 0.5
+  eyeAdaptation:
+    overrideState: 1
     value: 0
+  speedUp:
+    overrideState: 1
+    value: 5
+  speedDown:
+    overrideState: 1
+    value: 2.5
 --- !u!114 &114430981188031908
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -75,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb84e30e02715445aeb9959894e3b4d, type: 3}
   m_Name: ColorGrading
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
