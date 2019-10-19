@@ -11,7 +11,7 @@ public class Rocket : MonoBehaviour {
     public int damage = 100;
 
     public string shooterPlayer;
-    public WeaponControl wcontrol;
+    public Robot wcontrol;
     private float radiusOfExplosion = 8f;
     private Vector3 direction;
     public Vector3 targetPos;

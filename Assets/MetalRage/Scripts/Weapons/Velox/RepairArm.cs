@@ -17,15 +17,14 @@ public class RepairArm : Weapon {
         this.Ammo.ReserveBulletCount = 100;
         this.Ammo.Reload();
         this.param.damage = -40;
-        this.param.recoilY = 0f;
-        this.param.minDispersion = 0f;
-        this.param.dispersionGrow = 0f;
-        this.param.maxrange = 1000;
+        this.param.recoil = Vector2.zero;
+        this.Spread.MinAngle = 0f;
+        this.Spread.GrowRate = 0f;
         this.animator = GetComponent<Animator>();
         this.audio = GetComponent<AudioSource>();
         this.reticle = this.Crosshair.gameObject.GetComponent<RepairArmReticle>();
-        Init();
-        if (this.component.myPV.isMine) {
+        Initialize();
+        if (this.photonView.isMine) {
             StartCoroutine(BulletRefillLoop());
         }
     }
@@ -40,20 +39,20 @@ public class RepairArm : Weapon {
     }
 
     private void LateUpdate() {
-        this.targetingUnitStatus = this.component.wcontrol.TargetObject.GetComponent<Status>();
-        if (this.targetingUnitStatus != null && this.component.wcontrol.TargetObject.layer == 9) {
+        this.targetingUnitStatus = this.robot.TargetObject.GetComponent<Status>();
+        if (this.targetingUnitStatus != null && this.robot.TargetObject.layer == 9) {
             UIManager.Instance.StatusUI.TargetingFriend = this.targetingUnitStatus;
         } else {
             UIManager.Instance.StatusUI.TargetingFriend = null;
         }
-        SetRepairingState(this.component.wcontrol.inputShot1);
+        SetRepairingState(this.robot.inputShot1);
     }
 
     private void SetRepairingState(bool value) {
         if (value == this.animator.GetBool(kIsRepairingKey)) {
             return;
         }
-        PhotonNetwork.RPC(this.component.myPV, "SetRepairingStateOnNetwork", PhotonTargets.All, false, value);
+        PhotonNetwork.RPC(this.photonView, "SetRepairingStateOnNetwork", PhotonTargets.All, false, value);
     }
 
     [PunRPC]
@@ -63,13 +62,13 @@ public class RepairArm : Weapon {
 
     public void Repair() {
         this.audio.PlayOneShot(this.audio.clip);
-        if (this.component.myPV.isMine) {
-            Hit hit = this.component.wcontrol.TargetObject.GetComponentInParent<Hit>();
-            if (hit != null && this.component.wcontrol.TargetObject.layer == 9 &&
+        if (this.photonView.isMine) {
+            Hit hit = this.robot.TargetObject.GetComponentInParent<Hit>();
+            if (hit != null && this.robot.TargetObject.layer == 9 &&
                 this.targetingUnitStatus.HP != this.targetingUnitStatus.MaxHP && this.Ammo.LoadedBulletCount >= 15
-                && (this.component.wcontrol.TargetObject.transform.position
+                && (this.robot.TargetObject.transform.position
                      - this.transform.position).magnitude <= 4f) {
-                hit.TakeDamage(this.param.damage, this.component.unit.name);
+                hit.TakeDamage(this.param.damage, this.unitMotor.name);
                 ConsumeBullets(15);
             }
         }

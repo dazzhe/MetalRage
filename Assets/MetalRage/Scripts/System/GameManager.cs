@@ -27,7 +27,7 @@ public class GameManager : SingletonBehaviour<GameManager> {
         playerObj.SetLayerRecursively(8);
         playerObj.GetComponent<UnitController>().enabled = true;
         playerObj.GetComponent<UnitMotor>().enabled = true;
-        playerObj.GetComponent<WeaponControl>().enabled = true;
+        playerObj.GetComponent<Robot>().enabled = true;
         playerObj.GetComponent<FollowingCamera>().enabled = true;
     }
 
@@ -38,5 +38,12 @@ public class GameManager : SingletonBehaviour<GameManager> {
 
     public void QuitApplication() {
         Application.Quit();
+    }
+
+    public static bool IsEnemy(Collider collider) {
+        if (collider == null) {
+            return false;
+        }
+        return collider.gameObject.layer == LayerMask.NameToLayer("Enemy");
     }
 }

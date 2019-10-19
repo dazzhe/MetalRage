@@ -1,107 +1,94 @@
 using System.Collections;
 using UnityEngine;
 
-public class WeaponParam {
-    public int damage = 0;
-    public float recoilY = 0;
-    public float recoilX = 0;
-    public float maxRecoilY = 14f;
-    public float maxRecoilX = 3f;
-    public float minDispersion = 0;
-    public float dispersionGrow = 0;
-    public float maxrange = 0;
-    public float reloadTime = 0;
-    public float interval = 0;
-    public float setupTime = 1f;
-    public bool isReloading;
-    public bool cooldown = false;
-}
-
-public class WeaponComponent {
-    public GameObject unit;
-    public AudioSource setup;
-    public AudioSource reloadAudio;
-    public PhotonView myPV;
-    public WeaponControl wcontrol;
-    public UnitMotor motor;
-}
-
 /// <summary>
 /// Base class of weapons.
 /// </summary>
 public abstract class Weapon : MonoBehaviour {
-    [SerializeField]
-    private GameObject gunsightPrefab;
-    [SerializeField]
-    private Ammo ammo;
+    public class Parameters {
+        public int damage = 0;
+        public Vector2 recoil;
+        public Vector2 maxRecoil = new Vector2(3f, 14f);
+        public float reloadTime = 0f;
+        public float coolDownTime = 0f;
+        public float setupTime = 1f;
+        public bool isReloading = false;
+        public bool isCoolDown = false;
+    }
 
-    protected WeaponParam param = new WeaponParam();
-    protected WeaponComponent component = new WeaponComponent();
+    [SerializeField]
+    protected GameObject crosshairPrefab = default;
+    [SerializeField]
+    private Ammo ammo = default;
+    [SerializeField]
+    private BulletSpread spread = default;
+    [SerializeField]
+    private AudioClip setupClip = default;
+    [SerializeField]
+    private AudioClip reloadClip = default;
+
+    protected Parameters param = new Parameters();
+    protected WeaponRay ray;
+    protected PhotonView photonView;
+    protected Robot robot;
+    protected UnitMotor unitMotor;
+    protected new AudioSource audio;
+
+    public Robot Robot { get; set; }
     public Crosshair Crosshair { get; protected set; }
-
-    public GameObject GunsightPrefab => this.gunsightPrefab;
     public Ammo Ammo => this.ammo;
+    public BulletSpread Spread => this.spread;
+    public float SensitivityScale { get; protected set; } = 1f;
 
     protected virtual void OnDestroy() {
-        if (this.component.myPV.isMine && this.Crosshair != null) {
+        if (this.photonView.isMine && this.Crosshair != null) {
             Destroy(this.Crosshair.gameObject);
         }
     }
 
-    protected void Init() {
-        this.component.unit = this.transform.parent.parent.parent.gameObject;
-        this.component.myPV = GetComponent<PhotonView>();
-        this.component.wcontrol = this.component.unit.GetComponent<WeaponControl>();
-        this.component.motor = this.component.unit.GetComponent<UnitMotor>();
-        if (GetComponent<AudioSource>()) {
-            AudioSource[] audioSources = GetComponents<AudioSource>();
-            this.component.setup = audioSources[0];
-            if (audioSources.Length > 1) {
-                this.component.reloadAudio = audioSources[1];
-            }
-        }
-        if (this.component.myPV.isMine && this.GunsightPrefab != null) {
-            var crosshairObj = Instantiate(this.GunsightPrefab, Vector3.zero, Quaternion.identity);
+    protected void Initialize() {
+        this.photonView = this.Robot.GetComponent<PhotonView>();
+        this.robot = this.Robot.GetComponent<Robot>();
+        this.unitMotor = this.Robot.GetComponent<UnitMotor>();
+        this.audio = GetComponent<AudioSource>();
+        if (this.photonView.isMine && this.crosshairPrefab != null) {
+            var crosshairObj = Instantiate(this.crosshairPrefab, Vector3.zero, Quaternion.identity);
             this.Crosshair = crosshairObj.GetComponentInChildren<Crosshair>();
             this.Crosshair.Hide();
         }
     }
 
-    protected void RecoilAndDisperse() {
+    protected void RecoilAndSpread() {
         StopCoroutine(Recoil());
         StartCoroutine(Recoil());
-        if (this.component.wcontrol.DispersionRate < 3f) {
-            this.component.wcontrol.DispersionRate += this.param.dispersionGrow;
-        } else {
-            this.component.wcontrol.DispersionRate = 3f;
-        }
+        this.spread.Spread();
     }
 
     private IEnumerator Recoil() {
-        this.component.wcontrol.IsRecoiling = true;
+        this.robot.IsRecoiling = true;
         float nextRecoilRotY;
         float nextRecoilRotX;
-        float desiredRecoilY = this.param.recoilY * (1f + this.component.wcontrol.Dispersion);
-        float desiredRecoilX = this.param.recoilX * (1f + this.component.wcontrol.Dispersion);
-        if (this.component.wcontrol.RecoilRotation.y <= this.param.maxRecoilY - 1f) {
-            nextRecoilRotY = this.component.wcontrol.RecoilRotation.y + desiredRecoilY;
+        float desiredRecoilY = this.param.recoil.y * (1f + this.robot.Dispersion);
+        float desiredRecoilX = this.param.recoil.x * (1f + this.robot.Dispersion);
+        if (this.robot.RecoilRotation.y <= this.param.maxRecoil.y - 1f) {
+            nextRecoilRotY = this.robot.RecoilRotation.y + desiredRecoilY;
         } else {
-            nextRecoilRotY = NextRecoilInRange(this.param.maxRecoilY - 1f,
-                                               this.param.maxRecoilY,
-                                               this.component.wcontrol.RecoilRotation.y,
+            nextRecoilRotY = NextRecoilInRange(this.param.maxRecoil.y - 1f,
+                                               this.param.maxRecoil.y,
+                                               this.robot.RecoilRotation.y,
                                                0.5f);
         }
-        nextRecoilRotX = NextRecoilInRange(-this.param.maxRecoilX, this.param.maxRecoilX,
-                                           this.component.wcontrol.RecoilRotation.x,
+        nextRecoilRotX = NextRecoilInRange(-this.param.maxRecoil.x, this.param.maxRecoil.x,
+                                           this.robot.RecoilRotation.x,
                                            desiredRecoilX);
         for (int i = 0; i < 7; ++i) {
-            this.component.wcontrol.RecoilRotation = new Vector2 {
-                x = Mathf.Lerp(this.component.wcontrol.RecoilRotation.x, nextRecoilRotX, 50f * Time.deltaTime),
-                y = Mathf.Lerp(this.component.wcontrol.RecoilRotation.y, nextRecoilRotY, 50f * Time.deltaTime)
+            this.robot.RecoilRotation = new Vector2 {
+                x = Mathf.Lerp(this.robot.RecoilRotation.x, nextRecoilRotX, 50f * Time.deltaTime),
+                y = Mathf.Lerp(this.robot.RecoilRotation.y, nextRecoilRotY, 50f * Time.deltaTime)
             };
             yield return null;
         }
-        this.component.wcontrol.IsRecoiling = false;
+        this.robot.IsRecoiling = false;
     }
 
     private float NextRecoilInRange(float min, float max, float origin, float range) {
@@ -112,12 +99,12 @@ public abstract class Weapon : MonoBehaviour {
     protected void ConsumeBullets(int count) {
         this.Ammo.Consume(count);
         if (this.Ammo.CanReload && this.Ammo.LoadedBulletCount == 0) {
-            StartCoroutine(Reload());
+            StartCoroutine(ReloadRoutine());
         }
     }
 
-    protected virtual IEnumerator Reload() {
-        this.component.reloadAudio.PlayOneShot(this.component.reloadAudio.clip);
+    protected virtual IEnumerator ReloadRoutine() {
+        this.audio.PlayOneShot(this.reloadClip);
         this.param.isReloading = true;
         yield return new WaitForSeconds(this.param.reloadTime);
         this.Ammo.Reload();
@@ -125,17 +112,17 @@ public abstract class Weapon : MonoBehaviour {
     }
 
     public virtual void Select() {
-        this.component.setup.PlayOneShot(this.component.setup.clip);
+        this.audio.PlayOneShot(this.setupClip);
         this.Crosshair?.Show();
         StopCoroutine(SelectRoutine());
         StartCoroutine(SelectRoutine());
     }
 
     public virtual void Unselect() {
-        this.component.wcontrol.IsRecoiling = false;
-        this.param.cooldown = false;
+        this.robot.IsRecoiling = false;
+        this.param.isCoolDown = false;
         StopAllCoroutines();
-        this.component.setup.Stop();
+        this.audio.Stop();
         InterruptReloading();
         this.enabled = false;
         if (this.Crosshair != null) {

@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class Crosshair : CanvasUI {
     [SerializeField]
-    private RectTransform cornOfFireIndicator;
+    private RectTransform coneOfFireIndicator;
 
-    public float extent = 10;
+    public float ConeOfFireSize { get; private set; } = 10f;
 
     private Image[] images;
     private Coroutine hitMarkRoutine;
@@ -16,18 +16,22 @@ public class Crosshair : CanvasUI {
     }
 
     private void Update() {
-        if (this.cornOfFireIndicator == null) {
+        if (this.coneOfFireIndicator == null) {
             return;
         }
-        float size = this.cornOfFireIndicator.sizeDelta.x;
-        if (size == this.extent) {
+        float size = this.coneOfFireIndicator.sizeDelta.x;
+        if (size == this.ConeOfFireSize) {
             return;
         }
-        if (Mathf.Abs(size - this.extent) < 0.1) {
-            this.cornOfFireIndicator.sizeDelta = new Vector2(this.extent, this.extent);
+        if (Mathf.Abs(size - this.ConeOfFireSize) < 0.1) {
+            this.coneOfFireIndicator.sizeDelta = new Vector2(this.ConeOfFireSize, this.ConeOfFireSize);
             return;
         }
-        this.cornOfFireIndicator.sizeDelta = Vector2.Lerp(this.cornOfFireIndicator.sizeDelta, new Vector2(this.extent, this.extent), Time.deltaTime * 20f);
+        this.coneOfFireIndicator.sizeDelta = Vector2.Lerp(this.coneOfFireIndicator.sizeDelta, new Vector2(this.ConeOfFireSize, this.ConeOfFireSize), Time.deltaTime * 20f);
+    }
+
+    public void UpdateConeOfFire(BulletSpread spread) {
+        this.ConeOfFireSize = spread.RadiusInScreen * 2f;
     }
 
     public void ShowHitMark(float duration = 1f) {

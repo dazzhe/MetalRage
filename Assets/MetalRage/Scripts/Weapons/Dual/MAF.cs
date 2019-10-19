@@ -6,6 +6,8 @@ public class MAF : Weapon {
     private AudioClip shieldOpenClip;
     [SerializeField]
     private AudioClip shieldCloseClip;
+    [SerializeField]
+    private Transform shotOrigin;
 
     private bool isOpen = false;
     private WeaponRay wr;
@@ -60,45 +62,45 @@ public class MAF : Weapon {
         this.Ammo.ReserveBulletCount = 900;
         this.Ammo.Reload();
         this.param.damage = 13;
-        this.param.recoilY = 0f;
-        this.param.minDispersion = 0f;
-        this.param.dispersionGrow = 0f;
-        this.param.maxrange = 25;
+        this.param.recoil = Vector2.zero;
+        this.Spread.MinAngle = 0f;
+        this.Spread.GrowRate = 0f;
+        this.ray = new WeaponRay(Camera.main, this.shotOrigin, 25f);
         this.param.reloadTime = 1.5f;
-        this.param.interval = 0.06f;
-        this.wr = this.gameObject.AddComponent<WeaponRay>();
-        this.wr.param = this.param;
-        this.wr.component = this.component;
-        Init();
+        this.param.coolDownTime = 0.06f;
+        Initialize();
         this.sightAnimator = this.Crosshair.GetComponent<Animator>();
     }
 
     private void Update() {
         StartCoroutine(ShotControl());
-        if (this.component.wcontrol.inputShot2) {
-            this.component.myPV.RPC("Shield", PhotonTargets.AllBuffered);
+        if (this.robot.inputShot2) {
+            this.photonView.RPC("Shield", PhotonTargets.AllBuffered);
         }
     }
 
     protected IEnumerator ShotControl() {
-        var canShot = !this.Ammo.IsMagazineEmpty && !this.param.cooldown && this.isOpen && !this.param.isReloading;
-        if (this.component.wcontrol.inputShot1 && canShot) {
+        var canShot = !this.Ammo.IsMagazineEmpty && !this.param.isCoolDown && this.isOpen && !this.param.isReloading;
+        if (this.robot.inputShot1 && canShot) {
             this.sightAnimator.SetBool("rotate", true);
-            this.wr.RayShot();
-            RecoilAndDisperse();
+            var hit = this.ray.Raycast(Vector2.zero);
+            if (GameManager.IsEnemy(hit.collider)) {
+                hit.collider.GetComponent<Hit>().TakeDamage(this.param.damage, this.unitMotor.name);
+            }
+            RecoilAndSpread();
             ConsumeBullets(2);
-            this.component.myPV.RPC("MakeShots", PhotonTargets.All);
-            this.param.cooldown = true;
-            yield return new WaitForSeconds(this.param.interval);
-            this.param.cooldown = false;
-        } else if (this.component.wcontrol.inputShot1 != true) {
+            this.photonView.RPC("MakeShots", PhotonTargets.All);
+            this.param.isCoolDown = true;
+            yield return new WaitForSeconds(this.param.coolDownTime);
+            this.param.isCoolDown = false;
+        } else if (this.robot.inputShot1 != true) {
             this.sightAnimator.SetBool("rotate", false);
         }
     }
 
     public override void Unselect() {
         if (!this.isOpen) {
-            this.component.myPV.RPC("Shield", PhotonTargets.AllBuffered);
+            this.photonView.RPC("Shield", PhotonTargets.AllBuffered);
         }
 
         base.Unselect();
