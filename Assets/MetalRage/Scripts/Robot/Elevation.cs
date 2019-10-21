@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class Elevation : MonoBehaviour {
     public GameObject unit;
-    private Robot weaponControl;
+    private Robot robot;
 
     private void Start() {
-        this.weaponControl = this.unit.GetComponent<Robot>();
+        this.robot = this.unit.GetComponent<Robot>();
     }
 
     private void Update() {
-        this.transform.localEulerAngles = new Vector3(-this.weaponControl.RotationY, this.weaponControl.RecoilRotation.x, 0);
+        this.transform.localEulerAngles = new Vector3(-this.robot.RotationY, this.robot.RecoilRotation.x, 0);
     }
 }

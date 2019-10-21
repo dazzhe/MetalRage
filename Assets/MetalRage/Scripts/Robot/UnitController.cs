@@ -7,7 +7,7 @@ public class UnitController : MonoBehaviour {
     private Status stat;
     private int killStreakCount;
 
-    private void Start() {
+    private void Awake() {
         this.robot = GetComponent<Robot>();
         this.motor = GetComponent<UnitMotor>();
         this.stat = GetComponent<Status>();

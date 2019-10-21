@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 11406644}
   - component: {fileID: 11406646}
   - component: {fileID: 11406648}
-  - component: {fileID: 11406650}
   - component: {fileID: 11406652}
   - component: {fileID: 11406654}
   - component: {fileID: 11406656}
@@ -112,7 +111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraOffset: {x: 0, y: 0, z: 0}
-  mainWeaponTransform: {fileID: 487872}
+  target: {fileID: 0}
+  leanLength: 5
 --- !u!114 &11406648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,18 +123,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab0909a2fe9301f44ad943e05466f80c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11406650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 106658}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40f1960bab3c27044986562b22f82c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11406652
@@ -642,10 +630,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9797cff06532b774dab3a53cf5258883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunsightPrefab: {fileID: 0}
+  crosshairPrefab: {fileID: 0}
   ammo:
     magazineSize: 0
     reserveBulletCount: 0
+  spread:
+    minAngle: 0
+    maxAngle: 10
+    growRate: 0.3
+  setupClip: {fileID: 0}
+  reloadClip: {fileID: 0}
   repairClip: {fileID: 8300000, guid: 62370a1184be6f348b8c6cd5a1fd318d, type: 3}
 --- !u!82 &63127937931919615
 AudioSource:
@@ -1250,6 +1244,11 @@ PrefabInstance:
         type: 3}
       propertyPath: ObservedComponents.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3042039756617026377, guid: d68e573de8c2a034a952c2db902643ce,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d68e573de8c2a034a952c2db902643ce, type: 3}

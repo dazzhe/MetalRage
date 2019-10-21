@@ -16,13 +16,10 @@ public class FollowingCamera : MonoBehaviour {
     private float leanLength = 5f;
 
     private new Camera camera;
-
     private CameraLeanType currentLeanType = CameraLeanType.None;
     private Vector3 leanOffset;
     private Vector3 leanDirection;
-
-    private Vector3 baseLocalPosition;
-    private Vector3 localPosition;
+    private Vector3 basePosition;
 
     private bool IsTargetMoving {
         get {
@@ -33,8 +30,8 @@ public class FollowingCamera : MonoBehaviour {
 
     private Vector3 OffsetByPitch {
         get {
-            var offsetLength = -5.5f + 4f * Mathf.Abs(GetComponent<WeaponControl>().RotationY) / 60f;
-            return offsetLength * this.target.transform.forward;
+            var offsetLength = -5.5f + 4f * Mathf.Abs(GetComponent<Robot>().RotationY) / 60f;
+            return offsetLength * Vector3.forward;
         }
     }
 
@@ -54,22 +51,40 @@ public class FollowingCamera : MonoBehaviour {
         }
     }
     
-    private void LateUpdate() {
-        this.baseLocalPosition = this.cameraOffset + this.target.position + this.OffsetByPitch;
+    private void Update() {
+        this.basePosition = this.target.TransformPoint(this.cameraOffset + this.OffsetByPitch);
+        this.basePosition = AvoidWallPenetration(this.basePosition);
         SetLeanType();
+        UpdateByTargetRotation();
         if (this.currentLeanType == CameraLeanType.None) {
             Follow();
         } else {
             this.leanOffset = Vector3.Lerp(this.leanOffset, this.leanLength * this.leanDirection, 0.2f);
-            this.localPosition = this.baseLocalPosition + this.leanOffset;
+            this.camera.transform.position = this.basePosition + this.leanOffset;
         }
-        // Collision Check
-        var cameraPositionFromTarget = this.localPosition - this.target.position;
-        if (Physics.Raycast(this.target.position, cameraPositionFromTarget, out RaycastHit hit, cameraPositionFromTarget.magnitude + 0.03f)) {
-            this.localPosition = hit.point;
-        }
+        this.camera.transform.position = AvoidWallPenetration(this.camera.transform.position);
+    }
+
+    // Converts position for avoiding penetration into walls.
+    private Vector3 AvoidWallPenetration(Vector3 position) {
+        var positionFromTarget = position - this.target.position;
+        var layerMask = ~LayerMask.NameToLayer("Player");
+        var isRayHit =
+            Physics.Raycast(this.target.position, positionFromTarget,
+            out RaycastHit hit, positionFromTarget.magnitude + 0.04f,
+            layerMask, QueryTriggerInteraction.Ignore);
+        return isRayHit
+             ? hit.point - positionFromTarget.normalized * 0.03f
+             : position;
+    }
+
+    private void UpdateByTargetRotation() {
+        // Camera rotates around the target by the same amount as rotation of the target from the last frame.
+        var rotationDiff = this.target.transform.rotation * Quaternion.Inverse(this.camera.transform.rotation);
+        var localPosition = this.target.InverseTransformPoint(this.camera.transform.position);
+        var updatedLocalPosition = rotationDiff * localPosition;
+        this.camera.transform.position = this.target.TransformPoint(updatedLocalPosition);
         this.camera.transform.rotation = this.target.rotation;
-        this.camera.transform.position = this.target.TransformPoint(this.localPosition);
     }
 
     private void SetLeanType() {
@@ -109,8 +124,10 @@ public class FollowingCamera : MonoBehaviour {
     }
 
     private void Follow() {
-        this.localPosition.x = Mathf.Lerp(this.localPosition.x, this.baseLocalPosition.x, 7f * Time.deltaTime);
-        this.localPosition.y = Mathf.Lerp(this.localPosition.y, this.baseLocalPosition.y, 20f * Time.deltaTime);
-        this.localPosition.z = Mathf.Lerp(this.localPosition.z, this.baseLocalPosition.z, 20f * Time.deltaTime);
+        var cameraPosition = this.camera.transform.position;
+        cameraPosition.x = Mathf.Lerp(cameraPosition.x, this.basePosition.x, 7f * Time.deltaTime);
+        cameraPosition.y = Mathf.Lerp(cameraPosition.y, this.basePosition.y, 20f * Time.deltaTime);
+        cameraPosition.z = Mathf.Lerp(cameraPosition.z, this.basePosition.z, 20f * Time.deltaTime);
+        this.camera.transform.position = cameraPosition;
     }
 }

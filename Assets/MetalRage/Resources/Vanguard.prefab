@@ -303,11 +303,11 @@ GameObject:
   - component: {fileID: 11400002}
   - component: {fileID: 11400004}
   - component: {fileID: 11400016}
-  - component: {fileID: 11400000}
   - component: {fileID: 11400018}
   - component: {fileID: 11400028}
   - component: {fileID: 11400030}
   - component: {fileID: 11450782}
+  - component: {fileID: 2343214920413522929}
   m_Layer: 0
   m_Name: Vanguard
   m_TagString: Player
@@ -401,7 +401,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraOffset: {x: 0, y: 0, z: 0}
-  mainWeaponTransform: {fileID: 400042}
+  target: {fileID: 400042}
+  leanLength: 5
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,18 +413,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab0909a2fe9301f44ad943e05466f80c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100030}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40f1960bab3c27044986562b22f82c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11400018
@@ -489,6 +478,18 @@ MonoBehaviour:
   team: 0
   playerName: 
   playerID: 0
+--- !u!114 &2343214920413522929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89193effd552b394da01ef6b2cc647c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &100042
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,10 +1148,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2279bfa6f0bf67146a4c081bc3d641f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunsightPrefab: {fileID: 188718, guid: 5b4ac0b6943f0bd45a0e172c662207b6, type: 3}
+  crosshairPrefab: {fileID: 0}
   ammo:
     magazineSize: 0
     reserveBulletCount: 0
+  spread:
+    minAngle: 0
+    maxAngle: 10
+    growRate: 0.3
+  setupClip: {fileID: 0}
+  reloadClip: {fileID: 0}
+  shotOrigin: {fileID: 0}
 --- !u!82 &8210826
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1783,7 +1791,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7074195453655544076, guid: 512f1bbba55dd9c47bd53692809649d0,
+    - target: {fileID: 4079934904822139888, guid: 512f1bbba55dd9c47bd53692809649d0,
         type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
       value: 50
@@ -1793,7 +1801,7 @@ PrefabInstance:
       propertyPath: EmissionModule.rateOverTime.scalar
       value: 50
       objectReference: {fileID: 0}
-    - target: {fileID: 4079934904822139888, guid: 512f1bbba55dd9c47bd53692809649d0,
+    - target: {fileID: 7074195453655544076, guid: 512f1bbba55dd9c47bd53692809649d0,
         type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
       value: 50
@@ -1884,6 +1892,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3042039756617026377, guid: d68e573de8c2a034a952c2db902643ce,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d68e573de8c2a034a952c2db902643ce, type: 3}
@@ -1979,6 +1992,11 @@ PrefabInstance:
         type: 3}
       propertyPath: ObservedComponents.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3042039756617026377, guid: d68e573de8c2a034a952c2db902643ce,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d68e573de8c2a034a952c2db902643ce, type: 3}

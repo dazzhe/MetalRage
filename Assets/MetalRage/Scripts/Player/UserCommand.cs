@@ -8,7 +8,7 @@ public enum Button : byte {
     LeftWeapon = 1 << 4,
 }
 
-public class PlayerInput : Photon.MonoBehaviour, IPunObservable {
+public class UserCommand : Photon.MonoBehaviour, IPunObservable {
     private bool IsControllable => UIManager.Instance.MenuUI.ActiveWindowLevel == 0;
 
     public bool SelectMainWeapon {
@@ -16,6 +16,7 @@ public class PlayerInput : Photon.MonoBehaviour, IPunObservable {
             return this.IsControllable && Input.GetButtonDown("MainWeapon");
         }
     }
+
     public bool SelectLeftWeapon => this.IsControllable && Input.GetButtonDown("LeftWeapon");
     public bool SelectRightWeapon => this.IsControllable && Input.GetButtonDown("RightWeapon");
     public bool Reload => this.IsControllable && Input.GetButtonDown("Reload");
@@ -34,7 +35,7 @@ public class PlayerInput : Photon.MonoBehaviour, IPunObservable {
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         if (stream.isWriting) {
-            stream.SendNext()
+            //stream.SendNext()
         }
         if (stream.isReading) {
 

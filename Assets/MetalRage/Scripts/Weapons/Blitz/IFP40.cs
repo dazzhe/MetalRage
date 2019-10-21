@@ -34,7 +34,7 @@ public class IFP40 : Weapon {
 
     protected IEnumerator ShotControl() {
         var canShot = !this.Ammo.IsMagazineEmpty && !this.param.isCoolDown && !this.param.isReloading;
-        if (this.robot.inputShot1 && canShot) {
+        if (this.robot.UserCommand.Fire1 && canShot) {
             var hit = this.ray.Raycast(this.Spread.GetSampleInScreen(this.unitMotor.characterState));
             RecoilAndSpread();
             ConsumeBullets(2);
@@ -49,10 +49,10 @@ public class IFP40 : Weapon {
     private void LateUpdate() {
         if (this.photonView.isMine) {
             StartCoroutine(ShotControl());
-            if (this.robot.inputReload && this.Ammo.CanReload && !this.param.isReloading) {
+            if (this.robot.UserCommand.Reload && this.Ammo.CanReload && !this.param.isReloading) {
                 StartCoroutine(ReloadRoutine());
             }
-            if (this.robot.inputShot2) {
+            if (this.robot.UserCommand.Fire1) {
                 if (this.zoom.isZoomed) {
                     ZoomOut();
                 } else {
