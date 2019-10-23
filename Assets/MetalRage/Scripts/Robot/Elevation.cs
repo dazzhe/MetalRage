@@ -1,11 +1,12 @@
 using UnityEngine;
 
 public class Elevation : MonoBehaviour {
-    public GameObject unit;
+    [SerializeField]
+    private GameObject root;
     private Robot robot;
 
-    private void Start() {
-        this.robot = this.unit.GetComponent<Robot>();
+    private void Awake() {
+        this.robot = this.root.GetComponent<Robot>();
     }
 
     private void Update() {
