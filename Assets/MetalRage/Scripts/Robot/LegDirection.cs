@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class LegDirection : MonoBehaviour {
     [SerializeField]
-    private GameObject unit;
+    private GameObject unit = default;
 
     private UnitMotor motor;
 

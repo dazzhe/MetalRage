@@ -3,7 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public class SpawnArea {
     [SerializeField]
-    private BoxCollider collider;
+    private BoxCollider collider = default;
 
     public Vector3 Center
         => this.collider.transform.position + this.collider.transform.rotation * this.collider.center;

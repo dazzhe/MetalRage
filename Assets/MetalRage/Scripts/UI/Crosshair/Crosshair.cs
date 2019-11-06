@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Crosshair : CanvasUI {
     [SerializeField]
-    private RectTransform coneOfFireIndicator;
+    private RectTransform coneOfFireIndicator = default;
 
     public float ConeOfFireSize { get; private set; } = 10f;
 

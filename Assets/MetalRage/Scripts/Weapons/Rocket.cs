@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour {
     [SerializeField]
-    private GameObject explosionPrefab;
+    private GameObject explosionPrefab = default;
 
     private float maxSpeed = 200f;
     private float currentSpeed = 0f;

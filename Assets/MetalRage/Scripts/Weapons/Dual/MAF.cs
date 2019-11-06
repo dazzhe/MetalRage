@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class MAF : Weapon {
     [SerializeField]
-    private AudioClip shieldOpenClip;
+    private AudioClip shieldOpenClip = default;
     [SerializeField]
-    private AudioClip shieldCloseClip;
+    private AudioClip shieldCloseClip = default;
     [SerializeField]
-    private Transform shotOrigin;
+    private Transform shotOrigin = default;
 
     private bool isOpen = false;
     private WeaponRay wr;

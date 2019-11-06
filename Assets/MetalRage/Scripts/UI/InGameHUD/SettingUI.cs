@@ -3,17 +3,17 @@ using UnityEngine.UI;
 
 public class SettingUI : MonoBehaviour {
     [SerializeField]
-    private Slider sensitivitySlider;
+    private Slider sensitivitySlider = default;
     [SerializeField]
-    private Slider volumeSlider;
+    private Slider volumeSlider = default;
     [SerializeField]
-    private Slider qualitySlider;
+    private Slider qualitySlider = default;
     [SerializeField]
-    private Text sensitivityValue;
+    private Text sensitivityValue = default;
     [SerializeField]
-    private Text volumeValue;
+    private Text volumeValue = default;
     [SerializeField]
-    private Text qualityValue;
+    private Text qualityValue = default;
 
     private void Start() {
         InitializeSensitivity();

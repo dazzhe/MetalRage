@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
     [SerializeField]
-    private GameObject impactPrefab;
+    private GameObject impactPrefab = default;
     [SerializeField]
-    private GameObject impactOnEnemyPrefab;
+    private GameObject impactOnEnemyPrefab = default;
     [SerializeField]
-    private int damage;
+    private int damage = 0;
     [SerializeField]
     private float speed = 100f;
     [SerializeField]

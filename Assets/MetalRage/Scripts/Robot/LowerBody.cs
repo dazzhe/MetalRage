@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class LowerBody : MonoBehaviour {
     [SerializeField]
-    private GameObject unit;
+    private GameObject unit = default;
     private UnitMotor motor;
 
     private Animator animator;

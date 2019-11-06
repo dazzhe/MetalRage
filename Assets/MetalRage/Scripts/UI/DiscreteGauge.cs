@@ -11,11 +11,11 @@ public class DiscreteGauge : Image {
     //private Image image;
     [Range(1, 100)]
     [SerializeField]
-    private int maxStepCount;
+    private int maxStepCount = 1;
     [SerializeField]
     private StepMode mode = StepMode.Constant;
     [SerializeField]
-    private float[] fillRatios;
+    private float[] fillRatios = default;
     [SerializeField]
     private int stepCount = 0;
 

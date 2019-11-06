@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class UpperBody : MonoBehaviour {
     [SerializeField]
-    private GameObject lowerBody;
+    private GameObject lowerBody = default;
 
     private Vector3 offset;
 

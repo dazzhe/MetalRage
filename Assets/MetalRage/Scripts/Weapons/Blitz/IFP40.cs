@@ -7,7 +7,7 @@ public class IFP40 : Weapon {
     private Transform shotOrigin = default;
 
     private GameObject zoomCamera;
-    private WeaponZoom zoom;
+    private WeaponZoom zoom = new WeaponZoom();
 
     private void Awake() {
         this.Ammo.ReserveBulletCount = 82;

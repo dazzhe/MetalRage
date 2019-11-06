@@ -2,10 +2,10 @@ using System.Collections;
 using UnityEngine;
 
 public class Firearm : Weapon {
-    private WeaponZoom zoom;
+    private WeaponZoom zoom = new WeaponZoom();
 
     [SerializeField]
-    private Transform shotOrigin;
+    private Transform shotOrigin = default;
 
     private void Awake() {
         this.Ammo.ReserveBulletCount = 1200;

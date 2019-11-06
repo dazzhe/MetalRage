@@ -7,7 +7,7 @@ public class Status : MonoBehaviour {
     [SerializeField]
     private float armor = 1f;
     [SerializeField]
-    private GameObject explosionPrefab;
+    private GameObject explosionPrefab = default;
 
     public int HP { get; private set; }
     public int MaxHP { get => this.maxHP; set => this.maxHP = value; }

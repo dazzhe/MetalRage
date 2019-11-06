@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class RepairArmReticle : MonoBehaviour {
     [SerializeField]
-    private DiscreteGauge fillGauge;
+    private DiscreteGauge fillGauge = default;
     [SerializeField]
     private GameObject hpIcon = default;
     [SerializeField]

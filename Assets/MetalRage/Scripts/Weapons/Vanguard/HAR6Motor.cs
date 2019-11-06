@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class HAR6Motor : MonoBehaviour {
     [SerializeField]
-    private GameObject bulletPrefab;
+    private GameObject bulletPrefab = default;
 
     private GameObject muzzleFlash;
 

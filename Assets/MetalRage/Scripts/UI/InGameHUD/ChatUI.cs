@@ -6,11 +6,11 @@ using UnityEngine.UI;
 [RequireComponent(typeof(PhotonView))]
 public class ChatUI : Photon.MonoBehaviour {
     [SerializeField]
-    private InputField inputField;
+    private InputField inputField = default;
     [SerializeField]
-    private GameObject chatList;
+    private GameObject chatList = default;
     [SerializeField]
-    private GameObject chatTextPrefab;
+    private GameObject chatTextPrefab = default;
 
     public void Start() {
         if (string.IsNullOrEmpty(PhotonNetwork.playerName)) {
