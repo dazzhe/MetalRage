@@ -3,6 +3,7 @@ using UnityEngine;
 public class Elevation : MonoBehaviour {
     [SerializeField]
     private GameObject root = default;
+
     private Robot robot;
 
     private void Awake() {
