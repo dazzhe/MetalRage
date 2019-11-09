@@ -1,14 +1,50 @@
 fileFormatVersion: 2
-guid: 1cc714dbb1c2f7b40923141658aedda6
+guid: 0064676b966571b4ea2b7c35ad3660e5
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
+    100000: Bone
+    100002: Bone_L
+    100004: Bone_L.001
+    100006: Bone_L.002
+    100008: Bone_L.003
+    100010: Bone_L.003_end
+    100012: Bone_R
+    100014: Bone_R.001
+    100016: Bone_R.002
+    100018: Bone_R.003
+    100020: Bone_R.003_end
+    100022: Head
+    100024: Mesh
+    100026: //RootNode
+    100028: Vanguard
+    400000: Bone
+    400002: Bone_L
+    400004: Bone_L.001
+    400006: Bone_L.002
+    400008: Bone_L.003
+    400010: Bone_L.003_end
+    400012: Bone_R
+    400014: Bone_R.001
+    400016: Bone_R.002
+    400018: Bone_R.003
+    400020: Bone_R.003_end
+    400022: Head
+    400024: Mesh
+    400026: //RootNode
+    400028: Vanguard
     2100000: Material
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Cube
+    4300000: Mesh
+    7400000: Vanguard|Crouch
+    7400002: Vanguard|Fall
+    7400004: Vanguard|Idle
+    7400006: Vanguard|Rise
+    7400008: Vanguard|Walk
+    7400010: Idle
+    7400012: Crouch
+    9500000: //RootNode
+    13700000: Mesh
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -61,8 +97,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -89,7 +125,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
