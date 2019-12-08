@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Vanguard
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Mesh
+    m_Weight: 1
+  - m_Path: Skeleton
+    m_Weight: 0
+  - m_Path: Skeleton/Head
+    m_Weight: 1
+  - m_Path: Skeleton/Head/Hips
+    m_Weight: 1
+  - m_Path: Skeleton/Head/Hips/Bone_L
+    m_Weight: 1
+  - m_Path: Skeleton/Head/Hips/Bone_L/Bone_L.001
+    m_Weight: 1
+  - m_Path: Skeleton/Head/Hips/Bone_L/Bone_L.001/Bone_L.002
+    m_Weight: 1
+  - m_Path: Skeleton/Head/Hips/Bone_L/Bone_L.001/Bone_L.002/Bone_L.003
+    m_Weight: 1
+  - m_Path: Skeleton/Head/Hips/Bone_L/Bone_L.001/Bone_L.002/Bone_L.003/Bone_L.003_end
+    m_Weight: 1
+  - m_Path: Skeleton/Head/Hips/Bone_R
+    m_Weight: 1
+  - m_Path: Skeleton/Head/Hips/Bone_R/Bone_R.001
+    m_Weight: 1
+  - m_Path: Skeleton/Head/Hips/Bone_R/Bone_R.001/Bone_R.002
+    m_Weight: 1
+  - m_Path: Skeleton/Head/Hips/Bone_R/Bone_R.001/Bone_R.002/Bone_R.003
+    m_Weight: 1
+  - m_Path: Skeleton/Head/Hips/Bone_R/Bone_R.001/Bone_R.002/Bone_R.003/Bone_R.003_end
+    m_Weight: 1
+  - m_Path: Skeleton/Head/Shoulder_L
+    m_Weight: 1
+  - m_Path: Skeleton/Head/Shoulder_R
+    m_Weight: 1
+  - m_Path: Skeleton/Head/Weapon_L
+    m_Weight: 1
+  - m_Path: Skeleton/Head/Weapon_R
+    m_Weight: 1

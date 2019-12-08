@@ -37,7 +37,7 @@ public class Firearm : Weapon {
 
     protected IEnumerator ShotControl() {
         if (this.robot.UserCommand.Fire1 && !this.Ammo.IsMagazineEmpty && !this.param.isCoolDown && !this.param.isReloading) {
-            var hit = this.ray.Raycast(this.Spread.GetSampleInScreen(this.unitMotor.characterState));
+            var hit = this.ray.Raycast(this.Spread.GetSampleInScreen(this.unitMotor.locoState));
             RecoilAndSpread();
             ConsumeBullets(2);
             this.photonView.RPC("MakeShots", PhotonTargets.All, hit.point);
