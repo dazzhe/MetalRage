@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class Robot : MonoBehaviour {
-    private Weapon[] weapons = new Weapon[3];
+public class Mech : MonoBehaviour {
+    [SerializeField]
+    private GameObject playerCameraPrefab;
 
     public GameObject TargetObject { get; set; }
     public bool IsRecoiling { get; set; }
@@ -10,24 +11,22 @@ public class Robot : MonoBehaviour {
     public Vector2 RecoilRotation { get; set; }
     public float DispersionRate { get; set; }
     public float Dispersion { get; set; }
+    public PlayerCamera PlayerCamera { get; set; }
 
     public Vector3 Center { get => new Vector3(Screen.width / 2, Screen.height / 2, 0); }
-    public float SensitivityScale => this.weapons[this.selecedWeaponIndex].SensitivityScale;
+    public float SensitivityScale => 1f; //this.weapons[this.selecedWeaponIndex].SensitivityScale;
     public bool HideEnemyName { get; set; } = false;
 
     private int selecedWeaponIndex = 0;  //0 = Main, 1 = Right, 2 = Left
     private RangeFloat elevationRange = new RangeFloat(-60f, 60f);
     private float recoilFixSpeed = 25f;
 
-    private void Start() {
-        this.weapons[0] = this.transform.Find("Offset/MainWeapon").GetComponentInChildren<Weapon>();
-        this.weapons[1] = this.transform.Find("Offset/RightWeapon").GetComponentInChildren<Weapon>();
-        this.weapons[2] = this.transform.Find("Offset/LeftWeapon").GetComponentInChildren<Weapon>();
-        this.weapons[0].Select();
+    private void Awake() {
+        this.PlayerCamera = Instantiate(this.playerCameraPrefab).GetComponent<PlayerCamera>();
+        this.PlayerCamera.Target = this.transform;
     }
 
     private void Update() {
-        UIManager.Instance.AmmoUI.UpdateUI(this.weapons[this.selecedWeaponIndex].Ammo);
         if (UIManager.Instance.MenuUI.ActiveWindowLevel == 0) {
             WeaponSelect();
             Elevation();
@@ -39,21 +38,21 @@ public class Robot : MonoBehaviour {
     }
 
     private void WeaponSelect() {
-        if (Input.GetButtonDown("MainWeapon") && this.selecedWeaponIndex != 0) {
-            this.weapons[this.selecedWeaponIndex].Unselect();
-            this.weapons[0].Select();
-            this.selecedWeaponIndex = 0;
-        }
-        if (Input.GetButtonDown("RightWeapon") && this.selecedWeaponIndex != 1) {
-            this.weapons[this.selecedWeaponIndex].Unselect();
-            this.weapons[1].Select();
-            this.selecedWeaponIndex = 1;
-        }
-        if (Input.GetButtonDown("LeftWeapon") && this.selecedWeaponIndex != 2) {
-            this.weapons[this.selecedWeaponIndex].Unselect();
-            this.weapons[2].Select();
-            this.selecedWeaponIndex = 2;
-        }
+        //if (Input.GetButtonDown("MainWeapon") && this.selecedWeaponIndex != 0) {
+        //    this.weapons[this.selecedWeaponIndex].Unselect();
+        //    this.weapons[0].Select();
+        //    this.selecedWeaponIndex = 0;
+        //}
+        //if (Input.GetButtonDown("RightWeapon") && this.selecedWeaponIndex != 1) {
+        //    this.weapons[this.selecedWeaponIndex].Unselect();
+        //    this.weapons[1].Select();
+        //    this.selecedWeaponIndex = 1;
+        //}
+        //if (Input.GetButtonDown("LeftWeapon") && this.selecedWeaponIndex != 2) {
+        //    this.weapons[this.selecedWeaponIndex].Unselect();
+        //    this.weapons[2].Select();
+        //    this.selecedWeaponIndex = 2;
+        //}
     }
 
     private void Elevation() {
@@ -95,7 +94,7 @@ public class Robot : MonoBehaviour {
     }
 
     public void HitMark() {
-        this.weapons[this.selecedWeaponIndex].Crosshair.ShowHitMark(0.5f);
+        //this.weapons[this.selecedWeaponIndex].Crosshair.ShowHitMark(0.5f);
     }
 
     private void OnDestroy() {

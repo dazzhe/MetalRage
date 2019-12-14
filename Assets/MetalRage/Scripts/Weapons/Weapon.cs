@@ -30,11 +30,11 @@ public abstract class Weapon : MonoBehaviour {
     protected Parameters param = new Parameters();
     protected WeaponRay ray;
     protected PhotonView photonView;
-    protected Robot robot;
+    protected Mech robot;
     protected UnitMotor unitMotor;
     protected new AudioSource audio;
 
-    public Robot Robot { get; set; }
+    public Mech Robot { get; set; }
     public Crosshair Crosshair { get; protected set; }
     public Ammo Ammo => this.ammo;
     public BulletSpread Spread => this.spread;
@@ -48,7 +48,7 @@ public abstract class Weapon : MonoBehaviour {
 
     protected void Initialize() {
         this.photonView = this.Robot.GetComponent<PhotonView>();
-        this.robot = this.Robot.GetComponent<Robot>();
+        this.robot = this.Robot.GetComponent<Mech>();
         this.unitMotor = this.Robot.GetComponent<UnitMotor>();
         this.audio = GetComponent<AudioSource>();
         if (this.photonView.isMine && this.crosshairPrefab != null) {

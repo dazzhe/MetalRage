@@ -45,7 +45,7 @@ public class RepairArm : Weapon {
         } else {
             UIManager.Instance.StatusUI.TargetingFriend = null;
         }
-        SetRepairingState(this.robot.UserCommand.Fire1);
+        SetRepairingState(InputSystem.GetButton(MechCommandButton.Fire1));
     }
 
     private void SetRepairingState(bool value) {

@@ -50,7 +50,7 @@ public class Bullet : MonoBehaviour {
                 if (hasCollidedToRobot) {
                     Instantiate(this.impactOnEnemyPrefab, hitInfo.point, this.transform.rotation);
                     if (this.damage > 0 && this.photonView.isMine) {
-                        this.Owner.GetComponent<Robot>().HitMark();
+                        this.Owner.GetComponent<Mech>().HitMark();
                         var attackerID = this.Owner.GetComponent<FriendOrEnemy>().name;
                         hitInfo.collider.gameObject.GetComponent<Status>().ReduceHP(this.damage, attackerID);
                     }

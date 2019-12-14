@@ -17,7 +17,7 @@ public class AMRLJ : Weapon {
     }
 
     private void LateUpdate() {
-        if (this.robot.UserCommand.Fire1 && !this.Ammo.IsMagazineEmpty && !this.param.isCoolDown) {
+        if (InputSystem.GetButton(MechCommandButton.Fire1) && !this.Ammo.IsMagazineEmpty && !this.param.isCoolDown) {
             StartCoroutine(Shot());
         }
         this.Crosshair.UpdateConeOfFire(this.Spread);

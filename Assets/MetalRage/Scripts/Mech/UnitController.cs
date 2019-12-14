@@ -2,13 +2,13 @@ using System.Linq;
 using UnityEngine;
 
 public class UnitController : MonoBehaviour {
-    private Robot robot;
+    private Mech robot;
     private UnitMotor motor;
     private Status stat;
     private int killStreakCount;
 
     private void Awake() {
-        this.robot = GetComponent<Robot>();
+        this.robot = GetComponent<Mech>();
         this.motor = GetComponent<UnitMotor>();
         this.stat = GetComponent<Status>();
     }

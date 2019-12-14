@@ -6,7 +6,7 @@ public enum CameraLeanMode {
     None
 }
 
-public class FollowingCamera : MonoBehaviour {
+public class PlayerCamera : MonoBehaviour {
     [SerializeField]
     private Vector3 baseCameraOffset = new Vector3(0f, 0.5f, -5.5f);
     [SerializeField]
@@ -21,20 +21,22 @@ public class FollowingCamera : MonoBehaviour {
 
     private bool IsTargetMoving {
         get {
-            var motor = GetComponent<UnitMotor>();
-            return motor.MoveDirection.x != 0 || motor.MoveDirection.z != 0 || motor.MoveDirection.y != 0;
+            return false;
+            //return motor.MoveDirection.x != 0 || motor.MoveDirection.z != 0 || motor.MoveDirection.y != 0;
         }
     }
 
     private Vector3 OffsetByPitch {
         get {
-            var offsetLength =  Mathf.Abs(GetComponent<Robot>().RotationY) / 15f;
+            var offsetLength =  Mathf.Abs(this.transform.localEulerAngles.x) / 15f;
             return offsetLength * Vector3.forward;
         }
     }
 
     private bool IsRightLeanTriggered => Input.GetButtonDown("right lean");
     private bool IsLeftLeanTriggered => Input.GetButtonDown("left lean");
+
+    public Transform Target { get => this.target; set => this.target = value; }
 
     private void Awake() {
         this.currentLeanMode = CameraLeanMode.None;
@@ -54,23 +56,23 @@ public class FollowingCamera : MonoBehaviour {
         SetLeanType();
         UpdateByTargetRotation();
         if (this.currentLeanMode == CameraLeanMode.None) {
-            var desiredCameraPosition = AvoidWallPenetration(this.target.TransformPoint(cameraOffset));
+            var desiredCameraPosition = AvoidWallPenetration(this.Target.TransformPoint(cameraOffset));
             Follow(desiredCameraPosition);
         } else {
             var leanDirection = this.currentLeanMode == CameraLeanMode.Left ? Vector3.left : Vector3.right;
             var leanOffset = this.leanLength * leanDirection;
             this.currentLeanOffset = Vector3.Lerp(this.currentLeanOffset, leanOffset, 30f * Time.deltaTime);
-            this.camera.transform.position = this.target.TransformPoint(cameraOffset + this.currentLeanOffset);
+            this.camera.transform.position = this.Target.TransformPoint(cameraOffset + this.currentLeanOffset);
         }
         this.camera.transform.position = AvoidWallPenetration(this.camera.transform.position);
     }
 
     // Converts position for avoiding penetration into walls.
     private Vector3 AvoidWallPenetration(Vector3 position) {
-        var positionFromTarget = position - this.target.position;
+        var positionFromTarget = position - this.Target.position;
         var layerMask = ~LayerMask.NameToLayer("Player");
         var isRayHit =
-            Physics.Raycast(this.target.position, positionFromTarget,
+            Physics.Raycast(this.Target.position, positionFromTarget,
             out RaycastHit hit, positionFromTarget.magnitude + 0.04f,
             layerMask, QueryTriggerInteraction.Ignore);
         return isRayHit
@@ -80,11 +82,11 @@ public class FollowingCamera : MonoBehaviour {
 
     private void UpdateByTargetRotation() {
         // Camera rotates around the target by the same amount as rotation of the target from the last frame.
-        var rotationDiff = this.target.transform.rotation * Quaternion.Inverse(this.camera.transform.rotation);
-        var localPosition = this.target.InverseTransformPoint(this.camera.transform.position);
+        var rotationDiff = this.Target.transform.rotation * Quaternion.Inverse(this.camera.transform.rotation);
+        var localPosition = this.Target.InverseTransformPoint(this.camera.transform.position);
         var updatedLocalPosition = rotationDiff * localPosition;
-        this.camera.transform.position = this.target.TransformPoint(updatedLocalPosition);
-        this.camera.transform.rotation = this.target.rotation;
+        this.camera.transform.position = this.Target.TransformPoint(updatedLocalPosition);
+        this.camera.transform.rotation = this.Target.rotation;
     }
 
     private void SetLeanType() {

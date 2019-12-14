@@ -4,10 +4,10 @@ public class Elevation : MonoBehaviour {
     [SerializeField]
     private GameObject root = default;
 
-    private Robot robot;
+    private Mech robot;
 
     private void Awake() {
-        this.robot = this.root.GetComponent<Robot>();
+        this.robot = this.root.GetComponent<Mech>();
     }
 
     private void Update() {

@@ -24,11 +24,11 @@ public class Firearm : Weapon {
 
     private void LateUpdate() {
         StartCoroutine(ShotControl());
-        if (this.robot.UserCommand.Reload && this.Ammo.CanReload && !this.param.isReloading) {
+        if (InputSystem.GetButtonDown(MechCommandButton.Reload) && this.Ammo.CanReload && !this.param.isReloading) {
             this.zoom.ZoomOut();
             StartCoroutine(ReloadRoutine());
         }
-        if (this.robot.UserCommand.Fire2) {
+        if (InputSystem.GetButtonDown(MechCommandButton.Fire2)) {
             this.zoom.Toggle();
             this.SensitivityScale = this.zoom.isZoomed ? this.zoom.sensitivityScale : 1f;
         }
@@ -36,7 +36,7 @@ public class Firearm : Weapon {
     }
 
     protected IEnumerator ShotControl() {
-        if (this.robot.UserCommand.Fire1 && !this.Ammo.IsMagazineEmpty && !this.param.isCoolDown && !this.param.isReloading) {
+        if (InputSystem.GetButton(MechCommandButton.Fire1) && !this.Ammo.IsMagazineEmpty && !this.param.isCoolDown && !this.param.isReloading) {
             var hit = this.ray.Raycast(this.Spread.GetSampleInScreen(this.unitMotor.locoState));
             RecoilAndSpread();
             ConsumeBullets(2);

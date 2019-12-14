@@ -27,8 +27,8 @@ public class GameManager : SingletonBehaviour<GameManager> {
         playerObj.SetLayerRecursively(8);
         playerObj.GetComponent<UnitController>().enabled = true;
         playerObj.GetComponent<UnitMotor>().enabled = true;
-        playerObj.GetComponent<Robot>().enabled = true;
-        playerObj.GetComponent<FollowingCamera>().enabled = true;
+        playerObj.GetComponent<Mech>().enabled = true;
+        playerObj.GetComponent<PlayerCamera>().enabled = true;
     }
 
     public void KillLocalPlayer() {

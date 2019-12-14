@@ -13,7 +13,7 @@ public enum MechLocoState {
 
 public class UnitMotor : MonoBehaviour {
     private CharacterController controller;
-    private Robot robot;
+    private Mech robot;
 
     public bool canBoost = true;
     [SerializeField]
@@ -32,7 +32,6 @@ public class UnitMotor : MonoBehaviour {
     private Vector3 groundNormal;
     private bool canJump = true;
 
-    [System.NonSerialized]
     public MechLocoState locoState;
     public Vector3 MoveDirection;
     private Vector3 boostDirection;
@@ -48,6 +47,10 @@ public class UnitMotor : MonoBehaviour {
 
     private float boostCount;
     private float boostTime = 0.2F;
+
+    private void Awake() {
+        this.robot = GetComponent<Mech>();
+    }
 
     private void Start() {
         StartCoroutine(BoostRegen());
@@ -117,7 +120,7 @@ public class UnitMotor : MonoBehaviour {
         if (this.isGrounded && (this.locoState == MechLocoState.Walking || this.locoState == MechLocoState.Idle)) {
             //まず-1<=x<=1,-1<=y<=1の範囲で動かすことでx,y方向それぞれの.
             //最大速度に対する相対値を計算している.
-            switch (Mathf.RoundToInt(InputSystem.GetMouseX())) {
+            switch (Mathf.RoundToInt(InputSystem.GetHorizontalMotion())) {
                 case 1:
                     this.rawDirection.x += this.accelSpeed;
                     break;
@@ -128,7 +131,7 @@ public class UnitMotor : MonoBehaviour {
                     this.rawDirection.x = Mathf.Lerp(this.rawDirection.x, 0, this.accelSpeed);
                     break;
             }
-            switch (Mathf.RoundToInt(InputSystem.GetMouseY())) {
+            switch (Mathf.RoundToInt(InputSystem.GetVerticalMotion())) {
                 case 1:
                     this.rawDirection.z += this.accelSpeed;
                     break;

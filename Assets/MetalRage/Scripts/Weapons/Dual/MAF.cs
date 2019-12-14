@@ -74,14 +74,14 @@ public class MAF : Weapon {
 
     private void Update() {
         StartCoroutine(ShotControl());
-        if (this.robot.UserCommand.Fire2) {
+        if (InputSystem.GetButtonDown(MechCommandButton.Fire2)) {
             this.photonView.RPC("Shield", PhotonTargets.AllBuffered);
         }
     }
 
     protected IEnumerator ShotControl() {
         var canShot = !this.Ammo.IsMagazineEmpty && !this.param.isCoolDown && this.isOpen && !this.param.isReloading;
-        if (this.robot.UserCommand.Fire1 && canShot) {
+        if (InputSystem.GetButton(MechCommandButton.Fire1) && canShot) {
             this.sightAnimator.SetBool("rotate", true);
             var hit = this.ray.Raycast(Vector2.zero);
             if (GameManager.IsEnemy(hit.collider)) {
@@ -93,7 +93,7 @@ public class MAF : Weapon {
             this.param.isCoolDown = true;
             yield return new WaitForSeconds(this.param.coolDownTime);
             this.param.isCoolDown = false;
-        } else if (this.robot.UserCommand.Fire1 != true) {
+        } else if (InputSystem.GetButton(MechCommandButton.Fire1) != true) {
             this.sightAnimator.SetBool("rotate", false);
         }
     }

@@ -36,6 +36,12 @@ ModelImporter:
     100060: Shoulder_R
     100062: Shoulder_R_end
     100064: Skeleton
+    100066: MainWeapon
+    100068: MainWeapon_end
+    100070: ShoulderWeapon_L
+    100072: ShoulderWeapon_L_end
+    100074: ShoulderWeapon_R
+    100076: ShoulderWeapon_R_end
     400000: Bone
     400002: Bone_L
     400004: Bone_L.001
@@ -69,6 +75,12 @@ ModelImporter:
     400060: Shoulder_R
     400062: Shoulder_R_end
     400064: Skeleton
+    400066: MainWeapon
+    400068: MainWeapon_end
+    400070: ShoulderWeapon_L
+    400072: ShoulderWeapon_L_end
+    400074: ShoulderWeapon_R
+    400076: ShoulderWeapon_R_end
     2100000: Material
     2100002: Material.001
     4300000: Mesh

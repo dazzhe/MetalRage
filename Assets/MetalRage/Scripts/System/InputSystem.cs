@@ -48,10 +48,10 @@ public static class InputSystem {
     }
 
     public static float GetMouseX() {
-        return IsControllable ? Input.GetAxis("MouseX") : 0f;
+        return IsControllable ? Input.GetAxis("Mouse X") : 0f;
     }
 
     public static float GetMouseY() {
-        return IsControllable ? Input.GetAxis("MouseY") : 0f;
+        return IsControllable ? Input.GetAxis("Mouse Y") : 0f;
     }
 }
