@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class Mech : MonoBehaviour {
     [SerializeField]
-    private GameObject playerCameraPrefab;
+    private GameObject playerCameraPrefab = default;
+    [SerializeField]
+    private Transform cameraFollowTarget = default;
 
     public GameObject TargetObject { get; set; }
     public bool IsRecoiling { get; set; }
@@ -23,7 +25,7 @@ public class Mech : MonoBehaviour {
 
     private void Awake() {
         this.PlayerCamera = Instantiate(this.playerCameraPrefab).GetComponent<PlayerCamera>();
-        this.PlayerCamera.Target = this.transform;
+        this.PlayerCamera.Target = this.cameraFollowTarget;
     }
 
     private void Update() {
@@ -59,6 +61,7 @@ public class Mech : MonoBehaviour {
         this.BaseRotationY += Input.GetAxis("Mouse Y") * Configuration.Sensitivity.GetFloat() * this.SensitivityScale;
         this.BaseRotationY = Mathf.Clamp(this.BaseRotationY, this.elevationRange.Min, this.elevationRange.Max);
         this.RotationY = this.BaseRotationY + this.RecoilRotation.y;
+        this.cameraFollowTarget.localRotation = Quaternion.AngleAxis(-this.RotationY, Vector3.right);
     }
 
     private void SuppressRecoil() {

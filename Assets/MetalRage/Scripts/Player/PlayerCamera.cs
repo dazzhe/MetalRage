@@ -6,6 +6,7 @@ public enum CameraLeanMode {
     None
 }
 
+[RequireComponent(typeof(Camera))]
 public class PlayerCamera : MonoBehaviour {
     [SerializeField]
     private Vector3 baseCameraOffset = new Vector3(0f, 0.5f, -5.5f);
@@ -14,6 +15,7 @@ public class PlayerCamera : MonoBehaviour {
     [Min(0f)]
     [SerializeField]
     private float leanLength = 5f;
+    private float offsetDistanceByPitch = 4.7f;
 
     private new Camera camera;
     private CameraLeanMode currentLeanMode = CameraLeanMode.None;
@@ -28,7 +30,7 @@ public class PlayerCamera : MonoBehaviour {
 
     private Vector3 OffsetByPitch {
         get {
-            var offsetLength =  Mathf.Abs(this.transform.localEulerAngles.x) / 15f;
+            var offsetLength =  Mathf.Abs(Mathf.Sin(this.transform.localEulerAngles.x * Mathf.Deg2Rad)) * this.offsetDistanceByPitch;
             return offsetLength * Vector3.forward;
         }
     }
@@ -40,18 +42,10 @@ public class PlayerCamera : MonoBehaviour {
 
     private void Awake() {
         this.currentLeanMode = CameraLeanMode.None;
+        this.camera = GetComponent<Camera>();
     }
 
-    private void OnEnable() {
-        if (this.camera == null && Camera.main != null) {
-            this.camera = Camera.main;
-        }
-        if (this.camera == null) {
-            this.enabled = false;
-        }
-    }
-    
-    private void Update() {
+    private void LateUpdate() {
         var cameraOffset = this.baseCameraOffset + this.OffsetByPitch;
         SetLeanType();
         UpdateByTargetRotation();
@@ -64,17 +58,21 @@ public class PlayerCamera : MonoBehaviour {
             this.currentLeanOffset = Vector3.Lerp(this.currentLeanOffset, leanOffset, 30f * Time.deltaTime);
             this.camera.transform.position = this.Target.TransformPoint(cameraOffset + this.currentLeanOffset);
         }
+        // Double check wall penetration to avoid jittering.
         this.camera.transform.position = AvoidWallPenetration(this.camera.transform.position);
     }
 
     // Converts position for avoiding penetration into walls.
     private Vector3 AvoidWallPenetration(Vector3 position) {
         var positionFromTarget = position - this.Target.position;
-        var layerMask = ~LayerMask.NameToLayer("Player");
+        var layerMask = ~(1 << LayerMask.NameToLayer("Player"));
         var isRayHit =
             Physics.Raycast(this.Target.position, positionFromTarget,
             out RaycastHit hit, positionFromTarget.magnitude + 0.04f,
             layerMask, QueryTriggerInteraction.Ignore);
+        if (isRayHit) {
+            Debug.Log($"{hit.distance}, {hit.collider.gameObject.name}");
+        }
         return isRayHit
              ? hit.point - positionFromTarget.normalized * 0.03f
              : position;

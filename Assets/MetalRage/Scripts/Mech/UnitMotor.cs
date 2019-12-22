@@ -38,6 +38,7 @@ public class UnitMotor : MonoBehaviour {
     private Vector3 accelDirection;
     private Vector3 rawDirection;
     private float gravity = 40.0f;
+    private Animator animator;
 
     //ジャンプしたときの水平方向の初速度.
     private float hJumpSpeed = 20f;
@@ -50,6 +51,7 @@ public class UnitMotor : MonoBehaviour {
 
     private void Awake() {
         this.robot = GetComponent<Mech>();
+        this.animator = GetComponent<Animator>();
     }
 
     private void Start() {
@@ -59,7 +61,7 @@ public class UnitMotor : MonoBehaviour {
         this.lastPosition = this.transform.position;
     }
 
-    private void LateUpdate() {
+    private void Update() {
         Walk();
         Turn();
         Jump();
@@ -76,7 +78,7 @@ public class UnitMotor : MonoBehaviour {
 
     private void LegDirection() {
         var legYaw = 0f;
-        var currentYaw = GetComponent<Animator>().GetFloat("LegYaw");
+        var currentYaw = GetComponent<Animator>().GetFloat("LegOffsetYaw");
         if (this.locoState == MechLocoState.Walking) {
             var h = InputSystem.GetHorizontalMotion();
             var v = InputSystem.GetVerticalMotion();
@@ -89,7 +91,7 @@ public class UnitMotor : MonoBehaviour {
         if (this.locoState == MechLocoState.Boosting) {
             legYaw = 0f;
         }
-        GetComponent<Animator>().SetFloat("LegYaw", legYaw);
+        GetComponent<Animator>().SetFloat("LegOffsetYaw", legYaw);
     }
 
     private void MoveAndPushDown() {
@@ -103,16 +105,17 @@ public class UnitMotor : MonoBehaviour {
         this.groundNormal = Vector3.zero;
         this.controller.Move(currentMovementOffset);
         if (this.isGrounded && !IsGroundedTest()) {
-            this.isGrounded = false;
+            SetIsGrounded(false);
             this.transform.position += pushDownOffset * Vector3.up;
         } else if (!this.isGrounded && IsGroundedTest()) {
-            this.isGrounded = true;
+            SetIsGrounded(true);
         }
     }
 
     private void Turn() {
         var yaw = this.transform.localEulerAngles.y + InputSystem.GetMouseX() * Configuration.Sensitivity.GetFloat() * this.robot.SensitivityScale;
         this.transform.localEulerAngles = new Vector3(0, yaw, 0);
+        this.animator.SetFloat("AimOffsetPitch", this.robot.RotationY);
     }
 
     //入力情報から速度ベクトルを計算する.
@@ -181,6 +184,7 @@ public class UnitMotor : MonoBehaviour {
         if (Mathf.Abs(this.MoveDirection.z) < 0.01) {
             this.MoveDirection.z = 0;
         }
+        this.animator.SetFloat("WalkSpeed", this.MoveDirection.magnitude);
     }
 
     private void Crouch() {
@@ -314,5 +318,10 @@ public class UnitMotor : MonoBehaviour {
             }
             yield return new WaitForSeconds(0.15f);
         }
+    }
+
+    private void SetIsGrounded(bool value) {
+        this.isGrounded = value;
+        this.animator.SetBool("IsGrounded", value);
     }
 }
