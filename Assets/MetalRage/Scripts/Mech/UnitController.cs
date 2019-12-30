@@ -38,9 +38,9 @@ public class UnitController : MonoBehaviour {
         if (GetComponent<PhotonView>().isMine) {
             ScoreboardUI.myEntry.IncrementKill();
             if (++this.killStreakCount > 14) {
-                AudioManager.Instance.PlaySE(13);
+                SoundSystem.Instance.PlaySE(13);
             } else {
-                AudioManager.Instance.PlaySE(this.killStreakCount - 1);
+                SoundSystem.Instance.PlaySE(this.killStreakCount - 1);
             }
         }
     }

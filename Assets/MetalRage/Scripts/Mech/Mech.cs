@@ -65,7 +65,7 @@ public class Mech : MonoBehaviour {
     }
 
     private void SuppressRecoil() {
-        if ((this.RecoilRotation.x == 0f && this.RecoilRotation.y == 0f) || this.IsRecoiling) {
+        if ((Mathf.Abs(this.RecoilRotation.x) < Mathf.Epsilon && Mathf.Abs(this.RecoilRotation.y) < Mathf.Epsilon) || this.IsRecoiling) {
             return;
         }
         var recoilRotation = this.RecoilRotation;
