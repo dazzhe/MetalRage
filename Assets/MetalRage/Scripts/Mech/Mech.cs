@@ -5,6 +5,12 @@ public class Mech : MonoBehaviour {
     private GameObject playerCameraPrefab = default;
     [SerializeField]
     private Transform cameraFollowTarget = default;
+    [SerializeField]
+    private MechStatus mechStatus = default;
+    [SerializeField]
+    private MechMotor mechMotor = default;
+    [SerializeField]
+    private RangeFloat elevationRange = new RangeFloat(-60f, 60f);
 
     public GameObject TargetObject { get; set; }
     public bool IsRecoiling { get; set; }
@@ -18,25 +24,15 @@ public class Mech : MonoBehaviour {
     public Vector3 Center { get => new Vector3(Screen.width / 2, Screen.height / 2, 0); }
     public float SensitivityScale => 1f; //this.weapons[this.selecedWeaponIndex].SensitivityScale;
     public bool HideEnemyName { get; set; } = false;
+    public RangeFloat ElevationRange { get => this.elevationRange; set => this.elevationRange = value; }
+    public Transform CameraFollowTarget { get => this.cameraFollowTarget; set => this.cameraFollowTarget = value; }
 
     private int selecedWeaponIndex = 0;  //0 = Main, 1 = Right, 2 = Left
-    private RangeFloat elevationRange = new RangeFloat(-60f, 60f);
     private float recoilFixSpeed = 25f;
 
     private void Awake() {
         this.PlayerCamera = Instantiate(this.playerCameraPrefab).GetComponent<PlayerCamera>();
-        this.PlayerCamera.Target = this.cameraFollowTarget;
-    }
-
-    private void Update() {
-        if (UIManager.Instance.MenuUI.ActiveWindowLevel == 0) {
-            WeaponSelect();
-            Elevation();
-        }
-        if (!this.HideEnemyName) {
-            SetTarget();
-        }
-        SuppressRecoil();
+        this.PlayerCamera.Target = this.CameraFollowTarget;
     }
 
     private void WeaponSelect() {
@@ -57,13 +53,6 @@ public class Mech : MonoBehaviour {
         //}
     }
 
-    private void Elevation() {
-        this.BaseRotationY += Input.GetAxis("Mouse Y") * Configuration.Sensitivity.GetFloat() * this.SensitivityScale;
-        this.BaseRotationY = Mathf.Clamp(this.BaseRotationY, this.elevationRange.Min, this.elevationRange.Max);
-        this.RotationY = this.BaseRotationY + this.RecoilRotation.y;
-        this.cameraFollowTarget.localRotation = Quaternion.AngleAxis(-this.RotationY, Vector3.right);
-    }
-
     private void SuppressRecoil() {
         if ((Mathf.Abs(this.RecoilRotation.x) < Mathf.Epsilon && Mathf.Abs(this.RecoilRotation.y) < Mathf.Epsilon) || this.IsRecoiling) {
             return;
@@ -79,31 +68,5 @@ public class Mech : MonoBehaviour {
             recoilRotation.x = Mathf.Lerp(this.RecoilRotation.x, 0, 0.1f);
         }
         this.RecoilRotation = recoilRotation;
-    }
-
-    private void SetTarget() {
-        Ray ray = Camera.main.ScreenPointToRay(this.Center);
-        var layerMask = LayerMask.GetMask("Player");
-        layerMask = ~layerMask;
-        if (!Physics.Raycast(ray, out RaycastHit hit, 1000f, layerMask)) {
-            return;
-        }
-        this.TargetObject = hit.collider.gameObject;
-        if (this.TargetObject.layer == LayerMask.NameToLayer("Enemy")) {
-            UIManager.Instance.StatusUI.TargetingEnemyName = this.TargetObject.GetComponentInParent<FriendOrEnemy>().playerName;
-        } else {
-            UIManager.Instance.StatusUI.TargetingEnemyName = "";
-        }
-    }
-
-    public void HitMark() {
-        //this.weapons[this.selecedWeaponIndex].Crosshair.ShowHitMark(0.5f);
-    }
-
-    private void OnDestroy() {
-        if (UIManager.Instance == null) {
-            return;
-        }
-        UIManager.Instance.StatusUI.TargetingEnemyName = "";
     }
 }

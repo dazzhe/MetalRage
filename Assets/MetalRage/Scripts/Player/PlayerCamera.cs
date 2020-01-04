@@ -128,11 +128,11 @@ public class PlayerCamera : MonoBehaviour
         switch (leanType)
         {
             case CameraLeanMode.Left:
-                SoundSystem.Instance.PlayLeanSE();
+                Game.SoundSystem.Play(SoundDefinition.LeanSound);
                 this.currentLeanMode = CameraLeanMode.Left;
                 break;
             case CameraLeanMode.Right:
-                SoundSystem.Instance.PlayLeanSE();
+                Game.SoundSystem.Play(SoundDefinition.LeanSound);
                 this.currentLeanMode = CameraLeanMode.Right;
                 break;
             case CameraLeanMode.None:

@@ -1,58 +1,44 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-[CreateAssetMenu(fileName = "Sound", menuName = "MetalRage/Audio/SoundDef")]
+[CreateAssetMenu(fileName = "Sound", menuName = "MetalRage/Audio/SoundDefinition")]
 public class SoundDefinition : ScriptableObject {
     [SerializeField]
-    private AudioClip[] clips;
+    private AudioClip[] clips = default;
     [SerializeField]
-    [Range(-60.0f, 0.0f)]
+    [Range(-60f, 0f)]
     private float volume = -6f;
     [SerializeField]
-    [Range(0.1f, 100.0f)]
+    private bool isLooping = false;
+    [SerializeField]
+    [Range(0.1f, 100f)]
     private float minDistance = 1.5f;
     [SerializeField]
-    [Range(0.1f, 100.0f)]
-    private float distMax = 30f;
+    [Range(0.1f, 100f)]
+    private float maxDistance = 30f;
     [SerializeField]
-    [Range(-20, 20.0f)]
+    [Range(-20f, 20f)]
     private float pitch = 0f;
     [SerializeField]
-    [Range(0, 10)]
-    private int loopCount = 1;
-    [SerializeField]
-    [Range(0, 10.0f)]
-    private float delayMin = 0f;
-    [SerializeField]
-    [Range(0, 10.0f)]
-    private float delayMax = 0f;
-    [SerializeField]
-    [Range(1, 20)]
-    private int repeatMin = 1;
-    [SerializeField]
-    [Range(1, 20)]
-    private int repeatMax = 1;
-    [SerializeField]
-    [Range(0.0f, 1.0f)]
+    [Range(0f, 1f)]
     private float spatialBlend = 1f;
-    [Range(-1.0f, 1.0f)]
-    private float panMin = 0f;
-    [Range(-1.0f, 1.0f)]
-    private float panMax = 0f;
     [SerializeField]
     private AudioRolloffMode rolloffMode = AudioRolloffMode.Linear;
 
     public float Volume { get => this.volume; set => this.volume = value; }
+    public float MinDistance { get => this.minDistance; set => this.minDistance = value; }
+    public float MaxDistance { get => this.maxDistance; set => this.maxDistance = value; }
+    public float Pitch { get => this.pitch; set => this.pitch = value; }
+    public float SpatialBlend { get => this.spatialBlend; set => this.spatialBlend = value; }
+    public AudioRolloffMode RolloffMode { get => this.rolloffMode; set => this.rolloffMode = value; }
+    public bool IsLooping { get => this.isLooping; set => this.isLooping = value; }
 
-    public void OnValidate() {
-        if (this.minDistance > distMax)
-            minDistance = distMax;
-        if (pitchMin > pitchMax)
-            pitchMin = pitchMax;
-        if (delayMin > delayMax)
-            delayMin = delayMax;
-        if (repeatMin > repeatMax)
-            repeatMin = repeatMax;
-        if (panMin > panMax)
-            panMin = panMax;
+    public static SoundDefinition KillVoice =>
+        Resources.Load<SoundDefinition>("KillVoice");
+
+    public static SoundDefinition LeanSound =>
+        Resources.Load<SoundDefinition>("LeanSound");
+
+    public AudioClip[] GetClips() {
+        return this.clips.Clone() as AudioClip[];
     }
 }
