@@ -5,6 +5,7 @@ public class UpdateMech : ComponentSystem {
     private ComponentGroup group;
 
     protected override void OnCreateManager() {
+        base.OnCreateManager();
         this.group = GetComponentGroup(typeof(Mech));
     }
 
