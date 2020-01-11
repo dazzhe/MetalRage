@@ -203,7 +203,7 @@ public class MechMotor : MonoBehaviour {
                 this.isGrounded = false;
                 StartCoroutine(JumpCoolDown());
                 this.engine?.ShowJetFlame(0.4f, Vector3.forward);
-                //移動速度が大きいほど高くジャンプさせる.
+                // Jumping power is proportial to current moving speed.
                 this.MoveDirection
                     = this.transform.TransformDirection(new Vector3(InputSystem.GetHorizontalMotion() * this.hJumpSpeed,
                                                                this.jumpSpeed * (1f + 0.002f * this.velosity.magnitude),

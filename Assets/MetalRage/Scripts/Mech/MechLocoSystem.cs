@@ -6,7 +6,6 @@ public class MechLocoSystem : ComponentSystem {
 
     protected override void OnCreateManager() {
         base.OnCreateManager();
-        this.group = GetComponentGroup(typeof(Mech), typeof(CharacterController))
     }
 
     protected override void OnUpdate() {
