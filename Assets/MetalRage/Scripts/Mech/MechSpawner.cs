@@ -1,7 +1,7 @@
 using Unity.Entities;
 using UnityEngine;
 
-public class MechSpawnRequestHandler : ComponentSystem {
+public class MechSpawner : ComponentSystem {
     private ComponentGroup group;
 
     protected override void OnCreateManager() {
@@ -28,9 +28,16 @@ public class MechSpawnRequestHandler : ComponentSystem {
     }
 
     private void SpawnMech(MechSpawnRequest request) {
-        var mechPrefabMap = Game.Config.GetConfig<MechPrefabMap>();
-        var mechPrefab = mechPrefabMap[request.MechType];
-        //var obj = Object.Instantiate(mechPrefab, request.Position, request.Rotation);
-        //var entity = obj.GetComponent<GameObjectEntity>();
+        var mechConfigMap = Game.Config.GetConfig<MechConfigMap>();
+        var mechConfig = mechConfigMap[request.MechType];
+        var obj = Object.Instantiate(mechConfig.Prefab, request.Position, request.Rotation);
+        var entity = obj.GetComponent<GameObjectEntity>();
+        var actions = mechConfig.Actions;
+        var actionBuffer = this.PostUpdateCommands.AddBuffer<MechActionEntity>(entity.Entity);
+        for (int i = 0; i < actions.Length; ++i) {
+            var action = actions[i].CreateBufferElement(this.EntityManager, entity.Entity);
+            actionBuffer.Add(action);
+        }
+        this.PostUpdateCommands.AddComponent(entity.Entity, new MechLocoStatus());
     }
 }

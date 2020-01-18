@@ -259,10 +259,10 @@ GameObject:
   - component: {fileID: 2604446858962110439}
   - component: {fileID: 2604446858953058333}
   - component: {fileID: 2604446859472475103}
-  - component: {fileID: 2604446859472475096}
   - component: {fileID: 2604446859472475102}
   - component: {fileID: 2604446859472475101}
   - component: {fileID: 2604446859472475089}
+  - component: {fileID: 6353329403032332133}
   m_Layer: 8
   m_Name: Vanguard
   m_TagString: Untagged
@@ -324,27 +324,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.8, z: 0}
---- !u!114 &2604446859472475096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2604446858962410439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 184df896ea8a3ea4d9243ca97da6c173, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canBoost: 1
-  boostSpeed: 40
-  jumpSpeed: 18
-  walkSpeed: 17
-  accelSpeed: 0.2
-  engine: {fileID: 0}
-  locoState: 0
-  MoveDirection: {x: 0, y: 0, z: 0}
-  isGrounded: 0
 --- !u!114 &2604446859472475102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,7 +340,7 @@ MonoBehaviour:
     type: 3}
   cameraFollowTarget: {fileID: 2604446860312132056}
   mechStatus: {fileID: 2604446859472475101}
-  mechMotor: {fileID: 2604446859472475096}
+  mechMotor: {fileID: 0}
   elevationRange:
     min: -60
     max: 60
@@ -391,6 +370,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSound: {fileID: 11400000, guid: d71a3b4b84603354789fe2fd36e3738f, type: 2}
+--- !u!114 &6353329403032332133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2604446858962410439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf10cdea1344482e91a4f2b58506b77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2604446858962410441
 GameObject:
   m_ObjectHideFlags: 0

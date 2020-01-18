@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3fee50b8bbbef54d93f7bfc80ba79b6, type: 3}
-  m_Name: ConfigContainer
+  m_Name: GameConfig
   m_EditorClassIdentifier: 
   configs:
   - {fileID: 11400000, guid: e476ccdd299f82d4ba4bf561068156ca, type: 2}

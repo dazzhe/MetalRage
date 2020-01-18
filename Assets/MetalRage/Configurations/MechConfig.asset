@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2537d8c0b9bba94bb415c8f51dfc88c, type: 3}
-  m_Name: MechPrefabMap
+  m_Script: {fileID: 11500000, guid: ea9a17da2ed55174d85ba049eb554155, type: 3}
+  m_Name: MechConfig
   m_EditorClassIdentifier: 
-  entries:
-  - type: 0
-    prefab: {fileID: 2604446858962410439, guid: 2cf02fe29782334488d39426672fe73b,
-      type: 3}
+  prefab: {fileID: 2604446858962410439, guid: 2cf02fe29782334488d39426672fe73b, type: 3}
+  actions:
+  - {fileID: 11400000, guid: d95275020a92c4344b9f92ef42b21273, type: 2}
