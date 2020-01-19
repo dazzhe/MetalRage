@@ -28,9 +28,9 @@ class WalkActionSystem : ComponentSystem {
             return;
         }
         var locoStatus = this.EntityManager.GetComponentData<MechLocoStatus>(mechAction.Owner);
-        if (!locoStatus.IsOnGround) {
-            return;
-        }
+        //if (!locoStatus.IsOnGround) {
+        //    return;
+        //}
         var velocity = new Vector3(locoStatus.Velocity.x, 0f, locoStatus.Velocity.z);
         velocity.x += InputSystem.GetHorizontalMotion() * config.Accel * Time.deltaTime;
         velocity.z += InputSystem.GetVerticalMotion() * config.Accel * Time.deltaTime;
@@ -44,6 +44,7 @@ class WalkActionSystem : ComponentSystem {
         }
         velocity = velocity.magnitude > config.MaxSpeed ? velocity.normalized * config.MaxSpeed : velocity;
         locoStatus.State = velocity.magnitude == 0 ? MechLocoState.Idle : MechLocoState.Walking;
+        locoStatus.Velocity = velocity;
         this.EntityManager.SetComponentData(mechAction.Owner, locoStatus);
         //this.animator.SetFloat("WalkSpeed", this.MoveDirection.magnitude);
     }
