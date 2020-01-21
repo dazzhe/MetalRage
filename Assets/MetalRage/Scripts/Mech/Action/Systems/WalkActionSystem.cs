@@ -10,6 +10,7 @@ class WalkActionSystem : ComponentSystem {
     }
 
     protected override void OnUpdate() {
+        
         var mechActions = this.group.GetComponentDataArray<MechAction>();
         var configs = this.group.GetComponentDataArray<WalkActionConfigData>();
         var entities = this.group.GetEntityArray();
@@ -43,9 +44,11 @@ class WalkActionSystem : ComponentSystem {
             velocity.z = velocity.z > 0 ? zAbs : -zAbs;
         }
         velocity = velocity.magnitude > config.MaxSpeed ? velocity.normalized * config.MaxSpeed : velocity;
-        locoStatus.State = velocity.magnitude == 0 ? MechLocoState.Idle : MechLocoState.Walking;
-        locoStatus.Velocity = velocity;
-        this.EntityManager.SetComponentData(mechAction.Owner, locoStatus);
+        var command = new MechLocoCommand {
+            Motion = velocity * Time.deltaTime,
+            NextState = velocity.magnitude == 0 ? MechLocoState.Idle : MechLocoState.Walking
+        };
+        this.EntityManager.SetComponentData(mechAction.Owner, command);
         //this.animator.SetFloat("WalkSpeed", this.MoveDirection.magnitude);
     }
 }

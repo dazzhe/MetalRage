@@ -39,5 +39,6 @@ public class MechSpawner : ComponentSystem {
             actionBuffer.Add(action);
         }
         this.PostUpdateCommands.AddComponent(entity.Entity, new MechLocoStatus());
+        this.PostUpdateCommands.AddComponent(entity.Entity, new MechLocoCommand());
     }
 }

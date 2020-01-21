@@ -6,7 +6,7 @@ public class Mech : MonoBehaviour {
     [SerializeField]
     private Transform cameraFollowTarget = default;
     [SerializeField]
-    private MechStatus mechStatus = default;
+    private MechHealthStatus mechStatus = default;
     [SerializeField]
     private MechMotor mechMotor = default;
     [SerializeField]
