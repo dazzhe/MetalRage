@@ -2,13 +2,6 @@ using Unity.Entities;
 using UnityEngine;
 
 public class UpdateMech : ComponentSystem {
-    private EntityQuery group;
-
-    protected override void OnCreateManager() {
-        base.OnCreateManager();
-        this.group = GetEntityQuery(typeof(Mech));
-    }
-
     protected override void OnUpdate() {
         this.Entities.ForEach((Mech mech) => {
             UpdateElevation(mech);

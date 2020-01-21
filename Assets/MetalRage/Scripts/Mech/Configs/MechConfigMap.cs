@@ -10,7 +10,12 @@ public class MechConfigMap : ScriptableObject {
     }
 
     [SerializeField]
-    private MechConfigEntry[] entries;
+    private MechConfigEntry[] entries = new MechConfigEntry[] {
+        new MechConfigEntry{type = MechType.Vanguard, config = default },
+        new MechConfigEntry{type = MechType.Dual, config = default },
+        new MechConfigEntry{type = MechType.Blitz, config = default },
+        new MechConfigEntry{type = MechType.Velox, config = default },
+    };
 
     public MechConfig this[MechType type] =>
         this.entries.Where(e => e.type == type).FirstOrDefault().config;
