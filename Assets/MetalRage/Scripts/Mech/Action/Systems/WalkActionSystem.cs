@@ -2,25 +2,8 @@ using Unity.Entities;
 using UnityEngine;
 
 class WalkActionSystem : ComponentSystem {
-    private ComponentGroup group;
-
-    protected override void OnCreateManager() {
-        base.OnCreateManager();
-        this.group = GetComponentGroup(typeof(MechAction), typeof(WalkActionConfigData));
-    }
-
     protected override void OnUpdate() {
-        
-        var mechActions = this.group.GetComponentDataArray<MechAction>();
-        var configs = this.group.GetComponentDataArray<WalkActionConfigData>();
-        var entities = this.group.GetEntityArray();
-        for (int i = 0; i < mechActions.Length; ++i) {
-            var mechAction = mechActions[i];
-            var config = configs[i];
-            UpdateEntity(ref mechAction, ref config);
-            this.EntityManager.SetComponentData(entities[i], mechAction);
-            this.EntityManager.SetComponentData(entities[i], config);
-        }
+        this.Entities.ForEach<MechAction, WalkActionConfigData>(UpdateEntity);
     }
 
     private void UpdateEntity(ref MechAction mechAction, ref WalkActionConfigData config) {

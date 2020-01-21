@@ -3,15 +3,15 @@ using System.Collections;
 using Unity.Entities;
 
 public class CrouchActionSystem : ComponentSystem {
-    private ComponentGroup group;
+    private EntityQuery group;
 
     protected override void OnCreateManager() {
         base.OnCreateManager();
-        this.group = GetComponentGroup(typeof(MechAction), typeof(CrouchActionConfigData));
+        this.group = GetEntityQuery(typeof(MechAction), typeof(CrouchActionConfigData));
     }
 
     protected override void OnUpdate() {
-        ForEach<MechAction, CrouchActionConfigData>(UpdateEntity, this.group);
+         this.Entities.ForEach<MechAction, CrouchActionConfigData>(UpdateEntity);
     }
 
     private void UpdateEntity(ref MechAction mechAction, ref CrouchActionConfigData config) {

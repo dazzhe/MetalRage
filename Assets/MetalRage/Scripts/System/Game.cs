@@ -11,7 +11,7 @@ public class Game : MonoBehaviour {
     private void Awake() {
         SoundSystem = new SoundSystem();
         Config = this.config;
-        World.Active.CreateManager<GameLoopSystem>();
+        World.Active.CreateSystem<GameLoopSystem>();
         ScriptBehaviourUpdateOrder.UpdatePlayerLoop(World.Active);
     }
 }

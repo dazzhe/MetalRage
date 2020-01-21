@@ -3,14 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Weapon_R
-  - Weapon_L
-  - Sight
-  - Weapon
-  - BULLET
-  - Block
-  - Cube
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -20,10 +13,6 @@ TagManager:
   - UI
   - 
   - 
-  - Player
-  - Teammate
-  - Enemy
-  - Shell
   - 
   - 
   - 
@@ -42,7 +31,11 @@ TagManager:
   - 
   - 
   - 
-  - PostProcessing
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   m_SortingLayers:
   - name: Default

@@ -4,11 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 0
-    path: Assets/MetalRage/Scenes/CrossRoad/CrossRoad.unity
-    guid: eb3871f52e843454b86d5dbf86d2e6b1
-  - enabled: 1
-    path: Assets/MetalRage/Scenes/Fraise/Fraise.unity
-    guid: bed72d19e69f6ad4ab7965cbe2a0647a
+  m_Scenes: []
   m_configObjects: {}

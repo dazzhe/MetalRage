@@ -1,30 +1,13 @@
+using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
 
 public class MechSpawner : ComponentSystem {
-    private ComponentGroup group;
-
-    protected override void OnCreateManager() {
-        base.OnCreateManager();
-        this.group = GetComponentGroup(typeof(MechSpawnRequest));
-    }
-
     protected override void OnUpdate() {
-        var requests = this.group.GetComponentDataArray<MechSpawnRequest>();
-        if (requests.Length == 0) {
-            return;
-        }
-        var requestEntities = this.group.GetEntityArray();
-        // Copy requests as spawning will invalidate Group
-        var copiedRequests = new MechSpawnRequest[requests.Length];
-        for (var i = 0; i < requests.Length; i++) {
-            copiedRequests[i] = requests[i];
-            this.PostUpdateCommands.DestroyEntity(requestEntities[i]);
-        }
-        for (var i = 0; i < copiedRequests.Length; i++) {
-            var request = copiedRequests[i];
+        this.Entities.ForEach((Entity entity, ref MechSpawnRequest request) => {
             SpawnMech(request);
-        }
+            this.PostUpdateCommands.DestroyEntity(entity);
+        });
     }
 
     private void SpawnMech(MechSpawnRequest request) {

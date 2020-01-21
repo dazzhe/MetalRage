@@ -2,24 +2,16 @@ using System.Linq;
 using Unity.Entities;
 
 class MechActionSwitcher : ComponentSystem {
-    private ComponentGroup group;
-
-    protected override void OnCreateManager() {
-        base.OnCreateManager();
-        this.group = GetComponentGroup(ComponentType.ReadOnly<MechActionEntity>());
-    }
-
     protected override void OnUpdate() {
-        var actionEntityBuffers = this.group.GetBufferArray<MechActionEntity>();
-        for (int i = 0; i < actionEntityBuffers.Length; ++i) {
-            var actions = actionEntityBuffers[i].AsNativeArray().Select(entity =>
+        this.Entities.ForEach((DynamicBuffer<MechActionEntity> actionEntityBuffer) => {
+            var actions = actionEntityBuffer.AsNativeArray().Select(entity =>
                 this.EntityManager.GetComponentData<MechAction>(entity.Value)
             ).ToArray();
             DeactivateCompletedActions(ref actions);
             ActivateActions(actions);
-            var entities = actionEntityBuffers[i].AsNativeArray().Select(entity => entity.Value).ToArray();
+            var entities = actionEntityBuffer.AsNativeArray().Select(entity => entity.Value).ToArray();
             Apply(entities, actions);
-        }
+        });
     }
 
     private void DeactivateCompletedActions(ref MechAction[] actions) {
