@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9a17da2ed55174d85ba049eb554155, type: 3}
+  m_Name: MechConfig
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 2604446858962410439, guid: 2cf02fe29782334488d39426672fe73b, type: 3}
+  actions:
+  - {fileID: 11400000, guid: d95275020a92c4344b9f92ef42b21273, type: 2}
+  - {fileID: 11400000, guid: 0826092ef9fff244a9deed64acfdaee4, type: 2}

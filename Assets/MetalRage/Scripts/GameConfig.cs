@@ -2,8 +2,8 @@ using UnityEngine;
 using System.Collections;
 using System.Linq;
 
-[CreateAssetMenu(fileName = "ConfigContainer", menuName = "MetalRage/ConfigContainer")]
-public class ConfigContainer : ScriptableObject {
+[CreateAssetMenu(fileName = "GameConfig", menuName = "MetalRage/GameConfig")]
+public class GameConfig : ScriptableObject {
     [SerializeField]
     private ScriptableObject[] configs = default;
 

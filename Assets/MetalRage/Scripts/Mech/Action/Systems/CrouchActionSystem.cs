@@ -1,28 +1,33 @@
-using UnityEngine;
-using System.Collections;
 using Unity.Entities;
+using UnityEngine;
 
-public class CrouchActionSystem : ComponentSystem {
-    private EntityQuery group;
-
-    protected override void OnCreateManager() {
-        base.OnCreateManager();
-        this.group = GetEntityQuery(typeof(MechAction), typeof(CrouchActionConfigData));
-    }
-
+[UpdateBefore(typeof(MechActionSwitcher))]
+public class CrouchActionActivationRequestSystem : ComponentSystem {
     protected override void OnUpdate() {
-         this.Entities.ForEach<MechAction, CrouchActionConfigData>(UpdateEntity);
+        this.Entities.ForEach((ref MechAction mechAction, ref CrouchActionConfigData config) => {
+            if (InputSystem.GetButton(MechCommandButton.Crouch) && !mechAction.IsActive) {
+                mechAction.State = ActionState.WaitingActivation;
+            }
+        });
     }
+}
 
-    private void UpdateEntity(ref MechAction mechAction, ref CrouchActionConfigData config) {
-        if (!mechAction.IsActive) {
-            return;
-        }
-        var locoStatus = this.EntityManager.GetComponentData<MechLocoStatus>(mechAction.Owner);
-        if (locoStatus.IsOnGround && InputSystem.GetButton(MechCommandButton.Crouch)) {
-            locoStatus.State = MechLocoState.Crouching;
-            locoStatus.Velocity *= 0;
-        }
-        //this.animator.SetBool("IsCrouching", this.locoState == MechLocoState.Crouching);
+[UpdateAfter(typeof(MechActionSwitcher))]
+public class CrouchActionSystem : ComponentSystem {
+    protected override void OnUpdate() {
+        this.Entities.ForEach((ref MechAction mechAction, ref CrouchActionConfigData config) => {
+            if (!mechAction.IsActive || !InputSystem.GetButton(MechCommandButton.Crouch)) {
+                mechAction.State = ActionState.Dormant;
+                return;
+            }
+            mechAction.State = ActionState.Running;
+            var status = this.EntityManager.GetComponentData<MechLocoStatus>(mechAction.Owner);
+            var command = new MechLocoCommand {
+                NextState = MechLocoState.Crouching,
+                Motion = Vector3.zero,
+                LegYaw = status.LegYaw
+            };
+            this.EntityManager.SetComponentData(mechAction.Owner, command);
+        });
     }
 }

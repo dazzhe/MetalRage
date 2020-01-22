@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea9a17da2ed55174d85ba049eb554155, type: 3}
-  m_Name: MechConfig
+  m_Script: {fileID: 11500000, guid: 8fc0ef69521ce374482312d64c9527e3, type: 3}
+  m_Name: GameConfig
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2604446858962410439, guid: 2cf02fe29782334488d39426672fe73b, type: 3}
-  actions:
-  - {fileID: 11400000, guid: d95275020a92c4344b9f92ef42b21273, type: 2}
+  configs:
+  - {fileID: 11400000, guid: e476ccdd299f82d4ba4bf561068156ca, type: 2}

@@ -80,8 +80,8 @@ public class MechMotor : MonoBehaviour {
         var legYaw = 0f;
         var currentYaw = GetComponent<Animator>().GetFloat("LegOffsetYaw");
         if (this.locoState == MechLocoState.Walking) {
-            var h = InputSystem.GetHorizontalMotion();
-            var v = InputSystem.GetVerticalMotion();
+            var h = InputSystem.GetMoveHorizontal();
+            var v = InputSystem.GetMoveVertical();
             legYaw = h > 0 && v > 0 ? 45f :
                               h > 0 && v == 0 ? 90f :
                    (h == 0 && v > 0) || v < 0 ? 0f :
@@ -123,7 +123,7 @@ public class MechMotor : MonoBehaviour {
         if (this.isGrounded && (this.locoState == MechLocoState.Walking || this.locoState == MechLocoState.Idle)) {
             //まず-1<=x<=1,-1<=y<=1の範囲で動かすことでx,y方向それぞれの.
             //最大速度に対する相対値を計算している.
-            switch (Mathf.RoundToInt(InputSystem.GetHorizontalMotion())) {
+            switch (Mathf.RoundToInt(InputSystem.GetMoveHorizontal())) {
                 case 1:
                     this.rawDirection.x += this.accelSpeed;
                     break;
@@ -134,7 +134,7 @@ public class MechMotor : MonoBehaviour {
                     this.rawDirection.x = Mathf.Lerp(this.rawDirection.x, 0, this.accelSpeed);
                     break;
             }
-            switch (Mathf.RoundToInt(InputSystem.GetVerticalMotion())) {
+            switch (Mathf.RoundToInt(InputSystem.GetMoveVertical())) {
                 case 1:
                     this.rawDirection.z += this.accelSpeed;
                     break;
@@ -205,9 +205,9 @@ public class MechMotor : MonoBehaviour {
                 this.engine?.ShowJetFlame(0.4f, Vector3.forward);
                 // Jumping power is proportial to current moving speed.
                 this.MoveDirection
-                    = this.transform.TransformDirection(new Vector3(InputSystem.GetHorizontalMotion() * this.hJumpSpeed,
+                    = this.transform.TransformDirection(new Vector3(InputSystem.GetMoveHorizontal() * this.hJumpSpeed,
                                                                this.jumpSpeed * (1f + 0.002f * this.velosity.magnitude),
-                                                               InputSystem.GetVerticalMotion() * this.hJumpSpeed));
+                                                               InputSystem.GetMoveVertical() * this.hJumpSpeed));
             } else if (this.locoState == MechLocoState.Jumping) {
                 this.locoState = MechLocoState.Idle;
             }
@@ -215,7 +215,7 @@ public class MechMotor : MonoBehaviour {
         if (!this.isGrounded && this.locoState != MechLocoState.Boosting) {
             this.locoState = MechLocoState.Jumping;
             float horizontalSpeed = new Vector2(this.MoveDirection.x, this.MoveDirection.z).magnitude;
-            this.accelDirection = new Vector3(InputSystem.GetHorizontalMotion(), 0, InputSystem.GetVerticalMotion());
+            this.accelDirection = new Vector3(InputSystem.GetMoveHorizontal(), 0, InputSystem.GetMoveVertical());
 
             if (horizontalSpeed > this.hJumpSpeed) {
                 this.MoveDirection.x = this.MoveDirection.x * this.hJumpSpeed / horizontalSpeed;
@@ -239,8 +239,8 @@ public class MechMotor : MonoBehaviour {
                 || this.locoState == MechLocoState.Braking)
             && this.BoostGauge >= 28) {
             this.BoostGauge -= 28;
-            float h = InputSystem.GetHorizontalMotion();
-            float v = InputSystem.GetVerticalMotion();
+            float h = InputSystem.GetMoveHorizontal();
+            float v = InputSystem.GetMoveVertical();
             if (v != -1 && h != 0) {
                 if (h == 1 && v == 1) {
                     this.boostDirection = this.transform.TransformDirection(new Vector3(1F, 0F, 1F).normalized);

@@ -13,7 +13,7 @@ public enum MechCommandButton : ushort {
 }
 
 public static class InputSystem {
-    private static bool IsControllable => UIManager.Instance.MenuUI.ActiveWindowLevel == 0;
+    private static bool IsControllable => true;
 
     public static string GetButtonName(MechCommandButton button) {
         switch (button) {
@@ -39,11 +39,11 @@ public static class InputSystem {
         return IsControllable ? Input.GetButtonDown(buttonName) : false;
     }
 
-    public static float GetHorizontalMotion() {
+    public static float GetMoveHorizontal() {
         return IsControllable ? Input.GetAxisRaw("Horizontal") : 0f;
     }
 
-    public static float GetVerticalMotion() {
+    public static float GetMoveVertical() {
         return IsControllable ? Input.GetAxisRaw("Vertical") : 0f;
     }
 

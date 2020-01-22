@@ -1,7 +1,6 @@
 using Unity.Entities;
 using UnityEngine;
 
-[DisableAutoCreation]
 public class GameLoopSystem : ComponentSystem {
     private bool isInitialized = false;
 

@@ -2,10 +2,9 @@ using Unity.Entities;
 using UnityEngine;
 
 public enum ActionState {
-    Idle,
-    RequestingActivation,
-    Active,
-    Cooldown,
+    Dormant,
+    WaitingActivation,
+    Running,
 }
 
 public struct MechAction : IComponentData {
@@ -14,9 +13,9 @@ public struct MechAction : IComponentData {
     [SerializeField]
     private ActionTag tag;
     [SerializeField]
-    private ActionTag blockingTag;
+    private ActionTag activationBlockingTag;
     [SerializeField]
-    private ActionTag interruptibleTag;
+    private ActionTag cancellableTag;
     [SerializeField]
     private ActionState state;
     [SerializeField]
@@ -26,8 +25,8 @@ public struct MechAction : IComponentData {
 
     public Entity Owner { get => this.owner; set => this.owner = value; }
     public ActionTag Tag { get => this.tag; set => this.tag = value; }
-    public ActionTag BlockingTag { get => this.blockingTag; set => this.blockingTag = value; }
-    public ActionTag InterruptibleTag { get => this.interruptibleTag; set => this.interruptibleTag = value; }
+    public ActionTag ActivationBlockingTag { get => this.activationBlockingTag; set => this.activationBlockingTag = value; }
+    public ActionTag ExecutionCancellingTag { get => this.cancellableTag; set => this.cancellableTag = value; }
     public ActionState State { get => this.state; set => this.state = value; }
     public bool IsActive { get => this.isActive == 1; set => this.isActive = value ? (byte)1 : (byte)0; }
     public bool IsDeactivationRequested { get => this.isDeactivationRequested == 1; set => this.isDeactivationRequested = value ? (byte)1 : (byte)0; }

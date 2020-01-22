@@ -1,33 +1,35 @@
+
 using Unity.Entities;
 using UnityEngine;
 
-// Avoid using generics and interface to show in the inspector with simple implementation.
 public abstract class MechActionConfigBase : ScriptableObject {
     [SerializeField]
     private ActionTag tag;
+    [Tooltip("Other inactive actions with selected tags cannot activate when this action is active.")]
     [SerializeField]
-    protected ActionTag blockingTag;
+    protected ActionTag activationBlockingTag;
+    [Tooltip("Other active actions with selected tags are deactivated on the activation of this action.")]
     [SerializeField]
-    protected ActionTag interruptibleTag;
+    protected ActionTag executionCancellingTag;
 
     protected ActionTag Tag { get => this.tag; set => this.tag = value; }
-    public ActionTag BlockingTag { get => this.blockingTag; set => this.blockingTag = value; }
-    public ActionTag InterruptibleTag { get => this.interruptibleTag; set => this.interruptibleTag = value; }
+    public ActionTag ActivationBlockingTag { get => this.activationBlockingTag; set => this.activationBlockingTag = value; }
+    public ActionTag ExecutionCancellingTag { get => this.executionCancellingTag; set => this.executionCancellingTag = value; }
 
     public Entity CreateEntity(EntityManager entityManager, Entity owner) {
         var entity = entityManager.CreateEntity();
         var action = new MechAction {
             Tag = this.tag,
-            BlockingTag = this.BlockingTag,
-            InterruptibleTag = this.InterruptibleTag,
+            ActivationBlockingTag = this.ActivationBlockingTag,
+            ExecutionCancellingTag = this.ExecutionCancellingTag,
             Owner = owner
         };
         entityManager.AddComponentData(entity, action);
-        AddConfig(entityManager, ref entity);
+        AddConfigData(entityManager, entity);
         return entity;
     }
 
-    protected abstract void AddConfig(EntityManager entityManager, ref Entity entity);
+    protected abstract void AddConfigData(EntityManager entityManager, Entity entity);
 
     public MechActionEntity CreateBufferElement(EntityManager entityManager, Entity owner) {
         return new MechActionEntity {

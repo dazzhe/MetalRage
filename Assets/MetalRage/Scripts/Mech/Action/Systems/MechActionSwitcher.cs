@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Unity.Entities;
 
@@ -7,74 +8,68 @@ class MechActionSwitcher : ComponentSystem {
             var actions = actionEntityBuffer.AsNativeArray().Select(entity =>
                 this.EntityManager.GetComponentData<MechAction>(entity.Value)
             ).ToArray();
-            DeactivateCompletedActions(ref actions);
-            ActivateActions(actions);
+            Deactivate(actions);
+            Activate(actions);
             var entities = actionEntityBuffer.AsNativeArray().Select(entity => entity.Value).ToArray();
-            Apply(entities, actions);
+            for (int i = 0; i < entities.Length; ++i) {
+                this.EntityManager.SetComponentData(entities[i], actions[i]);
+            }
         });
     }
 
-    private void DeactivateCompletedActions(ref MechAction[] actions) {
+    private void Deactivate(MechAction[] actions) {
         for (int i = 0; i < actions.Length; ++i) {
-            var action = actions[i];
-            if (action.IsActive && action.State != ActionState.Active) {
-                Deactivate(ref action);
+            if (actions[i].IsActive && actions[i].State != ActionState.Running) {
+                actions[i].IsActive = false;
             }
         }
     }
 
-    private void ActivateActions(MechAction[] actions) {
-        for (int i = 0; i < actions.Length; i++) {
-            if (actions[i].IsActive) {
+    private void DeactivateByForce(ref MechAction action) {
+        action.IsActive = false;
+    }
+
+    private void Activate(MechAction[] actions) {
+        var isDeactivatedByForceArray = new bool[actions.Length];
+        for (int i = 0; i < actions.Length; ++i) {
+            var needActivation =
+                !actions[i].IsActive && !isDeactivatedByForceArray[i] &&
+                actions[i].State == ActionState.WaitingActivation;
+            if (!needActivation) {
                 continue;
             }
-            if (actions[i].State != ActionState.RequestingActivation) {
-                continue;
-            }
-            var isBlocked = actions.Any(anotherAction => {
-                var isBlockingAction = anotherAction.BlockingTag.HasFlag(actions[i].Tag);
-                return anotherAction.IsActive & isBlockingAction;
-            });
-            if (!isBlocked) {
-                Activate(ref actions[i]);
-                continue;
-            }
-            var canActivate = true;
-            for (int j = 0; j < actions.Length; j++) {
-                var anotherAction = actions[j];
-                var isBlockedByAnotherAction = anotherAction.IsActive && anotherAction.BlockingTag.HasFlag(actions[i].Tag);
-                if (isBlockedByAnotherAction) {
-                    var canInterrupt = actions[i].InterruptibleTag.HasFlag(anotherAction.Tag);
-                    if (canInterrupt) {
-                        Deactivate(ref anotherAction);
-                    } else {
-                        RequestDeactivation(ref anotherAction);
-                        canActivate = false;
+            if (!CheckIsBlocked(actions, i)) {
+                actions[i].IsActive = true;
+                actions[i].IsDeactivationRequested = false;
+                for (int j = 0; j < actions.Length; ++j) {
+                    if (i == j) {
+                        continue;
+                    }
+                    if (actions[j].IsActive && actions[j].ExecutionCancellingTag.HasFlag(actions[j].Tag)) {
+                        DeactivateByForce(ref actions[j]);
+                        isDeactivatedByForceArray[j] = true;
                     }
                 }
             }
-            if (canActivate) {
-                Activate(ref actions[i]);
-            }
         }
     }
 
-    private void Activate(ref MechAction action) {
-        action.IsActive = true;
-        action.IsDeactivationRequested = false;
-    }
-
-    private void Deactivate(ref MechAction action) {
-        action.IsActive = false;
+    private bool CheckIsBlocked(MechAction[] actions, int index) {
+        var isBlocked = false;
+        for (int i = 0; i < actions.Length; ++i) {
+            if (index == i) {
+                continue;
+            }
+            var isBlockingAction = actions[i].ActivationBlockingTag.HasFlag(actions[i].Tag);
+            if (actions[i].IsActive & isBlockingAction) {
+                isBlocked = true;
+                actions[i].IsDeactivationRequested = true;
+            }
+        }
+        return isBlocked;
     }
 
     private void RequestDeactivation(ref MechAction action) {
         action.IsDeactivationRequested = true;
-    }
-
-    private void Apply(Entity[] entities, MechAction[] actions) {
-        for (int i = 0; i < entities.Length; ++i) {
-            this.EntityManager.SetComponentData(entities[i], actions[i]);
-        }
     }
 }
