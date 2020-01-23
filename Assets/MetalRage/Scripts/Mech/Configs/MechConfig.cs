@@ -5,8 +5,8 @@ public class MechConfig : ScriptableObject {
     [SerializeField]
     private GameObject prefab;
     [SerializeField]
-    private MechActionConfigBase[] actions;
+    private ActionConfigBase[] actions;
 
     public GameObject Prefab { get => this.prefab; set => this.prefab = value; }
-    public MechActionConfigBase[] Actions { get => this.actions; set => this.actions = value; }
+    public ActionConfigBase[] Actions { get => this.actions; set => this.actions = value; }
 }

@@ -27,7 +27,7 @@ class MechActionActivator : ComponentSystem {
         }
     }
 
-    private void DeactivateByForce(ref MechAction action) {
+    private void DeactivateForcibly(ref MechAction action) {
         action.IsActive = false;
     }
 
@@ -40,15 +40,15 @@ class MechActionActivator : ComponentSystem {
             if (!needActivation) {
                 continue;
             }
-            if (!CheckIsBlocked(actions, i)) {
+            if (!CheckIsBlocked(actions, constraints, i)) {
                 actions[i].IsActive = true;
                 actions[i].IsDeactivationRequested = false;
                 for (int j = 0; j < actions.Length; ++j) {
                     if (i == j) {
                         continue;
                     }
-                    if (actions[j].IsActive && constraints[j].ExecutionCancellingTag.HasFlag(constraints[j].Tag)) {
-                        DeactivateByForce(ref actions[j]);
+                    if (actions[j].IsActive && constraints[j].ForciblyBlockingTag.HasFlag(constraints[j].Tag)) {
+                        DeactivateForcibly(ref actions[j]);
                         isDeactivatedByForceArray[j] = true;
                     }
                 }
@@ -56,22 +56,17 @@ class MechActionActivator : ComponentSystem {
         }
     }
 
-    private bool CheckIsBlocked(MechAction[] actions, int index) {
+    private bool CheckIsBlocked(MechAction[] actions, ActionConstraint[] constraints, int index) {
         var isBlocked = false;
         for (int i = 0; i < actions.Length; ++i) {
             if (index == i) {
                 continue;
             }
-            var isBlockingAction = actions[i].ActivationBlockingTag.HasFlag(actions[i].Tag);
-            if (actions[i].IsActive & isBlockingAction) {
+            if (actions[i].IsActive & constraints[i].IsBlocking(constraints[index])) {
                 isBlocked = true;
                 actions[i].IsDeactivationRequested = true;
             }
         }
         return isBlocked;
-    }
-
-    private void RequestDeactivation(ref MechAction action) {
-        action.IsDeactivationRequested = true;
     }
 }
