@@ -1,7 +1,7 @@
 using Unity.Entities;
 using UnityEngine;
 
-[UpdateBefore(typeof(MechActionSwitcher))]
+[UpdateBefore(typeof(MechActionActivator))]
 public class CrouchActionActivationRequestSystem : ComponentSystem {
     protected override void OnUpdate() {
         this.Entities.ForEach((ref MechAction mechAction, ref CrouchActionConfigData config) => {
@@ -12,7 +12,7 @@ public class CrouchActionActivationRequestSystem : ComponentSystem {
     }
 }
 
-[UpdateAfter(typeof(MechActionSwitcher))]
+[UpdateAfter(typeof(MechActionActivator))]
 public class CrouchActionSystem : ComponentSystem {
     protected override void OnUpdate() {
         this.Entities.ForEach((ref MechAction mechAction, ref CrouchActionConfigData config) => {

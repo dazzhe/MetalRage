@@ -16,24 +16,27 @@ public abstract class MechActionConfigBase : ScriptableObject {
     public ActionTag ActivationBlockingTag { get => this.activationBlockingTag; set => this.activationBlockingTag = value; }
     public ActionTag ExecutionCancellingTag { get => this.executionCancellingTag; set => this.executionCancellingTag = value; }
 
-    public Entity CreateEntity(EntityManager entityManager, Entity owner) {
-        var entity = entityManager.CreateEntity();
-        var action = new MechAction {
-            Tag = this.tag,
-            ActivationBlockingTag = this.ActivationBlockingTag,
-            ExecutionCancellingTag = this.ExecutionCancellingTag,
-            Owner = owner
-        };
-        entityManager.AddComponentData(entity, action);
-        AddConfigData(entityManager, entity);
-        return entity;
-    }
+    //public Entity CreateEntity(EntityManager entityManager, Entity owner) {
+    //    var entity = entityManager.CreateEntity();
+    //    var action = new MechAction {
+    //        Owner = owner
+    //    };
+    //    var constraintConfig = new ActionConstraintConfig {
+    //        Tag = this.tag,
+    //        ActivationBlockingTag = this.ActivationBlockingTag,
+    //        ExecutionCancellingTag = this.ExecutionCancellingTag,
+    //    };
+    //    entityManager.AddComponentData(entity, action);
+    //    entityManager.AddComponentData(entity, action);
+    //    AddExtraComponents(entityManager, entity);
+    //    return entity;
+    //}
 
-    protected abstract void AddConfigData(EntityManager entityManager, Entity entity);
+    //protected abstract void AddExtraComponents(EntityManager entityManager, Entity entity);
 
-    public MechActionEntity CreateBufferElement(EntityManager entityManager, Entity owner) {
-        return new MechActionEntity {
-            Value = CreateEntity(entityManager, owner)
-        };
-    }
+    //public MechActionEntity CreateBufferElement(EntityManager entityManager, Entity owner) {
+    //    return new MechActionEntity {
+    //        Value = CreateEntity(entityManager, owner)
+    //    };
+    //}
 }

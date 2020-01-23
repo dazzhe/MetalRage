@@ -6,9 +6,9 @@ public class MechActionConfig<TConfigData> : MechActionConfigBase
     [SerializeField]
     private TConfigData data = default;
 
-    protected override void AddConfigData(EntityManager entityManager, Entity entity) {
-        entityManager.AddComponentData(entity, this.data);
-    }
+    //protected override void AddExtraComponents(EntityManager entityManager, Entity entity) {
+    //    entityManager.AddComponentData(entity, this.data);
+    //}
 }
 
 [CreateAssetMenu(fileName = "WalkConfig", menuName = "MetalRage/Mech/Actions/WalkConfig")]

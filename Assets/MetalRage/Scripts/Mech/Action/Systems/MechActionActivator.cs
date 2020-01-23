@@ -1,15 +1,17 @@
-using System.Collections.Generic;
 using System.Linq;
 using Unity.Entities;
 
-class MechActionSwitcher : ComponentSystem {
+class MechActionActivator : ComponentSystem {
     protected override void OnUpdate() {
         this.Entities.ForEach((DynamicBuffer<MechActionEntity> actionEntityBuffer) => {
             var actions = actionEntityBuffer.AsNativeArray().Select(entity =>
                 this.EntityManager.GetComponentData<MechAction>(entity.Value)
             ).ToArray();
+            var constraints = actionEntityBuffer.AsNativeArray().Select(entity =>
+                this.EntityManager.GetComponentData<ActionConstraint>(entity.Value)
+            ).ToArray();
             Deactivate(actions);
-            Activate(actions);
+            Activate(actions, constraints);
             var entities = actionEntityBuffer.AsNativeArray().Select(entity => entity.Value).ToArray();
             for (int i = 0; i < entities.Length; ++i) {
                 this.EntityManager.SetComponentData(entities[i], actions[i]);
@@ -29,7 +31,7 @@ class MechActionSwitcher : ComponentSystem {
         action.IsActive = false;
     }
 
-    private void Activate(MechAction[] actions) {
+    private void Activate(MechAction[] actions, ActionConstraint[] constraints) {
         var isDeactivatedByForceArray = new bool[actions.Length];
         for (int i = 0; i < actions.Length; ++i) {
             var needActivation =
@@ -45,7 +47,7 @@ class MechActionSwitcher : ComponentSystem {
                     if (i == j) {
                         continue;
                     }
-                    if (actions[j].IsActive && actions[j].ExecutionCancellingTag.HasFlag(actions[j].Tag)) {
+                    if (actions[j].IsActive && constraints[j].ExecutionCancellingTag.HasFlag(constraints[j].Tag)) {
                         DeactivateByForce(ref actions[j]);
                         isDeactivatedByForceArray[j] = true;
                     }
