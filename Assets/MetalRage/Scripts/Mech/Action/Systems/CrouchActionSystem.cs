@@ -5,9 +5,21 @@ using UnityEngine;
 public class CrouchActionActivationRequestSystem : ComponentSystem {
     protected override void OnUpdate() {
         this.Entities.ForEach((ref MechAction mechAction, ref CrouchActionConfigData config) => {
-            if (InputSystem.GetButton(MechCommandButton.Crouch) && !mechAction.IsActive) {
-                mechAction.State = ActionState.WaitingActivation;
+            if (!InputSystem.GetButton(MechCommandButton.Crouch)) {
+                mechAction.State = ActionState.Dormant;
+                return;
             }
+            if (mechAction.IsActive) {
+                mechAction.State = ActionState.Running;
+                return;
+            }
+            var locoState = this.EntityManager.GetComponentData<MechLocoStatus>(mechAction.Owner).State;
+            var isCrouchableState =
+                locoState == MechLocoState.Acceling || locoState == MechLocoState.Braking ||
+                locoState == MechLocoState.Crouching || locoState == MechLocoState.Idle ||
+                locoState == MechLocoState.Walking;
+            mechAction.State = isCrouchableState ? ActionState.WaitingActivation
+                                                 : ActionState.Dormant;
         });
     }
 }

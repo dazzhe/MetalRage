@@ -19,12 +19,3 @@ public class ActionConfig<TConfigData> : ActionConfigBase
         };
     }
 }
-
-[CreateAssetMenu(fileName = "WalkConfig", menuName = "MetalRage/Mech/Actions/WalkConfig")]
-public class WalkActionConfig : ActionConfig<WalkActionConfigData> { }
-
-[CreateAssetMenu(fileName = "CrouchConfig", menuName = "MetalRage/Mech/Actions/CrouchConfig")]
-public class CrouchActionConfig : ActionConfig<CrouchActionConfigData> { }
-
-[CreateAssetMenu(fileName = "BoostConfig", menuName = "MetalRage/Mech/Actions/BoostConfig")]
-public class BoostActionConfig : ActionConfig<CrouchActionConfigData> { }

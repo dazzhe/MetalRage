@@ -1,7 +1,7 @@
 using System.Linq;
 using Unity.Entities;
 
-class MechActionActivator : ComponentSystem {
+public class MechActionActivator : ComponentSystem {
     protected override void OnUpdate() {
         this.Entities.ForEach((DynamicBuffer<MechActionEntity> actionEntityBuffer) => {
             var actions = actionEntityBuffer.AsNativeArray().Select(entity =>

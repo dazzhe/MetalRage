@@ -1,7 +1,7 @@
 using Unity.Entities;
 using UnityEngine;
 
-class WalkActionSystem : ComponentSystem {
+public class WalkActionSystem : ComponentSystem {
     protected override void OnUpdate() {
         this.Entities.ForEach((ref MechAction mechAction, ref WalkActionConfigData config) => {
             if (!mechAction.IsActive) {
