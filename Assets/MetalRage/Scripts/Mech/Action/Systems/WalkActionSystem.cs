@@ -1,13 +1,23 @@
 using Unity.Entities;
 using UnityEngine;
 
-public class WalkActionSystem : ComponentSystem {
+[UpdateBefore(typeof(ActionGroupControlSystem))]
+public abstract class ActionControlSystem : ComponentSystem { }
+
+[UpdateAfter(typeof(ActionGroupControlSystem))]
+public abstract class ActionSystem : ComponentSystem { }
+
+public class WalkActionControlSystem : ActionControlSystem {
+    protected override void OnUpdate() {
+        this.Entities.WithAllReadOnly<WalkActionConfig>().ForEach((ref MechAction mechAction) => {
+            mechAction.IsReadyToExecute = true;
+        });
+    }
+}
+
+public class WalkActionSystem : ActionSystem {
     protected override void OnUpdate() {
         this.Entities.ForEach((ref MechAction mechAction, ref WalkActionConfigData config) => {
-            if (!mechAction.IsActive) {
-                mechAction.State = ActionState.WaitingActivation;
-                return;
-            }
             var locoStatus = this.EntityManager.GetComponentData<MechLocoStatus>(mechAction.Owner);
             //if (!locoStatus.IsOnGround) {
             //    return;

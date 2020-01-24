@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5391e4b4c51309b40be226fd30141d62, type: 3}
+  m_Script: {fileID: 11500000, guid: 08269d494968ba84399cdeef1b3cf272, type: 3}
   m_Name: WalkConfig
   m_EditorClassIdentifier: 
-  tag: 1
-  activationBlockingTag: 0
-  executionCancellingTag: 0
+  constraint:
+    tag: 1
+    blockingTag: 0
+    forciblyBlockingTag: 0
   data:
     accel: 40
     decel: 30

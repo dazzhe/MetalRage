@@ -1,38 +1,25 @@
-using Unity.Entities;
 using UnityEngine;
 
-[UpdateBefore(typeof(MechActionActivator))]
-public class CrouchActionActivationRequestSystem : ComponentSystem {
+public class CrouchActionControlSystem : ActionControlSystem {
     protected override void OnUpdate() {
         this.Entities.ForEach((ref MechAction mechAction, ref CrouchActionConfigData config) => {
             if (!InputSystem.GetButton(MechCommandButton.Crouch)) {
-                mechAction.State = ActionState.Dormant;
-                return;
-            }
-            if (mechAction.IsActive) {
-                mechAction.State = ActionState.Running;
+                mechAction.IsReadyToExecute = false;
                 return;
             }
             var locoState = this.EntityManager.GetComponentData<MechLocoStatus>(mechAction.Owner).State;
-            var isCrouchableState =
+            var isValidState =
                 locoState == MechLocoState.Acceling || locoState == MechLocoState.Braking ||
                 locoState == MechLocoState.Crouching || locoState == MechLocoState.Idle ||
                 locoState == MechLocoState.Walking;
-            mechAction.State = isCrouchableState ? ActionState.WaitingActivation
-                                                 : ActionState.Dormant;
+            mechAction.IsReadyToExecute = isValidState;
         });
     }
 }
 
-[UpdateAfter(typeof(MechActionActivator))]
-public class CrouchActionSystem : ComponentSystem {
+public class CrouchActionSystem : ActionSystem {
     protected override void OnUpdate() {
         this.Entities.ForEach((ref MechAction mechAction, ref CrouchActionConfigData config) => {
-            if (!mechAction.IsActive || !InputSystem.GetButton(MechCommandButton.Crouch)) {
-                mechAction.State = ActionState.Dormant;
-                return;
-            }
-            mechAction.State = ActionState.Running;
             var status = this.EntityManager.GetComponentData<MechLocoStatus>(mechAction.Owner);
             var command = new MechLocoCommand {
                 NextState = MechLocoState.Crouching,

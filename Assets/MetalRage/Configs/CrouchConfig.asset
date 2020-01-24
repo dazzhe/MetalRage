@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5cbd84e756eb2c418e64a5e154ed629, type: 3}
+  m_Script: {fileID: 11500000, guid: 42444a173866759438571dfd753d5380, type: 3}
   m_Name: CrouchConfig
   m_EditorClassIdentifier: 
-  tag: 2
-  activationBlockingTag: 1
-  executionCancellingTag: 1
+  constraint:
+    tag: 2
+    blockingTag: 1
+    forciblyBlockingTag: 1

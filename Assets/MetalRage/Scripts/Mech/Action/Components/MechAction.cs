@@ -1,33 +1,26 @@
 using Unity.Entities;
-using UnityEngine;
-
-public enum ActionState {
-    Dormant,
-    WaitingActivation,
-    Running,
-}
 
 public struct MechAction : IComponentData {
-    [SerializeField]
-    private Entity owner;
-    [SerializeField]
-    private ActionState state;
-    [SerializeField]
-    private byte isActive;
-    [SerializeField]
-    private byte isDeactivationRequested;
-
-    public Entity Owner { get => this.owner; set => this.owner = value; }
-    public ActionState State { get => this.state; set => this.state = value; }
-    public bool IsActive { get => this.isActive == 1; set => this.isActive = value ? (byte)1 : (byte)0; }
-    public bool IsDeactivationRequested { get => this.isDeactivationRequested == 1; set => this.isDeactivationRequested = value ? (byte)1 : (byte)0; }
+    public Entity Owner;
+    /// <summary>
+    /// Set by each <see cref="ActionControlSystem"/>(e.g. <see cref="WalkActionControlSystem"/>) before update of <see cref="ActionGroupControlSystem"/>.
+    /// </summary>
+    public BlittableBool IsReadyToExecute;
+    /// <summary>
+    /// Set by <see cref="ActionGroupControlSystem"/> before update of <see cref="ActionSystem"/>(e.g. <see cref="WalkActionSystem"/>).<br/>
+    /// If <see cref="IsReadyToExecute"/> is true and the action is not restricted by <see cref="ActionExecutionConstraint"/>, <see cref="IsExecutionAllowed"/> is set to true.<br/>
+    /// <see cref="ActionSystem"/> is not allowed to execute if <see cref="IsExecutionAllowed"/> is false.
+    /// </summary>
+    public BlittableBool IsExecutionAllowed;
+    /// <summary>
+    /// Set by <see cref="ActionGroupControlSystem"/> before update of <see cref="ActionSystem"/>(e.g. <see cref="WalkActionSystem"/>).<br/>
+    /// If the action is blocking another action, <see cref="IsInterruptionRequested"/> is set to true.<br/>
+    /// Use <see cref="IsInterruptionRequested"/> if you want to gracefully terminate the action.
+    /// </summary>
+    public BlittableBool IsInterruptionRequested;
 }
 
 [InternalBufferCapacity(8)]
 public struct MechActionEntity : IBufferElementData {
-    [SerializeField]
-    private Entity value;
-
-    public Entity Value { get => this.value; set => this.value = value; }
+    public Entity Value;
 }
-

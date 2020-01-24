@@ -1,4 +1,3 @@
-using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
 
@@ -23,5 +22,6 @@ public class MechSpawner : ComponentSystem {
         }
         this.PostUpdateCommands.AddComponent(entity.Entity, new MechLocoStatus());
         this.PostUpdateCommands.AddComponent(entity.Entity, new MechLocoCommand());
+        this.PostUpdateCommands.AddComponent(entity.Entity, new Unity.Transforms.CompositeRotation());
     }
 }
