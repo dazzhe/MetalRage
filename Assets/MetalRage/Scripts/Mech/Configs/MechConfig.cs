@@ -5,8 +5,13 @@ public class MechConfig : ScriptableObject {
     [SerializeField]
     private GameObject prefab;
     [SerializeField]
-    private ActionConfigBase[] actions;
+    private MechMovementConfigData movement = new MechMovementConfigData {
+        MaxWalkSpeed = 13f,
+        WalkAccel = 60f,
+        Decel = 50f,
+        BaseJumpSpeed = 30f
+    };
 
     public GameObject Prefab { get => this.prefab; set => this.prefab = value; }
-    public ActionConfigBase[] Actions { get => this.actions; set => this.actions = value; }
+    public MechMovementConfigData Movement { get => this.movement; set => this.movement = value; }
 }

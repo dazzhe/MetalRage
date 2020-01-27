@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: MechConfig
   m_EditorClassIdentifier: 
   prefab: {fileID: 2604446858962410439, guid: 2cf02fe29782334488d39426672fe73b, type: 3}
-  actions:
-  - {fileID: 11400000, guid: d95275020a92c4344b9f92ef42b21273, type: 2}
-  - {fileID: 11400000, guid: 0826092ef9fff244a9deed64acfdaee4, type: 2}
+  movement:
+    WalkAccel: 60
+    Decel: 50
+    MaxWalkSpeed: 13
+    BaseJumpSpeed: 30

@@ -1,12 +1,12 @@
 using Unity.Entities;
 using UnityEngine;
 
-[UpdateAfter(typeof(MechLocoSystem))]
+[UpdateAfter(typeof(MechMovementSystem))]
 public class MechAnimationSystem : ComponentSystem {
     protected override void OnUpdate() {
-        this.Entities.ForEach((ref MechLocoStatus status, Animator animator) => {
+        this.Entities.ForEach((ref MechMovementStatus status, Animator animator) => {
             animator.SetFloat("WalkSpeed", status.Velocity.magnitude);
-            animator.SetBool("IsCrouching", status.State == MechLocoState.Crouching);
+            animator.SetBool("IsCrouching", status.State == MechMovementState.Crouching);
             animator.SetBool("IsOnGround", true);
             animator.SetFloat("LegOffsetYaw", status.LegYaw);
         });

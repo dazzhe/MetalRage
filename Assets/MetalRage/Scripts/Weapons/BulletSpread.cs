@@ -23,19 +23,19 @@ public class BulletSpread {
     public float MaxAngle { get => this.maxAngle; set => this.maxAngle = value; }
     public float GrowRate { get => this.growRate; set => this.growRate = value; }
 
-    public static float CorrectionFactor(MechLocoState state) {
+    public static float CorrectionFactor(MechMovementState state) {
         switch (state) {
-            case MechLocoState.Idle:
+            case MechMovementState.Idle:
                 return 1f;
-            case MechLocoState.Walking:
+            case MechMovementState.Walking:
                 return 1f;
-            case MechLocoState.Boosting:
+            case MechMovementState.Boosting:
                 return 1.3f;
-            case MechLocoState.Braking:
+            case MechMovementState.Braking:
                 return 1.2f;
-            case MechLocoState.Crouching:
+            case MechMovementState.Crouching:
                 return 0.5f;
-            case MechLocoState.Jumping:
+            case MechMovementState.Airborne:
                 return 1.5f;
             default:
                 return 1f;
@@ -54,13 +54,13 @@ public class BulletSpread {
         this.Angle = this.MinAngle;
     }
 
-    public Vector2 GetSample(MechLocoState state) {
+    public Vector2 GetSample(MechMovementState state) {
         var radius = Random.Range(0f, this.Angle * CorrectionFactor(state));
         var theta = Random.Range(0f, 2f * Mathf.PI);
         return new Vector2(radius * Mathf.Cos(theta), radius * Mathf.Sin(theta));
     }
 
-    public Vector2 GetSampleInScreen(MechLocoState state) {
+    public Vector2 GetSampleInScreen(MechMovementState state) {
         var radius = Random.Range(0f, this.RadiusInScreen * CorrectionFactor(state));
         var theta = Random.Range(0f, 2f * Mathf.PI);
         return new Vector2(radius * Mathf.Cos(theta), radius * Mathf.Sin(theta));

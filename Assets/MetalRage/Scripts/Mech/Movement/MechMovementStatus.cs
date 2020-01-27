@@ -1,9 +1,9 @@
 using Unity.Entities;
 using UnityEngine;
 
-public struct MechLocoStatus : IComponentData {
+public struct MechMovementStatus : IComponentData {
     public BlittableBool IsOnGround;
-    public MechLocoState State;
+    public MechMovementState State;
     public Vector3 Velocity;
     public float LegYaw;
 }

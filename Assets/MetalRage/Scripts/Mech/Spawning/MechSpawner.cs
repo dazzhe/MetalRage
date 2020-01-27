@@ -14,14 +14,9 @@ public class MechSpawner : ComponentSystem {
         var mechConfig = mechConfigMap[request.MechType];
         var obj = Object.Instantiate(mechConfig.Prefab, request.Position, request.Rotation);
         var entity = obj.GetComponent<GameObjectEntity>();
-        var actions = mechConfig.Actions;
-        var actionBuffer = this.PostUpdateCommands.AddBuffer<MechActionEntity>(entity.Entity);
-        for (int i = 0; i < actions.Length; ++i) {
-            var action = actions[i].CreateBufferElement(this.EntityManager, entity.Entity);
-            actionBuffer.Add(action);
-        }
-        this.PostUpdateCommands.AddComponent(entity.Entity, new MechLocoStatus());
-        this.PostUpdateCommands.AddComponent(entity.Entity, new MechLocoCommand());
-        this.PostUpdateCommands.AddComponent(entity.Entity, new Unity.Transforms.CompositeRotation());
+        this.PostUpdateCommands.AddComponent(entity.Entity, new MechMovementStatus());
+        this.PostUpdateCommands.AddComponent(entity.Entity, new BoosterEngineStatus { Gauge = 100 });
+        this.PostUpdateCommands.AddComponent(entity.Entity, new BoostActionConfigData { MaxSpeed = 30f, Consumption = 1, Duration = 0.2f });
+        this.PostUpdateCommands.AddComponent(entity.Entity, mechConfig.Movement);
     }
 }

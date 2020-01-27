@@ -1,12 +1,12 @@
 using System.Collections;
 using UnityEngine;
 
-public enum MechLocoState {
+public enum MechMovementState {
     Idle = 0,
     Walking = 1,
     Boosting = 2,
     Crouching = 3,
-    Jumping = 4,
+    Airborne = 4,
     Acceling = 5,
     Braking = 6
 }
@@ -32,7 +32,7 @@ public class MechMotor : MonoBehaviour {
     private Vector3 groundNormal;
     private bool canJump = true;
 
-    public MechLocoState locoState;
+    public MechMovementState locoState;
     public Vector3 MoveDirection;
     private Vector3 boostDirection;
     private Vector3 accelDirection;
@@ -79,7 +79,7 @@ public class MechMotor : MonoBehaviour {
     private void LegDirection() {
         var legYaw = 0f;
         var currentYaw = GetComponent<Animator>().GetFloat("LegOffsetYaw");
-        if (this.locoState == MechLocoState.Walking) {
+        if (this.locoState == MechMovementState.Walking) {
             var h = InputSystem.GetMoveHorizontal();
             var v = InputSystem.GetMoveVertical();
             legYaw = h > 0 && v > 0 ? 45f :
@@ -88,7 +88,7 @@ public class MechMotor : MonoBehaviour {
                                h < 0 && v > 0 ? -45f :
                               h < 0 && v == 0 ? -90f : currentYaw;
         }
-        if (this.locoState == MechLocoState.Boosting) {
+        if (this.locoState == MechMovementState.Boosting) {
             legYaw = 0f;
         }
         GetComponent<Animator>().SetFloat("LegOffsetYaw", legYaw);
@@ -120,7 +120,7 @@ public class MechMotor : MonoBehaviour {
 
     //入力情報から速度ベクトルを計算する.
     private void Walk() {
-        if (this.isGrounded && (this.locoState == MechLocoState.Walking || this.locoState == MechLocoState.Idle)) {
+        if (this.isGrounded && (this.locoState == MechMovementState.Walking || this.locoState == MechMovementState.Idle)) {
             //まず-1<=x<=1,-1<=y<=1の範囲で動かすことでx,y方向それぞれの.
             //最大速度に対する相対値を計算している.
             switch (Mathf.RoundToInt(InputSystem.GetMoveHorizontal())) {
@@ -164,12 +164,12 @@ public class MechMotor : MonoBehaviour {
             this.MoveDirection = this.transform.TransformDirection(this.MoveDirection);
             this.MoveDirection *= this.walkSpeed;
             if (this.rawDirection.magnitude != 0) {
-                this.locoState = MechLocoState.Walking;
-            } else if (this.locoState == MechLocoState.Walking) {
-                this.locoState = MechLocoState.Idle;
+                this.locoState = MechMovementState.Walking;
+            } else if (this.locoState == MechMovementState.Walking) {
+                this.locoState = MechMovementState.Idle;
             }
         } else {
-            if (this.locoState == MechLocoState.Walking) {
+            if (this.locoState == MechMovementState.Walking) {
                 this.locoState = 0;
             }
 
@@ -188,18 +188,18 @@ public class MechMotor : MonoBehaviour {
     }
 
     private void Crouch() {
-        if (this.isGrounded && InputSystem.GetButton(MechCommandButton.Crouch) && this.locoState != MechLocoState.Boosting) {
-            this.locoState = MechLocoState.Crouching;
+        if (this.isGrounded && InputSystem.GetButton(MechCommandButton.Crouch) && this.locoState != MechMovementState.Boosting) {
+            this.locoState = MechMovementState.Crouching;
             this.MoveDirection *= 0;
-        } else if (this.locoState == MechLocoState.Crouching) {
+        } else if (this.locoState == MechMovementState.Crouching) {
             this.locoState = 0;
         }
-        this.animator.SetBool("IsCrouching", this.locoState == MechLocoState.Crouching);
+        this.animator.SetBool("IsCrouching", this.locoState == MechMovementState.Crouching);
     }
 
     private void Jump() {
         if (this.isGrounded) {
-            if (InputSystem.GetButtonDown(MechCommandButton.Jump) && this.canJump && this.locoState != MechLocoState.Boosting) {
+            if (InputSystem.GetButtonDown(MechCommandButton.Jump) && this.canJump && this.locoState != MechMovementState.Boosting) {
                 this.isGrounded = false;
                 StartCoroutine(JumpCoolDown());
                 this.engine?.ShowJetFlame(0.4f, Vector3.forward);
@@ -208,12 +208,12 @@ public class MechMotor : MonoBehaviour {
                     = this.transform.TransformDirection(new Vector3(InputSystem.GetMoveHorizontal() * this.hJumpSpeed,
                                                                this.jumpSpeed * (1f + 0.002f * this.velosity.magnitude),
                                                                InputSystem.GetMoveVertical() * this.hJumpSpeed));
-            } else if (this.locoState == MechLocoState.Jumping) {
-                this.locoState = MechLocoState.Idle;
+            } else if (this.locoState == MechMovementState.Airborne) {
+                this.locoState = MechMovementState.Idle;
             }
         }
-        if (!this.isGrounded && this.locoState != MechLocoState.Boosting) {
-            this.locoState = MechLocoState.Jumping;
+        if (!this.isGrounded && this.locoState != MechMovementState.Boosting) {
+            this.locoState = MechMovementState.Airborne;
             float horizontalSpeed = new Vector2(this.MoveDirection.x, this.MoveDirection.z).magnitude;
             this.accelDirection = new Vector3(InputSystem.GetMoveHorizontal(), 0, InputSystem.GetMoveVertical());
 
@@ -234,9 +234,9 @@ public class MechMotor : MonoBehaviour {
 
     private void BoostControl() {
         if (this.isGrounded && InputSystem.GetButtonDown(MechCommandButton.Boost)
-            && (this.locoState == MechLocoState.Walking
-                || this.locoState == MechLocoState.Idle
-                || this.locoState == MechLocoState.Braking)
+            && (this.locoState == MechMovementState.Walking
+                || this.locoState == MechMovementState.Idle
+                || this.locoState == MechMovementState.Braking)
             && this.BoostGauge >= 28) {
             this.BoostGauge -= 28;
             float h = InputSystem.GetMoveHorizontal();
@@ -264,11 +264,11 @@ public class MechMotor : MonoBehaviour {
             StartCoroutine(BoostStart());
         }
 
-        if (this.locoState == MechLocoState.Boosting) {
+        if (this.locoState == MechMovementState.Boosting) {
             Boost();
         }
 
-        if (this.locoState == MechLocoState.Braking) {
+        if (this.locoState == MechMovementState.Braking) {
             BoostBrake();
         }
     }
@@ -276,12 +276,12 @@ public class MechMotor : MonoBehaviour {
     private IEnumerator BoostStart() {
         // Jump and squat inputs are accepted only if CharacterState is "Acceling".
         this.MoveDirection = this.boostDirection * this.boostSpeed;
-        this.locoState = MechLocoState.Acceling;
+        this.locoState = MechMovementState.Acceling;
         yield return new WaitForSeconds(0.05f);
-        if (this.locoState == MechLocoState.Acceling) {
-            this.locoState = MechLocoState.Boosting;
+        if (this.locoState == MechMovementState.Acceling) {
+            this.locoState = MechMovementState.Boosting;
             yield return new WaitForSeconds(this.boostTime);
-            this.locoState = MechLocoState.Braking;
+            this.locoState = MechMovementState.Braking;
         }
     }
 
@@ -295,7 +295,7 @@ public class MechMotor : MonoBehaviour {
     private void BoostBrake() {
         this.MoveDirection = Vector3.Lerp(this.MoveDirection, Vector3.zero, 6f * Time.deltaTime);
         if (this.MoveDirection.magnitude <= this.walkSpeed) {
-            this.locoState = MechLocoState.Walking;
+            this.locoState = MechMovementState.Walking;
         }
     }
 
