@@ -48,7 +48,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""id"": ""8fd8feff-68dc-4306-9e74-64c045b938bf"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press(behavior=2)""
                 },
                 {
                     ""name"": ""Jump"",
@@ -56,23 +56,15 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""id"": ""799bad5a-41f7-4bf5-b3f4-5a24d5ee6259"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press(behavior=2)""
                 },
                 {
                     ""name"": ""Boost"",
                     ""type"": ""Button"",
                     ""id"": ""1216e0b5-b6ec-4814-8e0d-7beb9096f57a"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""TriggerBoost"",
-                    ""type"": ""Button"",
-                    ""id"": ""ee72ead3-179d-4377-b209-b8575f08dad5"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press(behavior=2)""
                 }
             ],
             ""bindings"": [
@@ -179,7 +171,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""e2ef2364-3b25-4791-b690-44afcf078499"",
                     ""path"": ""<Keyboard>/ctrl"",
-                    ""interactions"": ""Press(behavior=2)"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Crouch"",
@@ -201,21 +193,10 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""ce93b4ec-41bd-4c4a-a9e0-5a1ae0a1698b"",
                     ""path"": ""<Keyboard>/shift"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Boost"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c4e55134-dc15-4342-971a-f35b000f5c9f"",
-                    ""path"": ""<Keyboard>/shift"",
-                    ""interactions"": ""Press"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""TriggerBoost"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -232,7 +213,6 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Mech_Crouch = m_Mech.FindAction("Crouch", throwIfNotFound: true);
         m_Mech_Jump = m_Mech.FindAction("Jump", throwIfNotFound: true);
         m_Mech_Boost = m_Mech.FindAction("Boost", throwIfNotFound: true);
-        m_Mech_TriggerBoost = m_Mech.FindAction("TriggerBoost", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -288,7 +268,6 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Mech_Crouch;
     private readonly InputAction m_Mech_Jump;
     private readonly InputAction m_Mech_Boost;
-    private readonly InputAction m_Mech_TriggerBoost;
     public struct MechActions
     {
         private @Controls m_Wrapper;
@@ -299,7 +278,6 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Crouch => m_Wrapper.m_Mech_Crouch;
         public InputAction @Jump => m_Wrapper.m_Mech_Jump;
         public InputAction @Boost => m_Wrapper.m_Mech_Boost;
-        public InputAction @TriggerBoost => m_Wrapper.m_Mech_TriggerBoost;
         public InputActionMap Get() { return m_Wrapper.m_Mech; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -327,9 +305,6 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Boost.started -= m_Wrapper.m_MechActionsCallbackInterface.OnBoost;
                 @Boost.performed -= m_Wrapper.m_MechActionsCallbackInterface.OnBoost;
                 @Boost.canceled -= m_Wrapper.m_MechActionsCallbackInterface.OnBoost;
-                @TriggerBoost.started -= m_Wrapper.m_MechActionsCallbackInterface.OnTriggerBoost;
-                @TriggerBoost.performed -= m_Wrapper.m_MechActionsCallbackInterface.OnTriggerBoost;
-                @TriggerBoost.canceled -= m_Wrapper.m_MechActionsCallbackInterface.OnTriggerBoost;
             }
             m_Wrapper.m_MechActionsCallbackInterface = instance;
             if (instance != null)
@@ -352,9 +327,6 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Boost.started += instance.OnBoost;
                 @Boost.performed += instance.OnBoost;
                 @Boost.canceled += instance.OnBoost;
-                @TriggerBoost.started += instance.OnTriggerBoost;
-                @TriggerBoost.performed += instance.OnTriggerBoost;
-                @TriggerBoost.canceled += instance.OnTriggerBoost;
             }
         }
     }
@@ -367,6 +339,5 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnCrouch(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnBoost(InputAction.CallbackContext context);
-        void OnTriggerBoost(InputAction.CallbackContext context);
     }
 }

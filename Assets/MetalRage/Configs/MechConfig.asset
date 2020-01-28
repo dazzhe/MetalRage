@@ -17,4 +17,4 @@ MonoBehaviour:
     WalkAccel: 60
     Decel: 50
     MaxWalkSpeed: 13
-    BaseJumpSpeed: 30
+    BaseJumpSpeed: 9
