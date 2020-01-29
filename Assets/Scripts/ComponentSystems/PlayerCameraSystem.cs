@@ -63,7 +63,7 @@ public class PlayerCameraSystem : ComponentSystem {
         } else {
             var leanDirection = this.currentLeanMode == CameraLeanMode.Left ? Vector3.left : Vector3.right;
             var leanOffset = this.leanLength * leanDirection;
-            this.currentLeanOffset = Vector3.Lerp(this.currentLeanOffset, leanOffset, 30f * Time.deltaTime);
+            this.currentLeanOffset = Vector3.Lerp(this.currentLeanOffset, leanOffset, 30f * Time.DeltaTime);
             this.camera.transform.position = this.Target.TransformPoint(cameraOffset + this.currentLeanOffset);
         }
         // Double check wall penetration to avoid jittering.
@@ -131,9 +131,9 @@ public class PlayerCameraSystem : ComponentSystem {
 
     private void Follow(Vector3 destination) {
         var cameraPosition = this.camera.transform.position;
-        cameraPosition.x = Mathf.Lerp(cameraPosition.x, destination.x, 7f * Time.deltaTime);
-        cameraPosition.y = Mathf.Lerp(cameraPosition.y, destination.y, 20f * Time.deltaTime);
-        cameraPosition.z = Mathf.Lerp(cameraPosition.z, destination.z, 20f * Time.deltaTime);
+        cameraPosition.x = Mathf.Lerp(cameraPosition.x, destination.x, 7f * Time.DeltaTime);
+        cameraPosition.y = Mathf.Lerp(cameraPosition.y, destination.y, 20f * Time.DeltaTime);
+        cameraPosition.z = Mathf.Lerp(cameraPosition.z, destination.z, 20f * Time.DeltaTime);
         this.camera.transform.position = cameraPosition;
     }
 

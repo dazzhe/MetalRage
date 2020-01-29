@@ -40,6 +40,4 @@ Thumbs.db
 .gradle
 
 # External Assets
-/Assets/*
-!MetalRage
-!MetalRage.meta
+/Assets/External/*
