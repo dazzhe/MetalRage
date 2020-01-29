@@ -15,10 +15,8 @@ public class MenuUI : CanvasUI {
         Toggle();
         if (this.IsVisible) {
             this.ActiveWindowLevel = 1;
-            UIManager.Instance.ShowCursor();
         } else if (this.ActiveWindowLevel == 1) {
             this.ActiveWindowLevel = 0;
-            UIManager.Instance.HideCursor();
         }
     }
 }
