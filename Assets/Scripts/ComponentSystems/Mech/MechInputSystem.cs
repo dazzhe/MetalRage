@@ -10,6 +10,8 @@ public struct PlayerInputData : IComponentData {
     public bool Jump;
     public Vector2 Move;
     public Vector2 DeltaLook;
+    public bool LeanLeft;
+    public bool LeanRight;
 }
 
 [AlwaysUpdateSystem]
