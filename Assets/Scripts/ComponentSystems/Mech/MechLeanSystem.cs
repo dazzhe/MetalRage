@@ -1,12 +1,6 @@
 using Unity.Entities;
 using UnityEngine;
 
-public struct PlayerCameraCommand : IComponentData {
-    public Bool LeanLeft;
-    public Bool LeanRight;
-    public Bool CancelLean;
-}
-
 [UpdateAfter(typeof(PlayerCameraSystem))]
 [UpdateBefore(typeof(PlayerCameraSystem))]
 public class MechLeanSystem : ComponentSystem {
@@ -20,10 +14,17 @@ public class MechLeanSystem : ComponentSystem {
         if (this.query.CalculateEntityCount() == 0) {
             this.EntityManager.CreateEntity(typeof(PlayerCameraCommand));
         }
-        var command = this.query.GetSingleton<PlayerCameraCommand>();
+        var command = new PlayerCameraCommand();
         this.Entities.ForEach((ref PlayerInputData input, ref MechMovementStatus movement) => {
-
-            input.LeanLeft
+            var mechIsStable = movement.Velocity == Vector3.zero;
+            if (input.LeanLeft && mechIsStable) {
+                command.LeanLeft = true;
+            } else if (input.LeanRight && mechIsStable) {
+                command.LeanRight = true;
+            } else if (!input.LeanLeft && !input.LeanRight) {
+                command.CancelLean = true;
+            }
         });
+        this.query.SetSingleton(command);
     }
 }

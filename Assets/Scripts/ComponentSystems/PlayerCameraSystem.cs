@@ -1,18 +1,31 @@
 using Unity.Entities;
 using UnityEngine;
 
-public struct PlayerCameraSettings : IComponentData {
+public enum CameraLeanState {
+    Right,
+    Left,
+    Off
 }
 
+public struct PlayerCameraCommand : IComponentData {
+    public Bool LeanLeft;
+    public Bool LeanRight;
+    public Bool CancelLean;
+    public Vector3 TargetPosition;
+    public Quaternion TargetRotation;
+}
 
+public struct CameraLeanStatus {
+    public CameraLeanState State;
+    public Vector3 currentLeanOffset;
+}
 
 public struct PlayerCamera : IComponentData {
+    public CameraLeanStatus LeanStatus;
     public Vector3 BaseCameraOffset;
     public Entity Target;
-    public CameraLeanMode leanMode;
     public float leanLength;// = 5f;
     public float offsetDistanceByPitch;// = 4.7f;
-    public Vector3 currentLeanOffset;
     public bool IsRightLeanTriggered => Input.GetButtonDown("right lean");
     public bool IsLeftLeanTriggered => Input.GetButtonDown("left lean");
 }
@@ -22,28 +35,31 @@ public class PlayerCameraSystem : ComponentSystem {
     private EntityQuery query;
 
     protected override void OnCreate() {
-        this.query = GetEntityQuery(typeof(PlayerCamera), typeof(Transform));
+        this.query = GetEntityQuery(typeof(PlayerCamera), typeof(PlayerCameraCommand), typeof(Transform));
     }
 
-    private Vector3 OffsetByPitch {
-        get {
-            var offsetLength = Mathf.Abs(Mathf.Sin(transform.localEulerAngles.x * Mathf.Deg2Rad)) * this.offsetDistanceByPitch;
-            return offsetLength * Vector3.forward;
-        }
+    private Vector3 CalculateOffset(PlayerCamera camera, PlayerCameraCommand command) {
+        var offsetLength = Mathf.Abs(Mathf.Sin(command.TargetRotation.eulerAngles.x * Mathf.Deg2Rad)) * camera.offsetDistanceByPitch;
+        return offsetLength * Vector3.forward;
     }
 
     protected override void OnUpdate() {
         var camera = this.query.GetSingleton<PlayerCamera>();
+        var command = this.query.GetSingleton<PlayerCameraCommand>();
         var transform = this.EntityManager.GetComponentObject<Transform>(this.query.GetSingletonEntity());
-        var cameraOffset = camera.BaseCameraOffset + this.OffsetByPitch;
+        var cameraOffset = camera.BaseCameraOffset + CalculateOffset(camera, command);
         var targetTransform = this.EntityManager.GetComponentObject<Transform>(camera.Target);
+        if (command.LeanLeft) {
+            camera.Lea
+        }
         //SetLeanType();
+
         UpdateByTargetRotation(transform, targetTransform);
-        if (camera.leanMode == CameraLeanMode.None) {
+        if (camera.leanMode == CameraLeanState.Off) {
             var desiredCameraPosition = AvoidWallPenetration(targetTransform.TransformPoint(cameraOffset), targetTransform.position);
             Follow(transform, desiredCameraPosition);
         } else {
-            var leanDirection = camera.leanMode == CameraLeanMode.Left ? Vector3.left : Vector3.right;
+            var leanDirection = camera.leanMode == CameraLeanState.Left ? Vector3.left : Vector3.right;
             var leanOffset = camera.leanLength * leanDirection;
             camera.currentLeanOffset = Vector3.Lerp(camera.currentLeanOffset, leanOffset, 30f * this.Time.DeltaTime);
             transform.position = targetTransform.TransformPoint(cameraOffset + camera.currentLeanOffset);

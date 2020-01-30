@@ -1,11 +1,5 @@
 using UnityEngine;
 
-public enum CameraLeanMode {
-    Right,
-    Left,
-    None
-}
-
 [RequireComponent(typeof(Camera))]
 public class PlayerCameraComponent : MonoBehaviour {
     [SerializeField]
@@ -18,7 +12,7 @@ public class PlayerCameraComponent : MonoBehaviour {
     private float offsetDistanceByPitch = 4.7f;
 
     private new Camera camera;
-    private CameraLeanMode currentLeanMode = CameraLeanMode.None;
+    private CameraLeanState currentLeanMode = CameraLeanState.Off;
     private Vector3 currentLeanOffset;
 
     private bool IsTargetMoving {
@@ -41,7 +35,7 @@ public class PlayerCameraComponent : MonoBehaviour {
     public Transform Target { get => this.target; set => this.target = value; }
 
     private void Awake() {
-        this.currentLeanMode = CameraLeanMode.None;
+        this.currentLeanMode = CameraLeanState.Off;
         this.camera = GetComponent<Camera>();
     }
 
@@ -49,11 +43,11 @@ public class PlayerCameraComponent : MonoBehaviour {
         var cameraOffset = this.baseCameraOffset + this.OffsetByPitch;
         SetLeanType();
         UpdateByTargetRotation();
-        if (this.currentLeanMode == CameraLeanMode.None) {
+        if (this.currentLeanMode == CameraLeanState.Off) {
             var desiredCameraPosition = AvoidWallPenetration(this.Target.TransformPoint(cameraOffset));
             Follow(desiredCameraPosition);
         } else {
-            var leanDirection = this.currentLeanMode == CameraLeanMode.Left ? Vector3.left : Vector3.right;
+            var leanDirection = this.currentLeanMode == CameraLeanState.Left ? Vector3.left : Vector3.right;
             var leanOffset = this.leanLength * leanDirection;
             this.currentLeanOffset = Vector3.Lerp(this.currentLeanOffset, leanOffset, 30f * Time.deltaTime);
             this.camera.transform.position = this.Target.TransformPoint(cameraOffset + this.currentLeanOffset);
@@ -90,32 +84,32 @@ public class PlayerCameraComponent : MonoBehaviour {
     private void SetLeanType() {
         if (!this.IsTargetMoving) {
             if (this.IsRightLeanTriggered) {
-                TriggerLean(CameraLeanMode.Right);
+                TriggerLean(CameraLeanState.Right);
             }
             if (this.IsLeftLeanTriggered) {
-                TriggerLean(CameraLeanMode.Left);
+                TriggerLean(CameraLeanState.Left);
             }
         }
         var isLeanCanceled =
-            this.currentLeanMode == CameraLeanMode.Left && !Input.GetButton("right lean") ||
-            this.currentLeanMode == CameraLeanMode.Right && !Input.GetButton("left lean");
+            this.currentLeanMode == CameraLeanState.Left && !Input.GetButton("right lean") ||
+            this.currentLeanMode == CameraLeanState.Right && !Input.GetButton("left lean");
         if (isLeanCanceled) {
-            TriggerLean(CameraLeanMode.None);
+            TriggerLean(CameraLeanState.Off);
         }
     }
 
-    private void TriggerLean(CameraLeanMode leanType) {
+    private void TriggerLean(CameraLeanState leanType) {
         switch (leanType) {
-            case CameraLeanMode.Left:
+            case CameraLeanState.Left:
                 Game.SoundSystem.Play(SoundDefinition.LeanSound);
-                this.currentLeanMode = CameraLeanMode.Left;
+                this.currentLeanMode = CameraLeanState.Left;
                 break;
-            case CameraLeanMode.Right:
+            case CameraLeanState.Right:
                 Game.SoundSystem.Play(SoundDefinition.LeanSound);
-                this.currentLeanMode = CameraLeanMode.Right;
+                this.currentLeanMode = CameraLeanState.Right;
                 break;
-            case CameraLeanMode.None:
-                this.currentLeanMode = CameraLeanMode.None;
+            case CameraLeanState.Off:
+                this.currentLeanMode = CameraLeanState.Off;
                 break;
         }
         this.currentLeanOffset = Vector3.zero;
