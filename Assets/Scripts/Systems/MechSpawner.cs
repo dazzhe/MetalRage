@@ -13,7 +13,7 @@ public class MechSpawner : ComponentSystem {
         var mechConfigMap = Game.Config.GetConfig<MechConfigMap>();
         var mechConfig = mechConfigMap[request.MechType];
         var obj = Object.Instantiate(mechConfig.Prefab, request.Position, request.Rotation);
-        var entity = obj.GetComponent<GameObjectEntity>();
+        var entity = obj.GetComponent<ConvertToEntity>();
         this.PostUpdateCommands.AddComponent(entity.Entity, new MechMovementStatus());
         this.PostUpdateCommands.AddComponent(entity.Entity, new BoosterEngineStatus { Gauge = 100 });
         this.PostUpdateCommands.AddComponent(entity.Entity, new BoosterConfigData {
