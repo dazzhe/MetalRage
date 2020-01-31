@@ -50,19 +50,19 @@ public class PlayerCameraSystem : ComponentSystem {
         var cameraOffset = camera.BaseCameraOffset + CalculateOffset(camera, command);
         var targetTransform = this.EntityManager.GetComponentObject<Transform>(camera.Target);
         if (command.LeanLeft) {
-            camera.Lea
+//            camera.Lea
         }
         //SetLeanType();
 
         UpdateByTargetRotation(transform, targetTransform);
-        if (camera.leanMode == CameraLeanState.Off) {
+        if (camera.LeanStatus.State == CameraLeanState.Off) {
             var desiredCameraPosition = AvoidWallPenetration(targetTransform.TransformPoint(cameraOffset), targetTransform.position);
             Follow(transform, desiredCameraPosition);
         } else {
-            var leanDirection = camera.leanMode == CameraLeanState.Left ? Vector3.left : Vector3.right;
+            var leanDirection = camera.LeanStatus.State == CameraLeanState.Left ? Vector3.left : Vector3.right;
             var leanOffset = camera.leanLength * leanDirection;
-            camera.currentLeanOffset = Vector3.Lerp(camera.currentLeanOffset, leanOffset, 30f * this.Time.DeltaTime);
-            transform.position = targetTransform.TransformPoint(cameraOffset + camera.currentLeanOffset);
+            camera.LeanStatus.currentLeanOffset = Vector3.Lerp(camera.LeanStatus.currentLeanOffset, leanOffset, 30f * this.Time.DeltaTime);
+            transform.position = targetTransform.TransformPoint(cameraOffset + camera.LeanStatus.currentLeanOffset);
         }
         // Double check wall penetration to avoid jittering.
         transform.position = AvoidWallPenetration(transform.position, targetTransform.position);
