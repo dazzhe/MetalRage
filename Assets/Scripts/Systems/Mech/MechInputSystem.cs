@@ -34,6 +34,8 @@ public class MechInputSystem : ComponentSystem, Controls.IMechActions {
         var newInput = this.input;
         newInput.BoostOneShot = this.input.Boost && !this.prevInput.Boost;
         newInput.Jump = this.input.Jump && !this.prevInput.Jump;
+        newInput.LeanLeft = this.input.LeanLeft && !this.prevInput.LeanLeft;
+        newInput.LeanRight = this.input.LeanRight && !this.prevInput.LeanRight;
         this.query.SetSingleton(newInput);
         this.prevInput = this.input;
     }
@@ -53,4 +55,8 @@ public class MechInputSystem : ComponentSystem, Controls.IMechActions {
         this.input.DeltaLook = context.ReadValue<Vector2>();
     public void OnMove(InputAction.CallbackContext context) =>
         this.input.Move = context.ReadValue<Vector2>();
+    public void OnLeanLeft(InputAction.CallbackContext context) =>
+        this.input.LeanLeft = context.ReadValue<float>() > 0f;
+    public void OnLeanRight(InputAction.CallbackContext context) =>
+        this.input.LeanRight = context.ReadValue<float>() > 0f;
 }

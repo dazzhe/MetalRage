@@ -2,26 +2,35 @@ using Unity.Entities;
 using UnityEngine;
 
 public class MechSpawner : ComponentSystem {
-    protected override void OnUpdate() {
-        this.Entities.ForEach((Entity entity, ref MechSpawnRequest request) => {
-            SpawnMech(request);
-            this.PostUpdateCommands.DestroyEntity(entity);
-        });
+    protected override void OnCreate() {
+        base.OnCreate();
     }
 
-    private void SpawnMech(MechSpawnRequest request) {
-        var mechConfigMap = Game.Config.GetConfig<MechConfigMap>();
-        var mechConfig = mechConfigMap[request.MechType];
-        var obj = Object.Instantiate(mechConfig.Prefab, request.Position, request.Rotation);
-        var entity = obj.GetComponent<ConvertToEntity>();
-        this.PostUpdateCommands.AddComponent(entity.Entity, new MechMovementStatus());
-        this.PostUpdateCommands.AddComponent(entity.Entity, new BoosterEngineStatus { Gauge = 100 });
-        this.PostUpdateCommands.AddComponent(entity.Entity, new BoosterConfigData {
-            MaxSpeed = 30f,
-            Consumption = 1,
-            Duration = 0.2f,
-            Accel = 300f
+    protected override void OnUpdate() {
+        this.Entities.ForEach((Entity entity, ref MechSpawnRequest request) => {
+            this.PostUpdateCommands.DestroyEntity(entity);
+            var spawnedObject = GameObject.Instantiate(Game.Config.GetConfig<MechConfigMap>()[request.MechType].Prefab);
+            var transform = spawnedObject.GetComponent<Transform>();
+            transform.position = request.Position;
+            transform.rotation = request.Rotation;
+            var mechConfigMap = Game.Config.GetConfig<MechConfigMap>();
+            var mechConfig = mechConfigMap[request.MechType];
+            var spawnedEntity = this.EntityManager.CreateEntity();
+            this.PostUpdateCommands.AddComponent(spawnedEntity, new MechMovementStatus());
+            this.PostUpdateCommands.AddComponent(spawnedEntity, new BoosterEngineStatus { Gauge = 100 });
+            this.PostUpdateCommands.AddComponent(spawnedEntity, new BoosterConfigData {
+                MaxSpeed = 30f,
+                Consumption = 1,
+                Duration = 0.2f,
+                Accel = 300f
+            });
+            this.PostUpdateCommands.AddComponent(spawnedEntity, mechConfig.Movement);
+            this.EntityManager.AddComponentObject(spawnedEntity, transform);
+            this.EntityManager.AddComponentObject(spawnedEntity, spawnedObject.GetComponent<CharacterController>());
+            this.EntityManager.AddComponentObject(spawnedEntity, spawnedObject.GetComponent<Animator>());
+            this.EntityManager.AddComponentObject(spawnedEntity, spawnedObject.GetComponent<MechComponent>());
+            var cameraTarget = spawnedObject.GetComponent<MechAuthoring>().CameraTarget;
+
         });
-        this.PostUpdateCommands.AddComponent(entity.Entity, mechConfig.Movement);
     }
 }

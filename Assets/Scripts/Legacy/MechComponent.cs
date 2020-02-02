@@ -1,6 +1,5 @@
 using UnityEngine;
-
-public class Mech : MonoBehaviour {
+public class MechComponent : MonoBehaviour {
     [SerializeField]
     private GameObject playerCameraPrefab = default;
     [SerializeField]
@@ -27,8 +26,8 @@ public class Mech : MonoBehaviour {
     //private float recoilFixSpeed = 25f;
 
     private void Awake() {
-        this.PlayerCamera = Instantiate(this.playerCameraPrefab).GetComponent<PlayerCameraComponent>();
-        this.PlayerCamera.Target = this.CameraFollowTarget;
+        //this.PlayerCamera = Instantiate(this.playerCameraPrefab).GetComponent<PlayerCameraComponent>();
+        //this.PlayerCamera.Target = this.CameraFollowTarget;
     }
 
     //private void WeaponSelect() {

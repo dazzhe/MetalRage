@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 2604446859472475103}
   - component: {fileID: 2604446859472475102}
   - component: {fileID: 2604446859472475089}
-  - component: {fileID: 2674505872407277504}
+  - component: {fileID: -671086960053381931}
   m_Layer: 8
   m_Name: Vanguard
   m_TagString: Untagged
@@ -356,7 +356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSound: {fileID: 11400000, guid: d71a3b4b84603354789fe2fd36e3738f, type: 2}
---- !u!114 &2674505872407277504
+--- !u!114 &-671086960053381931
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -365,10 +365,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2604446858962410439}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea7d7495833204790ba1d3a8755397f8, type: 3}
+  m_Script: {fileID: 11500000, guid: cd3aee964176ea4439afa02da563125f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ConversionMode: 0
+  mechType: 0
 --- !u!1 &2604446858962410441
 GameObject:
   m_ObjectHideFlags: 0

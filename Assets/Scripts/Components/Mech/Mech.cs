@@ -1,6 +1,8 @@
 using Unity.Entities;
+using UnityEngine;
 
-public class MechHealthStatus : IComponentData {
+public struct Mech {
+    public Transform
     public int MaxHP;
     public int HP;
     public int Armor;

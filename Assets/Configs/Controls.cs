@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/MetalRage/Configs/Controls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Configs/Controls.inputactions'
 
 using System;
 using System.Collections;
@@ -63,6 +63,22 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""type"": ""Button"",
                     ""id"": ""1216e0b5-b6ec-4814-8e0d-7beb9096f57a"",
                     ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)""
+                },
+                {
+                    ""name"": ""LeanLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""93087ecf-c53f-4932-97c1-1cc0534b9eaa"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)""
+                },
+                {
+                    ""name"": ""LeanRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""a1a3d190-41f9-4ea5-8fce-920d7bf6ef23"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)""
                 }
@@ -199,6 +215,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Boost"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""71875c47-95e8-419a-bc07-79a9b70f33e5"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeanLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d662ed90-a033-4d35-a500-83f90d27ca1e"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeanRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -213,6 +251,8 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Mech_Crouch = m_Mech.FindAction("Crouch", throwIfNotFound: true);
         m_Mech_Jump = m_Mech.FindAction("Jump", throwIfNotFound: true);
         m_Mech_Boost = m_Mech.FindAction("Boost", throwIfNotFound: true);
+        m_Mech_LeanLeft = m_Mech.FindAction("LeanLeft", throwIfNotFound: true);
+        m_Mech_LeanRight = m_Mech.FindAction("LeanRight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -268,6 +308,8 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Mech_Crouch;
     private readonly InputAction m_Mech_Jump;
     private readonly InputAction m_Mech_Boost;
+    private readonly InputAction m_Mech_LeanLeft;
+    private readonly InputAction m_Mech_LeanRight;
     public struct MechActions
     {
         private @Controls m_Wrapper;
@@ -278,6 +320,8 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Crouch => m_Wrapper.m_Mech_Crouch;
         public InputAction @Jump => m_Wrapper.m_Mech_Jump;
         public InputAction @Boost => m_Wrapper.m_Mech_Boost;
+        public InputAction @LeanLeft => m_Wrapper.m_Mech_LeanLeft;
+        public InputAction @LeanRight => m_Wrapper.m_Mech_LeanRight;
         public InputActionMap Get() { return m_Wrapper.m_Mech; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -305,6 +349,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Boost.started -= m_Wrapper.m_MechActionsCallbackInterface.OnBoost;
                 @Boost.performed -= m_Wrapper.m_MechActionsCallbackInterface.OnBoost;
                 @Boost.canceled -= m_Wrapper.m_MechActionsCallbackInterface.OnBoost;
+                @LeanLeft.started -= m_Wrapper.m_MechActionsCallbackInterface.OnLeanLeft;
+                @LeanLeft.performed -= m_Wrapper.m_MechActionsCallbackInterface.OnLeanLeft;
+                @LeanLeft.canceled -= m_Wrapper.m_MechActionsCallbackInterface.OnLeanLeft;
+                @LeanRight.started -= m_Wrapper.m_MechActionsCallbackInterface.OnLeanRight;
+                @LeanRight.performed -= m_Wrapper.m_MechActionsCallbackInterface.OnLeanRight;
+                @LeanRight.canceled -= m_Wrapper.m_MechActionsCallbackInterface.OnLeanRight;
             }
             m_Wrapper.m_MechActionsCallbackInterface = instance;
             if (instance != null)
@@ -327,6 +377,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Boost.started += instance.OnBoost;
                 @Boost.performed += instance.OnBoost;
                 @Boost.canceled += instance.OnBoost;
+                @LeanLeft.started += instance.OnLeanLeft;
+                @LeanLeft.performed += instance.OnLeanLeft;
+                @LeanLeft.canceled += instance.OnLeanLeft;
+                @LeanRight.started += instance.OnLeanRight;
+                @LeanRight.performed += instance.OnLeanRight;
+                @LeanRight.canceled += instance.OnLeanRight;
             }
         }
     }
@@ -339,5 +395,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnCrouch(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnBoost(InputAction.CallbackContext context);
+        void OnLeanLeft(InputAction.CallbackContext context);
+        void OnLeanRight(InputAction.CallbackContext context);
     }
 }

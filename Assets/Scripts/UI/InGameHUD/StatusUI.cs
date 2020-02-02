@@ -19,7 +19,7 @@ public class StatusUI : CanvasUI {
         get => this.targetingEnemyNameText.text;
         set => this.targetingEnemyNameText.text = value; }
 
-    public MechHealthStatus TargetingFriend {
+    public Mech TargetingFriend {
         set => this.targetingFriendHPText.text =
             value == null ? "" : value.HP.ToString();
     }
