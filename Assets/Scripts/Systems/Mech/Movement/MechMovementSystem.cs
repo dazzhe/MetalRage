@@ -49,12 +49,13 @@ public class MechMovementSystem : ComponentSystem {
 
     protected override void OnUpdate() {
         var input = this.query.GetSingleton<PlayerInputData>();
-        this.Entities.ForEach((CharacterController characterController, ref MechMovementStatus status, ref MechMovementConfigData config, ref BoosterConfigData boostConfig, ref BoosterEngineStatus engineStatus) => {
+        this.Entities.ForEach((Entity entity, CharacterController characterController, ref MechMovementStatus status, ref MechMovementConfigData config, ref BoosterConfigData boostConfig, ref BoosterEngineStatus engineStatus) => {
             MechMovementAction activatableAction = null;
             MechRequestedMovement requestedMovement;
             foreach (var action in actions) {
                 action.Initialize(input, status, config);
             }
+            boostAction.Initialize(input, this.EntityManager.GetComponentObject<MechComponent>(entity).BoosterEffect);
             if (boostAction.IsActivatable(status, config, boostConfig, engineStatus)) {
                 requestedMovement = boostAction.CalculateMovement(status, config, boostConfig, ref engineStatus);
             } else {

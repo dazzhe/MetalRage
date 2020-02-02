@@ -41,6 +41,13 @@ public class CrouchAction : MechMovementAction {
 }
 
 public class BoostAction {
+    PlayerInputData input;
+    ParticleSystem boosterEffect;
+    public void Initialize(PlayerInputData input, ParticleSystem boosterEffect) {
+        this.input = input;
+        this.boosterEffect = boosterEffect;
+    }
+
     public MechRequestedMovement CalculateMovement(MechMovementStatus status, MechMovementConfigData config, BoosterConfigData boostConfig, ref BoosterEngineStatus engineStatus) {
         engineStatus.Gauge += 2f;
         var movement = new MechRequestedMovement();
@@ -48,7 +55,7 @@ public class BoostAction {
         engineStatus.ElapsedTime = 0f;
         var inertiaDirection = status.Velocity.normalized;
         //var inputDirection = new Vector3(InputSystem.GetMoveHorizontal(), 0f, InputSystem.GetMoveVertical());
-        var inputDirection = Vector3.zero;
+        var inputDirection = new Vector3(this.input.Move.x, this.input.Move.y);
         Vector3 boostDirection;
         if (inputDirection.z < 0 || inputDirection.magnitude == 0) {
             // Mech cannot boost backward.
@@ -63,13 +70,13 @@ public class BoostAction {
         movement.LegYaw = 0f;
         movement.Motion = boostDirection * boostConfig.MaxSpeed * Time.deltaTime;
         movement.State = MechMovementState.Acceling;
+        this.boosterEffect.Play();
         return movement;
     }
 
     public bool IsActivatable(MechMovementStatus status, MechMovementConfigData config, BoosterConfigData boostConfig, BoosterEngineStatus engineStatus) {
         var state = status.State;
-        //var isRequested = InputSystem.GetButtonDown(MechCommandButton.Boost);
-        var isRequested = false;
+        var isRequested = this.input.BoostOneShot;
         var hasEnoughGauge = engineStatus.Gauge >= boostConfig.Consumption;
         var isAllowed = state != MechMovementState.Airborne;
         return isRequested && hasEnoughGauge && isAllowed;

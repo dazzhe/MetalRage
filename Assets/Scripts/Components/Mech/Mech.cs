@@ -2,7 +2,7 @@ using Unity.Entities;
 using UnityEngine;
 
 public struct Mech {
-    public Transform
+    public Transform transform;
     public int MaxHP;
     public int HP;
     public int Armor;

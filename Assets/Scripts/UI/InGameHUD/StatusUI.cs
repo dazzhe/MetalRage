@@ -19,10 +19,10 @@ public class StatusUI : CanvasUI {
         get => this.targetingEnemyNameText.text;
         set => this.targetingEnemyNameText.text = value; }
 
-    public Mech TargetingFriend {
-        set => this.targetingFriendHPText.text =
-            value == null ? "" : value.HP.ToString();
-    }
+    //public Mech TargetingFriend {
+    //    set => this.targetingFriendHPText.text =
+    //        value == null ? "" : value.HP.ToString();
+    //}
 
     public void SetBoostGauge(int boost) {
         this.boostGauge.value = boost / 100f;

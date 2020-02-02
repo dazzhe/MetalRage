@@ -6,6 +6,7 @@ public class MechComponent : MonoBehaviour {
     private Transform cameraFollowTarget = default;
     [SerializeField]
     private RangeFloat elevationRange = new RangeFloat(-60f, 60f);
+    public ParticleSystem BoosterEffect;
 
     public GameObject TargetObject { get; set; }
     public bool IsRecoiling { get; set; }
@@ -26,8 +27,8 @@ public class MechComponent : MonoBehaviour {
     //private float recoilFixSpeed = 25f;
 
     private void Awake() {
-        //this.PlayerCamera = Instantiate(this.playerCameraPrefab).GetComponent<PlayerCameraComponent>();
-        //this.PlayerCamera.Target = this.CameraFollowTarget;
+        this.PlayerCamera = Instantiate(this.playerCameraPrefab).GetComponent<PlayerCameraComponent>();
+        this.PlayerCamera.Target = this.CameraFollowTarget;
     }
 
     //private void WeaponSelect() {
