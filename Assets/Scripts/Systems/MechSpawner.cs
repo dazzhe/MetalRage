@@ -29,8 +29,10 @@ public class MechSpawner : ComponentSystem {
             this.EntityManager.AddComponentObject(spawnedEntity, spawnedObject.GetComponent<CharacterController>());
             this.EntityManager.AddComponentObject(spawnedEntity, spawnedObject.GetComponent<Animator>());
             this.EntityManager.AddComponentObject(spawnedEntity, spawnedObject.GetComponent<MechComponent>());
-            var cameraTarget = spawnedObject.GetComponent<MechAuthoring>().CameraTarget;
-
+            var mech = new Mech {
+                CameraTargetTranslation = spawnedObject.GetComponent<MechAuthoring>().CameraTarget.position
+            };
+            this.PostUpdateCommands.AddComponent(spawnedEntity, mech);
         });
     }
 }

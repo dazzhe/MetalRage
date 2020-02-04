@@ -34,7 +34,7 @@ public class PrefValue {
 
 public static class Preferences {
     public static PrefValue Sensitivity =>
-        new PrefValue("ConfigurationSensitivity", 2f);
+        new PrefValue("ConfigurationSensitivity", 0.2f);
     public static PrefValue Volume =>
         new PrefValue("ConfigurationSoundVolume", 0.5f);
     public static PrefValue Quality =>

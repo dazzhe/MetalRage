@@ -14,6 +14,8 @@ public enum MechMovementState {
 
 [System.Serializable]
 public struct MechMovementConfigData : IComponentData {
+    public float MinPitch;
+    public float MaxPitch;
     public float MaxSpeedInAir;
     public float BrakingDeceleration;
     [Header("Walk")]
@@ -50,6 +52,11 @@ public class MechMovementSystem : ComponentSystem {
     protected override void OnUpdate() {
         var input = this.query.GetSingleton<PlayerInputData>();
         this.Entities.ForEach((Entity entity, CharacterController characterController, ref MechMovementStatus status, ref MechMovementConfigData config, ref BoosterConfigData boostConfig, ref BoosterEngineStatus engineStatus) => {
+            status.Yaw = characterController.transform.eulerAngles.y + input.DeltaLook.x * Preferences.Sensitivity.GetFloat();
+            characterController.transform.eulerAngles = new Vector3(0f, status.Yaw % 360f, 0f);
+            status.Pitch -= input.DeltaLook.y * Preferences.Sensitivity.GetFloat();
+            status.Pitch = Mathf.Clamp(status.Pitch, config.MinPitch, config.MaxPitch);
+
             MechMovementAction activatableAction = null;
             MechRequestedMovement requestedMovement;
             foreach (var action in actions) {
@@ -81,7 +88,7 @@ public class MechMovementSystem : ComponentSystem {
                 }
             }
             var prevPosition = characterController.transform.position;
-            characterController.Move(requestedMovement.Motion);
+            characterController.Move(characterController.transform.TransformVector(requestedMovement.Motion));
             status.Velocity = Quaternion.Inverse(characterController.transform.rotation) * (characterController.transform.position - prevPosition) / this.Time.DeltaTime;
             status.State = requestedMovement.State;
             status.LegYaw = Mathf.Lerp(status.LegYaw, requestedMovement.LegYaw, 10f * this.Time.DeltaTime);

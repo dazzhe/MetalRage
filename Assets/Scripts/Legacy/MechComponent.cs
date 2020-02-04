@@ -26,10 +26,10 @@ public class MechComponent : MonoBehaviour {
     //private int selecedWeaponIndex = 0;  //0 = Main, 1 = Right, 2 = Left
     //private float recoilFixSpeed = 25f;
 
-    private void Awake() {
-        this.PlayerCamera = Instantiate(this.playerCameraPrefab).GetComponent<PlayerCameraComponent>();
-        this.PlayerCamera.Target = this.CameraFollowTarget;
-    }
+    //private void Awake() {
+    //    this.PlayerCamera = Instantiate(this.playerCameraPrefab).GetComponent<PlayerCameraComponent>();
+    //    this.PlayerCamera.Target = this.CameraFollowTarget;
+    //}
 
     //private void WeaponSelect() {
     //    if (Input.GetButtonDown("MainWeapon") && this.selecedWeaponIndex != 0) {

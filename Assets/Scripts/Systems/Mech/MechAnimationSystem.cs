@@ -9,6 +9,7 @@ public class MechAnimationSystem : ComponentSystem {
             animator.SetBool("IsCrouching", status.State == MechMovementState.Crouching);
             animator.SetBool("IsOnGround", true);
             animator.SetFloat("LegOffsetYaw", status.LegYaw);
+            animator.SetFloat("AimOffsetPitch", status.Pitch);
         });
     }
 }

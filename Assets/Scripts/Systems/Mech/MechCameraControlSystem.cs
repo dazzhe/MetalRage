@@ -4,19 +4,24 @@ using UnityEngine;
 [UpdateAfter(typeof(MechInputSystem))]
 [UpdateBefore(typeof(PlayerCameraSystem))]
 public class MechCameraControlSystem : ComponentSystem {
-    private EntityQuery query;
+    private EntityQuery cameraQuery;
+    private EntityQuery inputQuery;
 
     protected override void OnCreate() {
-        this.query = GetEntityQuery(typeof(PlayerCameraCommand));
+        this.cameraQuery = GetEntityQuery(typeof(PlayerCameraCommand));
+        this.inputQuery = GetEntityQuery(typeof(PlayerInputData));
     }
 
     protected override void OnUpdate() {
-        if (this.query.CalculateEntityCount() == 0) {
+        var input = this.inputQuery.GetSingleton<PlayerInputData>();
+        if (this.cameraQuery.CalculateEntityCount() == 0) {
             return;
             //this.EntityManager.CreateEntity(typeof(PlayerCameraCommand));
         }
         var command = new PlayerCameraCommand();
-        this.Entities.ForEach((ref PlayerInputData input, ref MechMovementStatus movement) => {
+        this.Entities.ForEach((Transform transform, ref Mech mech, ref MechMovementStatus movement) => {
+            command.TargetPosition = transform.TransformPoint(mech.CameraTargetTranslation);
+            command.TargetRotation = Quaternion.Euler(movement.Pitch, movement.Yaw, 0f);
             var mechIsStable = movement.Velocity == Vector3.zero;
             if (input.LeanLeft && mechIsStable) {
                 command.LeanLeft = true;
@@ -26,6 +31,6 @@ public class MechCameraControlSystem : ComponentSystem {
                 command.CancelLean = true;
             }
         });
-        this.query.SetSingleton(command);
+        this.cameraQuery.SetSingleton(command);
     }
 }

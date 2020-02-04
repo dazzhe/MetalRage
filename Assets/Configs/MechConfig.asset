@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 2604446858962410439, guid: 2cf02fe29782334488d39426672fe73b, type: 3}
   movement:
+    MinPitch: -60
+    MaxPitch: 60
     MaxSpeedInAir: 15
     BrakingDeceleration: 130
     WalkingAcceleration: 60

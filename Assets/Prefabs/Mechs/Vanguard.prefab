@@ -5107,7 +5107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3aee964176ea4439afa02da563125f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraTarget: {fileID: 0}
+  cameraTarget: {fileID: 2604446860312132056}
 --- !u!114 &5177625059222675921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5825,6 +5825,11 @@ PrefabInstance:
       propertyPath: InitialModule.startColor.minColor.g
       value: 0.7728097
       objectReference: {fileID: 0}
+    - target: {fileID: 199224298787895906, guid: 2030a3eb3dbc0a646b404325b9e9c91a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2030a3eb3dbc0a646b404325b9e9c91a, type: 3}
 --- !u!4 &1504777330355555743 stripped
@@ -5963,6 +5968,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 148.91699
       objectReference: {fileID: 0}
+    - target: {fileID: 199224298787895906, guid: 2030a3eb3dbc0a646b404325b9e9c91a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2030a3eb3dbc0a646b404325b9e9c91a, type: 3}
 --- !u!4 &7036615794244077613 stripped
@@ -6025,6 +6035,11 @@ PrefabInstance:
     - target: {fileID: 4332645460662388, guid: 2030a3eb3dbc0a646b404325b9e9c91a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 213.79199
+      objectReference: {fileID: 0}
+    - target: {fileID: 199224298787895906, guid: 2030a3eb3dbc0a646b404325b9e9c91a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2030a3eb3dbc0a646b404325b9e9c91a, type: 3}

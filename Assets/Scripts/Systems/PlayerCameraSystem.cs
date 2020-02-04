@@ -1,4 +1,5 @@
 using Unity.Entities;
+using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
 
@@ -24,11 +25,8 @@ public struct CameraLeanStatus {
 public struct PlayerCamera : IComponentData {
     public CameraLeanStatus LeanStatus;
     public Vector3 BaseCameraOffset;
-    public Entity Target;
     public float leanLength;// = 5f;
-    public float offsetDistanceByPitch;// = 4.7f;
-    public bool IsRightLeanTriggered => Input.GetButtonDown("right lean");
-    public bool IsLeftLeanTriggered => Input.GetButtonDown("left lean");
+    public float forwardOffsetFactor;// = 4.7f;
 }
 
 
@@ -44,23 +42,30 @@ public class PlayerCameraSystem : ComponentSystem {
     protected override void OnUpdate() {
         this.Entities.With(this.query).ForEach((ref PlayerCamera playerCamera, ref PlayerCameraCommand command, ref Translation translation, ref Rotation rotation) => {
             var pitch = command.TargetRotation.eulerAngles.x * Mathf.Deg2Rad;
-            var offsetLength = Mathf.Abs(Mathf.Sin(pitch)) * playerCamera.offsetDistanceByPitch;
+            var offsetLength = Mathf.Abs(Mathf.Sin(pitch)) * playerCamera.forwardOffsetFactor;
             var cameraOffset = playerCamera.BaseCameraOffset + offsetLength * Vector3.forward;
-            var targetTransform = this.EntityManager.GetComponentObject<Transform>(playerCamera.Target);
             if (command.LeanLeft) {
                 //            camera.Lea
             }
+
             //SetLeanType();
+            if (command.CancelLean) {
+                playerCamera.LeanStatus.State = CameraLeanState.Off;
+            } else if (command.LeanLeft) {
+                playerCamera.LeanStatus.State = CameraLeanState.Left;
+            } else if (command.LeanRight) {
+                playerCamera.LeanStatus.State = CameraLeanState.Right;
+            }
 
             // Camera rotates around the target by the same amount as the target rotation.
-            var rotationDiff = targetTransform.rotation * Quaternion.Inverse(rotation.Value);
-            var localPosition = targetTransform.InverseTransformPoint(translation.Value);
+            var rotationDiff = command.TargetRotation * Quaternion.Inverse(rotation.Value);
+            var localPosition = Quaternion.Inverse(command.TargetRotation) * (translation.Value - (float3)command.TargetPosition);
             var updatedLocalPosition = rotationDiff * localPosition;
-            translation.Value = targetTransform.TransformPoint(updatedLocalPosition);
-            rotation.Value = targetTransform.rotation;
+            translation.Value = command.TargetRotation * updatedLocalPosition + command.TargetPosition;
+            rotation.Value = command.TargetRotation;
 
             if (playerCamera.LeanStatus.State == CameraLeanState.Off) {
-                var destination = CalculateWallAvoidingTranslation(targetTransform.TransformPoint(cameraOffset), targetTransform.position);
+                var destination = CalculateWallAvoidingTranslation(command.TargetRotation * cameraOffset + command.TargetPosition, command.TargetPosition);
                 translation.Value.x = Mathf.Lerp(translation.Value.x, destination.x, 7f * this.Time.DeltaTime);
                 translation.Value.y = Mathf.Lerp(translation.Value.y, destination.y, 20f * this.Time.DeltaTime);
                 translation.Value.z = Mathf.Lerp(translation.Value.z, destination.z, 20f * this.Time.DeltaTime);
@@ -68,10 +73,11 @@ public class PlayerCameraSystem : ComponentSystem {
                 var leanDirection = playerCamera.LeanStatus.State == CameraLeanState.Left ? Vector3.left : Vector3.right;
                 var leanOffset = playerCamera.leanLength * leanDirection;
                 playerCamera.LeanStatus.currentLeanOffset = Vector3.Lerp(playerCamera.LeanStatus.currentLeanOffset, leanOffset, 30f * this.Time.DeltaTime);
-                translation.Value = targetTransform.TransformPoint(cameraOffset + playerCamera.LeanStatus.currentLeanOffset);
+                var localTranslation = cameraOffset + playerCamera.LeanStatus.currentLeanOffset;
+                translation.Value = command.TargetRotation * localTranslation + command.TargetPosition;
             }
             // Double check wall penetration to avoid jittering.
-            translation.Value = CalculateWallAvoidingTranslation(translation.Value, targetTransform.position);
+            translation.Value = CalculateWallAvoidingTranslation(translation.Value, command.TargetPosition);
         });
     }
 

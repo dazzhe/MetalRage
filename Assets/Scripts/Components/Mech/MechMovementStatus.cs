@@ -6,4 +6,6 @@ public struct MechMovementStatus : IComponentData {
     public MechMovementState State;
     public Vector3 Velocity;
     public float LegYaw;
+    public float Yaw;
+    public float Pitch;
 }
