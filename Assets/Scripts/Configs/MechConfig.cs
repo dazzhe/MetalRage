@@ -9,7 +9,13 @@ public class MechConfig : ScriptableObject {
         MaxWalkSpeed = 13f,
         WalkingAcceleration = 60f,
         WalkingDeceleration = 50f,
-        BaseJumpSpeed = 30f
+        BaseJumpSpeed = 30f,
+        Gravity = -40f,
+        BrakingDeceleration = 10f,
+        MinPitch = -60f,
+        MaxPitch = 60f,
+        MaxSlopeAngle = 45f,
+        MaxSpeedInAir = 20f,
     };
 
     public GameObject Prefab { get => this.prefab; set => this.prefab = value; }

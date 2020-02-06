@@ -1,7 +1,7 @@
 using Unity.Entities;
 using UnityEngine;
 
-[UpdateAfter(typeof(MechInputSystem))]
+[UpdateAfter(typeof(PlayerInputSystem))]
 [UpdateBefore(typeof(PlayerCameraSystem))]
 public class MechCameraControlSystem : ComponentSystem {
     private EntityQuery cameraQuery;

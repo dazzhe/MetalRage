@@ -1,15 +1,16 @@
+using Unity.Entities;
 using UnityEngine;
 
 public abstract class MechMovementAction {
-    private PlayerInputData input;
+    private MechCommand input;
     private MechMovementStatus status;
     private MechMovementConfigData config;
 
-    protected PlayerInputData Input { get => this.input; private set => this.input = value; }
+    protected MechCommand Input { get => this.input; private set => this.input = value; }
     protected MechMovementStatus Status { get => this.status; private set => this.status = value; }
     protected MechMovementConfigData Config { get => this.config; private set => this.config = value; }
 
-    public void Initialize(PlayerInputData input, MechMovementStatus status, MechMovementConfigData config) {
+    public void Initialize(MechCommand input, MechMovementStatus status, MechMovementConfigData config) {
         this.Input = input;
         this.Status = status;
         this.Config = config;
@@ -17,6 +18,22 @@ public abstract class MechMovementAction {
 
     public abstract MechRequestedMovement CalculateMovement();
     public abstract bool IsExecutable();
+}
+
+public class CrouchActivationSystem : ComponentSystem {
+    protected override void OnUpdate() {
+        this.Entities.ForEach((ref MechCommand command, ref Mech mech, ref MechMovementStatus status, ref MechMovementConfigData config) => {
+            var isRequested = command.Crouch;
+            var state = status.State;
+            var isAllowed =
+                state == MechMovementState.Acceling || state == MechMovementState.Braking ||
+                state == MechMovementState.Crouching || state == MechMovementState.Idle ||
+                state == MechMovementState.Walking;
+            if (isRequested && isAllowed) {
+                mech.ActivatedActionMask |= MechActionMask.Crouch;
+            }
+        });
+    }
 }
 
 public class CrouchAction : MechMovementAction {
@@ -41,24 +58,23 @@ public class CrouchAction : MechMovementAction {
 }
 
 public class BoostAction {
-    PlayerInputData input;
+    MechCommand input;
     ParticleSystem boosterEffect;
-    public void Initialize(PlayerInputData input, ParticleSystem boosterEffect) {
+    public void Initialize(MechCommand input, ParticleSystem boosterEffect) {
         this.input = input;
         this.boosterEffect = boosterEffect;
     }
 
     public MechRequestedMovement CalculateMovement(MechMovementStatus status, MechMovementConfigData config, BoosterConfigData boostConfig, ref BoosterEngineStatus engineStatus) {
-        engineStatus.Gauge += 2f;
         var movement = new MechRequestedMovement();
-        engineStatus.Gauge -= 28;
+        engineStatus.Gauge -= boostConfig.Consumption;
         engineStatus.ElapsedTime = 0f;
         var inertiaDirection = status.Velocity.normalized;
         //var inputDirection = new Vector3(InputSystem.GetMoveHorizontal(), 0f, InputSystem.GetMoveVertical());
         var inputDirection = new Vector3(this.input.Move.x, this.input.Move.y);
         Vector3 boostDirection;
         if (inputDirection.z < 0 || inputDirection.magnitude == 0) {
-            // Mech cannot boost backward.
+            // Mechs cannot boost backward.
             boostDirection = Vector3.forward;
         } else if (inputDirection.z > 0) {
             boostDirection = inputDirection;

@@ -2,20 +2,34 @@ using Unity.Entities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public struct PlayerInputData : IComponentData {
-    public bool Fire;
-    public bool Crouch;
-    public bool Boost;
-    public bool BoostOneShot;
-    public bool Jump;
-    public Vector2 Move;
-    public Vector2 DeltaLook;
-    public bool LeanLeft;
-    public bool LeanRight;
+[UpdateAfter(typeof(PlayerInputSystem))]
+public class MechCommandSystem : ComponentSystem {
+    private EntityQuery playerInputQuery;
+
+    protected override void OnCreate() {
+        this.playerInputQuery = GetEntityQuery(typeof(PlayerInputData));
+    }
+
+    protected override void OnUpdate() {
+        var input = this.playerInputQuery.GetSingleton<PlayerInputData>();
+        this.Entities.ForEach((ref MechCommand command) => {
+            command = new MechCommand {
+                Fire = input.Fire,
+                Crouch = input.Crouch,
+                Boost = input.Boost,
+                BoostOneShot = input.BoostOneShot,
+                Jump = input.Jump,
+                Move = input.Move,
+                DeltaLook = input.DeltaLook,
+                LeanLeft = input.LeanLeft,
+                LeanRight = input.LeanRight
+            };
+        });
+    }
 }
 
 [AlwaysUpdateSystem]
-public class MechInputSystem : ComponentSystem, Controls.IMechActions {
+public class PlayerInputSystem : ComponentSystem, Controls.IMechActions {
     private PlayerInputData prevInput = new PlayerInputData();
     private PlayerInputData input = new PlayerInputData();
     private Controls controls;

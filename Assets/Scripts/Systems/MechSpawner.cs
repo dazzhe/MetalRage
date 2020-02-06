@@ -22,6 +22,7 @@ public class MechSpawner : ComponentSystem {
                 MaxSpeed = 30f,
                 Consumption = 1,
                 Duration = 0.2f,
+                Regeneration = 30f,
                 Accel = 300f
             });
             this.PostUpdateCommands.AddComponent(spawnedEntity, mechConfig.Movement);

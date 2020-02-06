@@ -18,6 +18,7 @@ MonoBehaviour:
     MaxPitch: 60
     MaxSpeedInAir: 15
     BrakingDeceleration: 130
+    Gravity: -40
     WalkingAcceleration: 60
     WalkingDeceleration: 50
     MaxWalkSpeed: 13

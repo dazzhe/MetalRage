@@ -1,5 +1,14 @@
 using Unity.Entities;
 using UnityEngine;
+public enum MechMovementState {
+    Idle,
+    Walking,
+    Crouching,
+    Airborne,
+    Acceling,
+    Boosting,
+    Braking
+}
 
 public struct MechMovementStatus : IComponentData {
     public Bool IsOnGround;

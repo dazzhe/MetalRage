@@ -1,34 +1,16 @@
 using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
-
-public enum MechMovementState {
-    Idle,
-    Walking,
-    Crouching,
-    Airborne,
-    Acceling,
-    Boosting,
-    Braking
-}
-
-[System.Serializable]
-public struct MechMovementConfigData : IComponentData {
-    public float MinPitch;
-    public float MaxPitch;
-    public float MaxSpeedInAir;
-    public float BrakingDeceleration;
-    [Header("Walk")]
-    public float WalkingAcceleration;
-    public float WalkingDeceleration;
-    public float MaxWalkSpeed;
-    [Header("Jump")]
-    public float BaseJumpSpeed;
+public struct MechRequestedMovement {
+    public Vector3 Motion;
+    public MechMovementState State;
+    public float LegYaw;
+    public Bool IsLeavingGround;
 }
 
 // TODO : Boost while crouching
 // TODO : Multiple input at the same frame
-[UpdateAfter(typeof(MechInputSystem))]
+[UpdateAfter(typeof(MechCommandSystem))]
 public class MechMovementSystem : ComponentSystem {
     private static BoostAction boostAction = new BoostAction();
     private static BoostStateBehaviour boostStateBehaviour = new BoostStateBehaviour();
@@ -43,26 +25,19 @@ public class MechMovementSystem : ComponentSystem {
         { MechMovementState.Airborne, new AirborneStateBehaviour() },
     };
 
-    private EntityQuery query;
-
-    protected override void OnCreate() {
-        this.query = GetEntityQuery(typeof(PlayerInputData));
-    }
-
     protected override void OnUpdate() {
-        var input = this.query.GetSingleton<PlayerInputData>();
-        this.Entities.ForEach((Entity entity, CharacterController characterController, ref MechMovementStatus status, ref MechMovementConfigData config, ref BoosterConfigData boostConfig, ref BoosterEngineStatus engineStatus) => {
-            status.Yaw = characterController.transform.eulerAngles.y + input.DeltaLook.x * Preferences.Sensitivity.GetFloat();
+        this.Entities.ForEach((Entity entity, CharacterController characterController, ref MechCommand command, ref MechMovementStatus status, ref MechMovementConfigData config, ref BoosterConfigData boostConfig, ref BoosterEngineStatus engineStatus) => {
+            status.Yaw = characterController.transform.eulerAngles.y + command.DeltaLook.x * Preferences.Sensitivity.GetFloat();
             characterController.transform.eulerAngles = new Vector3(0f, status.Yaw % 360f, 0f);
-            status.Pitch -= input.DeltaLook.y * Preferences.Sensitivity.GetFloat();
+            status.Pitch -= command.DeltaLook.y * Preferences.Sensitivity.GetFloat();
             status.Pitch = Mathf.Clamp(status.Pitch, config.MinPitch, config.MaxPitch);
 
             MechMovementAction activatableAction = null;
             MechRequestedMovement requestedMovement;
             foreach (var action in actions) {
-                action.Initialize(input, status, config);
+                action.Initialize(command, status, config);
             }
-            boostAction.Initialize(input, this.EntityManager.GetComponentObject<MechComponent>(entity).BoosterEffect);
+            boostAction.Initialize(command, this.EntityManager.GetComponentObject<MechComponent>(entity).BoosterEffect);
             if (boostAction.IsActivatable(status, config, boostConfig, engineStatus)) {
                 requestedMovement = boostAction.CalculateMovement(status, config, boostConfig, ref engineStatus);
             } else {
@@ -82,19 +57,41 @@ public class MechMovementSystem : ComponentSystem {
                             requestedMovement = boostStateBehaviour.ComputeMovement(status, config, boostConfig, ref engineStatus);
                             break;
                         default:
-                            requestedMovement = stateBehaviours[status.State].ComputeMovement(input, status, config);
+                            requestedMovement = stateBehaviours[status.State].ComputeMovement(command, status, config);
                             break;
                     }
                 }
             }
             var prevPosition = characterController.transform.position;
-            characterController.Move(characterController.transform.TransformVector(requestedMovement.Motion));
+            var horizontalSpeed = new Vector3(requestedMovement.Motion.x, 0, requestedMovement.Motion.z).magnitude;
+            var motion = characterController.transform.TransformVector(requestedMovement.Motion);
+            motion.y =
+                status.Velocity.y * this.Time.DeltaTime +
+                0.5f * config.Gravity * this.Time.DeltaTime * this.Time.DeltaTime;
+            var groundMoveIsFailed = true;
+            if (status.IsOnGround && !requestedMovement.IsLeavingGround) {
+                // TODO: Maximum slope angle
+                groundMoveIsFailed = false;
+                var testMotion = motion - Vector3.up * horizontalSpeed;
+                var currentPosition = characterController.transform.position;
+                characterController.Move(testMotion);
+                if (!characterController.isGrounded) {
+                    characterController.transform.position = currentPosition;
+                    groundMoveIsFailed = true;
+                }
+            }
+            if (groundMoveIsFailed) {
+                characterController.Move(motion);
+            }
             status.Velocity = Quaternion.Inverse(characterController.transform.rotation) * (characterController.transform.position - prevPosition) / this.Time.DeltaTime;
-            status.State = requestedMovement.State;
             status.LegYaw = Mathf.Lerp(status.LegYaw, requestedMovement.LegYaw, 10f * this.Time.DeltaTime);
             status.IsOnGround = requestedMovement.IsLeavingGround ? false : characterController.isGrounded;
-            if (status.IsOnGround && status.State == MechMovementState.Airborne) {
+            if (status.IsOnGround && requestedMovement.State == MechMovementState.Airborne) {
                 status.State = MechMovementState.Idle;
+            } else if (!status.IsOnGround && requestedMovement.State != MechMovementState.Boosting) {
+                status.State = MechMovementState.Airborne;
+            } else {
+                status.State = requestedMovement.State;
             }
         });
     }
