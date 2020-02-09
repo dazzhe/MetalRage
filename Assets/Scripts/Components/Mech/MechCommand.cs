@@ -3,6 +3,7 @@ using UnityEngine;
 
 public struct MechCommand : IComponentData {
     public bool Fire;
+    public bool Reload;
     public bool Crouch;
     public bool Boost;
     public bool BoostOneShot;

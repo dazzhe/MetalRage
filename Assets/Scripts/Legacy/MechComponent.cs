@@ -4,8 +4,6 @@ public class MechComponent : MonoBehaviour {
     private GameObject playerCameraPrefab = default;
     [SerializeField]
     private Transform cameraFollowTarget = default;
-    [SerializeField]
-    private RangeFloat elevationRange = new RangeFloat(-60f, 60f);
     public ParticleSystem BoosterEffect;
 
     public GameObject TargetObject { get; set; }
@@ -20,7 +18,6 @@ public class MechComponent : MonoBehaviour {
     public Vector3 Center { get => new Vector3(Screen.width / 2, Screen.height / 2, 0); }
     public float SensitivityScale => 1f; //this.weapons[this.selecedWeaponIndex].SensitivityScale;
     public bool HideEnemyName { get; set; } = false;
-    public RangeFloat ElevationRange { get => this.elevationRange; set => this.elevationRange = value; }
     public Transform CameraFollowTarget { get => this.cameraFollowTarget; set => this.cameraFollowTarget = value; }
 
     //private int selecedWeaponIndex = 0;  //0 = Main, 1 = Right, 2 = Left

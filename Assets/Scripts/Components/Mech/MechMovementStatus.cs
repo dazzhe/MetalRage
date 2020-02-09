@@ -5,12 +5,13 @@ public enum MechMovementState {
     Walking,
     Crouching,
     Airborne,
-    Acceling,
     Boosting,
     Braking
 }
 
 public struct MechMovementStatus : IComponentData {
+    public MechActionMask availableActionMask;
+    public MechActionMask activatableActionMask;
     public Bool IsOnGround;
     public MechMovementState State;
     public Vector3 Velocity;

@@ -32,56 +32,63 @@ public class MechMovementSystem : ComponentSystem {
             status.Pitch -= command.DeltaLook.y * Preferences.Sensitivity.GetFloat();
             status.Pitch = Mathf.Clamp(status.Pitch, config.MinPitch, config.MaxPitch);
 
-            MechMovementAction activatableAction = null;
-            MechRequestedMovement requestedMovement;
+            MechRequestedMovement requestedMovement = new MechRequestedMovement();
             foreach (var action in actions) {
                 action.Initialize(command, status, config);
             }
             boostAction.Initialize(command, this.EntityManager.GetComponentObject<MechComponent>(entity).BoosterEffect);
+            var activatedActionExists = false;
             if (boostAction.IsActivatable(status, config, boostConfig, engineStatus)) {
                 requestedMovement = boostAction.CalculateMovement(status, config, boostConfig, ref engineStatus);
+                activatedActionExists = true;
             } else {
                 foreach (var action in actions) {
                     if (action.IsExecutable()) {
-                        activatableAction = action;
+                        requestedMovement = action.CalculateMovement();
+                        activatedActionExists = true;
                         break;
                     }
                 }
-                if (activatableAction != null) {
-                    requestedMovement = activatableAction.CalculateMovement();
-                } else {
-                    switch (status.State) {
-                        case MechMovementState.Acceling:
-                        case MechMovementState.Boosting:
-                        case MechMovementState.Braking:
-                            requestedMovement = boostStateBehaviour.ComputeMovement(status, config, boostConfig, ref engineStatus);
-                            break;
-                        default:
-                            requestedMovement = stateBehaviours[status.State].ComputeMovement(command, status, config);
-                            break;
-                    }
+            }
+            if (!activatedActionExists) {
+                switch (status.State) {
+                    case MechMovementState.Boosting:
+                    case MechMovementState.Braking:
+                        requestedMovement = boostStateBehaviour.ComputeMovement(status, config, boostConfig, ref engineStatus);
+                        break;
+                    default:
+                        requestedMovement = stateBehaviours[status.State].ComputeMovement(command, status, config);
+                        break;
                 }
             }
             var prevPosition = characterController.transform.position;
-            var horizontalSpeed = new Vector3(requestedMovement.Motion.x, 0, requestedMovement.Motion.z).magnitude;
             var motion = characterController.transform.TransformVector(requestedMovement.Motion);
-            motion.y =
-                status.Velocity.y * this.Time.DeltaTime +
-                0.5f * config.Gravity * this.Time.DeltaTime * this.Time.DeltaTime;
-            var groundMoveIsFailed = true;
+            var canMoveOnGround = false;
             if (status.IsOnGround && !requestedMovement.IsLeavingGround) {
                 // TODO: Maximum slope angle
-                groundMoveIsFailed = false;
-                var testMotion = motion - Vector3.up * horizontalSpeed;
+                canMoveOnGround = true;
+                var testMotion = motion;
+                var horizontalMotionMag = new Vector3(requestedMovement.Motion.x, 0, requestedMovement.Motion.z).magnitude;
+                testMotion.y =
+                    -horizontalMotionMag * this.Time.DeltaTime +
+                    0.5f * config.Gravity * this.Time.DeltaTime * this.Time.DeltaTime;
                 var currentPosition = characterController.transform.position;
                 characterController.Move(testMotion);
                 if (!characterController.isGrounded) {
                     characterController.transform.position = currentPosition;
-                    groundMoveIsFailed = true;
+                    canMoveOnGround = false;
                 }
             }
-            if (groundMoveIsFailed) {
-                characterController.Move(motion);
+            if (!canMoveOnGround) {
+                if (!requestedMovement.IsLeavingGround) {
+                    motion.y =
+                        status.Velocity.y * this.Time.DeltaTime +
+                        0.5f * config.Gravity * this.Time.DeltaTime * this.Time.DeltaTime;
+                    motion.y = Mathf.Clamp(motion.y, -config.MaxSpeedInAir, config.MaxSpeedInAir);
+                    characterController.Move(motion);
+                } else {
+                    characterController.Move(motion);
+                }
             }
             status.Velocity = Quaternion.Inverse(characterController.transform.rotation) * (characterController.transform.position - prevPosition) / this.Time.DeltaTime;
             status.LegYaw = Mathf.Lerp(status.LegYaw, requestedMovement.LegYaw, 10f * this.Time.DeltaTime);

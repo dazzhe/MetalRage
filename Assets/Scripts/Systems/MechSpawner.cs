@@ -17,6 +17,7 @@ public class MechSpawner : ComponentSystem {
             var mechConfig = mechConfigMap[request.MechType];
             var spawnedEntity = this.EntityManager.CreateEntity();
             this.PostUpdateCommands.AddComponent(spawnedEntity, new MechMovementStatus());
+            this.PostUpdateCommands.AddComponent(spawnedEntity, new MechCommand());
             this.PostUpdateCommands.AddComponent(spawnedEntity, new BoosterEngineStatus { Gauge = 100 });
             this.PostUpdateCommands.AddComponent(spawnedEntity, new BoosterConfigData {
                 MaxSpeed = 30f,

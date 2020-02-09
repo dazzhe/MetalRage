@@ -26,7 +26,7 @@ public class CrouchActivationSystem : ComponentSystem {
             var isRequested = command.Crouch;
             var state = status.State;
             var isAllowed =
-                state == MechMovementState.Acceling || state == MechMovementState.Braking ||
+                state == MechMovementState.Braking ||
                 state == MechMovementState.Crouching || state == MechMovementState.Idle ||
                 state == MechMovementState.Walking;
             if (isRequested && isAllowed) {
@@ -50,7 +50,7 @@ public class CrouchAction : MechMovementAction {
         var isRequested = this.Input.Crouch;
         var state = this.Status.State;
         var isAllowed =
-            state == MechMovementState.Acceling || state == MechMovementState.Braking ||
+            state == MechMovementState.Braking ||
             state == MechMovementState.Crouching || state == MechMovementState.Idle ||
             state == MechMovementState.Walking;
         return isRequested && isAllowed;
@@ -85,7 +85,7 @@ public class BoostAction {
         }
         movement.LegYaw = 0f;
         movement.Motion = boostDirection * boostConfig.MaxSpeed * Time.deltaTime;
-        movement.State = MechMovementState.Acceling;
+        movement.State = MechMovementState.Boosting;
         this.boosterEffect.Play();
         return movement;
     }

@@ -38,14 +38,6 @@ public class BoostStateBehaviour {
         engineStatus.ElapsedTime += Time.deltaTime;
         var movement = new MechRequestedMovement();
         switch (status.State) {
-            case MechMovementState.Acceling:
-                var speed = boostConfig.Accel * engineStatus.ElapsedTime;
-                speed = Mathf.Min(speed, boostConfig.MaxSpeed);
-                movement.Motion = status.Velocity.normalized * speed * Time.deltaTime;
-                movement.State = speed == boostConfig.MaxSpeed
-                    ? MechMovementState.Boosting
-                    : MechMovementState.Acceling;
-                break;
             case MechMovementState.Boosting:
                 movement.Motion = status.Velocity * Time.deltaTime;
                 movement.State = engineStatus.ElapsedTime > boostConfig.Duration
@@ -53,7 +45,7 @@ public class BoostStateBehaviour {
                     : MechMovementState.Boosting;
                 break;
             case MechMovementState.Braking:
-                speed = status.Velocity.magnitude - 0.5f * config.BrakingDeceleration * Time.deltaTime;
+                var speed = status.Velocity.magnitude - 0.5f * config.BrakingDeceleration * Time.deltaTime;
                 speed = Mathf.Max(speed, 0f);
                 movement.Motion = status.Velocity.normalized * speed * Time.deltaTime;
                 movement.State = speed == 0
