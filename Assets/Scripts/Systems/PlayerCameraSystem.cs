@@ -29,7 +29,7 @@ public struct PlayerCamera : IComponentData {
     public float forwardOffsetFactor;// = 4.7f;
 }
 
-
+[UpdateAfter(typeof(MechMovementSystem))]
 public class PlayerCameraSystem : ComponentSystem {
     private EntityQuery query;
 
@@ -66,9 +66,9 @@ public class PlayerCameraSystem : ComponentSystem {
 
             if (playerCamera.LeanStatus.State == CameraLeanState.Off) {
                 var destination = CalculateWallAvoidingTranslation(command.TargetRotation * cameraOffset + command.TargetPosition, command.TargetPosition);
-                translation.Value.x = Mathf.Lerp(translation.Value.x, destination.x, 7f * this.Time.DeltaTime);
-                translation.Value.y = Mathf.Lerp(translation.Value.y, destination.y, 20f * this.Time.DeltaTime);
-                translation.Value.z = Mathf.Lerp(translation.Value.z, destination.z, 20f * this.Time.DeltaTime);
+                translation.Value.x = Mathf.Lerp(translation.Value.x, destination.x, 5f * this.Time.DeltaTime);
+                translation.Value.y = Mathf.Lerp(translation.Value.y, destination.y, 10f * this.Time.DeltaTime);
+                translation.Value.z = Mathf.Lerp(translation.Value.z, destination.z, 10f * this.Time.DeltaTime);
             } else {
                 var leanDirection = playerCamera.LeanStatus.State == CameraLeanState.Left ? Vector3.left : Vector3.right;
                 var leanOffset = playerCamera.leanLength * leanDirection;

@@ -41,3 +41,4 @@ Thumbs.db
 
 # External Assets
 /Assets/External/*
+/Assets/External.meta

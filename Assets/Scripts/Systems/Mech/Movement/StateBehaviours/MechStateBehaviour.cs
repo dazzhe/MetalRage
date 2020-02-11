@@ -7,6 +7,12 @@ public abstract class MechStateBehaviour {
 public class WalkStateBehaviour : MechStateBehaviour {
     public override MechRequestedMovement ComputeMovement(MechCommand command, MechMovementStatus status, MechMovementConfigData config) {
         var motion = new Vector3(status.Velocity.x, 0f, status.Velocity.z);
+        if (motion.x * command.Move.x < 0f) {
+            motion.x = 0f;
+        }
+        if (motion.z * command.Move.y < 0f) {
+            motion.z = 0f;
+        }
         motion.x += command.Move.x * config.WalkingAcceleration * Time.deltaTime;
         motion.z += command.Move.y * config.WalkingAcceleration * Time.deltaTime;
         if (command.Move.x == 0) {
