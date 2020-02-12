@@ -22,7 +22,7 @@ public class MechSpawner : ComponentSystem {
             this.PostUpdateCommands.AddComponent(spawnedEntity, new BoosterConfigData {
                 MaxSpeed = 30f,
                 Consumption = 1,
-                Duration = 0.2f,
+                Duration = 0.1f,
                 Regeneration = 30f,
                 Accel = 300f
             });

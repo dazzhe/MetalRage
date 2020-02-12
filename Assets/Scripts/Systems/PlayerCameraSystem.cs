@@ -3,27 +3,28 @@ using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
 
-public enum CameraLeanState {
-    Right,
-    Left,
-    Off
+public enum CameraMode {
+    None,
+    SmoothFollow,
+    LeanRight,
+    LeanLeft
 }
 
 public struct PlayerCameraCommand : IComponentData {
-    public Bool LeanLeft;
-    public Bool LeanRight;
-    public Bool CancelLean;
+    public CameraMode RequestedMode;
+    public float MaxSpeed;
+    public float MaxDistance;
     public Vector3 TargetPosition;
     public Quaternion TargetRotation;
 }
 
 public struct CameraLeanStatus {
-    public CameraLeanState State;
     public Vector3 currentLeanOffset;
 }
 
 public struct PlayerCamera : IComponentData {
     public CameraLeanStatus LeanStatus;
+    public CameraMode Mode;
     public Vector3 BaseCameraOffset;
     public float leanLength;// = 5f;
     public float forwardOffsetFactor;// = 4.7f;
@@ -44,17 +45,10 @@ public class PlayerCameraSystem : ComponentSystem {
             var pitch = command.TargetRotation.eulerAngles.x * Mathf.Deg2Rad;
             var offsetLength = Mathf.Abs(Mathf.Sin(pitch)) * playerCamera.forwardOffsetFactor;
             var cameraOffset = playerCamera.BaseCameraOffset + offsetLength * Vector3.forward;
-            if (command.LeanLeft) {
-                //            camera.Lea
-            }
 
             //SetLeanType();
-            if (command.CancelLean) {
-                playerCamera.LeanStatus.State = CameraLeanState.Off;
-            } else if (command.LeanLeft) {
-                playerCamera.LeanStatus.State = CameraLeanState.Left;
-            } else if (command.LeanRight) {
-                playerCamera.LeanStatus.State = CameraLeanState.Right;
+            if (command.RequestedMode != CameraMode.None) {
+                playerCamera.Mode = command.RequestedMode;
             }
 
             // Camera rotates around the target by the same amount as the target rotation.
@@ -63,25 +57,40 @@ public class PlayerCameraSystem : ComponentSystem {
             var updatedLocalPosition = rotationDiff * localPosition;
             translation.Value = command.TargetRotation * updatedLocalPosition + command.TargetPosition;
             rotation.Value = command.TargetRotation;
+            var defaultPosition = command.TargetRotation * cameraOffset + command.TargetPosition;
 
-            if (playerCamera.LeanStatus.State == CameraLeanState.Off) {
-                var destination = CalculateWallAvoidingTranslation(command.TargetRotation * cameraOffset + command.TargetPosition, command.TargetPosition);
-                translation.Value.x = Mathf.Lerp(translation.Value.x, destination.x, 5f * this.Time.DeltaTime);
-                translation.Value.y = Mathf.Lerp(translation.Value.y, destination.y, 10f * this.Time.DeltaTime);
-                translation.Value.z = Mathf.Lerp(translation.Value.z, destination.z, 10f * this.Time.DeltaTime);
-            } else {
-                var leanDirection = playerCamera.LeanStatus.State == CameraLeanState.Left ? Vector3.left : Vector3.right;
-                var leanOffset = playerCamera.leanLength * leanDirection;
-                playerCamera.LeanStatus.currentLeanOffset = Vector3.Lerp(playerCamera.LeanStatus.currentLeanOffset, leanOffset, 30f * this.Time.DeltaTime);
-                var localTranslation = cameraOffset + playerCamera.LeanStatus.currentLeanOffset;
-                translation.Value = command.TargetRotation * localTranslation + command.TargetPosition;
+            //var wallAvoidedTranslation = AvoidObstacles(defaultPosition, command.TargetPosition);
+            switch (playerCamera.Mode) {
+                //case CameraMode.Sticked:
+                //    translation.Value.x = Mathf.Lerp(translation.Value.x, destination.x, 5f * this.Time.DeltaTime);
+                //    translation.Value.y = Mathf.Lerp(translation.Value.y, destination.y, 10f * this.Time.DeltaTime);
+                //    translation.Value.z = Mathf.Lerp(translation.Value.z, destination.z, 10f * this.Time.DeltaTime);
+                case CameraMode.SmoothFollow:
+                    var currentOffset = (Vector3)translation.Value - defaultPosition;
+                    if ((currentOffset - currentOffset.normalized * command.MaxSpeed * this.Time.DeltaTime).magnitude > command.MaxDistance) {
+                        translation.Value = defaultPosition + currentOffset.normalized * command.MaxDistance;
+                    } else if (currentOffset.magnitude < command.MaxSpeed * this.Time.DeltaTime) {
+                        translation.Value = defaultPosition;
+                    } else {
+                        translation.Value -= (float3)currentOffset.normalized * command.MaxSpeed * this.Time.DeltaTime;
+                    }
+                    break;
+                case CameraMode.LeanLeft:
+                case CameraMode.LeanRight:
+                    var leanDirection = playerCamera.Mode == CameraMode.LeanLeft
+                        ? Vector3.left : Vector3.right;
+                    var leanOffset = playerCamera.leanLength * leanDirection;
+                    playerCamera.LeanStatus.currentLeanOffset = Vector3.Lerp(playerCamera.LeanStatus.currentLeanOffset, leanOffset, 30f * this.Time.DeltaTime);
+                    var localTranslation = cameraOffset + playerCamera.LeanStatus.currentLeanOffset;
+                    translation.Value = command.TargetRotation * localTranslation + command.TargetPosition;
+                    break;
             }
             // Double check wall penetration to avoid jittering.
-            translation.Value = CalculateWallAvoidingTranslation(translation.Value, command.TargetPosition);
+            translation.Value = AvoidObstacles(translation.Value, command.TargetPosition);
         });
     }
 
-    private Vector3 CalculateWallAvoidingTranslation(Vector3 cameraPosition, Vector3 targetPosition) {
+    private Vector3 AvoidObstacles(Vector3 cameraPosition, Vector3 targetPosition) {
         var positionFromTarget = cameraPosition - targetPosition;
         var layerMask = ~(1 << LayerMask.NameToLayer("Player"));
         var isRayHit =
