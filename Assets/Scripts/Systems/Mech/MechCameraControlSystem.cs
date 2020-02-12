@@ -24,11 +24,11 @@ public class MechCameraControlSystem : ComponentSystem {
             var mechIsStable = movement.Velocity == Vector3.zero;
             command.MaxDistance = 1.5f;
             if (input.LeanLeft && mechIsStable) {
-                command.RequestedMode = CameraMode.LeanLeft;
+                command.RequestedMode = CameraFollowMode.LeanLeft;
             } else if (input.LeanRight && mechIsStable) {
-                command.RequestedMode = CameraMode.LeanRight;
+                command.RequestedMode = CameraFollowMode.LeanRight;
             } else if (!input.LeanLeft && !input.LeanRight) {
-                command.RequestedMode = CameraMode.SmoothFollow;
+                command.RequestedMode = CameraFollowMode.Smooth;
                 if (movement.State == MechMovementState.Braking) {
                     command.MaxSpeed = 30f;
                 } else if (movement.State == MechMovementState.Idle || movement.State == MechMovementState.Crouching) {
@@ -37,7 +37,7 @@ public class MechCameraControlSystem : ComponentSystem {
                     command.MaxSpeed = 1f;
                 }
             } else {
-                command.RequestedMode = CameraMode.None;
+                command.RequestedMode = CameraFollowMode.None;
             }
         });
         this.cameraQuery.SetSingleton(command);
