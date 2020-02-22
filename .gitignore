@@ -42,3 +42,5 @@ Thumbs.db
 # External Assets
 /Assets/External/*
 /Assets/External.meta
+/Packages/*
+!manifest.json
