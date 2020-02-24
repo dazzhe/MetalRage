@@ -7,7 +7,7 @@ public struct MechRequestedMovement : IComponentData {
     public float3 Motion;
     public MechMovementState State;
     public float LegYaw;
-    public Bool IsFollowingGround;
+    public Bool UseRawMotion;
 }
 
 // TODO : Boost while crouching
@@ -34,23 +34,23 @@ public class MechMovementRequestSystem : ComponentSystem {
                     action.Initialize(command, status, config);
                 }
                 boostAction.Initialize(command, this.EntityManager.GetComponentObject<MechComponent>(entity).BoosterEffect);
-                var activatedActionExists = false;
-                if (boostAction.IsActivatable(status, config, boostConfig, engineStatus)) {
+                var hasExecutedAction = false;
+                if (boostAction.IsExecutable(status, config, boostConfig, engineStatus)) {
                     requestedMovement = boostAction.CalculateMovement(status, config, boostConfig, ref engineStatus);
-                    activatedActionExists = true;
+                    hasExecutedAction = true;
                 } else {
                     foreach (var action in actions) {
                         if (action.IsExecutable()) {
                             requestedMovement = action.CalculateMovement();
-                            activatedActionExists = true;
+                            hasExecutedAction = true;
                             break;
                         }
                     }
                 }
-                if (!activatedActionExists) {
+                if (!hasExecutedAction) {
                     switch (status.State) {
-                        case MechMovementState.Boosting:
-                        case MechMovementState.Braking:
+                        case MechMovementState.BoostAcceling:
+                        case MechMovementState.BoostBraking:
                             requestedMovement = boostStateBehaviour.ComputeMovement(status, config, boostConfig, ref engineStatus);
                             break;
                         default:
@@ -75,16 +75,18 @@ public class MechMovementUpdateSystem : ComponentSystem {
 
             var prevPosition = characterController.transform.position;
             var motion = requestedMovement.Motion;
-            if (status.IsOnGround && !requestedMovement.IsFollowingGround) {
+            if (requestedMovement.UseRawMotion) {
                 characterController.Move(motion);
             } else {
-                if (status.IsOnGround && requestedMovement.IsFollowingGround) {
+                // Use gravity instead of requestedMovement.motion.y.
+                if (status.IsOnGround) {
                     var testMotion = motion;
                     var horizontalMotion = new Vector3(requestedMovement.Motion.x, 0, requestedMovement.Motion.z).magnitude;
                     testMotion.y = -horizontalMotion * math.tan(math.radians(config.MaxSlopeAngle)) +
                         0.5f * config.Gravity * dt * dt;
                     characterController.Move(testMotion);
                     if (!characterController.isGrounded) {
+                        // Revert motion and prepare for airborne mortion.
                         characterController.Move(-testMotion);
                         status.IsOnGround = false;
                         status.Velocity.y = 0f;
@@ -93,7 +95,7 @@ public class MechMovementUpdateSystem : ComponentSystem {
                 if (!status.IsOnGround) {
                     motion.y = status.Velocity.y * dt +
                         0.5f * config.Gravity * dt * dt;
-                    motion.y = math.clamp(motion.y, -config.MaxSpeedInAir, config.MaxSpeedInAir);
+                    motion.y = math.clamp(motion.y, -config.MaxFallSpeed, config.MaxFallSpeed);
                     characterController.Move(motion);
                 }
             }
@@ -102,7 +104,7 @@ public class MechMovementUpdateSystem : ComponentSystem {
             status.IsOnGround = characterController.isGrounded;
             if (status.IsOnGround && requestedMovement.State == MechMovementState.Airborne) {
                 status.State = MechMovementState.Stand;
-            } else if (!status.IsOnGround && requestedMovement.State != MechMovementState.Boosting) {
+            } else if (!status.IsOnGround && requestedMovement.State != MechMovementState.BoostAcceling) {
                 status.State = MechMovementState.Airborne;
             } else {
                 status.State = requestedMovement.State;

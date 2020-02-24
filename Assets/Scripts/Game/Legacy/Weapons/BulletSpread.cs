@@ -29,9 +29,9 @@ public class BulletSpread {
                 return 1f;
             case MechMovementState.Walking:
                 return 1f;
-            case MechMovementState.Boosting:
+            case MechMovementState.BoostAcceling:
                 return 1.3f;
-            case MechMovementState.Braking:
+            case MechMovementState.BoostBraking:
                 return 1.2f;
             case MechMovementState.Crouching:
                 return 0.5f;

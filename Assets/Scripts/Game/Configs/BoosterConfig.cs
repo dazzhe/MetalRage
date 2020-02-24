@@ -4,10 +4,12 @@ using UnityEngine;
 public class BoosterConfig : ScriptableObject {
     [SerializeField]
     private BoosterConfigData data = new BoosterConfigData {
+        MaxSpeed = 40f,
+        Consumption = 1,
         Duration = 0.2f,
         Regeneration = 30f,
-        Consumption = 28f,
-        Accel = 300f
+        Accel = 300f,
+        BrakingDeceleration = 10f,
     };
 
     public BoosterConfigData Data { get => this.data; set => this.data = value; }

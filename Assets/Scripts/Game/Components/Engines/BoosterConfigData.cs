@@ -7,6 +7,6 @@ public struct BoosterConfigData : IComponentData {
     public float Regeneration;
     public float Consumption;
     public float Accel;
-    public float Decel;
     public float MaxSpeed;
+    public float BrakingDeceleration;
 }

@@ -5,8 +5,8 @@ public enum MechMovementState {
     Walking,
     Crouching,
     Airborne,
-    Boosting,
-    Braking
+    BoostAcceling,
+    BoostBraking
 }
 
 public struct MechMovementStatus : IComponentData {

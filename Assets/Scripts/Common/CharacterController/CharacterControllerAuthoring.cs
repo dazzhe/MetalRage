@@ -46,9 +46,9 @@ public struct CharacterControllerInitializationData : IComponentData {
     public float CapsuleHeight;
 }
 
-//struct CharacterControllerCollider : ISystemStateComponentData {
-//    public BlobAssetReference<Unity.Physics.Collider> Collider;
-//}
+struct CharacterControllerCollider : ISystemStateComponentData {
+    public BlobAssetReference<Unity.Physics.Collider> Collider;
+}
 
 [Serializable]
 public class CharacterControllerAuthoring : MonoBehaviour, IConvertGameObjectToEntity {
@@ -109,38 +109,3 @@ public class CharacterControllerAuthoring : MonoBehaviour, IConvertGameObjectToE
         }
     }
 }
-
-//[DisableAutoCreation]
-//[AlwaysSynchronizeSystem]
-//[AlwaysUpdateSystem]
-//[UpdateBefore(typeof(CharacterControllerStepSystem))]
-//public class CharacterControllerInitAndCleanupSystem : JobComponentSystem {
-//    protected override JobHandle OnUpdate(JobHandle inputDeps) {
-//        var ecb = new EntityCommandBuffer(Allocator.TempJob);
-
-//        Entities
-//            .WithNone<CharacterControllerCollider>()
-//            .ForEach((Entity e, ref CharacterControllerInitializationData initData) => {
-//                var capsule = new CapsuleGeometry {
-//                    Vertex0 = initData.CapsuleCenter + new float3(0, 0.5f * initData.CapsuleHeight - initData.CapsuleRadius, 0),
-//                    Vertex1 = initData.CapsuleCenter - new float3(0, 0.5f * initData.CapsuleHeight - initData.CapsuleRadius, 0),
-//                    Radius = initData.CapsuleRadius
-//                };
-//                var filter = new CollisionFilter { BelongsTo = 1, CollidesWith = 1, GroupIndex = 0 };
-//                var collider = Unity.Physics.CapsuleCollider.Create(capsule, filter, new Unity.Physics.Material { Flags = new Unity.Physics.Material.MaterialFlags() });
-//                ecb.AddComponent(e, new CharacterControllerCollider { Collider = collider });
-//            }).Run();
-
-//        Entities
-//            .WithNone<CharacterControllerComponentData>()
-//            .ForEach((Entity e, ref CharacterControllerCollider collider) => {
-//                collider.Collider.Dispose();
-//                ecb.RemoveComponent<CharacterControllerCollider>(e);
-//            }).Run();
-
-//        ecb.Playback(EntityManager);
-//        ecb.Dispose();
-
-//        return inputDeps;
-//    }
-//}

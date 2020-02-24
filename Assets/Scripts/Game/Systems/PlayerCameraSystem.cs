@@ -64,34 +64,36 @@ public class PlayerCameraSystem : ComponentSystem {
         var offsetLength = Mathf.Abs(Mathf.Sin(pitch)) * camera.forwardOffsetFactor;
         var cameraOffset = camera.BaseCameraOffset + offsetLength * Vector3.forward;
         command.MaxOffset = new float3(1.5f, 0.4f, 0f);
-
         // Camera rotates around the target by the same amount as the target rotation.
         var rotationDiff = targetRotation.Value * Quaternion.Inverse(rotation.Value);
         var localPosition = Quaternion.Inverse(targetRotation.Value) * (translation.Value - targetTranslation.Value);
         var updatedLocalPosition = rotationDiff * localPosition;
-        translation.Value = (float3)((Quaternion)targetRotation.Value * updatedLocalPosition) + targetTranslation.Value;
+        translation.Value = mul(targetRotation.Value, updatedLocalPosition) + targetTranslation.Value;
         rotation.Value = targetRotation.Value;
-        var defaultPosition = (float3)((Quaternion)targetRotation.Value * cameraOffset) + targetTranslation.Value;
+        // Camera follow
+        var defaultPosition = mul(targetRotation.Value, cameraOffset) + targetTranslation.Value;
         var targetMovement = this.EntityManager.GetComponentData<MechMovementStatus>(command.TargetEntity);
-        camera.FollowMode = targetMovement.State == MechMovementState.Stand || targetMovement.State == MechMovementState.Braking
+        camera.FollowMode = targetMovement.State == MechMovementState.Stand || targetMovement.State == MechMovementState.BoostBraking || targetMovement.State == MechMovementState.BoostAcceling
             ? CameraFollowMode.Smooth : CameraFollowMode.Clamp;
         var localOffset = mul(Unity.Mathematics.quaternion.AxisAngle(float3(0f, 1f, 0f), -yaw), translation.Value - defaultPosition);
+        var targetLocalMotion = mul(inverse(targetRotation.Value), targetMovement.Velocity) * this.Time.DeltaTime;
         switch (camera.FollowMode) {
             case CameraFollowMode.Smooth: {
+                    localOffset += targetLocalMotion;
                     if (localOffset.Equals(float3(0f, 0f, 0f))) {
                         break;
                     }
-                    var lerpSpeed = targetMovement.State == MechMovementState.Braking
-                        ? 20f : 6f;
+                    var lerpSpeed = targetMovement.State == MechMovementState.BoostBraking || targetMovement.State == MechMovementState.BoostAcceling
+                        ? 10f : 6f;
                     var motion = -normalize(localOffset) * lerpSpeed * this.Time.DeltaTime;
                     if (lengthsq(motion) > lengthsq(localOffset)) {
-                        motion = -localOffset;
+                        localOffset = float3(0f, 0f, 0f);
+                    } else {
+                        localOffset += motion;
                     }
-                    localOffset += motion;
                     break;
                 }
             case CameraFollowMode.Clamp:
-                var targetLocalMotion = mul(inverse(targetRotation.Value), targetMovement.Velocity) * this.Time.DeltaTime;
                 localOffset += targetLocalMotion * 0.3f;
                 localOffset = clamp(localOffset, -command.MaxOffset, command.MaxOffset);
                 break;
@@ -105,8 +107,10 @@ public class PlayerCameraSystem : ComponentSystem {
                 break;
         }
         translation.Value = mul(Unity.Mathematics.quaternion.AxisAngle(float3(0f, 1f, 0f), yaw), localOffset) + defaultPosition;
-        // Double check wall penetration to avoid jittering.
         translation.Value = AvoidObstacles(translation.Value, targetTranslation.Value);
+
+        Assert.IsFalse(float.IsNaN(translation.Value.x) || float.IsNaN(translation.Value.y) || float.IsNaN(translation.Value.z));
+
         this.EntityManager.SetComponentData(cameraEntity, translation);
         this.EntityManager.SetComponentData(cameraEntity, rotation);
     }

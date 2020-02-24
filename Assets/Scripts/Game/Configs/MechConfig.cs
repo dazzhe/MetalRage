@@ -11,13 +11,15 @@ public class MechConfig : ScriptableObject {
         WalkingDeceleration = 50f,
         BaseJumpSpeed = 30f,
         Gravity = -40f,
-        BrakingDeceleration = 10f,
         MinPitch = -60f,
         MaxPitch = 60f,
         MaxSlopeAngle = 45f,
-        MaxSpeedInAir = 20f,
+        MaxFallSpeed = 20f,
     };
+    [SerializeField]
+    private BoosterConfig hEngineConfig;
 
     public GameObject Prefab { get => this.prefab; set => this.prefab = value; }
     public MechMovementConfigData Movement { get => this.movement; set => this.movement = value; }
+    public BoosterConfig HEngineConfig { get => this.hEngineConfig; set => this.hEngineConfig = value; }
 }

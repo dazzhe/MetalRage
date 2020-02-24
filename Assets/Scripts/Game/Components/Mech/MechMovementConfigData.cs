@@ -5,8 +5,7 @@ using UnityEngine;
 public struct MechMovementConfigData : IComponentData {
     public float MinPitch;
     public float MaxPitch;
-    public float MaxSpeedInAir;
-    public float BrakingDeceleration;
+    public float MaxFallSpeed;
     public float Gravity;
     public float MaxSlopeAngle;
     [Header("Walk")]

@@ -20,13 +20,7 @@ public class MechSpawner : ComponentSystem {
             this.PostUpdateCommands.AddComponent(spawnedEntity, new MechRequestedMovement());
             this.PostUpdateCommands.AddComponent(spawnedEntity, new MechCommand());
             this.PostUpdateCommands.AddComponent(spawnedEntity, new BoosterEngineStatus { Gauge = 100 });
-            this.PostUpdateCommands.AddComponent(spawnedEntity, new BoosterConfigData {
-                MaxSpeed = 30f,
-                Consumption = 1,
-                Duration = 0.1f,
-                Regeneration = 30f,
-                Accel = 300f
-            });
+            this.PostUpdateCommands.AddComponent(spawnedEntity, mechConfig.HEngineConfig.Data);
             this.PostUpdateCommands.AddComponent(spawnedEntity, mechConfig.Movement);
             this.EntityManager.AddComponentObject(spawnedEntity, transform);
             this.EntityManager.AddComponentObject(spawnedEntity, spawnedObject.GetComponent<CharacterController>());

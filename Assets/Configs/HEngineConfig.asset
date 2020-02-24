@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0df43ae8aac20eb499f5d3cb9891930f, type: 3}
+  m_Name: HEngineConfig
+  m_EditorClassIdentifier: 
+  data:
+    Duration: 0.1
+    Regeneration: 30
+    Consumption: 1
+    Accel: 300
+    MaxSpeed: 40
+    BrakingDeceleration: 80
