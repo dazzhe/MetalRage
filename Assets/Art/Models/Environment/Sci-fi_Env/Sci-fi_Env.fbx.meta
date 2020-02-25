@@ -1,0 +1,1755 @@
+fileFormatVersion: 2
+guid: 7d661493811fcbf49933e576cb67a623
+ModelImporter:
+  serializedVersion: 19300
+  internalIDToNameTable:
+  - first:
+      74: 1989289236423521904
+    second: Default Take
+  - first:
+      74: -3551983294122220639
+    second: Cube|Barrel|Default Take|Layer0
+  - first:
+      74: 5345976602445574339
+    second: Cube|Camera|Default Take|Layer0
+  - first:
+      74: -6785968037013182572
+    second: Cube|Crate|Default Take|Layer0
+  - first:
+      74: -7986010967150461025
+    second: Cube|Cube|Default Take|Layer0
+  - first:
+      74: -6797954452651421371
+    second: Cube|Door1|Default Take|Layer0
+  - first:
+      74: 5168212818695231266
+    second: Cube|Door2|Default Take|Layer0
+  - first:
+      74: 7637697628645837810
+    second: Cube|Floor2|Default Take|Layer0
+  - first:
+      74: 6758536268965360550
+    second: Cube|Floor3|Default Take|Layer0
+  - first:
+      74: 449564407576727417
+    second: Cube|Floor4|Default Take|Layer0
+  - first:
+      74: -2927907623111488188
+    second: Cube|Floor5|Default Take|Layer0
+  - first:
+      74: -3961183490999170262
+    second: Cube|Floor6|Default Take|Layer0
+  - first:
+      74: -4705874769447711368
+    second: Cube|Floor7|Default Take|Layer0
+  - first:
+      74: 8292065146972819226
+    second: Cube|Floor8|Default Take|Layer0
+  - first:
+      74: -2320302038204267437
+    second: Cube|Floor|Default Take|Layer0
+  - first:
+      74: -2149562922346343814
+    second: Cube|Locker1|Default Take|Layer0
+  - first:
+      74: 8955487248312511759
+    second: Cube|Locker2|Default Take|Layer0
+  - first:
+      74: -3346822525737555097
+    second: Cube|Wall1|Default Take|Layer0
+  - first:
+      74: 4552104270376456061
+    second: Cube|Wall2|Default Take|Layer0
+  - first:
+      74: -8642868219107567523
+    second: Cube|Wall3|Default Take|Layer0
+  - first:
+      74: -9017817949340638300
+    second: Cube|Wall4|Default Take|Layer0
+  - first:
+      74: -909824223906152963
+    second: Cube|Wall5|Default Take|Layer0
+  - first:
+      74: 8402761540656626115
+    second: Cube|Wall6|Default Take|Layer0
+  - first:
+      74: 4593042908560655833
+    second: Cube|Wall7|Default Take|Layer0
+  - first:
+      74: 1238770483509978373
+    second: Cube|Window|Default Take|Layer0
+  - first:
+      74: -1918642536847388833
+    second: Crate|Barrel|Default Take|Layer0
+  - first:
+      74: 2811872276855983462
+    second: Crate|Camera|Default Take|Layer0
+  - first:
+      74: 7747168044203231727
+    second: Crate|Crate|Default Take|Layer0
+  - first:
+      74: -8354073864916487948
+    second: Crate|Cube|Default Take|Layer0
+  - first:
+      74: -7347339627649451122
+    second: Crate|Door1|Default Take|Layer0
+  - first:
+      74: -5606746091817135371
+    second: Crate|Door2|Default Take|Layer0
+  - first:
+      74: 4785347238085432734
+    second: Crate|Floor2|Default Take|Layer0
+  - first:
+      74: -3172946201838117947
+    second: Crate|Floor3|Default Take|Layer0
+  - first:
+      74: 8966741044162241912
+    second: Crate|Floor4|Default Take|Layer0
+  - first:
+      74: -3734988976460738193
+    second: Crate|Floor5|Default Take|Layer0
+  - first:
+      74: 1412952709333817770
+    second: Crate|Floor6|Default Take|Layer0
+  - first:
+      74: 1925028801301925878
+    second: Crate|Floor7|Default Take|Layer0
+  - first:
+      74: 2327023831062583692
+    second: Crate|Floor8|Default Take|Layer0
+  - first:
+      74: 8471651256819027569
+    second: Crate|Floor|Default Take|Layer0
+  - first:
+      74: 8831517859580212169
+    second: Crate|Locker1|Default Take|Layer0
+  - first:
+      74: -673473468703998426
+    second: Crate|Locker2|Default Take|Layer0
+  - first:
+      74: 3324857806769247273
+    second: Crate|Wall1|Default Take|Layer0
+  - first:
+      74: -2598528940049663319
+    second: Crate|Wall2|Default Take|Layer0
+  - first:
+      74: -4227565598099346275
+    second: Crate|Wall3|Default Take|Layer0
+  - first:
+      74: -6313738850902407743
+    second: Crate|Wall4|Default Take|Layer0
+  - first:
+      74: 3348932567463460240
+    second: Crate|Wall5|Default Take|Layer0
+  - first:
+      74: 6127041339262000686
+    second: Crate|Wall6|Default Take|Layer0
+  - first:
+      74: -8802624343093117818
+    second: Crate|Wall7|Default Take|Layer0
+  - first:
+      74: 8322085167162806140
+    second: Crate|Window|Default Take|Layer0
+  - first:
+      74: 8563203195810783862
+    second: Barrel|Barrel|Default Take|Layer0
+  - first:
+      74: -2029144148821736329
+    second: Barrel|Camera|Default Take|Layer0
+  - first:
+      74: -2407383496137790882
+    second: Barrel|Crate|Default Take|Layer0
+  - first:
+      74: -6516731804608077311
+    second: Barrel|Cube|Default Take|Layer0
+  - first:
+      74: 1960717782912520452
+    second: Barrel|Door1|Default Take|Layer0
+  - first:
+      74: -8483699688621875771
+    second: Barrel|Door2|Default Take|Layer0
+  - first:
+      74: 4917689144576290523
+    second: Barrel|Floor2|Default Take|Layer0
+  - first:
+      74: -7935660355510965171
+    second: Barrel|Floor3|Default Take|Layer0
+  - first:
+      74: 6750959637671586337
+    second: Barrel|Floor4|Default Take|Layer0
+  - first:
+      74: 5309030691509944256
+    second: Barrel|Floor5|Default Take|Layer0
+  - first:
+      74: 5271641018422680648
+    second: Barrel|Floor6|Default Take|Layer0
+  - first:
+      74: -1890055742036034224
+    second: Barrel|Floor7|Default Take|Layer0
+  - first:
+      74: -1645838594769867178
+    second: Barrel|Floor8|Default Take|Layer0
+  - first:
+      74: -7168494325972448938
+    second: Barrel|Floor|Default Take|Layer0
+  - first:
+      74: -8565836859034063124
+    second: Barrel|Locker1|Default Take|Layer0
+  - first:
+      74: 7108961927764655839
+    second: Barrel|Locker2|Default Take|Layer0
+  - first:
+      74: 7353292652805054402
+    second: Barrel|Wall1|Default Take|Layer0
+  - first:
+      74: 3142215632613478421
+    second: Barrel|Wall2|Default Take|Layer0
+  - first:
+      74: 2118870098712014364
+    second: Barrel|Wall3|Default Take|Layer0
+  - first:
+      74: -5908531863869959896
+    second: Barrel|Wall4|Default Take|Layer0
+  - first:
+      74: -7645454763934145723
+    second: Barrel|Wall5|Default Take|Layer0
+  - first:
+      74: -6621278044061796409
+    second: Barrel|Wall6|Default Take|Layer0
+  - first:
+      74: 2978502932167594272
+    second: Barrel|Wall7|Default Take|Layer0
+  - first:
+      74: 1463924962812062540
+    second: Barrel|Window|Default Take|Layer0
+  - first:
+      74: -5324892151875358434
+    second: Locker2|Barrel|Default Take|Layer0
+  - first:
+      74: -776078599926550859
+    second: Locker2|Camera|Default Take|Layer0
+  - first:
+      74: 1002590674370146180
+    second: Locker2|Crate|Default Take|Layer0
+  - first:
+      74: 2261101091229631424
+    second: Locker2|Cube|Default Take|Layer0
+  - first:
+      74: -7518403784606174172
+    second: Locker2|Door1|Default Take|Layer0
+  - first:
+      74: 5141423778999534153
+    second: Locker2|Door2|Default Take|Layer0
+  - first:
+      74: -2840501001435617940
+    second: Locker2|Floor2|Default Take|Layer0
+  - first:
+      74: -4723969540333024400
+    second: Locker2|Floor3|Default Take|Layer0
+  - first:
+      74: 220724909814086183
+    second: Locker2|Floor4|Default Take|Layer0
+  - first:
+      74: -2678374630462657759
+    second: Locker2|Floor5|Default Take|Layer0
+  - first:
+      74: -3704373989226252415
+    second: Locker2|Floor6|Default Take|Layer0
+  - first:
+      74: -6296202983684427272
+    second: Locker2|Floor7|Default Take|Layer0
+  - first:
+      74: -8650280387235999413
+    second: Locker2|Floor8|Default Take|Layer0
+  - first:
+      74: 8432672663624868158
+    second: Locker2|Floor|Default Take|Layer0
+  - first:
+      74: 60325012745486583
+    second: Locker2|Locker1|Default Take|Layer0
+  - first:
+      74: -6326768073821637446
+    second: Locker2|Locker2|Default Take|Layer0
+  - first:
+      74: -3628750532429127232
+    second: Locker2|Wall1|Default Take|Layer0
+  - first:
+      74: 8428326041802133996
+    second: Locker2|Wall2|Default Take|Layer0
+  - first:
+      74: 8187007591604651964
+    second: Locker2|Wall3|Default Take|Layer0
+  - first:
+      74: 4623172337434134933
+    second: Locker2|Wall4|Default Take|Layer0
+  - first:
+      74: 3365741548902758435
+    second: Locker2|Wall5|Default Take|Layer0
+  - first:
+      74: 2520239407921148431
+    second: Locker2|Wall6|Default Take|Layer0
+  - first:
+      74: -4461593675476437885
+    second: Locker2|Wall7|Default Take|Layer0
+  - first:
+      74: -6911182893160859389
+    second: Locker2|Window|Default Take|Layer0
+  - first:
+      74: -6523062670860597100
+    second: Locker1|Barrel|Default Take|Layer0
+  - first:
+      74: -4776815866769679693
+    second: Locker1|Camera|Default Take|Layer0
+  - first:
+      74: 8040423461179157636
+    second: Locker1|Crate|Default Take|Layer0
+  - first:
+      74: 6380836398596087410
+    second: Locker1|Cube|Default Take|Layer0
+  - first:
+      74: 3817899701175663742
+    second: Locker1|Door1|Default Take|Layer0
+  - first:
+      74: 4614945939337230983
+    second: Locker1|Door2|Default Take|Layer0
+  - first:
+      74: 3349757146994844374
+    second: Locker1|Floor2|Default Take|Layer0
+  - first:
+      74: 150611078154714091
+    second: Locker1|Floor3|Default Take|Layer0
+  - first:
+      74: 8314623720678945306
+    second: Locker1|Floor4|Default Take|Layer0
+  - first:
+      74: 1848671755271330317
+    second: Locker1|Floor5|Default Take|Layer0
+  - first:
+      74: -3462159828426370701
+    second: Locker1|Floor6|Default Take|Layer0
+  - first:
+      74: 310844216438102192
+    second: Locker1|Floor7|Default Take|Layer0
+  - first:
+      74: -7665063202732267466
+    second: Locker1|Floor8|Default Take|Layer0
+  - first:
+      74: 8593869457788117368
+    second: Locker1|Floor|Default Take|Layer0
+  - first:
+      74: -3088817501483437148
+    second: Locker1|Locker1|Default Take|Layer0
+  - first:
+      74: 5096848128075627499
+    second: Locker1|Locker2|Default Take|Layer0
+  - first:
+      74: 1400076529068998460
+    second: Locker1|Wall1|Default Take|Layer0
+  - first:
+      74: 4021594629272927710
+    second: Locker1|Wall2|Default Take|Layer0
+  - first:
+      74: -2907283017722371996
+    second: Locker1|Wall3|Default Take|Layer0
+  - first:
+      74: 5993049794721305278
+    second: Locker1|Wall4|Default Take|Layer0
+  - first:
+      74: -6267010723792728974
+    second: Locker1|Wall5|Default Take|Layer0
+  - first:
+      74: -6216184783046734309
+    second: Locker1|Wall6|Default Take|Layer0
+  - first:
+      74: -4566284802951546467
+    second: Locker1|Wall7|Default Take|Layer0
+  - first:
+      74: 8068845006670396949
+    second: Locker1|Window|Default Take|Layer0
+  - first:
+      74: 5555000982641840362
+    second: Door1|Barrel|Default Take|Layer0
+  - first:
+      74: 7363833078841438359
+    second: Door1|Camera|Default Take|Layer0
+  - first:
+      74: -4393856632209537726
+    second: Door1|Crate|Default Take|Layer0
+  - first:
+      74: -980519548995208848
+    second: Door1|Cube|Default Take|Layer0
+  - first:
+      74: -7533499943815035741
+    second: Door1|Door1|Default Take|Layer0
+  - first:
+      74: 2004250274738095055
+    second: Door1|Door2|Default Take|Layer0
+  - first:
+      74: -8365697338387238405
+    second: Door1|Floor2|Default Take|Layer0
+  - first:
+      74: -5481500330161601748
+    second: Door1|Floor3|Default Take|Layer0
+  - first:
+      74: 2358836771199992929
+    second: Door1|Floor4|Default Take|Layer0
+  - first:
+      74: 7683797686523964232
+    second: Door1|Floor5|Default Take|Layer0
+  - first:
+      74: 5840888436215691398
+    second: Door1|Floor6|Default Take|Layer0
+  - first:
+      74: -3311998779194950811
+    second: Door1|Floor7|Default Take|Layer0
+  - first:
+      74: -8904911208293586841
+    second: Door1|Floor8|Default Take|Layer0
+  - first:
+      74: -4103414078894369197
+    second: Door1|Floor|Default Take|Layer0
+  - first:
+      74: 1623722102377565459
+    second: Door1|Locker1|Default Take|Layer0
+  - first:
+      74: -6947623530574511450
+    second: Door1|Locker2|Default Take|Layer0
+  - first:
+      74: -8551428447157546756
+    second: Door1|Wall1|Default Take|Layer0
+  - first:
+      74: 6385372093993937094
+    second: Door1|Wall2|Default Take|Layer0
+  - first:
+      74: -9180415852127182763
+    second: Door1|Wall3|Default Take|Layer0
+  - first:
+      74: -1301682435493475727
+    second: Door1|Wall4|Default Take|Layer0
+  - first:
+      74: -6867954037447415552
+    second: Door1|Wall5|Default Take|Layer0
+  - first:
+      74: 2953178961804739731
+    second: Door1|Wall6|Default Take|Layer0
+  - first:
+      74: -4081064748528908821
+    second: Door1|Wall7|Default Take|Layer0
+  - first:
+      74: 3807457832527031793
+    second: Door1|Window|Default Take|Layer0
+  - first:
+      74: -5143570834322934181
+    second: Door2|Barrel|Default Take|Layer0
+  - first:
+      74: 3279648261191939634
+    second: Door2|Camera|Default Take|Layer0
+  - first:
+      74: -1113817375255905221
+    second: Door2|Crate|Default Take|Layer0
+  - first:
+      74: 8587350349374710462
+    second: Door2|Cube|Default Take|Layer0
+  - first:
+      74: 3227039646951366315
+    second: Door2|Door1|Default Take|Layer0
+  - first:
+      74: -8230660433219631252
+    second: Door2|Door2|Default Take|Layer0
+  - first:
+      74: -4356511496903615826
+    second: Door2|Floor2|Default Take|Layer0
+  - first:
+      74: -6351789416432412563
+    second: Door2|Floor3|Default Take|Layer0
+  - first:
+      74: 8946031522060814760
+    second: Door2|Floor4|Default Take|Layer0
+  - first:
+      74: 7986329083363173944
+    second: Door2|Floor5|Default Take|Layer0
+  - first:
+      74: -2250704056805656368
+    second: Door2|Floor6|Default Take|Layer0
+  - first:
+      74: -9058136416116521337
+    second: Door2|Floor7|Default Take|Layer0
+  - first:
+      74: -9181448862421994780
+    second: Door2|Floor8|Default Take|Layer0
+  - first:
+      74: 6867830653396227913
+    second: Door2|Floor|Default Take|Layer0
+  - first:
+      74: -3106600894284104163
+    second: Door2|Locker1|Default Take|Layer0
+  - first:
+      74: 3846408494255340543
+    second: Door2|Locker2|Default Take|Layer0
+  - first:
+      74: 7052013140736676558
+    second: Door2|Wall1|Default Take|Layer0
+  - first:
+      74: 514988804716849236
+    second: Door2|Wall2|Default Take|Layer0
+  - first:
+      74: -5077050586707359698
+    second: Door2|Wall3|Default Take|Layer0
+  - first:
+      74: -2552848453823247938
+    second: Door2|Wall4|Default Take|Layer0
+  - first:
+      74: 7000963333731171602
+    second: Door2|Wall5|Default Take|Layer0
+  - first:
+      74: 971601062850931847
+    second: Door2|Wall6|Default Take|Layer0
+  - first:
+      74: -3990629760650309032
+    second: Door2|Wall7|Default Take|Layer0
+  - first:
+      74: -5193746490970703063
+    second: Door2|Window|Default Take|Layer0
+  - first:
+      74: -2037291958660138679
+    second: Window|Barrel|Default Take|Layer0
+  - first:
+      74: -1532923871500043059
+    second: Window|Camera|Default Take|Layer0
+  - first:
+      74: 8321257493679389563
+    second: Window|Crate|Default Take|Layer0
+  - first:
+      74: -8123233605761918749
+    second: Window|Cube|Default Take|Layer0
+  - first:
+      74: 5097342887154661304
+    second: Window|Door1|Default Take|Layer0
+  - first:
+      74: 3372924394805301389
+    second: Window|Door2|Default Take|Layer0
+  - first:
+      74: 6850879802899437495
+    second: Window|Floor2|Default Take|Layer0
+  - first:
+      74: 1795314648536695952
+    second: Window|Floor3|Default Take|Layer0
+  - first:
+      74: 2702789706373711841
+    second: Window|Floor4|Default Take|Layer0
+  - first:
+      74: -4111444051679410336
+    second: Window|Floor5|Default Take|Layer0
+  - first:
+      74: -9073727839362957240
+    second: Window|Floor6|Default Take|Layer0
+  - first:
+      74: -1991009984745174525
+    second: Window|Floor7|Default Take|Layer0
+  - first:
+      74: 8310081465200196936
+    second: Window|Floor8|Default Take|Layer0
+  - first:
+      74: -3641378955195045365
+    second: Window|Floor|Default Take|Layer0
+  - first:
+      74: 5357126373295073660
+    second: Window|Locker1|Default Take|Layer0
+  - first:
+      74: -6691292606471282880
+    second: Window|Locker2|Default Take|Layer0
+  - first:
+      74: -5124490121135670677
+    second: Window|Wall1|Default Take|Layer0
+  - first:
+      74: -1515207909276382166
+    second: Window|Wall2|Default Take|Layer0
+  - first:
+      74: -3122611608022475065
+    second: Window|Wall3|Default Take|Layer0
+  - first:
+      74: -1078392518182521394
+    second: Window|Wall4|Default Take|Layer0
+  - first:
+      74: -3069548714916147770
+    second: Window|Wall5|Default Take|Layer0
+  - first:
+      74: 4934315176258028760
+    second: Window|Wall6|Default Take|Layer0
+  - first:
+      74: -7634734087878361908
+    second: Window|Wall7|Default Take|Layer0
+  - first:
+      74: -3589739852588738677
+    second: Window|Window|Default Take|Layer0
+  - first:
+      74: -4391065570423928791
+    second: Floor8|Barrel|Default Take|Layer0
+  - first:
+      74: 15293079541135013
+    second: Floor8|Camera|Default Take|Layer0
+  - first:
+      74: 5183120105547248591
+    second: Floor8|Crate|Default Take|Layer0
+  - first:
+      74: -7101267728509632531
+    second: Floor8|Cube|Default Take|Layer0
+  - first:
+      74: -7598175923592171543
+    second: Floor8|Door1|Default Take|Layer0
+  - first:
+      74: -167053187563578545
+    second: Floor8|Door2|Default Take|Layer0
+  - first:
+      74: -3304299350685289102
+    second: Floor8|Floor2|Default Take|Layer0
+  - first:
+      74: 7479946232328294346
+    second: Floor8|Floor3|Default Take|Layer0
+  - first:
+      74: 8515554408296237668
+    second: Floor8|Floor4|Default Take|Layer0
+  - first:
+      74: 3506543445105379170
+    second: Floor8|Floor5|Default Take|Layer0
+  - first:
+      74: 3016208099106019128
+    second: Floor8|Floor6|Default Take|Layer0
+  - first:
+      74: -3600913729467387979
+    second: Floor8|Floor7|Default Take|Layer0
+  - first:
+      74: -2786347619563805500
+    second: Floor8|Floor8|Default Take|Layer0
+  - first:
+      74: -5022625200361358329
+    second: Floor8|Floor|Default Take|Layer0
+  - first:
+      74: -1180891134359873026
+    second: Floor8|Locker1|Default Take|Layer0
+  - first:
+      74: -4437517856470347323
+    second: Floor8|Locker2|Default Take|Layer0
+  - first:
+      74: -6632271780548833681
+    second: Floor8|Wall1|Default Take|Layer0
+  - first:
+      74: 338038566245218758
+    second: Floor8|Wall2|Default Take|Layer0
+  - first:
+      74: 7222912650537725245
+    second: Floor8|Wall3|Default Take|Layer0
+  - first:
+      74: -5414477751233775653
+    second: Floor8|Wall4|Default Take|Layer0
+  - first:
+      74: -41475796914039352
+    second: Floor8|Wall5|Default Take|Layer0
+  - first:
+      74: -2171713441920000357
+    second: Floor8|Wall6|Default Take|Layer0
+  - first:
+      74: -604033331256007091
+    second: Floor8|Wall7|Default Take|Layer0
+  - first:
+      74: 4259601027703012930
+    second: Floor8|Window|Default Take|Layer0
+  - first:
+      74: 3899404710910996066
+    second: Floor7|Barrel|Default Take|Layer0
+  - first:
+      74: 2216490337447369862
+    second: Floor7|Camera|Default Take|Layer0
+  - first:
+      74: 4874675140909786622
+    second: Floor7|Crate|Default Take|Layer0
+  - first:
+      74: -4639496771271016761
+    second: Floor7|Cube|Default Take|Layer0
+  - first:
+      74: -2296957257799351814
+    second: Floor7|Door1|Default Take|Layer0
+  - first:
+      74: 8434891792137624180
+    second: Floor7|Door2|Default Take|Layer0
+  - first:
+      74: 3329344847350059273
+    second: Floor7|Floor2|Default Take|Layer0
+  - first:
+      74: -5085743662696740617
+    second: Floor7|Floor3|Default Take|Layer0
+  - first:
+      74: -1328766986531336547
+    second: Floor7|Floor4|Default Take|Layer0
+  - first:
+      74: -3725029868120946382
+    second: Floor7|Floor5|Default Take|Layer0
+  - first:
+      74: 8882270303370925034
+    second: Floor7|Floor6|Default Take|Layer0
+  - first:
+      74: 5643169486867986580
+    second: Floor7|Floor7|Default Take|Layer0
+  - first:
+      74: -2719121011561565332
+    second: Floor7|Floor8|Default Take|Layer0
+  - first:
+      74: -2057414098253940351
+    second: Floor7|Floor|Default Take|Layer0
+  - first:
+      74: -3456069310194501108
+    second: Floor7|Locker1|Default Take|Layer0
+  - first:
+      74: -2173508676990600942
+    second: Floor7|Locker2|Default Take|Layer0
+  - first:
+      74: -4256765575780136348
+    second: Floor7|Wall1|Default Take|Layer0
+  - first:
+      74: 133039868728950080
+    second: Floor7|Wall2|Default Take|Layer0
+  - first:
+      74: -8477953412017414362
+    second: Floor7|Wall3|Default Take|Layer0
+  - first:
+      74: -8779100017319769581
+    second: Floor7|Wall4|Default Take|Layer0
+  - first:
+      74: 5880542391811183275
+    second: Floor7|Wall5|Default Take|Layer0
+  - first:
+      74: -6559285979137664990
+    second: Floor7|Wall6|Default Take|Layer0
+  - first:
+      74: 2825079983535296326
+    second: Floor7|Wall7|Default Take|Layer0
+  - first:
+      74: 429982182189328321
+    second: Floor7|Window|Default Take|Layer0
+  - first:
+      74: -2359720124716525432
+    second: Floor6|Barrel|Default Take|Layer0
+  - first:
+      74: 8429020244103001686
+    second: Floor6|Camera|Default Take|Layer0
+  - first:
+      74: -1456173728344549198
+    second: Floor6|Crate|Default Take|Layer0
+  - first:
+      74: 4721767108344878005
+    second: Floor6|Cube|Default Take|Layer0
+  - first:
+      74: 5512595956720059813
+    second: Floor6|Door1|Default Take|Layer0
+  - first:
+      74: -7056448766829837381
+    second: Floor6|Door2|Default Take|Layer0
+  - first:
+      74: 4189615885332192146
+    second: Floor6|Floor2|Default Take|Layer0
+  - first:
+      74: 2473226799881799210
+    second: Floor6|Floor3|Default Take|Layer0
+  - first:
+      74: -7940392955299739949
+    second: Floor6|Floor4|Default Take|Layer0
+  - first:
+      74: 8445547678966556381
+    second: Floor6|Floor5|Default Take|Layer0
+  - first:
+      74: -2375030949587237209
+    second: Floor6|Floor6|Default Take|Layer0
+  - first:
+      74: 2237804012925596534
+    second: Floor6|Floor7|Default Take|Layer0
+  - first:
+      74: -352090511104138168
+    second: Floor6|Floor8|Default Take|Layer0
+  - first:
+      74: 7216854083163199275
+    second: Floor6|Floor|Default Take|Layer0
+  - first:
+      74: -3842744688153724556
+    second: Floor6|Locker1|Default Take|Layer0
+  - first:
+      74: 7331495464407131851
+    second: Floor6|Locker2|Default Take|Layer0
+  - first:
+      74: -3153769688696563490
+    second: Floor6|Wall1|Default Take|Layer0
+  - first:
+      74: 6996806854817802917
+    second: Floor6|Wall2|Default Take|Layer0
+  - first:
+      74: -4352495298239095219
+    second: Floor6|Wall3|Default Take|Layer0
+  - first:
+      74: 8685497810895919706
+    second: Floor6|Wall4|Default Take|Layer0
+  - first:
+      74: -4982736836086233073
+    second: Floor6|Wall5|Default Take|Layer0
+  - first:
+      74: -4635107520172530289
+    second: Floor6|Wall6|Default Take|Layer0
+  - first:
+      74: -919283981622661411
+    second: Floor6|Wall7|Default Take|Layer0
+  - first:
+      74: 827060611063439729
+    second: Floor6|Window|Default Take|Layer0
+  - first:
+      74: 2339540143095677493
+    second: Floor5|Barrel|Default Take|Layer0
+  - first:
+      74: -1096716612993731432
+    second: Floor5|Camera|Default Take|Layer0
+  - first:
+      74: 2234483659428230562
+    second: Floor5|Crate|Default Take|Layer0
+  - first:
+      74: -7790939788065424145
+    second: Floor5|Cube|Default Take|Layer0
+  - first:
+      74: 6064466277331826110
+    second: Floor5|Door1|Default Take|Layer0
+  - first:
+      74: -6809008958807179570
+    second: Floor5|Door2|Default Take|Layer0
+  - first:
+      74: 7815662160229137202
+    second: Floor5|Floor2|Default Take|Layer0
+  - first:
+      74: -6072202633629575931
+    second: Floor5|Floor3|Default Take|Layer0
+  - first:
+      74: -982229273826881576
+    second: Floor5|Floor4|Default Take|Layer0
+  - first:
+      74: 4264044261224425557
+    second: Floor5|Floor5|Default Take|Layer0
+  - first:
+      74: -4355346290789300986
+    second: Floor5|Floor6|Default Take|Layer0
+  - first:
+      74: 8434907080964349385
+    second: Floor5|Floor7|Default Take|Layer0
+  - first:
+      74: -8791218262398671015
+    second: Floor5|Floor8|Default Take|Layer0
+  - first:
+      74: 8334314802106789764
+    second: Floor5|Floor|Default Take|Layer0
+  - first:
+      74: 6005375342814232751
+    second: Floor5|Locker1|Default Take|Layer0
+  - first:
+      74: -2539217134548393460
+    second: Floor5|Locker2|Default Take|Layer0
+  - first:
+      74: -4023255045857910077
+    second: Floor5|Wall1|Default Take|Layer0
+  - first:
+      74: -5474368199332846090
+    second: Floor5|Wall2|Default Take|Layer0
+  - first:
+      74: -3206157285371267978
+    second: Floor5|Wall3|Default Take|Layer0
+  - first:
+      74: 5794798745917775274
+    second: Floor5|Wall4|Default Take|Layer0
+  - first:
+      74: -7938990774817127526
+    second: Floor5|Wall5|Default Take|Layer0
+  - first:
+      74: 305286017011564292
+    second: Floor5|Wall6|Default Take|Layer0
+  - first:
+      74: 2330348095545873662
+    second: Floor5|Wall7|Default Take|Layer0
+  - first:
+      74: 9148453515408415985
+    second: Floor5|Window|Default Take|Layer0
+  - first:
+      74: -75517037745636214
+    second: Floor4|Barrel|Default Take|Layer0
+  - first:
+      74: -4596636491653235226
+    second: Floor4|Camera|Default Take|Layer0
+  - first:
+      74: 7759943790933165580
+    second: Floor4|Crate|Default Take|Layer0
+  - first:
+      74: 4090145165197040203
+    second: Floor4|Cube|Default Take|Layer0
+  - first:
+      74: 6040302646869868453
+    second: Floor4|Door1|Default Take|Layer0
+  - first:
+      74: -4375712234660573984
+    second: Floor4|Door2|Default Take|Layer0
+  - first:
+      74: 227268161215580535
+    second: Floor4|Floor2|Default Take|Layer0
+  - first:
+      74: -3061109935915965029
+    second: Floor4|Floor3|Default Take|Layer0
+  - first:
+      74: -9015584274834461587
+    second: Floor4|Floor4|Default Take|Layer0
+  - first:
+      74: 5652509260427284852
+    second: Floor4|Floor5|Default Take|Layer0
+  - first:
+      74: 3669525119813152530
+    second: Floor4|Floor6|Default Take|Layer0
+  - first:
+      74: -6495079817662390979
+    second: Floor4|Floor7|Default Take|Layer0
+  - first:
+      74: -6533722587657939124
+    second: Floor4|Floor8|Default Take|Layer0
+  - first:
+      74: -8458932877327139314
+    second: Floor4|Floor|Default Take|Layer0
+  - first:
+      74: -5733586687528741749
+    second: Floor4|Locker1|Default Take|Layer0
+  - first:
+      74: 4219958598869161340
+    second: Floor4|Locker2|Default Take|Layer0
+  - first:
+      74: -5883557817538787334
+    second: Floor4|Wall1|Default Take|Layer0
+  - first:
+      74: 1172763922161125806
+    second: Floor4|Wall2|Default Take|Layer0
+  - first:
+      74: 7771073654357284111
+    second: Floor4|Wall3|Default Take|Layer0
+  - first:
+      74: 8918720178301085349
+    second: Floor4|Wall4|Default Take|Layer0
+  - first:
+      74: -1098246286900127314
+    second: Floor4|Wall5|Default Take|Layer0
+  - first:
+      74: -1056978564628399071
+    second: Floor4|Wall6|Default Take|Layer0
+  - first:
+      74: 3900926342912539968
+    second: Floor4|Wall7|Default Take|Layer0
+  - first:
+      74: 3016838484800632845
+    second: Floor4|Window|Default Take|Layer0
+  - first:
+      74: 8239495647174921014
+    second: Floor3|Barrel|Default Take|Layer0
+  - first:
+      74: -5553869371660106526
+    second: Floor3|Camera|Default Take|Layer0
+  - first:
+      74: -6524195223967669764
+    second: Floor3|Crate|Default Take|Layer0
+  - first:
+      74: 4526206748639412696
+    second: Floor3|Cube|Default Take|Layer0
+  - first:
+      74: -7416784985351812081
+    second: Floor3|Door1|Default Take|Layer0
+  - first:
+      74: -7443733525931998793
+    second: Floor3|Door2|Default Take|Layer0
+  - first:
+      74: 6790308351300541899
+    second: Floor3|Floor2|Default Take|Layer0
+  - first:
+      74: 1874863556912149611
+    second: Floor3|Floor3|Default Take|Layer0
+  - first:
+      74: -2230918059921763623
+    second: Floor3|Floor4|Default Take|Layer0
+  - first:
+      74: 4885162658926714126
+    second: Floor3|Floor5|Default Take|Layer0
+  - first:
+      74: 1562982251188607412
+    second: Floor3|Floor6|Default Take|Layer0
+  - first:
+      74: -695837890556199150
+    second: Floor3|Floor7|Default Take|Layer0
+  - first:
+      74: -1521670178653119984
+    second: Floor3|Floor8|Default Take|Layer0
+  - first:
+      74: -7414975230339007239
+    second: Floor3|Floor|Default Take|Layer0
+  - first:
+      74: 3572228921479143625
+    second: Floor3|Locker1|Default Take|Layer0
+  - first:
+      74: 9185718279169726974
+    second: Floor3|Locker2|Default Take|Layer0
+  - first:
+      74: -7132347424392052722
+    second: Floor3|Wall1|Default Take|Layer0
+  - first:
+      74: -7697309365486682102
+    second: Floor3|Wall2|Default Take|Layer0
+  - first:
+      74: 289664717530428948
+    second: Floor3|Wall3|Default Take|Layer0
+  - first:
+      74: 8205696964352176161
+    second: Floor3|Wall4|Default Take|Layer0
+  - first:
+      74: 6756609719140989230
+    second: Floor3|Wall5|Default Take|Layer0
+  - first:
+      74: 5526034847668978174
+    second: Floor3|Wall6|Default Take|Layer0
+  - first:
+      74: -1498921962071931069
+    second: Floor3|Wall7|Default Take|Layer0
+  - first:
+      74: 3014034535735235610
+    second: Floor3|Window|Default Take|Layer0
+  - first:
+      74: -6390829000142990846
+    second: Floor2|Barrel|Default Take|Layer0
+  - first:
+      74: -8646590575525334927
+    second: Floor2|Camera|Default Take|Layer0
+  - first:
+      74: -7646388078155746693
+    second: Floor2|Crate|Default Take|Layer0
+  - first:
+      74: -2389541972554907698
+    second: Floor2|Cube|Default Take|Layer0
+  - first:
+      74: -8743515476844335745
+    second: Floor2|Door1|Default Take|Layer0
+  - first:
+      74: -8563467385723522833
+    second: Floor2|Door2|Default Take|Layer0
+  - first:
+      74: 3303739799946804916
+    second: Floor2|Floor2|Default Take|Layer0
+  - first:
+      74: -7852631561957555111
+    second: Floor2|Floor3|Default Take|Layer0
+  - first:
+      74: 4564215364338793456
+    second: Floor2|Floor4|Default Take|Layer0
+  - first:
+      74: 1337684938863164238
+    second: Floor2|Floor5|Default Take|Layer0
+  - first:
+      74: -1380893576717043046
+    second: Floor2|Floor6|Default Take|Layer0
+  - first:
+      74: 1681806042882007103
+    second: Floor2|Floor7|Default Take|Layer0
+  - first:
+      74: 3733260521073073120
+    second: Floor2|Floor8|Default Take|Layer0
+  - first:
+      74: 7977119045015266737
+    second: Floor2|Floor|Default Take|Layer0
+  - first:
+      74: -4224762577898281765
+    second: Floor2|Locker1|Default Take|Layer0
+  - first:
+      74: 6816435043953168754
+    second: Floor2|Locker2|Default Take|Layer0
+  - first:
+      74: -5243419637243203459
+    second: Floor2|Wall1|Default Take|Layer0
+  - first:
+      74: -3766753022513654377
+    second: Floor2|Wall2|Default Take|Layer0
+  - first:
+      74: -2273215889306328736
+    second: Floor2|Wall3|Default Take|Layer0
+  - first:
+      74: 318136843361830837
+    second: Floor2|Wall4|Default Take|Layer0
+  - first:
+      74: -350709973233285933
+    second: Floor2|Wall5|Default Take|Layer0
+  - first:
+      74: -2087575448197581722
+    second: Floor2|Wall6|Default Take|Layer0
+  - first:
+      74: 4888796284406418065
+    second: Floor2|Wall7|Default Take|Layer0
+  - first:
+      74: 2948385929937664637
+    second: Floor2|Window|Default Take|Layer0
+  - first:
+      74: -1418287522042693983
+    second: Floor|Barrel|Default Take|Layer0
+  - first:
+      74: 4466119484684574836
+    second: Floor|Camera|Default Take|Layer0
+  - first:
+      74: -96270126171034621
+    second: Floor|Crate|Default Take|Layer0
+  - first:
+      74: -5762199186302421389
+    second: Floor|Cube|Default Take|Layer0
+  - first:
+      74: -6181079998544099911
+    second: Floor|Door1|Default Take|Layer0
+  - first:
+      74: 4823163781295363635
+    second: Floor|Door2|Default Take|Layer0
+  - first:
+      74: 64680184545108894
+    second: Floor|Floor2|Default Take|Layer0
+  - first:
+      74: 5425409383955365921
+    second: Floor|Floor3|Default Take|Layer0
+  - first:
+      74: 958399349275406681
+    second: Floor|Floor4|Default Take|Layer0
+  - first:
+      74: 3290076426329857495
+    second: Floor|Floor5|Default Take|Layer0
+  - first:
+      74: 5429565791539252582
+    second: Floor|Floor6|Default Take|Layer0
+  - first:
+      74: 7658281400558842430
+    second: Floor|Floor7|Default Take|Layer0
+  - first:
+      74: -4561023946642913452
+    second: Floor|Floor8|Default Take|Layer0
+  - first:
+      74: 1673149380403850054
+    second: Floor|Floor|Default Take|Layer0
+  - first:
+      74: 996622507945194055
+    second: Floor|Locker1|Default Take|Layer0
+  - first:
+      74: 3155988739940201435
+    second: Floor|Locker2|Default Take|Layer0
+  - first:
+      74: 6762548146576106706
+    second: Floor|Wall1|Default Take|Layer0
+  - first:
+      74: 597612614101070247
+    second: Floor|Wall2|Default Take|Layer0
+  - first:
+      74: 1668177839946744141
+    second: Floor|Wall3|Default Take|Layer0
+  - first:
+      74: -5548425671163475585
+    second: Floor|Wall4|Default Take|Layer0
+  - first:
+      74: 2835273337490260928
+    second: Floor|Wall5|Default Take|Layer0
+  - first:
+      74: 8093189118431822534
+    second: Floor|Wall6|Default Take|Layer0
+  - first:
+      74: -3811226218907160742
+    second: Floor|Wall7|Default Take|Layer0
+  - first:
+      74: 7868827434911690945
+    second: Floor|Window|Default Take|Layer0
+  - first:
+      74: -1791332526948146645
+    second: Wall7|Barrel|Default Take|Layer0
+  - first:
+      74: 8749955861327474760
+    second: Wall7|Camera|Default Take|Layer0
+  - first:
+      74: 3670881045528328285
+    second: Wall7|Crate|Default Take|Layer0
+  - first:
+      74: 7362922810496855279
+    second: Wall7|Cube|Default Take|Layer0
+  - first:
+      74: 8804129628149335681
+    second: Wall7|Door1|Default Take|Layer0
+  - first:
+      74: 8061181079043273435
+    second: Wall7|Door2|Default Take|Layer0
+  - first:
+      74: -4590565846043353981
+    second: Wall7|Floor2|Default Take|Layer0
+  - first:
+      74: -1551353156488287647
+    second: Wall7|Floor3|Default Take|Layer0
+  - first:
+      74: -8897948827890015184
+    second: Wall7|Floor4|Default Take|Layer0
+  - first:
+      74: -4302046806724544329
+    second: Wall7|Floor5|Default Take|Layer0
+  - first:
+      74: 8175542076020744322
+    second: Wall7|Floor6|Default Take|Layer0
+  - first:
+      74: -836592619216978008
+    second: Wall7|Floor7|Default Take|Layer0
+  - first:
+      74: -2864147433964337274
+    second: Wall7|Floor8|Default Take|Layer0
+  - first:
+      74: -4963921436208261052
+    second: Wall7|Floor|Default Take|Layer0
+  - first:
+      74: -7424026717874642119
+    second: Wall7|Locker1|Default Take|Layer0
+  - first:
+      74: 896335392932790372
+    second: Wall7|Locker2|Default Take|Layer0
+  - first:
+      74: -2886776588966321870
+    second: Wall7|Wall1|Default Take|Layer0
+  - first:
+      74: -2955863215682871158
+    second: Wall7|Wall2|Default Take|Layer0
+  - first:
+      74: 8241133381946085065
+    second: Wall7|Wall3|Default Take|Layer0
+  - first:
+      74: 1735968833750649730
+    second: Wall7|Wall4|Default Take|Layer0
+  - first:
+      74: -1630663917532653124
+    second: Wall7|Wall5|Default Take|Layer0
+  - first:
+      74: 1985310825561158471
+    second: Wall7|Wall6|Default Take|Layer0
+  - first:
+      74: 403041921262145469
+    second: Wall7|Wall7|Default Take|Layer0
+  - first:
+      74: -2413356308776503792
+    second: Wall7|Window|Default Take|Layer0
+  - first:
+      74: 9209439732336943508
+    second: Wall6|Barrel|Default Take|Layer0
+  - first:
+      74: 7905698730020333645
+    second: Wall6|Camera|Default Take|Layer0
+  - first:
+      74: 3814088847364142537
+    second: Wall6|Crate|Default Take|Layer0
+  - first:
+      74: -3225973496333065173
+    second: Wall6|Cube|Default Take|Layer0
+  - first:
+      74: -8179348229257663604
+    second: Wall6|Door1|Default Take|Layer0
+  - first:
+      74: 6484322702940656857
+    second: Wall6|Door2|Default Take|Layer0
+  - first:
+      74: -5050362754327819129
+    second: Wall6|Floor2|Default Take|Layer0
+  - first:
+      74: 2647617559249074239
+    second: Wall6|Floor3|Default Take|Layer0
+  - first:
+      74: 408044883322037909
+    second: Wall6|Floor4|Default Take|Layer0
+  - first:
+      74: 5619572124916937388
+    second: Wall6|Floor5|Default Take|Layer0
+  - first:
+      74: 2184726054036183277
+    second: Wall6|Floor6|Default Take|Layer0
+  - first:
+      74: -118935039510983560
+    second: Wall6|Floor7|Default Take|Layer0
+  - first:
+      74: 8739072883005732072
+    second: Wall6|Floor8|Default Take|Layer0
+  - first:
+      74: -8039392343758055209
+    second: Wall6|Floor|Default Take|Layer0
+  - first:
+      74: -7057083443284987338
+    second: Wall6|Locker1|Default Take|Layer0
+  - first:
+      74: -4308440916221787614
+    second: Wall6|Locker2|Default Take|Layer0
+  - first:
+      74: 5191777077561651571
+    second: Wall6|Wall1|Default Take|Layer0
+  - first:
+      74: -6583012108897838994
+    second: Wall6|Wall2|Default Take|Layer0
+  - first:
+      74: -2861180703557936468
+    second: Wall6|Wall3|Default Take|Layer0
+  - first:
+      74: -3167361351681138355
+    second: Wall6|Wall4|Default Take|Layer0
+  - first:
+      74: -7087168181854447997
+    second: Wall6|Wall5|Default Take|Layer0
+  - first:
+      74: 7953403428917119354
+    second: Wall6|Wall6|Default Take|Layer0
+  - first:
+      74: 7700996607595334865
+    second: Wall6|Wall7|Default Take|Layer0
+  - first:
+      74: -2520152546880957340
+    second: Wall6|Window|Default Take|Layer0
+  - first:
+      74: 3491191211205079656
+    second: Wall5|Barrel|Default Take|Layer0
+  - first:
+      74: 6598867763964486860
+    second: Wall5|Camera|Default Take|Layer0
+  - first:
+      74: 1248750694935524110
+    second: Wall5|Crate|Default Take|Layer0
+  - first:
+      74: -305110737116186878
+    second: Wall5|Cube|Default Take|Layer0
+  - first:
+      74: 7049467029263112658
+    second: Wall5|Door1|Default Take|Layer0
+  - first:
+      74: 43793439252229566
+    second: Wall5|Door2|Default Take|Layer0
+  - first:
+      74: 8367104251163971217
+    second: Wall5|Floor2|Default Take|Layer0
+  - first:
+      74: 6670024330529935932
+    second: Wall5|Floor3|Default Take|Layer0
+  - first:
+      74: 7065890542333398420
+    second: Wall5|Floor4|Default Take|Layer0
+  - first:
+      74: -2936774416375243319
+    second: Wall5|Floor5|Default Take|Layer0
+  - first:
+      74: 5579365619059213696
+    second: Wall5|Floor6|Default Take|Layer0
+  - first:
+      74: 4999615199475129770
+    second: Wall5|Floor7|Default Take|Layer0
+  - first:
+      74: 3546732474139890485
+    second: Wall5|Floor8|Default Take|Layer0
+  - first:
+      74: 2437738367522301276
+    second: Wall5|Floor|Default Take|Layer0
+  - first:
+      74: 6900825904869799104
+    second: Wall5|Locker1|Default Take|Layer0
+  - first:
+      74: 172319591026688310
+    second: Wall5|Locker2|Default Take|Layer0
+  - first:
+      74: -1425050272070174748
+    second: Wall5|Wall1|Default Take|Layer0
+  - first:
+      74: -944244923363912035
+    second: Wall5|Wall2|Default Take|Layer0
+  - first:
+      74: -6197267595604374063
+    second: Wall5|Wall3|Default Take|Layer0
+  - first:
+      74: 5121052966066349092
+    second: Wall5|Wall4|Default Take|Layer0
+  - first:
+      74: -3393135605362185039
+    second: Wall5|Wall5|Default Take|Layer0
+  - first:
+      74: -2921805167492755359
+    second: Wall5|Wall6|Default Take|Layer0
+  - first:
+      74: 3781723493750040092
+    second: Wall5|Wall7|Default Take|Layer0
+  - first:
+      74: 693099502298492519
+    second: Wall5|Window|Default Take|Layer0
+  - first:
+      74: 6874671482503410442
+    second: Wall4|Barrel|Default Take|Layer0
+  - first:
+      74: 3051945304203341849
+    second: Wall4|Camera|Default Take|Layer0
+  - first:
+      74: 468396961496617187
+    second: Wall4|Crate|Default Take|Layer0
+  - first:
+      74: -5550343337133568504
+    second: Wall4|Cube|Default Take|Layer0
+  - first:
+      74: 8050310233560509393
+    second: Wall4|Door1|Default Take|Layer0
+  - first:
+      74: 1039082456596963384
+    second: Wall4|Door2|Default Take|Layer0
+  - first:
+      74: -8137419380596864322
+    second: Wall4|Floor2|Default Take|Layer0
+  - first:
+      74: -8287512173095181618
+    second: Wall4|Floor3|Default Take|Layer0
+  - first:
+      74: -1120468278577200897
+    second: Wall4|Floor4|Default Take|Layer0
+  - first:
+      74: -7004450402389024889
+    second: Wall4|Floor5|Default Take|Layer0
+  - first:
+      74: 2228554390342036557
+    second: Wall4|Floor6|Default Take|Layer0
+  - first:
+      74: -7634891538145172447
+    second: Wall4|Floor7|Default Take|Layer0
+  - first:
+      74: -3072043209129278312
+    second: Wall4|Floor8|Default Take|Layer0
+  - first:
+      74: -9044920981247640160
+    second: Wall4|Floor|Default Take|Layer0
+  - first:
+      74: 2116187983361626356
+    second: Wall4|Locker1|Default Take|Layer0
+  - first:
+      74: -8117315564927425345
+    second: Wall4|Locker2|Default Take|Layer0
+  - first:
+      74: 8771587378448709234
+    second: Wall4|Wall1|Default Take|Layer0
+  - first:
+      74: -8948478096342866268
+    second: Wall4|Wall2|Default Take|Layer0
+  - first:
+      74: 6709848504483881169
+    second: Wall4|Wall3|Default Take|Layer0
+  - first:
+      74: 6118634572681660126
+    second: Wall4|Wall4|Default Take|Layer0
+  - first:
+      74: 6366954387199770579
+    second: Wall4|Wall5|Default Take|Layer0
+  - first:
+      74: -4905948708101604739
+    second: Wall4|Wall6|Default Take|Layer0
+  - first:
+      74: 4542481464400687048
+    second: Wall4|Wall7|Default Take|Layer0
+  - first:
+      74: 6969188194574687434
+    second: Wall4|Window|Default Take|Layer0
+  - first:
+      74: -3798292183621363322
+    second: Wall3|Barrel|Default Take|Layer0
+  - first:
+      74: 6712105552056307079
+    second: Wall3|Camera|Default Take|Layer0
+  - first:
+      74: 5735351618563856121
+    second: Wall3|Crate|Default Take|Layer0
+  - first:
+      74: -3876714850489759413
+    second: Wall3|Cube|Default Take|Layer0
+  - first:
+      74: 2867084129875475159
+    second: Wall3|Door1|Default Take|Layer0
+  - first:
+      74: -4395211060616804689
+    second: Wall3|Door2|Default Take|Layer0
+  - first:
+      74: 3815708656632405496
+    second: Wall3|Floor2|Default Take|Layer0
+  - first:
+      74: -3567397760167921378
+    second: Wall3|Floor3|Default Take|Layer0
+  - first:
+      74: 1060645883503622315
+    second: Wall3|Floor4|Default Take|Layer0
+  - first:
+      74: -2925864952257508416
+    second: Wall3|Floor5|Default Take|Layer0
+  - first:
+      74: -7917084557027395082
+    second: Wall3|Floor6|Default Take|Layer0
+  - first:
+      74: 5073493965798325726
+    second: Wall3|Floor7|Default Take|Layer0
+  - first:
+      74: -56291751111364158
+    second: Wall3|Floor8|Default Take|Layer0
+  - first:
+      74: 5155876433543850533
+    second: Wall3|Floor|Default Take|Layer0
+  - first:
+      74: -3634356107616876512
+    second: Wall3|Locker1|Default Take|Layer0
+  - first:
+      74: 4293408173076072280
+    second: Wall3|Locker2|Default Take|Layer0
+  - first:
+      74: -2942902550746407278
+    second: Wall3|Wall1|Default Take|Layer0
+  - first:
+      74: 8155841660500737125
+    second: Wall3|Wall2|Default Take|Layer0
+  - first:
+      74: -7611420841749610077
+    second: Wall3|Wall3|Default Take|Layer0
+  - first:
+      74: -3667955428288283235
+    second: Wall3|Wall4|Default Take|Layer0
+  - first:
+      74: 1094409442723285585
+    second: Wall3|Wall5|Default Take|Layer0
+  - first:
+      74: -692289126085378840
+    second: Wall3|Wall6|Default Take|Layer0
+  - first:
+      74: -7695296578616848365
+    second: Wall3|Wall7|Default Take|Layer0
+  - first:
+      74: -3070822144940892129
+    second: Wall3|Window|Default Take|Layer0
+  - first:
+      74: -2447615816288620211
+    second: Wall2|Barrel|Default Take|Layer0
+  - first:
+      74: 5700779370829320864
+    second: Wall2|Camera|Default Take|Layer0
+  - first:
+      74: 8926159979913741169
+    second: Wall2|Crate|Default Take|Layer0
+  - first:
+      74: -330457323189007188
+    second: Wall2|Cube|Default Take|Layer0
+  - first:
+      74: 1128903632445200015
+    second: Wall2|Door1|Default Take|Layer0
+  - first:
+      74: -8301535331440235656
+    second: Wall2|Door2|Default Take|Layer0
+  - first:
+      74: -3676718216574417919
+    second: Wall2|Floor2|Default Take|Layer0
+  - first:
+      74: -1882561139143784853
+    second: Wall2|Floor3|Default Take|Layer0
+  - first:
+      74: 7192805328088015906
+    second: Wall2|Floor4|Default Take|Layer0
+  - first:
+      74: 2371396169415460880
+    second: Wall2|Floor5|Default Take|Layer0
+  - first:
+      74: -659172414168820920
+    second: Wall2|Floor6|Default Take|Layer0
+  - first:
+      74: 6243480259610881762
+    second: Wall2|Floor7|Default Take|Layer0
+  - first:
+      74: 2530249807477236124
+    second: Wall2|Floor8|Default Take|Layer0
+  - first:
+      74: -8152978521541858938
+    second: Wall2|Floor|Default Take|Layer0
+  - first:
+      74: 4327265997141417517
+    second: Wall2|Locker1|Default Take|Layer0
+  - first:
+      74: 9008290365650936701
+    second: Wall2|Locker2|Default Take|Layer0
+  - first:
+      74: 9175350908185913184
+    second: Wall2|Wall1|Default Take|Layer0
+  - first:
+      74: -3496533831821275561
+    second: Wall2|Wall2|Default Take|Layer0
+  - first:
+      74: 2657641988371154492
+    second: Wall2|Wall3|Default Take|Layer0
+  - first:
+      74: -2150663781403122084
+    second: Wall2|Wall4|Default Take|Layer0
+  - first:
+      74: 8011911949648696983
+    second: Wall2|Wall5|Default Take|Layer0
+  - first:
+      74: 7122609399447208858
+    second: Wall2|Wall6|Default Take|Layer0
+  - first:
+      74: 1097035220881196820
+    second: Wall2|Wall7|Default Take|Layer0
+  - first:
+      74: -4663747577054156027
+    second: Wall2|Window|Default Take|Layer0
+  - first:
+      74: -5393287163839045337
+    second: Wall1|Barrel|Default Take|Layer0
+  - first:
+      74: 8724535996212336008
+    second: Wall1|Camera|Default Take|Layer0
+  - first:
+      74: -2286308657541606510
+    second: Wall1|Crate|Default Take|Layer0
+  - first:
+      74: 4472903318269469647
+    second: Wall1|Cube|Default Take|Layer0
+  - first:
+      74: -5815291578142427041
+    second: Wall1|Door1|Default Take|Layer0
+  - first:
+      74: -2046148510761469539
+    second: Wall1|Door2|Default Take|Layer0
+  - first:
+      74: 6661269234995999784
+    second: Wall1|Floor2|Default Take|Layer0
+  - first:
+      74: 930349657179853393
+    second: Wall1|Floor3|Default Take|Layer0
+  - first:
+      74: 2148965051602594096
+    second: Wall1|Floor4|Default Take|Layer0
+  - first:
+      74: -3756783158041162403
+    second: Wall1|Floor5|Default Take|Layer0
+  - first:
+      74: -5384583363265309110
+    second: Wall1|Floor6|Default Take|Layer0
+  - first:
+      74: 1105755122338451485
+    second: Wall1|Floor7|Default Take|Layer0
+  - first:
+      74: 4926504509686542284
+    second: Wall1|Floor8|Default Take|Layer0
+  - first:
+      74: -7243160039401089719
+    second: Wall1|Floor|Default Take|Layer0
+  - first:
+      74: -895063988382939163
+    second: Wall1|Locker1|Default Take|Layer0
+  - first:
+      74: 5312652703836976129
+    second: Wall1|Locker2|Default Take|Layer0
+  - first:
+      74: -6480816445861747870
+    second: Wall1|Wall1|Default Take|Layer0
+  - first:
+      74: -3833439179909854021
+    second: Wall1|Wall2|Default Take|Layer0
+  - first:
+      74: -8805571409881245233
+    second: Wall1|Wall3|Default Take|Layer0
+  - first:
+      74: -8860359360921099475
+    second: Wall1|Wall4|Default Take|Layer0
+  - first:
+      74: -3276187908949003444
+    second: Wall1|Wall5|Default Take|Layer0
+  - first:
+      74: 8994221638059005750
+    second: Wall1|Wall6|Default Take|Layer0
+  - first:
+      74: -2379286237246469486
+    second: Wall1|Wall7|Default Take|Layer0
+  - first:
+      74: 6627130297417745088
+    second: Wall1|Window|Default Take|Layer0
+  externalObjects: {}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 1
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 0
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
