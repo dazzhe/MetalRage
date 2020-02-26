@@ -28,12 +28,12 @@ public class CharacterControllerCheckSupportSystem : JobComponentSystem {
         Entities
             .WithName("CheckSupportJob")
             .ForEach((
-                    ref CharacterControllerComponentData ccData,
-                    ref CharacterControllerMoveQuery ccQuery,
-                    ref CharacterControllerMoveResult resultPosition,
-                    ref CharacterControllerVelocity velocity,
+                    ref CharacterRigidBody ccData,
+                    ref CharacterPhysicsInput ccQuery,
+                    ref CharacterPhysicsOutput resultPosition,
+                    ref CharacterPhysicsVelocity velocity,
                     ref CharacterControllerCollider ccCollider,
-                    ref CharacterControllerGroundSupportData ccGroundData) => {
+                    ref GroundContactStatus ccGroundData) => {
                         if (!ccQuery.CheckSupport) {
                             ccGroundData.SupportedState = CharacterControllerUtilities.CharacterSupportState.Unsupported;
                             ccGroundData.SurfaceVelocity = float3.zero;
