@@ -9,7 +9,7 @@ using static CharacterControllerUtilities;
 using static Unity.Physics.PhysicsStep;
 
 [Serializable]
-public struct CharacterRigidBody : IComponentData {
+public struct CharacterRigidbody : IComponentData {
     public float3 GroundProbeVector;
     public float MaxSlope; // radians
     public int MaxIterations;
@@ -68,7 +68,7 @@ public class CharacterPhysicsBody : MonoBehaviour, IConvertGameObjectToEntity {
 
     void IConvertGameObjectToEntity.Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         if (this.enabled) {
-            dstManager.AddComponentData(entity, new CharacterRigidBody {
+            dstManager.AddComponentData(entity, new CharacterRigidbody {
                 GroundProbeVector = GroundProbeVector,
                 MaxSlope = math.radians(this.MaxSlope),
                 MaxIterations = MaxIterations,
@@ -100,7 +100,7 @@ public class CharacterControllerInitAndCleanupSystem : JobComponentSystem {
 
         this.Entities
             .WithNone<CharacterControllerCollider>()
-            .ForEach((Entity e, ref CharacterRigidBody initData) => {
+            .ForEach((Entity e, ref CharacterRigidbody initData) => {
                 var capsule = new CapsuleGeometry {
                     Vertex0 = initData.CapsuleCenter + new float3(0, 0.5f * initData.CapsuleHeight - initData.CapsuleRadius, 0),
                     Vertex1 = initData.CapsuleCenter - new float3(0, 0.5f * initData.CapsuleHeight - initData.CapsuleRadius, 0),
@@ -112,7 +112,7 @@ public class CharacterControllerInitAndCleanupSystem : JobComponentSystem {
             }).Run();
 
         this.Entities
-            .WithNone<CharacterRigidBody>()
+            .WithNone<CharacterRigidbody>()
             .ForEach((Entity e, ref CharacterControllerCollider collider) => {
                 collider.Collider.Dispose();
                 ecb.RemoveComponent<CharacterControllerCollider>(e);

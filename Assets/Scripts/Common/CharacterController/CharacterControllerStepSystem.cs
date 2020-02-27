@@ -24,34 +24,33 @@ public class CharacterControllerFollowGroundSystem : JobComponentSystem {
         var physicsWorld = this.buildPhysicsWorld.PhysicsWorld;
 
         this.Entities.ForEach((
-            ref CharacterRigidBody ccData,
-            ref CharacterControllerInitializationData ccInitData,
-            ref CharacterPhysicsInput ccMoveQuery,
+            ref CharacterRigidbody rigidBody,
+            ref CharacterPhysicsInput input,
             ref CharacterPhysicsVelocity ccVelocity) => {
-                if (!ccMoveQuery.FollowGround)
+                if (!input.FollowGround) {
                     return;
-
+                }
                 var vel = ccVelocity.Velocity;
-                if (math.lengthsq(vel) == 0.0f)
+                if (math.lengthsq(vel) == 0f) {
                     return;
-
-                var skinWidth = ccData.SkinWidth;
-                var startPos = ccMoveQuery.StartPosition - math.up() * skinWidth;
+                }
+                var skinWidth = rigidBody.SkinWidth;
+                var startPos = input.StartPosition - math.up() * skinWidth;
                 var dir = math.normalizesafe(vel);
                 var horizDir = new float3(dir.x, 0.0f, dir.z);
-                var len = ccInitData.CapsuleRadius;
+                var len = rigidBody.CapsuleRadius;
                 var endPos = startPos + len * dir;
-                var slopeAdjustment = math.up() * len * math.tan(ccData.MaxSlope);
+                var slopeAdjustment = math.up() * len * math.tan(rigidBody.MaxSlope);
                 var rayInput = new RaycastInput {
                     Start = endPos + slopeAdjustment,
                     End = endPos - slopeAdjustment,
                     Filter = new CollisionFilter { BelongsTo = 1, CollidesWith = 1, GroupIndex = 0 }
                 };
                 var rayHit = new RaycastHit();
-                if (!physicsWorld.CastRay(rayInput, out rayHit))
+                if (!physicsWorld.CastRay(rayInput, out rayHit)) {
                     return;
-
-                var newDir = math.normalize(rayHit.Position - startPos);
+                }
+                var newDir = math.normalizesafe(rayHit.Position - startPos);
                 var newHorizDir = new float3(newDir.x, 0.0f, newDir.z);
                 var newVel = newDir * math.length(vel) * math.length(horizDir) / math.length(newHorizDir);
                 if (math.abs(newVel.y) > 0.01f)
@@ -106,21 +105,20 @@ public class CharacterControllerStepSystem : JobComponentSystem {
         }
     }
 
-    BuildPhysicsWorld buildPhysicsWorld;
-
-    EntityQuery characterControllerQuery;
+    private BuildPhysicsWorld buildPhysicsWorld;
+    private EntityQuery characterRigidBodyQuery;
 
     protected override void OnCreate() {
         this.buildPhysicsWorld = this.World.GetOrCreateSystem<BuildPhysicsWorld>();
-        this.characterControllerQuery = GetEntityQuery(new EntityQueryDesc {
+        this.characterRigidBodyQuery = GetEntityQuery(new EntityQueryDesc {
             All = new[] {
-                ComponentType.ReadOnly<CharacterRigidBody>(),
+                ComponentType.ReadOnly<CharacterRigidbody>(),
             }
         });
     }
 
     protected override unsafe JobHandle OnUpdate(JobHandle inputDeps) {
-        var entityCount = this.characterControllerQuery.CalculateEntityCount();
+        var entityCount = this.characterRigidBodyQuery.CalculateEntityCount();
         if (entityCount == 0)
             return inputDeps;
 
@@ -136,52 +134,49 @@ public class CharacterControllerStepSystem : JobComponentSystem {
         var distanceHits = new NativeList<DistanceHit>(Allocator.Temp);
 
         this.Entities.WithName("CharacterControllerStepSystem").ForEach((
-            ref CharacterRigidBody ccData,
+            ref CharacterRigidbody rigidBody,
             ref CharacterControllerCollider ccCollider,
             ref CharacterPhysicsInput moveQuery,
             ref CharacterPhysicsOutput moveResult,
-            ref CharacterPhysicsVelocity velocity
-        ) => {
-            constraints.Clear();
-            castHits.Clear();
-            distanceHits.Clear();
+            ref CharacterPhysicsVelocity velocity) => {
+                constraints.Clear();
+                castHits.Clear();
+                distanceHits.Clear();
 
-            var collider = (Collider*)ccCollider.Collider.GetUnsafePtr();
-
-            var stepInput = new CharacterControllerUtilities.CharacterControllerStepInput {
-                World = physicsWorld,
-                DeltaTime = deltaTime,
-                Up = math.up(),
-                Gravity = new float3(0.0f, -9.8f, 0.0f),
-                MaxIterations = ccData.MaxIterations,
-                Tau = CharacterControllerUtilities.k_DefaultTau,
-                Damping = CharacterControllerUtilities.k_DefaultDamping,
-                SkinWidth = ccData.SkinWidth,
-                ContactTolerance = ccData.ContactTolerance,
-                MaxSlope = ccData.MaxSlope,
-                RigidBodyIndex = -1,
-                CurrentVelocity = velocity.Velocity,
-                MaxMovementSpeed = ccData.MaxMovementSpeed,
-                FollowGround = moveQuery.FollowGround
-            };
-            var transform = new RigidTransform {
-                pos = moveQuery.StartPosition,
-                rot = quaternion.identity
-            };
-            // World collision + integrate
-            CharacterControllerUtilities.CollideAndIntegrate(
-                stepInput,
-                ccData.CharacterMass,
-                ccData.AffectsPhysicsBodies > 0,
-                collider,
-                ref transform,
-                ref velocity.Velocity,
-                ref writer,
-                ref constraints,
-                ref castHits,
-                ref distanceHits);
-            moveResult.MoveResult = transform.pos;
-        }).Run();
+                var stepInput = new CharacterControllerUtilities.CharacterControllerStepInput {
+                    World = physicsWorld,
+                    DeltaTime = deltaTime,
+                    Up = math.up(),
+                    Gravity = new float3(0.0f, -9.8f, 0.0f),
+                    MaxIterations = rigidBody.MaxIterations,
+                    Tau = CharacterControllerUtilities.k_DefaultTau,
+                    Damping = CharacterControllerUtilities.k_DefaultDamping,
+                    SkinWidth = rigidBody.SkinWidth,
+                    ContactTolerance = rigidBody.ContactTolerance,
+                    MaxSlope = rigidBody.MaxSlope,
+                    RigidBodyIndex = -1,
+                    CurrentVelocity = velocity.Velocity,
+                    MaxMovementSpeed = rigidBody.MaxMovementSpeed,
+                    FollowGround = moveQuery.FollowGround
+                };
+                var transform = new RigidTransform {
+                    pos = moveQuery.StartPosition,
+                    rot = quaternion.identity
+                };
+                // World collision + integrate
+                CharacterControllerUtilities.CollideAndIntegrate(
+                    stepInput,
+                    rigidBody.CharacterMass,
+                    rigidBody.AffectsPhysicsBodies > 0,
+                    (Collider*)ccCollider.Collider.GetUnsafePtr(),
+                    ref transform,
+                    ref velocity.Velocity,
+                    ref writer,
+                    ref constraints,
+                    ref castHits,
+                    ref distanceHits);
+                moveResult.MoveResult = transform.pos;
+            }).Run();
 
         var applyJob = new ApplyDeferredImpulses() {
             DeferredImpulseReader = deferredImpulses.AsReader(),

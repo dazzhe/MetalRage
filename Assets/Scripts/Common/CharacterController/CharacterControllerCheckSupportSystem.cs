@@ -28,7 +28,7 @@ public class CharacterControllerCheckSupportSystem : JobComponentSystem {
         Entities
             .WithName("CheckSupportJob")
             .ForEach((
-                    ref CharacterRigidBody ccData,
+                    ref CharacterRigidbody ccData,
                     ref CharacterPhysicsInput ccQuery,
                     ref CharacterPhysicsOutput resultPosition,
                     ref CharacterPhysicsVelocity velocity,
