@@ -54,11 +54,10 @@ public class PlayerCameraSystem : ComponentSystem {
         }
         var translation = this.EntityManager.GetComponentData<Translation>(cameraEntity);
         var rotation = this.EntityManager.GetComponentData<Rotation>(cameraEntity);
-        //var targetRotation = this.EntityManager.GetComponentData<Rotation>(command.TargetEntity);
-        //var targetTranslation = this.EntityManager.GetComponentData<Translation>(command.TargetEntity);
-        var transform = this.EntityManager.GetComponentObject<CharacterController>(command.TargetEntity).transform;
-        var targetRotation = new Rotation { Value = transform.rotation };
-        var targetTranslation = new Translation { Value = (float3)transform.position + this.EntityManager.GetComponentData<Mech>(command.TargetEntity).BaseCameraOffset };
+        var targetRotation = this.EntityManager.GetComponentData<Rotation>(command.TargetEntity);
+        var targetTranslation = this.EntityManager.GetComponentData<Translation>(command.TargetEntity);
+        //var targetRotation = new Rotation { Value = transform.rotation };
+        //var targetTranslation = new Translation { Value = (float3)transform.position + this.EntityManager.GetComponentData<Mech>(command.TargetEntity).BaseCameraOffset };
         var pitch = ((Quaternion)targetRotation.Value).eulerAngles.x * Mathf.Deg2Rad;
         var yaw = ((Quaternion)targetRotation.Value).eulerAngles.y * Mathf.Deg2Rad;
         var offsetLength = Mathf.Abs(Mathf.Sin(pitch)) * camera.forwardOffsetFactor;

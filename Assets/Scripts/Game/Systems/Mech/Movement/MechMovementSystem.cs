@@ -28,12 +28,17 @@ public class MechMovementRequestSystem : ComponentSystem {
     };
 
     protected override void OnUpdate() {
-        this.Entities.ForEach((Entity entity, ref MechCommand command, ref MechMovementStatus status, ref MechRequestedMovement requestedMovement,
-            ref MechMovementConfigData config, ref BoosterConfigData boostConfig, ref BoosterEngineStatus engineStatus) => {
+        this.Entities.ForEach((
+            ref MechCommand command,
+            ref MechMovementStatus status,
+            ref MechRequestedMovement requestedMovement,
+            ref MechMovementConfigData config,
+            ref BoosterConfigData boostConfig,
+            ref BoosterEngineStatus engineStatus) => {
                 foreach (var action in actions) {
                     action.Initialize(command, status, config);
                 }
-                boostAction.Initialize(command, this.EntityManager.GetComponentObject<MechComponent>(entity).BoosterEffect);
+                //boostAction.Initialize(command, this.EntityManager.GetComponentObject<MechComponent>(entity).BoosterEffect);
                 var hasExecutedAction = false;
                 if (boostAction.IsExecutable(status, config, boostConfig, engineStatus)) {
                     requestedMovement = boostAction.CalculateMovement(status, config, boostConfig, ref engineStatus);
