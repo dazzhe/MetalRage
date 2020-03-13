@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -19,4 +20,8 @@ public class MechConfigMap : ScriptableObject {
 
     public MechConfig this[MechType type] =>
         this.entries.Where(e => e.type == type).FirstOrDefault().config;
+
+    public List<MechConfig> GetAllConfigs() {
+        return this.entries.Select(entry => entry.config).ToList();
+    }
 }

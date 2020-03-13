@@ -1,8 +1,17 @@
 using UnityEngine;
+using Unity.Entities;
 
-public class MechAuthoring : MonoBehaviour {
+public class MechAuthoring : MonoBehaviour, IConvertGameObjectToEntity {
     [SerializeField]
     private Transform cameraTarget;
 
-    public Transform CameraTarget { get => this.cameraTarget; set => this.cameraTarget = value; }
+    public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
+        var mech = new Mech {
+            MaxHP = 288,
+            HP = 288,
+            Armor = 1,
+            BaseCameraOffset = this.cameraTarget.localPosition
+        };
+        dstManager.AddComponentData(entity, mech);
+    }
 }

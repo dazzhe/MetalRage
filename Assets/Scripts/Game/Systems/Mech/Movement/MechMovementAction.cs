@@ -24,9 +24,9 @@ public class CrouchAction : MechMovementAction {
     public override MechRequestedMovement CalculateMovement() {
         var movement = new MechRequestedMovement {
             State = MechMovementState.Crouching,
-            Motion = Vector3.zero,
+            Velocity = Vector3.zero,
             LegYaw = this.Status.LegYaw,
-            UseRawMotion = false
+            UseRawVelocity = false
     };
         return movement;
     }
@@ -68,7 +68,7 @@ public class BoostAction {
         }
         movement.LegYaw = 0f;
         var boostDirection = math.mul(mechRotation, boostLocalDirection);
-        movement.Motion = math.normalizesafe(boostDirection) * boostConfig.MaxSpeed * Time.deltaTime;
+        movement.Velocity = math.normalizesafe(boostDirection) * boostConfig.MaxSpeed;
         movement.State = MechMovementState.BoostAcceling;
         return movement;
     }
@@ -86,14 +86,14 @@ public class JumpAction : MechMovementAction {
     public override MechRequestedMovement CalculateMovement() {
         var command = new MechRequestedMovement {
             State = MechMovementState.Airborne,
-            UseRawMotion = true,
+            UseRawVelocity = true,
             //this.engine?.ShowJetFlame(0.4f, Vector3.forward);
             // Jumping power is proportial to current moving speed.
-            Motion = new Vector3 {
+            Velocity = new Vector3 {
                 x = this.Status.Velocity.x,
                 y = this.Config.BaseJumpSpeed * (1f + 0.002f * this.Status.Velocity.magnitude),
                 z = this.Status.Velocity.z
-            } * Time.deltaTime
+            }
         };
         return command;
     }

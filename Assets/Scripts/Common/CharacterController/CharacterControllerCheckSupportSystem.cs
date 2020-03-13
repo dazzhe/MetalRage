@@ -6,7 +6,6 @@ using Unity.Physics;
 using Unity.Physics.Systems;
 
 [UpdateAfter(typeof(CharacterControllerStepSystem))]
-[DisableAutoCreation]
 [AlwaysSynchronizeSystem]
 [AlwaysUpdateSystem]
 public class CharacterControllerCheckSupportSystem : JobComponentSystem {
@@ -16,7 +15,7 @@ public class CharacterControllerCheckSupportSystem : JobComponentSystem {
         m_BuildPhysicsWorldSystem = World.GetOrCreateSystem<BuildPhysicsWorld>();
     }
 
-    protected unsafe override JobHandle OnUpdate(JobHandle inputDeps) {
+    protected override unsafe JobHandle OnUpdate(JobHandle inputDeps) {
         var physicsWorld = m_BuildPhysicsWorldSystem.PhysicsWorld;
 
         var constraints = new NativeList<SurfaceConstraintInfo>(Allocator.Temp);
@@ -44,7 +43,7 @@ public class CharacterControllerCheckSupportSystem : JobComponentSystem {
                         constraints.Clear();
                         castHits.Clear();
 
-                        var collider = (Unity.Physics.Collider*)ccCollider.Collider.GetUnsafePtr();
+                        var collider = (Collider*)ccCollider.Collider.GetUnsafePtr();
 
                         var stepInput = new CharacterControllerUtilities.CharacterControllerStepInput {
                             World = physicsWorld,

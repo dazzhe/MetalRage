@@ -14,12 +14,8 @@ public class VFXSystem : JobComponentSystem {
 
     class EffectTypeData {
         public VisualEffect visualEffect;
-
-        // TODO (mogensh) For performance reasons we want to stop effects that are "done". For now all effect use same timeout duration.
         public float maxDuration = 4.0f;
         public bool active;
-        public int lastTriggerTick;
-
         public VFXEventAttribute eventAttribute;
     }
 

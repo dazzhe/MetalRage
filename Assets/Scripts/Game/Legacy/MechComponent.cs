@@ -1,8 +1,6 @@
 using UnityEngine;
 public class MechComponent : MonoBehaviour {
     [SerializeField]
-    private GameObject playerCameraPrefab = default;
-    [SerializeField]
     private Transform cameraFollowTarget = default;
     public ParticleSystem BoosterEffect;
 
@@ -13,7 +11,6 @@ public class MechComponent : MonoBehaviour {
     public Vector2 RecoilRotation { get; set; }
     public float DispersionRate { get; set; }
     public float Dispersion { get; set; }
-    public PlayerCameraComponent PlayerCamera { get; set; }
 
     public Vector3 Center { get => new Vector3(Screen.width / 2, Screen.height / 2, 0); }
     public float SensitivityScale => 1f; //this.weapons[this.selecedWeaponIndex].SensitivityScale;

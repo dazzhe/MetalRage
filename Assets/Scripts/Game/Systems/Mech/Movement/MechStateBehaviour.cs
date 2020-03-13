@@ -1,5 +1,5 @@
+using Unity.Mathematics;
 using UnityEngine;
-using static Unity.Mathematics.math;
 
 public abstract class MechStateBehaviour {
     public abstract MechRequestedMovement ComputeMovement(MechCommand input, MechMovementStatus status, MechMovementConfigData config);
@@ -7,28 +7,28 @@ public abstract class MechStateBehaviour {
 
 public class WalkStateBehaviour : MechStateBehaviour {
     public override MechRequestedMovement ComputeMovement(MechCommand command, MechMovementStatus status, MechMovementConfigData config) {
-        var localMotion = mul(Unity.Mathematics.quaternion.Euler(0f, -status.Yaw, 0f), float3(status.Velocity.x, 0f, status.Velocity.z));
-        if (localMotion.x * command.Move.x < 0f) {
-            localMotion.x = 0f;
+        var localVelocity = math.mul(quaternion.Euler(0f, -status.Yaw, 0f), math.float3(status.Velocity.x, 0f, status.Velocity.z));
+        if (localVelocity.x * command.Move.x < 0f) {
+            localVelocity.x = 0f;
         }
-        if (localMotion.z * command.Move.y < 0f) {
-            localMotion.z = 0f;
+        if (localVelocity.z * command.Move.y < 0f) {
+            localVelocity.z = 0f;
         }
-        localMotion.x += command.Move.x * config.WalkingAcceleration * Time.deltaTime;
-        localMotion.z += command.Move.y * config.WalkingAcceleration * Time.deltaTime;
+        localVelocity.x += command.Move.x * config.WalkingAcceleration * Time.deltaTime;
+        localVelocity.z += command.Move.y * config.WalkingAcceleration * Time.deltaTime;
         if (command.Move.x == 0) {
-            var xAbs = Mathf.Max(Mathf.Abs(localMotion.x) - config.WalkingDeceleration * Time.deltaTime, 0f);
-            localMotion.x = localMotion.x > 0 ? xAbs : -xAbs;
+            var xAbs = Mathf.Max(Mathf.Abs(localVelocity.x) - config.WalkingDeceleration * Time.deltaTime, 0f);
+            localVelocity.x = localVelocity.x > 0 ? xAbs : -xAbs;
         }
         if (command.Move.y == 0) {
-            var zAbs = Mathf.Max(Mathf.Abs(localMotion.z) - config.WalkingDeceleration * Time.deltaTime, 0f);
-            localMotion.z = localMotion.z > 0 ? zAbs : -zAbs;
+            var zAbs = Mathf.Max(Mathf.Abs(localVelocity.z) - config.WalkingDeceleration * Time.deltaTime, 0f);
+            localVelocity.z = localVelocity.z > 0 ? zAbs : -zAbs;
         }
-        localMotion = Vector3.ClampMagnitude(localMotion, config.MaxWalkSpeed);
+        localVelocity = Vector3.ClampMagnitude(localVelocity, config.MaxWalkSpeed);
         var movement = new MechRequestedMovement {
-            Motion = mul(Unity.Mathematics.quaternion.Euler(0f, status.Yaw, 0f), localMotion * Time.deltaTime),
+            Velocity = math.mul(quaternion.Euler(0f, status.Yaw, 0f), localVelocity),
             State = command.Move.magnitude == 0 ? MechMovementState.Stand : MechMovementState.Walking,
-            UseRawMotion = false
+            UseRawVelocity = false
         };
         var x = command.Move.x;
         var z = command.Move.y;
@@ -46,11 +46,11 @@ public class BoostStateBehaviour {
     public MechRequestedMovement ComputeMovement(MechMovementStatus status, MechMovementConfigData config, BoosterConfigData boostConfig, ref BoosterEngineStatus engineStatus) {
         engineStatus.ElapsedTime += Time.deltaTime;
         var movement = new MechRequestedMovement {
-            UseRawMotion = false
+            UseRawVelocity = false
         };
         switch (status.State) {
             case MechMovementState.BoostAcceling:
-                movement.Motion = status.Velocity * Time.deltaTime;
+                movement.Velocity = status.Velocity;
                 movement.State = engineStatus.ElapsedTime > boostConfig.Duration && status.IsOnGround
                     ? MechMovementState.BoostBraking
                     : MechMovementState.BoostAcceling;
@@ -59,7 +59,7 @@ public class BoostStateBehaviour {
             case MechMovementState.BoostBraking:
                 var speed = status.Velocity.magnitude - boostConfig.BrakingDeceleration * Time.deltaTime;
                 speed = Mathf.Max(speed, 0f);
-                movement.Motion = status.Velocity.normalized * speed * Time.deltaTime;
+                movement.Velocity = status.Velocity.normalized * speed;
                 movement.State = speed == 0
                     ? MechMovementState.Stand
                     : MechMovementState.BoostBraking;
@@ -81,9 +81,9 @@ public class AirborneStateBehaviour : MechStateBehaviour {
         if (velocity.magnitude > config.MaxFallSpeed) {
             velocity = velocity.normalized * config.MaxFallSpeed;
         }
-        movement.Motion = velocity * Time.deltaTime;
+        movement.Velocity = velocity;
         movement.LegYaw = status.LegYaw;
-        movement.UseRawMotion = false;
+        movement.UseRawVelocity = false;
         return movement;
     }
 }

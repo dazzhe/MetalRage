@@ -9,7 +9,7 @@ using Unity.Physics.Systems;
 using Unity.Transforms;
 
 [UpdateBefore(typeof(CharacterControllerStepSystem))]
-[DisableAutoCreation]
+[AlwaysUpdateSystem]
 [AlwaysSynchronizeSystem]
 public class CharacterControllerFollowGroundSystem : JobComponentSystem {
     private BuildPhysicsWorld buildPhysicsWorld;
@@ -61,7 +61,7 @@ public class CharacterControllerFollowGroundSystem : JobComponentSystem {
     }
 }
 
-[DisableAutoCreation]
+[AlwaysUpdateSystem]
 [AlwaysSynchronizeSystem]
 public class CharacterControllerStepSystem : JobComponentSystem {
     [BurstCompile]

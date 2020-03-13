@@ -14,7 +14,7 @@ public class GameLoopSystem : ComponentSystem {
         var mechArray = this.mechQuery.ToEntityArray(Unity.Collections.Allocator.TempJob);
         if (mechArray.Length == 0) {
             var entity = this.EntityManager.CreateEntity();
-            MechSpawnRequest.Create(this.PostUpdateCommands, MechType.Vanguard, Vector3.zero, Quaternion.identity, entity);
+            MechSpawnRequest.Create(this.PostUpdateCommands, MechType.Vanguard, Vector3.up, Quaternion.identity, entity);
         } else {
             if (this.cameraCommandQuery.CalculateEntityCount() == 0) {
                 this.cameraCommandQuery.SetSingleton(new PlayerCameraCommand());

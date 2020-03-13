@@ -90,7 +90,6 @@ public class CharacterPhysicsBody : MonoBehaviour, IConvertGameObjectToEntity {
 }
 
 
-[DisableAutoCreation]
 [AlwaysSynchronizeSystem]
 [AlwaysUpdateSystem]
 [UpdateBefore(typeof(CharacterControllerStepSystem))]
