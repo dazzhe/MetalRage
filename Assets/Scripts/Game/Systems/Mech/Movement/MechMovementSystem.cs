@@ -11,12 +11,21 @@ public class MechCharacterPhysicsInputSystem : ComponentSystem {
             ref Translation translation,
             ref MechRequestedMovement movement,
             ref CharacterPhysicsInput physicsInput,
-            ref CharacterPhysicsVelocity velocity
+            ref CharacterPhysicsVelocity velocity,
+            ref MechMovementConfigData config
         ) => {
             physicsInput.FollowGround = !movement.UseRawVelocity;
             physicsInput.StartPosition = translation.Value;
             physicsInput.CheckSupport = true;
-            velocity.Velocity = movement.Velocity - math.up() * 10f * this.Time.DeltaTime;
+            if (movement.UseRawVelocity) {
+                velocity.Velocity = movement.Velocity;
+            } else {
+                velocity.Velocity = new float3 {
+                    x = movement.Velocity.x,
+                    y = velocity.Velocity.y + config.Gravity * this.Time.DeltaTime,
+                    z = movement.Velocity.z
+                };
+            }
         });
     }
 }

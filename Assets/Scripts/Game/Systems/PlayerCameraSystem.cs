@@ -25,7 +25,6 @@ public struct CameraLeanStatus {
 public struct PlayerCamera : IComponentData {
     public CameraLeanStatus LeanStatus;
     public CameraFollowMode FollowMode;
-    public Vector3 BaseCameraOffset;
     public float leanLength;// = 5f;
     public float forwardOffsetFactor;// = 4.7f;
     public float3 AimingPoint;
@@ -53,24 +52,23 @@ public class PlayerCameraSystem : ComponentSystem {
         }
         var translation = this.EntityManager.GetComponentData<Translation>(cameraEntity);
         var rotation = this.EntityManager.GetComponentData<Rotation>(cameraEntity);
-        var targetTranslation = this.EntityManager.GetComponentData<Translation>(command.TargetEntity);
-        //var targetRotation = new Rotation { Value = transform.rotation };
-        //var targetTranslation = new Translation { Value = (float3)transform.position + this.EntityManager.GetComponentData<Mech>(command.TargetEntity).BaseCameraOffset };
+        var targetTranslation = this.EntityManager.GetComponentData<Translation>(command.TargetEntity).Value;
+        targetTranslation += this.EntityManager.GetComponentData<Mech>(command.TargetEntity).CameraOffset;
         var targetMovement = this.EntityManager.GetComponentData<MechMovementStatus>(command.TargetEntity);
         var pitch = targetMovement.Pitch;
         var yaw = targetMovement.Yaw;
         var targetRotation = quaternion.Euler(new float3(pitch, yaw, 0f));
-        var offsetLength = Mathf.Abs(Mathf.Sin(pitch)) * camera.forwardOffsetFactor;
-        var cameraOffset = camera.BaseCameraOffset + offsetLength * Vector3.forward;
+        var offsetLength = math.abs(math.sin(pitch)) * camera.forwardOffsetFactor - 5f;
+        var cameraOffset = offsetLength * math.forward(quaternion.identity);
         command.MaxOffset = new float3(1.5f, 0.4f, 0f);
         // Camera rotates around the target by the same amount as the target rotation.
         var rotationDiff = targetRotation * Quaternion.Inverse(rotation.Value);
-        var localPosition = Quaternion.Inverse(targetRotation) * (translation.Value - targetTranslation.Value);
+        var localPosition = Quaternion.Inverse(targetRotation) * (translation.Value - targetTranslation);
         var updatedLocalPosition = rotationDiff * localPosition;
-        translation.Value = math.mul(targetRotation, updatedLocalPosition) + targetTranslation.Value;
+        translation.Value = math.mul(targetRotation, updatedLocalPosition) + targetTranslation;
         rotation.Value = targetRotation;
         // Camera follow
-        var defaultPosition = math.mul(targetRotation, cameraOffset) + targetTranslation.Value;
+        var defaultPosition = math.mul(targetRotation, cameraOffset) + targetTranslation;
         camera.FollowMode = targetMovement.State == MechMovementState.Stand || targetMovement.State == MechMovementState.BoostBraking || targetMovement.State == MechMovementState.BoostAcceling
             ? CameraFollowMode.Smooth : CameraFollowMode.Clamp;
         var localOffset = math.mul(quaternion.AxisAngle(new float3(0f, 1f, 0f), -yaw), translation.Value - defaultPosition);
@@ -101,11 +99,11 @@ public class PlayerCameraSystem : ComponentSystem {
                     ? Vector3.left : Vector3.right;
                 var leanOffset = camera.leanLength * leanDirection;
                 camera.LeanStatus.currentLeanOffset = Vector3.Lerp(camera.LeanStatus.currentLeanOffset, leanOffset, 30f * this.Time.DeltaTime);
-                localOffset = cameraOffset + camera.LeanStatus.currentLeanOffset;
+                localOffset = cameraOffset + (float3)camera.LeanStatus.currentLeanOffset;
                 break;
         }
         translation.Value = math.mul(quaternion.AxisAngle(math.float3(0f, 1f, 0f), yaw), localOffset) + defaultPosition;
-        translation.Value = AvoidObstacles(translation.Value, targetTranslation.Value);
+        translation.Value = AvoidObstacles(translation.Value, targetTranslation);
 
         Assert.IsFalse(float.IsNaN(translation.Value.x) || float.IsNaN(translation.Value.y) || float.IsNaN(translation.Value.z));
 

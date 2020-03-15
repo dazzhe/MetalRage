@@ -11,7 +11,7 @@ public class MechMovementRequestSystem : ComponentSystem {
         new CrouchAction(),
         new JumpAction(),
     };
-    private static Dictionary<MechMovementState, MechStateBehaviour> stateBehaviours = new Dictionary<MechMovementState, MechStateBehaviour> {
+    private static Dictionary<MechMovementState, MechMovementStateBehaviour> stateBehaviours = new Dictionary<MechMovementState, MechMovementStateBehaviour> {
         { MechMovementState.Stand, new WalkStateBehaviour() },
         { MechMovementState.Walking, new WalkStateBehaviour() },
         { MechMovementState.Crouching, new WalkStateBehaviour() },

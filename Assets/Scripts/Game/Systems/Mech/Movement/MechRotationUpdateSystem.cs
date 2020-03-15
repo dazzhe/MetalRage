@@ -11,10 +11,11 @@ public class MechRotationUpdateSystem : ComponentSystem {
             ref MechCommand command,
             ref MechMovementConfigData config
         ) => {
-            status.Yaw += math.radians(command.DeltaLook.x * Preferences.Sensitivity.GetFloat());
-            status.Pitch -= command.DeltaLook.y * Preferences.Sensitivity.GetFloat();
-            status.Pitch = math.clamp(status.Pitch, config.MinPitch, config.MaxPitch);
-            rotation.Value = quaternion.Euler(new float3(0f, status.Yaw, 0f));
+            var deltaLook = math.radians(command.DeltaLook);
+            var maxPitch = math.radians(config.MaxPitch);
+            status.Yaw += deltaLook.x * Preferences.Sensitivity.GetFloat();
+            status.Pitch -= deltaLook.y * Preferences.Sensitivity.GetFloat();
+            status.Pitch = math.clamp(status.Pitch, -maxPitch, maxPitch);
         });
     }
 }

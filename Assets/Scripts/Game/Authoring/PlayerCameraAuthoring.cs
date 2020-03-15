@@ -7,7 +7,6 @@ public class PlayerCameraAuthoring : MonoBehaviour, IConvertGameObjectToEntity {
         dstManager.AddComponentData(entity, new PlayerCamera {
             forwardOffsetFactor = 4.7f,
             leanLength = 5f,
-            BaseCameraOffset = new Vector3(0f, 0.5f, -5.5f)
         });
         dstManager.AddComponentData(entity, new PlayerCameraCommand());
         dstManager.AddComponentData(entity, new CopyTransformToGameObject());

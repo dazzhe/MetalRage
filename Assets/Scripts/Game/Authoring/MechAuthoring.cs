@@ -10,7 +10,7 @@ public class MechAuthoring : MonoBehaviour, IConvertGameObjectToEntity {
             MaxHP = 288,
             HP = 288,
             Armor = 1,
-            BaseCameraOffset = this.cameraTarget.localPosition
+            CameraOffset = this.cameraTarget.localPosition
         };
         dstManager.AddComponentData(entity, mech);
     }

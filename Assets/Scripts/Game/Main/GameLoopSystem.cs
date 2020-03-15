@@ -1,3 +1,4 @@
+using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ public class GameLoopSystem : ComponentSystem {
     }
 
     protected override void OnUpdate() {
-        var mechArray = this.mechQuery.ToEntityArray(Unity.Collections.Allocator.TempJob);
+        var mechArray = this.mechQuery.ToEntityArray(Allocator.TempJob);
         if (mechArray.Length == 0) {
             var entity = this.EntityManager.CreateEntity();
             MechSpawnRequest.Create(this.PostUpdateCommands, MechType.Vanguard, Vector3.up, Quaternion.identity, entity);
