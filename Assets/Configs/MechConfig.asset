@@ -17,7 +17,7 @@ MonoBehaviour:
     MinPitch: -60
     MaxPitch: 60
     MaxFallSpeed: 20
-    Gravity: -30
+    Gravity: -20
     MaxSlopeAngle: 45
     WalkingAcceleration: 100
     WalkingDeceleration: 50

@@ -69,8 +69,8 @@ public class AirborneStateBehaviour : MechMovementStateBehaviour {
         };
         var accel = new Vector3(input.Move.x, 0f, input.Move.y).normalized * 30f;
         var velocity = status.Velocity + accel * Time.deltaTime;
-        if (velocity.magnitude > config.MaxFallSpeed) {
-            velocity = velocity.normalized * config.MaxFallSpeed;
+        if (velocity.y > config.MaxFallSpeed) {
+            velocity.y = config.MaxFallSpeed;
         }
         movement.Velocity = velocity;
         movement.LegYaw = status.LegYaw;
