@@ -67,12 +67,13 @@ public class AirborneStateBehaviour : MechMovementStateBehaviour {
         var movement = new MechRequestedMovement {
             State = MechMovementState.Airborne
         };
-        var accel = new Vector3(input.Move.x, 0f, input.Move.y).normalized * 30f;
-        var velocity = status.Velocity + accel * Time.deltaTime;
-        if (velocity.y > config.MaxFallSpeed) {
-            velocity.y = config.MaxFallSpeed;
+        var accel = math.normalizesafe(new float3(input.Move.x, 0f, input.Move.y)) * 30f;
+        var localVelocity = math.mul(quaternion.Euler(0f, -status.Yaw, 0f), status.Velocity);
+        localVelocity += accel * Time.deltaTime;
+        if (math.length(localVelocity) > config.MaxFallSpeed) {
+            localVelocity = math.normalizesafe(localVelocity) * config.MaxFallSpeed;
         }
-        movement.Velocity = velocity;
+        movement.Velocity = math.mul(quaternion.Euler(0f, status.Yaw, 0f), localVelocity);
         movement.LegYaw = status.LegYaw;
         movement.UseRawVelocity = false;
         return movement;

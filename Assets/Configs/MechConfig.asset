@@ -17,10 +17,10 @@ MonoBehaviour:
     MinPitch: -60
     MaxPitch: 60
     MaxFallSpeed: 20
-    Gravity: -20
+    Gravity: -30
     MaxSlopeAngle: 45
     WalkingAcceleration: 100
     WalkingDeceleration: 50
     MaxWalkSpeed: 13
-    BaseJumpSpeed: 10
+    BaseJumpSpeed: 13
   hEngineConfig: {fileID: 11400000, guid: a08863e1ed5d58c41bd70b497000ff88, type: 2}
