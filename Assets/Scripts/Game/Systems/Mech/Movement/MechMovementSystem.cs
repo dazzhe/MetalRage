@@ -17,7 +17,7 @@ public class MechCharacterPhysicsInputSystem : ComponentSystem {
             physicsInput.FollowGround = !movement.UseRawVelocity && movement.State != MechMovementState.Airborne;
             physicsInput.StartPosition = translation.Value;
             physicsInput.CheckSupport = !movement.UseRawVelocity;
-            if (movement.UseRawVelocity) {
+            if (movement.UseRawVelocity || physicsInput.FollowGround) {
                 velocity.Velocity = movement.Velocity;
             } else {
                 velocity.Velocity = new float3 {

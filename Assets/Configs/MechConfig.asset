@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea9a17da2ed55174d85ba049eb554155, type: 3}
   m_Name: MechConfig
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2604446858962410439, guid: 2cf02fe29782334488d39426672fe73b, type: 3}
+  prefab: {fileID: 5191334329299864217, guid: 66fe70a35fde75346b31b2cf22960522, type: 3}
   movement:
     MinPitch: -60
     MaxPitch: 60
