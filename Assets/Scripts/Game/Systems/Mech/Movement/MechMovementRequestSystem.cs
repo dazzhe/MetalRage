@@ -29,6 +29,7 @@ public class MechMovementRequestSystem : ComponentSystem {
                 foreach (var action in actions) {
                     action.Initialize(command, status, config);
                 }
+                boostAction.Initialize(command, null);
                 //boostAction.Initialize(command, this.EntityManager.GetComponentObject<MechComponent>(entity).BoosterEffect);
                 var hasExecutedAction = false;
                 if (boostAction.IsExecutable(status, config, boostConfig, engineStatus)) {
