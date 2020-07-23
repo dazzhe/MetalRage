@@ -3,35 +3,6 @@ using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
 
-[UpdateAfter(typeof(MechMovementRequestSystem))]
-[UpdateBefore(typeof(CharacterControllerFollowGroundSystem))]
-public class MechCharacterPhysicsInputSystem : ComponentSystem {
-    protected override void OnUpdate() {
-        this.Entities.ForEach((
-            ref Translation translation,
-            ref MechRequestedMovement movement,
-            ref CharacterPhysicsInput physicsInput,
-            ref CharacterPhysicsVelocity velocity,
-            ref MechMovementConfigData config
-        ) => {
-            physicsInput.FollowGround = !movement.UseRawVelocity;
-            physicsInput.StartPosition = translation.Value;
-            physicsInput.CheckSupport = true;
-            if (movement.UseRawVelocity) {
-                velocity.Velocity = movement.Velocity;
-            } else {
-                velocity.Velocity = new float3 {
-                    x = movement.Velocity.x,
-                    y = velocity.Velocity.y + config.Gravity * this.Time.DeltaTime,
-                    z = movement.Velocity.z
-                };
-            }
-        });
-    }
-}
-
-
-[UpdateAfter(typeof(CharacterControllerStepSystem))]
 public class MechMovementUpdateSystem : ComponentSystem {
     protected override void OnUpdate() {
         var dt = this.Time.DeltaTime;
