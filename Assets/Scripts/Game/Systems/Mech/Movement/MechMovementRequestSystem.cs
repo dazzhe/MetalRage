@@ -44,16 +44,17 @@ public class MechMovementRequestSystem : ComponentSystem {
                         }
                     }
                 }
-                if (!hasExecutedAction) {
-                    switch (status.State) {
-                        case MechMovementState.BoostAcceling:
-                        case MechMovementState.BoostBraking:
-                            requestedMovement = boostStateBehaviour.ComputeMovement(status, config, boostConfig, ref engineStatus);
-                            break;
-                        default:
-                            requestedMovement = stateBehaviours[status.State].ComputeMovement(command, status, config);
-                            break;
-                    }
+                if (hasExecutedAction) {
+                    return;
+                }
+                switch (status.State) {
+                    case MechMovementState.BoostAcceling:
+                    case MechMovementState.BoostBraking:
+                        requestedMovement = boostStateBehaviour.ComputeMovement(status, config, boostConfig, ref engineStatus);
+                        break;
+                    default:
+                        requestedMovement = stateBehaviours[status.State].ComputeMovement(command, status, config);
+                        break;
                 }
             });
     }

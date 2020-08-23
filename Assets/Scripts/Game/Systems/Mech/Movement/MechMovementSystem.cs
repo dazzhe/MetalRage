@@ -14,17 +14,12 @@ public class MechCharacterPhysicsInputSystem : ComponentSystem {
             ref CharacterPhysicsVelocity velocity,
             ref MechMovementConfigData config
         ) => {
-            physicsInput.FollowGround = !movement.UseRawVelocity && movement.State != MechMovementState.Airborne;
+            physicsInput.FollowGround = movement.ShouldFollowGround;
             physicsInput.StartPosition = translation.Value;
-            physicsInput.CheckSupport = !movement.UseRawVelocity;
-            if (movement.UseRawVelocity || physicsInput.FollowGround) {
-                velocity.Velocity = movement.Velocity;
-            } else {
-                velocity.Velocity = new float3 {
-                    x = movement.Velocity.x,
-                    y = velocity.Velocity.y + config.Gravity * this.Time.DeltaTime,
-                    z = movement.Velocity.z
-                };
+            physicsInput.CheckSupport = true;
+            velocity.Velocity = movement.Velocity;
+            if (movement.ShouldApplyGravity) {
+                velocity.Velocity += math.up() * config.Gravity * this.Time.DeltaTime;
             }
         });
     }
@@ -46,8 +41,9 @@ public class MechMovementUpdateSystem : ComponentSystem {
             translation.Value = physicsOutput.MoveResult;
             status.Velocity = physicsVelocity.Velocity;
             status.LegYaw = Mathf.Lerp(status.LegYaw, requestedMovement.LegYaw, 10f * dt);
-            status.IsOnGround = groundContactStatus.SupportedState == CharacterControllerUtilities.CharacterSupportState.Supported
-                && !requestedMovement.UseRawVelocity;
+            status.IsOnGround =
+                groundContactStatus.SupportedState == CharacterControllerUtilities.CharacterSupportState.Supported
+             && requestedMovement.ShouldFollowGround;
             if (status.IsOnGround && requestedMovement.State == MechMovementState.Airborne) {
                 status.State = MechMovementState.Stand;
             } else if (!status.IsOnGround && requestedMovement.State != MechMovementState.BoostAcceling) {

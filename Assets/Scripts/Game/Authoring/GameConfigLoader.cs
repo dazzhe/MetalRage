@@ -1,9 +1,8 @@
-using UnityEngine;
-using Unity.Entities;
 using System.Collections.Generic;
-using System;
-using Unity.Mathematics;
 using System.Linq;
+using Unity.Entities;
+using Unity.Mathematics;
+using UnityEngine;
 
 public struct GameConfigData : ISharedComponentData {
     public Entity VanguardPrefabEntity;
@@ -35,17 +34,17 @@ public class GameConfigLoader : MonoBehaviour, IConvertGameObjectToEntity, IDecl
         dstManager.AddComponentData(prefabEntity, mechConfig.HEngineConfig.Data);
         dstManager.AddComponentData(prefabEntity, mechConfig.Movement);
         dstManager.AddComponentData(prefabEntity, new CharacterRigidbody {
-            GroundProbeVector = new float3(0f, -0.1f, 0f),
+            GroundProbeVector = new float3(0f, -0.2f, 0f),
             MaxSlope = math.radians(60f),
             MaxIterations = 10,
             CharacterMass = 1f,
-            SkinWidth = 0.02f,
-            ContactTolerance = 0.1f,
+            SkinWidth = 0.04f,
+            ContactTolerance = 0.2f,
             AffectsPhysicsBodies = 1,
             MaxMovementSpeed = 50f,
-            CapsuleCenter = new float3(0f, 1f, 0f),
-            CapsuleHeight = 2f,
-            CapsuleRadius = 0.5f
+            CapsuleCenter = new float3(0f, 1.9f, 0f),
+            CapsuleHeight = 3.8f,
+            CapsuleRadius = 1f
         });
         dstManager.AddComponent(prefabEntity, typeof(CharacterPhysicsVelocity));
         dstManager.AddComponent(prefabEntity, typeof(CharacterPhysicsInput));

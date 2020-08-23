@@ -25,8 +25,8 @@ public struct CameraLeanStatus {
 public struct PlayerCamera : IComponentData {
     public CameraLeanStatus LeanStatus;
     public CameraFollowMode FollowMode;
-    public float leanLength;// = 5f;
-    public float forwardOffsetFactor;// = 4.7f;
+    public float LeanLength;// = 5f;
+    public float ForwardOffsetFactor;// = 4.7f;
     public float3 AimingPoint;
 }
 
@@ -58,19 +58,23 @@ public class PlayerCameraSystem : ComponentSystem {
         var pitch = targetMovement.Pitch;
         var yaw = targetMovement.Yaw;
         var targetRotation = quaternion.Euler(new float3(pitch, yaw, 0f));
-        var offsetLength = math.abs(math.sin(pitch)) * camera.forwardOffsetFactor - 5f;
-        var cameraOffset = offsetLength * math.forward(quaternion.identity);
+        var forwardOffsetLength = math.abs(math.sin(pitch)) * camera.ForwardOffsetFactor - 5f;
+        var cameraOffsetByTargetPitch = forwardOffsetLength * math.forward(quaternion.identity);
+
+        // TODO: Move this to better place
         command.MaxOffset = new float3(1.5f, 0.4f, 0f);
-        // Camera rotates around the target by the same amount as the target rotation.
+        camera.FollowMode = targetMovement.State == MechMovementState.Stand || targetMovement.State == MechMovementState.BoostBraking || targetMovement.State == MechMovementState.BoostAcceling
+            ? CameraFollowMode.Smooth : CameraFollowMode.Clamp;
+
+        // 1. Camera rotationtarget rotation.
         var rotationDiff = targetRotation * Quaternion.Inverse(rotation.Value);
         var localPosition = Quaternion.Inverse(targetRotation) * (translation.Value - targetTranslation);
         var updatedLocalPosition = rotationDiff * localPosition;
         translation.Value = math.mul(targetRotation, updatedLocalPosition) + targetTranslation;
         rotation.Value = targetRotation;
-        // Camera follow
-        var defaultPosition = math.mul(targetRotation, cameraOffset) + targetTranslation;
-        camera.FollowMode = targetMovement.State == MechMovementState.Stand || targetMovement.State == MechMovementState.BoostBraking || targetMovement.State == MechMovementState.BoostAcceling
-            ? CameraFollowMode.Smooth : CameraFollowMode.Clamp;
+
+        // 2. Move camera position.
+        var defaultPosition = math.mul(targetRotation, cameraOffsetByTargetPitch) + targetTranslation;
         var localOffset = math.mul(quaternion.AxisAngle(new float3(0f, 1f, 0f), -yaw), translation.Value - defaultPosition);
         var targetLocalMotion = math.mul(math.inverse(targetRotation), targetMovement.Velocity) * this.Time.DeltaTime;
         switch (camera.FollowMode) {
@@ -97,12 +101,14 @@ public class PlayerCameraSystem : ComponentSystem {
             case CameraFollowMode.LeanRight:
                 var leanDirection = camera.FollowMode == CameraFollowMode.LeanLeft
                     ? Vector3.left : Vector3.right;
-                var leanOffset = camera.leanLength * leanDirection;
+                var leanOffset = camera.LeanLength * leanDirection;
                 camera.LeanStatus.currentLeanOffset = Vector3.Lerp(camera.LeanStatus.currentLeanOffset, leanOffset, 30f * this.Time.DeltaTime);
-                localOffset = cameraOffset + (float3)camera.LeanStatus.currentLeanOffset;
+                localOffset = cameraOffsetByTargetPitch + (float3)camera.LeanStatus.currentLeanOffset;
                 break;
         }
         translation.Value = math.mul(quaternion.AxisAngle(math.float3(0f, 1f, 0f), yaw), localOffset) + defaultPosition;
+
+        // 3. Wall penetration check
         translation.Value = AvoidObstacles(translation.Value, targetTranslation);
 
         Assert.IsFalse(float.IsNaN(translation.Value.x) || float.IsNaN(translation.Value.y) || float.IsNaN(translation.Value.z));

@@ -30,7 +30,8 @@ public class WalkStateBehaviour : MechMovementStateBehaviour {
         var movement = new MechRequestedMovement {
             Velocity = math.mul(quaternion.Euler(0f, status.Yaw, 0f), localVelocity),
             State = math.lengthsq(input) == 0 ? MechMovementState.Stand : MechMovementState.Walking,
-            UseRawVelocity = false
+            ShouldFollowGround = true,
+            ShouldApplyGravity = false
         };
         return movement;
     }
@@ -40,14 +41,15 @@ public class BoostStateBehaviour {
     public MechRequestedMovement ComputeMovement(MechMovementStatus status, MechMovementConfigData config, BoosterConfigData boostConfig, ref BoosterEngineStatus engineStatus) {
         engineStatus.ElapsedTime += Time.deltaTime;
         var movement = new MechRequestedMovement {
-            UseRawVelocity = false
+            ShouldFollowGround = true,
+            ShouldApplyGravity = !status.IsOnGround
         };
         switch (status.State) {
             case MechMovementState.BoostAcceling:
                 movement.Velocity = status.Velocity;
                 movement.State = engineStatus.ElapsedTime > boostConfig.Duration && status.IsOnGround
-                    ? MechMovementState.BoostBraking
-                    : MechMovementState.BoostAcceling;
+                ? MechMovementState.BoostBraking
+                : MechMovementState.BoostAcceling;
                 break;
             case MechMovementState.BoostBraking:
                 var speed = status.Velocity.magnitude - boostConfig.BrakingDeceleration * Time.deltaTime;
@@ -65,17 +67,20 @@ public class BoostStateBehaviour {
 public class AirborneStateBehaviour : MechMovementStateBehaviour {
     public override MechRequestedMovement ComputeMovement(MechCommand input, MechMovementStatus status, MechMovementConfigData config) {
         var movement = new MechRequestedMovement {
-            State = MechMovementState.Airborne
+            State = MechMovementState.Airborne,
+            ShouldFollowGround = true,
+            ShouldApplyGravity = true
         };
         var accel = math.normalizesafe(new float3(input.Move.x, 0f, input.Move.y)) * 30f;
         var localVelocity = math.mul(quaternion.Euler(0f, -status.Yaw, 0f), status.Velocity);
+        localVelocity.y = 0f;
         localVelocity += accel * Time.deltaTime;
-        if (math.length(localVelocity) > config.MaxFallSpeed) {
-            localVelocity = math.normalizesafe(localVelocity) * config.MaxFallSpeed;
+        if (math.length(localVelocity) > config.MaxMovementSpeedInAir) {
+            localVelocity = math.normalizesafe(localVelocity) * config.MaxMovementSpeedInAir;
         }
         movement.Velocity = math.mul(quaternion.Euler(0f, status.Yaw, 0f), localVelocity);
+        movement.Velocity.y = status.Velocity.y;
         movement.LegYaw = status.LegYaw;
-        movement.UseRawVelocity = false;
         return movement;
     }
 }

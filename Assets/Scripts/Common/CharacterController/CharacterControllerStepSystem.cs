@@ -22,6 +22,7 @@ public class CharacterControllerFollowGroundSystem : JobComponentSystem {
         inputDeps.Complete();
 
         var physicsWorld = this.buildPhysicsWorld.PhysicsWorld;
+        var deltaTime = this.Time.DeltaTime;
 
         this.Entities.ForEach((
             ref CharacterRigidbody rigidBody,
@@ -38,7 +39,7 @@ public class CharacterControllerFollowGroundSystem : JobComponentSystem {
                 var startPos = input.StartPosition - math.up() * skinWidth;
                 var dir = math.normalizesafe(vel);
                 var horizDir = new float3(dir.x, 0.0f, dir.z);
-                var len = rigidBody.CapsuleRadius;
+                var len = rigidBody.CapsuleRadius / 2f;
                 var endPos = startPos + len * dir;
                 var slopeAdjustment = math.up() * len * math.tan(rigidBody.MaxSlope);
                 var rayInput = new RaycastInput {
@@ -50,21 +51,43 @@ public class CharacterControllerFollowGroundSystem : JobComponentSystem {
                 if (!physicsWorld.CastRay(rayInput, out rayHit)) {
                     return;
                 }
-                var newDir = math.normalizesafe(rayHit.Position - startPos);
+                if (!TryGetGroundOffset(physicsWorld, rigidBody, input, out float3 groundOffset)) {
+                    UnityEngine.Debug.Log(groundOffset);
+                    return;
+                }
+                UnityEngine.Debug.Log(groundOffset);
+                var newDir = math.normalizesafe(rayHit.Position - groundOffset - startPos);
                 var newHorizDir = new float3(newDir.x, 0.0f, newDir.z);
                 var newVel = newDir * math.length(vel) * math.length(horizDir) / math.length(newHorizDir);
-                if (math.abs(newVel.y) > 0.01f)
+                if (math.abs(newVel.y) > 0.01f) {
                     ccVelocity.Velocity = newVel;
+                }
             }).Run();
 
         return default;
+    }
+
+    private static bool TryGetGroundOffset(PhysicsWorld physicsWorld, CharacterRigidbody characterRigidbody, CharacterPhysicsInput characterPhysicsInput, out float3 groundOffset) {
+        var rayInput = new RaycastInput {
+            Start = characterPhysicsInput.StartPosition,
+            End = characterPhysicsInput.StartPosition - new float3(0f, 1f, 0f),
+            Filter = new CollisionFilter { BelongsTo = 1, CollidesWith = 1, GroupIndex = 0 }
+        };
+        var rayHit = new RaycastHit();
+        if (!physicsWorld.CastRay(rayInput, out rayHit)) {
+            groundOffset = float3.zero;
+            return false;
+        } else {
+            groundOffset = rayHit.Position - characterPhysicsInput.StartPosition + math.up() * characterRigidbody.SkinWidth;
+            return true;
+        }
     }
 }
 
 [AlwaysUpdateSystem]
 [AlwaysSynchronizeSystem]
 public class CharacterControllerStepSystem : JobComponentSystem {
-    [BurstCompile]
+    [BurstCompile(Debug = true)]
     struct ApplyDeferredImpulses : IJob {
         public NativeStream.Reader DeferredImpulseReader;
 
@@ -142,7 +165,6 @@ public class CharacterControllerStepSystem : JobComponentSystem {
                 constraints.Clear();
                 castHits.Clear();
                 distanceHits.Clear();
-
                 var stepInput = new CharacterControllerUtilities.CharacterControllerStepInput {
                     World = physicsWorld,
                     DeltaTime = deltaTime,

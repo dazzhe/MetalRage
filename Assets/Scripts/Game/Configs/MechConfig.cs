@@ -14,7 +14,8 @@ public class MechConfig : ScriptableObject {
         MinPitch = -60f,
         MaxPitch = 60f,
         MaxSlopeAngle = 45f,
-        MaxFallSpeed = 20f,
+        MaxMovementSpeedInAir = 20f,
+        MaxFallSpeed = 50f
     };
     [SerializeField]
     private BoosterConfig hEngineConfig;

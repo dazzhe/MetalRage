@@ -26,8 +26,9 @@ public class CrouchAction : MechMovementAction {
             State = MechMovementState.Crouching,
             Velocity = Vector3.zero,
             LegYaw = this.Status.LegYaw,
-            UseRawVelocity = false
-    };
+            ShouldFollowGround = true,
+            ShouldApplyGravity = false
+        };
         return movement;
     }
 
@@ -49,7 +50,11 @@ public class BoostAction {
     }
 
     public MechRequestedMovement CalculateMovement(MechMovementStatus status, MechMovementConfigData config, BoosterConfigData boostConfig, ref BoosterEngineStatus engineStatus) {
-        var movement = new MechRequestedMovement();
+        var movement = new MechRequestedMovement {
+            LegYaw = 0f,
+            ShouldFollowGround = true,
+            ShouldApplyGravity = false
+        };
         engineStatus.Gauge -= boostConfig.Consumption;
         engineStatus.ElapsedTime = 0f;
         var mechRotation = quaternion.Euler(0f, status.Yaw, 0f);
@@ -66,7 +71,6 @@ public class BoostAction {
         } else {
             boostLocalDirection = inertiaLocalDirection;
         }
-        movement.LegYaw = 0f;
         var boostDirection = math.mul(mechRotation, boostLocalDirection);
         movement.Velocity = math.normalizesafe(boostDirection) * boostConfig.MaxSpeed;
         movement.State = MechMovementState.BoostAcceling;
@@ -86,7 +90,8 @@ public class JumpAction : MechMovementAction {
     public override MechRequestedMovement CalculateMovement() {
         var command = new MechRequestedMovement {
             State = MechMovementState.Airborne,
-            UseRawVelocity = true,
+            ShouldFollowGround = false,
+            ShouldApplyGravity = false,
             //this.engine?.ShowJetFlame(0.4f, Vector3.forward);
             // Jumping power is proportial to current moving speed.
             Velocity = new Vector3 {

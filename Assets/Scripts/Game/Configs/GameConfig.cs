@@ -1,6 +1,5 @@
-using UnityEngine;
-using System.Collections;
 using System.Linq;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "GameConfig", menuName = "MetalRage/GameConfig")]
 public class GameConfig : ScriptableObject {

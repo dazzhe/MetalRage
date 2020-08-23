@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerCameraAuthoring : MonoBehaviour, IConvertGameObjectToEntity {
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         dstManager.AddComponentData(entity, new PlayerCamera {
-            forwardOffsetFactor = 4.7f,
-            leanLength = 5f,
+            ForwardOffsetFactor = 4.7f,
+            LeanLength = 5f,
         });
         dstManager.AddComponentData(entity, new PlayerCameraCommand());
         dstManager.AddComponentData(entity, new CopyTransformToGameObject());
