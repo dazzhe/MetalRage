@@ -106,7 +106,7 @@ public class CharacterControllerInitAndCleanupSystem : JobComponentSystem {
                     Radius = initData.CapsuleRadius
                 };
                 var filter = new CollisionFilter { BelongsTo = 1, CollidesWith = 1, GroupIndex = 0 };
-                var collider = Unity.Physics.CapsuleCollider.Create(capsule, filter, new Unity.Physics.Material { Flags = new Unity.Physics.Material.MaterialFlags() });
+                var collider = Unity.Physics.CapsuleCollider.Create(capsule, filter, new Unity.Physics.Material());
                 ecb.AddComponent(e, new CharacterControllerCollider { Collider = collider });
             }).Run();
 

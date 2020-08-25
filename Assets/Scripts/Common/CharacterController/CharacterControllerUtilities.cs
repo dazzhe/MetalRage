@@ -44,116 +44,6 @@ public static class CharacterControllerUtilities {
         public bool FollowGround;
     }
 
-    // A collector which stores every hit up to the length of the provided native array.
-    // To filter out self hits, it stores the rigid body index of the body representing
-    // the character controller. Unfortunately, it needs to do this in TransformNewHits
-    // since during AddHit rigid body index is not exposed.
-    // https://github.com/Unity-Technologies/Unity.Physics/issues/256
-    public struct SelfFilteringAllHitsCollector<T> : ICollector<T> where T : struct, IQueryResult {
-        private int m_selfRBIndex;
-
-        public bool EarlyOutOnFirstHit => false;
-        public float MaxFraction { get; }
-        public int NumHits => AllHits.Length;
-
-        public NativeList<T> AllHits;
-
-        public SelfFilteringAllHitsCollector(int rbIndex, float maxFraction, ref NativeList<T> allHits) {
-            MaxFraction = maxFraction;
-            AllHits = allHits;
-            m_selfRBIndex = rbIndex;
-        }
-
-        #region IQueryResult implementation
-
-        public bool AddHit(T hit) {
-            Assert.IsTrue(hit.Fraction < MaxFraction);
-            AllHits.Add(hit);
-            return true;
-        }
-
-        public void TransformNewHits(int oldNumHits, float oldFraction, Unity.Physics.Math.MTransform transform, uint numSubKeyBits, uint subKey) {
-            for (int i = oldNumHits; i < NumHits; i++) {
-                T hit = AllHits[i];
-                hit.Transform(transform, numSubKeyBits, subKey);
-                AllHits[i] = hit;
-            }
-        }
-
-        public void TransformNewHits(int oldNumHits, float oldFraction, Unity.Physics.Math.MTransform transform, int rigidBodyIndex) {
-            if (rigidBodyIndex == m_selfRBIndex) {
-                for (int i = oldNumHits; i < NumHits; i++) {
-                    AllHits.RemoveAtSwapBack(oldNumHits);
-                }
-
-                return;
-            }
-
-            for (int i = oldNumHits; i < NumHits; i++) {
-                T hit = AllHits[i];
-                hit.Transform(transform, rigidBodyIndex);
-                AllHits[i] = hit;
-            }
-        }
-
-        #endregion
-    }
-
-    // A collector which stores only the closest hit different from itself.
-    public struct SelfFilteringClosestHitCollector<T> : ICollector<T> where T : struct, IQueryResult {
-        public bool EarlyOutOnFirstHit => false;
-        public float MaxFraction { get; private set; }
-        public int NumHits { get; private set; }
-
-        private T m_OldHit;
-        private T m_ClosestHit;
-        public T ClosestHit => m_ClosestHit;
-
-        private int m_selfRBIndex;
-
-        public SelfFilteringClosestHitCollector(int rbIndex, float maxFraction) {
-            MaxFraction = maxFraction;
-            m_OldHit = default(T);
-            m_ClosestHit = default(T);
-            NumHits = 0;
-            m_selfRBIndex = rbIndex;
-        }
-
-        #region ICollector
-
-        public bool AddHit(T hit) {
-            Assert.IsTrue(hit.Fraction <= MaxFraction);
-            MaxFraction = hit.Fraction;
-            m_OldHit = m_ClosestHit;
-            m_ClosestHit = hit;
-            NumHits = 1;
-            return true;
-        }
-
-        public void TransformNewHits(int oldNumHits, float oldFraction, Unity.Physics.Math.MTransform transform, uint numSubKeyBits, uint subKey) {
-            if (m_ClosestHit.Fraction < oldFraction) {
-                m_ClosestHit.Transform(transform, numSubKeyBits, subKey);
-            }
-        }
-
-        public void TransformNewHits(int oldNumHits, float oldFraction, Unity.Physics.Math.MTransform transform, int rigidBodyIndex) {
-            if (rigidBodyIndex == m_selfRBIndex) {
-                m_ClosestHit = m_OldHit;
-                NumHits = 0;
-                MaxFraction = oldFraction;
-                m_OldHit = default(T);
-                return;
-            }
-
-            if (m_ClosestHit.Fraction < oldFraction) {
-                m_ClosestHit.Transform(transform, rigidBodyIndex);
-            }
-        }
-
-        #endregion
-    }
-
-
     public static unsafe void CheckSupport(
         ref PhysicsWorld world, ref PhysicsCollider collider, CharacterControllerStepInput stepInput, float3 groundProbeVector, RigidTransform transform,
         float maxSlope, ref NativeList<SurfaceConstraintInfo> constraints, ref NativeList<ColliderCastHit> castHits, out CharacterSupportState characterState, out float3 surfaceNormal, out float3 surfaceVelocity) {
@@ -203,7 +93,7 @@ public static class CharacterControllerUtilities {
         // Solve downwards (don't use min delta time, try to solve full step)
         float3 outVelocity = initialVelocity;
         float3 outPosition = transform.pos;
-        SimplexSolver.Solve(stepInput.World, stepInput.DeltaTime, stepInput.DeltaTime, stepInput.Up, stepInput.MaxMovementSpeed,
+        SimplexSolver.Solve(stepInput.DeltaTime, stepInput.DeltaTime, stepInput.Up, stepInput.MaxMovementSpeed,
             constraints, ref outPosition, ref outVelocity, out float integratedTime, false);
 
         // Get info on surface
@@ -359,7 +249,7 @@ public static class CharacterControllerUtilities {
             // Solve
             float3 prevVelocity = newVelocity;
             float3 prevPosition = newPosition;
-            SimplexSolver.Solve(world, remainingTime, minDeltaTime, up, stepInput.MaxMovementSpeed, constraints, ref newPosition, ref newVelocity, out float integratedTime);
+            SimplexSolver.Solve(remainingTime, minDeltaTime, up, stepInput.MaxMovementSpeed, constraints, ref newPosition, ref newVelocity, out float integratedTime);
 
             // Apply impulses to hit bodies
             if (affectBodies) {
@@ -521,11 +411,9 @@ public static class CharacterControllerUtilities {
             float3 impulse = float3.zero;
             if (deltaVelocity < 0.0f) {
                 // Impulse magnitude
-                float impulseMagnitude = 0.0f;
-                {
-                    float objectMassInv = GetInvMassAtPoint(constraint.HitPosition, constraint.Plane.Normal, body, mv);
-                    impulseMagnitude = deltaVelocity / objectMassInv;
-                }
+                float impulseMagnitude;
+                float objectMassInv = GetInvMassAtPoint(constraint.HitPosition, constraint.Plane.Normal, body, mv);
+                impulseMagnitude = deltaVelocity / objectMassInv;
 
                 impulse = impulseMagnitude * constraint.Plane.Normal;
             }
@@ -565,14 +453,14 @@ public static class CharacterControllerUtilities {
     private static float GetInvMassAtPoint(float3 point, float3 normal, RigidBody body, MotionVelocity mv) {
         float3 massCenter;
         unsafe {
-            massCenter = math.transform(body.WorldFromBody, body.Collider->MassProperties.MassDistribution.Transform.pos);
+            massCenter = math.transform(body.WorldFromBody, body.Collider.Value.MassProperties.MassDistribution.Transform.pos);
         }
         float3 arm = point - massCenter;
         float3 jacAng = math.cross(arm, normal);
-        float3 armC = jacAng * mv.InverseInertiaAndMass.xyz;
+        float3 armC = jacAng * mv.InverseInertia;
 
         float objectMassInv = math.dot(armC, jacAng);
-        objectMassInv += mv.InverseInertiaAndMass.w;
+        objectMassInv += mv.InverseMass;
 
         return objectMassInv;
     }
