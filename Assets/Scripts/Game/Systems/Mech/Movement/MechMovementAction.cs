@@ -24,10 +24,8 @@ public class CrouchAction : MechMovementAction {
     public override MechRequestedMovement CalculateMovement() {
         var movement = new MechRequestedMovement {
             State = MechMovementState.Crouching,
-            Velocity = Vector3.zero,
             LegYaw = this.Status.LegYaw,
-            ShouldFollowGround = true,
-            ShouldApplyGravity = false
+            Velocity = float3.zero
         };
         return movement;
     }
@@ -52,13 +50,12 @@ public class BoostAction {
     public MechRequestedMovement CalculateMovement(MechMovementStatus status, MechMovementConfigData config, BoosterConfigData boostConfig, ref BoosterEngineStatus engineStatus) {
         var movement = new MechRequestedMovement {
             LegYaw = 0f,
-            ShouldFollowGround = true,
-            ShouldApplyGravity = false
+            ShouldJump = false
         };
         engineStatus.Gauge -= boostConfig.Consumption;
         engineStatus.ElapsedTime = 0f;
         var mechRotation = quaternion.Euler(0f, status.Yaw, 0f);
-        var inertiaLocalDirection = math.mul(math.inverse(mechRotation), status.Velocity.normalized);
+        var inertiaLocalDirection = math.mul(math.inverse(mechRotation), math.normalizesafe(status.Velocity));
         var inputLocalDirection = math.float3(this.input.Move.x, 0f, this.input.Move.y);
         float3 boostLocalDirection;
         if (inputLocalDirection.z < 0 || math.lengthsq(inputLocalDirection) == 0) {
@@ -90,13 +87,12 @@ public class JumpAction : MechMovementAction {
     public override MechRequestedMovement CalculateMovement() {
         var command = new MechRequestedMovement {
             State = MechMovementState.Airborne,
-            ShouldFollowGround = false,
-            ShouldApplyGravity = false,
+            ShouldJump = true,
             //this.engine?.ShowJetFlame(0.4f, Vector3.forward);
             // Jumping power is proportial to current moving speed.
             Velocity = new Vector3 {
                 x = this.Status.Velocity.x,
-                y = this.Config.BaseJumpSpeed * (1f + 0.002f * this.Status.Velocity.magnitude),
+                y = this.Config.BaseJumpSpeed * (1f + 0.002f * math.length(this.Status.Velocity)),
                 z = this.Status.Velocity.z
             }
         };

@@ -50,10 +50,10 @@ public class MechMovementRequestSystem : ComponentSystem {
                 switch (status.State) {
                     case MechMovementState.BoostAcceling:
                     case MechMovementState.BoostBraking:
-                        requestedMovement = boostStateBehaviour.ComputeMovement(status, config, boostConfig, ref engineStatus);
+                        requestedMovement = boostStateBehaviour.ComputeMovement(status, config, UnityEngine.Time.fixedDeltaTime, boostConfig, ref engineStatus);
                         break;
                     default:
-                        requestedMovement = stateBehaviours[status.State].ComputeMovement(command, status, config);
+                        requestedMovement = stateBehaviours[status.State].ComputeMovement(command, status, config, UnityEngine.Time.fixedDeltaTime);
                         break;
                 }
             });

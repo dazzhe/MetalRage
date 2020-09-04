@@ -1,4 +1,5 @@
 using Unity.Entities;
+using Unity.Mathematics;
 using UnityEngine;
 public enum MechMovementState {
     Stand,
@@ -12,7 +13,7 @@ public enum MechMovementState {
 public struct MechMovementStatus : IComponentData {
     public Bool IsOnGround;
     public MechMovementState State;
-    public Vector3 Velocity;
+    public float3 Velocity;
     public float LegYaw;
     public float Yaw;
     public float Pitch;

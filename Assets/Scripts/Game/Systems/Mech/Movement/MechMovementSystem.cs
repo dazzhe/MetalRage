@@ -4,46 +4,38 @@ using Unity.Transforms;
 using UnityEngine;
 
 [UpdateAfter(typeof(MechMovementRequestSystem))]
-[UpdateBefore(typeof(CharacterControllerFollowGroundSystem))]
+[UpdateBefore(typeof(CharacterControllerSystem))]
 public class MechCharacterPhysicsInputSystem : ComponentSystem {
     protected override void OnUpdate() {
         this.Entities.ForEach((
             ref Translation translation,
             ref MechRequestedMovement movement,
-            ref CharacterPhysicsInput physicsInput,
-            ref CharacterPhysicsVelocity velocity,
+            ref CharacterControllerInput physicsInput,
+            ref CharacterControllerInternalData ccInternalData,
             ref MechMovementConfigData config
         ) => {
-            physicsInput.FollowGround = movement.ShouldFollowGround;
-            physicsInput.StartPosition = translation.Value;
-            physicsInput.CheckSupport = true;
-            velocity.Velocity = movement.Velocity;
-            if (movement.ShouldApplyGravity) {
-                velocity.Velocity += math.up() * config.Gravity * this.Time.DeltaTime;
-            }
+            physicsInput.Jumped = movement.ShouldJump ? 1 : 0;
+            physicsInput.Movement = new float2 {
+                x = movement.Velocity.x,
+                y = movement.Velocity.z
+            };
         });
     }
 }
 
 
-[UpdateAfter(typeof(CharacterControllerStepSystem))]
+[UpdateAfter(typeof(CharacterControllerSystem))]
 public class MechMovementUpdateSystem : ComponentSystem {
     protected override void OnUpdate() {
         var dt = this.Time.DeltaTime;
         this.Entities.ForEach((
-            ref Translation translation,
-            ref CharacterPhysicsOutput physicsOutput,
-            ref CharacterPhysicsVelocity physicsVelocity,
-            ref GroundContactStatus groundContactStatus,
+            ref CharacterControllerInternalData ccInternalData,
             ref MechRequestedMovement requestedMovement,
             ref MechMovementStatus status
         ) => {
-            translation.Value = physicsOutput.MoveResult;
-            status.Velocity = physicsVelocity.Velocity;
+            status.IsOnGround = ccInternalData.SupportedState == CharacterControllerUtilities.CharacterSupportState.Supported;
+            status.Velocity = ccInternalData.LinearVelocity;
             status.LegYaw = Mathf.Lerp(status.LegYaw, requestedMovement.LegYaw, 10f * dt);
-            status.IsOnGround =
-                groundContactStatus.SupportedState == CharacterControllerUtilities.CharacterSupportState.Supported
-             && requestedMovement.ShouldFollowGround;
             if (status.IsOnGround && requestedMovement.State == MechMovementState.Airborne) {
                 status.State = MechMovementState.Stand;
             } else if (!status.IsOnGround && requestedMovement.State != MechMovementState.BoostAcceling) {

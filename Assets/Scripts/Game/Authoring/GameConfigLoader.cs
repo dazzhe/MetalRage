@@ -33,24 +33,23 @@ public class GameConfigLoader : MonoBehaviour, IConvertGameObjectToEntity, IDecl
         dstManager.AddComponentData(prefabEntity, new BoosterEngineStatus { Gauge = 100 });
         dstManager.AddComponentData(prefabEntity, mechConfig.HEngineConfig.Data);
         dstManager.AddComponentData(prefabEntity, mechConfig.Movement);
-        dstManager.AddComponentData(prefabEntity, new CharacterRigidbody {
-            GroundProbeVector = new float3(0f, -0.2f, 0f),
-            MaxSlope = math.radians(60f),
+        dstManager.AddComponentData(prefabEntity, new CharacterControllerComponentData {
+            MaxSlope = math.radians(50f),
             MaxIterations = 10,
             CharacterMass = 1f,
-            SkinWidth = 0.04f,
-            ContactTolerance = 0.2f,
+            SkinWidth = 0.02f,
+            ContactTolerance = 0.1f,
             AffectsPhysicsBodies = 1,
             MaxMovementSpeed = 50f,
-            CapsuleCenter = new float3(0f, 1.9f, 0f),
-            CapsuleHeight = 3.8f,
-            CapsuleRadius = 1f
+            Gravity = new float3(0f, -40f, 0f),
+            MovementSpeed = 1f,
+            JumpUpwardsSpeed = 14f
+            //CapsuleCenter = new float3(0f, 1.9f, 0f),
+            //CapsuleHeight = 3.8f,
+            //CapsuleRadius = 1f
         });
-        dstManager.AddComponent(prefabEntity, typeof(CharacterPhysicsVelocity));
-        dstManager.AddComponent(prefabEntity, typeof(CharacterPhysicsInput));
-        dstManager.AddComponent(prefabEntity, typeof(CharacterPhysicsOutput));
-        dstManager.AddComponent(prefabEntity, typeof(GroundContactStatus));
-
+        dstManager.AddComponentData(prefabEntity, new CharacterControllerInput());
+        dstManager.AddComponentData(prefabEntity, new CharacterControllerInternalData());
     }
 
     public void DeclareReferencedPrefabs(List<GameObject> referencedPrefabs) {
