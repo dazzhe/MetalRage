@@ -28,6 +28,7 @@ public struct PlayerCamera : IComponentData {
     public float LeanLength;// = 5f;
     public float ForwardOffsetFactor;// = 4.7f;
     public float3 AimingPoint;
+    public float3 RelativeTranslation;
 }
 
 [UpdateAfter(typeof(MechMovementUpdateSystem)), UpdateAfter(typeof(PlayerInputSystem))]
@@ -66,7 +67,7 @@ public class PlayerCameraSystem : ComponentSystem {
         camera.FollowMode = targetMovement.State == MechMovementState.Stand || targetMovement.State == MechMovementState.BoostBraking || targetMovement.State == MechMovementState.BoostAcceling
             ? CameraFollowMode.Smooth : CameraFollowMode.Clamp;
 
-        // 1. Camera rotationtarget rotation.
+        // 1. Camera rotation = target rotation.
         var rotationDiff = targetRotation * Quaternion.Inverse(rotation.Value);
         var localPosition = Quaternion.Inverse(targetRotation) * (translation.Value - targetTranslation);
         var updatedLocalPosition = rotationDiff * localPosition;
@@ -75,7 +76,7 @@ public class PlayerCameraSystem : ComponentSystem {
 
         // 2. Move camera position.
         var defaultPosition = math.mul(targetRotation, cameraOffsetByTargetPitch) + targetTranslation;
-        var localOffset = math.mul(quaternion.AxisAngle(new float3(0f, 1f, 0f), -yaw), translation.Value - defaultPosition);
+        var localOffset = math.mul(math.inverse(targetRotation), translation.Value - defaultPosition);
         var targetLocalMotion = math.mul(math.inverse(targetRotation), targetMovement.Velocity) * this.Time.DeltaTime;
         switch (camera.FollowMode) {
             case CameraFollowMode.Smooth: {
@@ -84,53 +85,52 @@ public class PlayerCameraSystem : ComponentSystem {
                         break;
                     }
                     var lerpSpeed = targetMovement.State == MechMovementState.BoostBraking || targetMovement.State == MechMovementState.BoostAcceling
-                        ? 10f : 6f;
+                        ? 20f : 6f;
                     var motion = -math.normalize(localOffset) * lerpSpeed * this.Time.DeltaTime;
-                    if (math.lengthsq(motion) > math.lengthsq(localOffset)) {
-                        localOffset = new float3(0f, 0f, 0f);
-                    } else {
-                        localOffset += motion;
-                    }
-                    break;
-                }
+                    var isOverrunning = math.lengthsq(motion) > math.lengthsq(localOffset);
+                    localOffset = isOverrunning
+                        ? new float3(0f, 0f, 0f)
+                        : localOffset + motion;
+                break;
+        }
             case CameraFollowMode.Clamp:
                 localOffset += targetLocalMotion * 0.3f;
-                localOffset = math.clamp(localOffset, -command.MaxOffset, command.MaxOffset);
-                break;
+        localOffset = math.clamp(localOffset, -command.MaxOffset, command.MaxOffset);
+        break;
             case CameraFollowMode.LeanLeft:
             case CameraFollowMode.LeanRight:
                 var leanDirection = camera.FollowMode == CameraFollowMode.LeanLeft
                     ? Vector3.left : Vector3.right;
-                var leanOffset = camera.LeanLength * leanDirection;
-                camera.LeanStatus.currentLeanOffset = Vector3.Lerp(camera.LeanStatus.currentLeanOffset, leanOffset, 30f * this.Time.DeltaTime);
-                localOffset = cameraOffsetByTargetPitch + (float3)camera.LeanStatus.currentLeanOffset;
-                break;
-        }
-        translation.Value = math.mul(quaternion.AxisAngle(math.float3(0f, 1f, 0f), yaw), localOffset) + defaultPosition;
+        var leanOffset = camera.LeanLength * leanDirection;
+        camera.LeanStatus.currentLeanOffset = Vector3.Lerp(camera.LeanStatus.currentLeanOffset, leanOffset, 30f * this.Time.DeltaTime);
+        localOffset = cameraOffsetByTargetPitch + (float3)camera.LeanStatus.currentLeanOffset;
+        break;
+    }
+    translation.Value = math.mul(quaternion.AxisAngle(math.float3(0f, 1f, 0f), yaw), localOffset) + defaultPosition;
 
-        // 3. Wall penetration check
+        // 3. Penetration recovery
         translation.Value = AvoidObstacles(translation.Value, targetTranslation);
 
-        Assert.IsFalse(float.IsNaN(translation.Value.x) || float.IsNaN(translation.Value.y) || float.IsNaN(translation.Value.z));
+    Assert.IsFalse(float.IsNaN(translation.Value.x) || float.IsNaN(translation.Value.y) || float.IsNaN(translation.Value.z));
 
         this.EntityManager.SetComponentData(cameraEntity, translation);
         this.EntityManager.SetComponentData(cameraEntity, rotation);
     }
 
-    private Vector3 AvoidObstacles(Vector3 cameraPosition, Vector3 targetPosition) {
-        var positionFromTarget = cameraPosition - targetPosition;
-        var layerMask = ~(1 << LayerMask.NameToLayer("Player"));
-        var isRayHit =
-            Physics.Raycast(targetPosition, positionFromTarget,
-            out RaycastHit hit, positionFromTarget.magnitude + 0.04f,
-            layerMask, QueryTriggerInteraction.Ignore);
-        if (isRayHit) {
-            Debug.Log($"{hit.distance}, {hit.collider.gameObject.name}");
-        }
-        return isRayHit
-             ? hit.point - positionFromTarget.normalized * 0.03f
-             : cameraPosition;
+private Vector3 AvoidObstacles(Vector3 cameraPosition, Vector3 targetPosition) {
+    var positionFromTarget = cameraPosition - targetPosition;
+    var layerMask = ~(1 << LayerMask.NameToLayer("Player"));
+    var isRayHit =
+        Physics.Raycast(targetPosition, positionFromTarget,
+        out RaycastHit hit, positionFromTarget.magnitude + 0.04f,
+        layerMask, QueryTriggerInteraction.Ignore);
+    if (isRayHit) {
+        Debug.Log($"{hit.distance}, {hit.collider.gameObject.name}");
     }
+    return isRayHit
+         ? hit.point - positionFromTarget.normalized * 0.03f
+         : cameraPosition;
+}
 
     //private void SetLeanType() {
     //    if (!this.IsTargetMoving) {

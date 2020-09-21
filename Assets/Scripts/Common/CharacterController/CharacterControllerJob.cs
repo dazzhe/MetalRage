@@ -191,15 +191,6 @@ struct CharacterControllerJob : IJobChunk {
             shouldJump = jumpRequested && ccInternalData.SupportedState == CharacterSupportState.Supported;
         }
 
-        // Turning
-        {
-            float horizontal = ccInput.Looking.x;
-            bool haveInput = (math.abs(horizontal) > float.Epsilon);
-            if (haveInput) {
-                ccInternalData.CurrentRotationAngle += horizontal * ccComponentData.RotationSpeed * DeltaTime;
-            }
-        }
-
         // Apply input velocities
         {
             if (shouldJump) {

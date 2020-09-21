@@ -44,9 +44,6 @@ public class GameConfigLoader : MonoBehaviour, IConvertGameObjectToEntity, IDecl
             Gravity = new float3(0f, -40f, 0f),
             MovementSpeed = 1f,
             JumpUpwardsSpeed = 14f
-            //CapsuleCenter = new float3(0f, 1.9f, 0f),
-            //CapsuleHeight = 3.8f,
-            //CapsuleRadius = 1f
         });
         dstManager.AddComponentData(prefabEntity, new CharacterControllerInput());
         dstManager.AddComponentData(prefabEntity, new CharacterControllerInternalData());

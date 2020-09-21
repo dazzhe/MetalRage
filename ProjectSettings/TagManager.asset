@@ -13,30 +13,30 @@ TagManager:
   - UI
   - 
   - 
-  - Player
+  - Culled
+  - Mirror
   - 
   - 
+  - Invisible
+  - PostProcess Volumes
+  - Ragdoll
+  - 
+  - Debris
+  - Platform
   - 
   - 
+  - collision_player
+  - collision_detail
   - 
   - 
+  - damagearea
+  - hitcollision_enabled
+  - hitcollision_disabled
+  - CharCollisionA
+  - CharCollisionB
+  - TeamAreaA
+  - TeamAreaB
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - PostProcessing
   m_SortingLayers:
   - name: Default
     uniqueID: 0

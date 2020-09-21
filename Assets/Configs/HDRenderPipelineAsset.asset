@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cf1dab834d4ec34195b920ea7bbf9ec, type: 3}
   m_Name: HDRenderPipelineAsset
   m_EditorClassIdentifier: 
-  m_Version: 12
+  m_Version: 11
   m_ObsoleteFrameSettings:
     overrides: 0
     enableShadow: 0
@@ -151,12 +151,10 @@ MonoBehaviour:
   m_RenderPipelineResources: {fileID: 11400000, guid: 3ce144cff5783da45aa5d4fdc2da14b7,
     type: 2}
   m_RenderPipelineRayTracingResources: {fileID: 0}
-  m_DefaultVolumeProfile: {fileID: 11400000, guid: 3043edc9d9a47704fad99f10fea80a08,
-    type: 2}
-  m_DefaultLookDevProfile: {fileID: 0}
+  m_DefaultVolumeProfile: {fileID: 0}
   m_RenderingPathDefaultCameraFrameSettings:
     bitDatas:
-      data1: 70280697347933
+      data1: 69181184933725
       data2: 4539628424926265344
     lodBias: 1
     lodBiasMode: 0
@@ -167,7 +165,7 @@ MonoBehaviour:
     materialQuality: 0
   m_RenderingPathDefaultBakedOrCustomReflectionFrameSettings:
     bitDatas:
-      data1: 64942043591453
+      data1: 69344383074077
       data2: 4539628424389459968
     lodBias: 1
     lodBiasMode: 0
@@ -178,7 +176,7 @@ MonoBehaviour:
     materialQuality: 0
   m_RenderingPathDefaultRealtimeReflectionFrameSettings:
     bitDatas:
-      data1: 69692120112925
+      data1: 69696572423965
       data2: 4539628424389459968
     lodBias: 1
     lodBiasMode: 0
@@ -189,7 +187,7 @@ MonoBehaviour:
     materialQuality: 0
   m_RenderPipelineSettings:
     supportShadowMask: 1
-    supportSSR: 0
+    supportSSR: 1
     supportSSAO: 1
     supportSubsurfaceScattering: 1
     increaseSssSampleCount: 0
@@ -204,32 +202,32 @@ MonoBehaviour:
     lightLayerName5: Light Layer 5
     lightLayerName6: Light Layer 6
     lightLayerName7: Light Layer 7
-    supportDistortion: 1
+    supportDistortion: 0
     supportTransparentBackface: 1
     supportTransparentDepthPrepass: 1
     supportTransparentDepthPostpass: 1
-    colorBufferFormat: 48
+    colorBufferFormat: 74
     supportCustomPass: 1
     customBufferFormat: 12
-    supportedLitShaderMode: 1
-    supportDecals: 1
-    msaaSampleCount: 8
+    supportedLitShaderMode: 2
+    supportDecals: 0
+    msaaSampleCount: 1
     supportMotionVectors: 1
-    supportRuntimeDebugDisplay: 1
+    supportRuntimeDebugDisplay: 0
     supportDitheringCrossFade: 1
     supportTerrainHole: 0
     supportRayTracing: 0
     supportedRaytracingTier: 2
     lightLoopSettings:
-      cookieSize: 128
+      cookieSize: 64
       cookieTexArraySize: 16
-      pointCookieSize: 128
+      pointCookieSize: 64
       cubeCookieTexArraySize: 16
-      planarReflectionProbeCacheSize: 2
-      planarReflectionTextureSize: 1024
-      reflectionProbeCacheSize: 64
-      reflectionCubemapSize: 256
-      reflectionCacheCompressed: 0
+      planarReflectionProbeCacheSize: 1
+      planarReflectionTextureSize: 64
+      reflectionProbeCacheSize: 16
+      reflectionCubemapSize: 128
+      reflectionCacheCompressed: 1
       planarReflectionCacheCompressed: 0
       skyReflectionSize: 256
       skyLightingOverrideLayerMask:
@@ -243,15 +241,15 @@ MonoBehaviour:
       maxDecalsOnScreen: 512
     hdShadowInitParams:
       maxShadowRequests: 128
-      directionalShadowsDepthBits: 32
-      shadowFilteringQuality: 0
+      directionalShadowsDepthBits: 16
+      shadowFilteringQuality: 1
       punctualLightShadowAtlas:
         shadowAtlasResolution: 4096
         shadowAtlasDepthBits: 32
         useDynamicViewportRescale: 1
       areaLightShadowAtlas:
-        shadowAtlasResolution: 4096
-        shadowAtlasDepthBits: 32
+        shadowAtlasResolution: 256
+        shadowAtlasDepthBits: 16
         useDynamicViewportRescale: 1
       shadowResolutionDirectional:
         m_Values: 00010000000200000004000000080000
@@ -271,10 +269,10 @@ MonoBehaviour:
       supportScreenSpaceShadows: 0
       maxScreenSpaceShadows: 2
     decalSettings:
-      drawDistance: 1000
+      drawDistance: 200
       atlasWidth: 4096
       atlasHeight: 4096
-      perChannelMask: 0
+      perChannelMask: 1
     postProcessSettings:
       m_LutSize: 32
       lutFormat: 48
@@ -282,7 +280,7 @@ MonoBehaviour:
       enabled: 0
       maxPercentage: 100
       minPercentage: 100
-      dynResType: 1
+      dynResType: 0
       upsampleFilter: 1
       forceResolution: 0
       forcedPercentage: 100
@@ -291,7 +289,6 @@ MonoBehaviour:
       checkerboardDepthBuffer: 1
       upsampleType: 1
     xrSettings:
-      singlePass: 1
       occlusionMesh: 1
     postProcessQualitySettings:
       NearBlurSampleCount: 030000000500000008000000
@@ -312,7 +309,7 @@ MonoBehaviour:
       ChromaticAberrationMaxSamples: 03000000060000000c000000
     lightSettings:
       useContactShadow:
-        m_Values: 000000
+        m_Values: 
         m_SchemaId:
           m_Id: 
     maximumLODLevel:
@@ -326,23 +323,28 @@ MonoBehaviour:
       - 1
       m_SchemaId:
         m_Id: With3Levels
-    lightingQualitySettings:
-      AOStepCount: 040000000600000010000000
-      AOFullRes: 000001
-      AOMaximumRadiusPixels: 200000002800000050000000
-      AOBilateralUpsample: 000101
-      AODirectionCount: 010000000200000004000000
-      ContactShadowSampleCount: 060000000a00000010000000
-      SSRMaxRaySteps: 100000002000000040000000
   allowShaderVariantStripping: 1
   enableSRPBatcher: 1
   shaderVariantLogLevel: 0
-  availableMaterialQualityLevels: -1
-  m_DefaultMaterialQualityLevel: 4
+  materialQualityLevels: -1
+  m_CurrentMaterialQualityLevel: 4
   diffusionProfileSettings: {fileID: 0}
   diffusionProfileSettingsList:
-  - {fileID: 11400000, guid: 40ad19dd2c5abb64a8935518a5a4a4ab, type: 2}
-  - {fileID: 11400000, guid: 02232f5868c2a104284dd491b5625e19, type: 2}
+  - {fileID: 11400000, guid: d53b64156273cf445a2a8d070fc18bf6, type: 2}
+  - {fileID: 11400000, guid: 831469279f1264f45a0ec94c569484eb, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   beforeTransparentCustomPostProcesses: []
   beforePostProcessCustomPostProcesses: []
   afterPostProcessCustomPostProcesses: []
