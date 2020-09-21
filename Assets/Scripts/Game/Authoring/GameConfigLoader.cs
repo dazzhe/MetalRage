@@ -40,7 +40,7 @@ public class GameConfigLoader : MonoBehaviour, IConvertGameObjectToEntity, IDecl
             SkinWidth = 0.02f,
             ContactTolerance = 0.1f,
             AffectsPhysicsBodies = 1,
-            MaxMovementSpeed = 50f,
+            MaxMovementSpeed = 100f,
             Gravity = new float3(0f, -40f, 0f),
             MovementSpeed = 1f,
             JumpUpwardsSpeed = 14f
